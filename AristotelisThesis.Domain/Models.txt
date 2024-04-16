@@ -1,0 +1,43 @@
+﻿+----------------+
+|  Students      |
++----------------+
+| StudentID      |	(Primary Key)
+
+| FirstName      |
+| LastName	     |
+| DateOfBirth    |
+| Gender	     |	Down options
+| Address	     |
+| Phone		     |
+
+
+
+| AcademicEmail  |
+| AEM            | 
+| Department     |	Down options
+| Semester       |	Down options
+| YearOfStudy    |
+
+| PalmprintImage |	(Path to stored palmprint image)
+| FaceImage      |	(Path to stored face image)
++----------------+
+	
+	
+
++-------------+
+|  Palmprints |
++-------------+
+| PalmprintID | (Primary Key)
+| Path        |
+| CaptureDate |
+| StudentID   |	(Foregin Key)
++-------------+
+
++-----------------+
+|  FaceImages     |
++-----------------+
+| StudentID       | (Primary Key)
+| FaceImageID     |
+| Path            |
+| CaptureDate     |
++-----------------+

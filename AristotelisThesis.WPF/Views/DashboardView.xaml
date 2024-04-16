@@ -1,0 +1,181 @@
+﻿<UserControl x:Class="AristotelisThesis.WPF.Views.DashboardView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AristotelisThesis.WPF.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="650" d:DesignWidth="1000">
+    
+    <Border Background="#1D1C1D" BorderBrush="Black" BorderThickness="1,1,1,1" CornerRadius="24,24,24,24">
+        <Grid Margin="20">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            
+            <!-- Left Side -->
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <!-- Welcome & Introduction -->
+                <Grid Grid.Row="0" HorizontalAlignment="Stretch">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    
+                    <TextBlock 
+                        Text="Καλησπέρα"
+                        Grid.Row="0"
+                        Foreground="White" 
+                        FontSize="35" 
+                        FontFamily="Manrope">
+                    </TextBlock>
+                    <TextBlock 
+                        Text="Αριστοτελία Παλλασίδου"
+                        Grid.Row="1"
+                        Foreground="White" 
+                        FontSize="35" 
+                        FontWeight="ExtraBold" 
+                        FontFamily="Manrope">
+                    </TextBlock>
+                    <TextBlock 
+                        Text="ΔΙΠΑΕ - Προπτυχιακός Φοιτητής - Τμήμα Πληροφορικής"
+                        Grid.Row="2"
+                        Foreground="White" 
+                        FontSize="16" 
+                        FontFamily="Manrope"
+                        Margin="0 10 0 0">
+                    </TextBlock>
+                </Grid>
+
+
+                <Grid Grid.Row="1" Margin="0 20 10 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="0" Margin="0 0 10 0">
+                        <Border
+                            Grid.Row="0"
+                            Background="#E6E6E6"
+                            Padding="20"
+                            CornerRadius="8 8 8 8"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch">
+                            <TextBlock Text="Προφιλ" Foreground="Black"></TextBlock>
+                        </Border>
+                    </Grid>
+
+                    <Grid Grid.Column="1" Margin="10 0 0 0">
+                        <Border
+                            Grid.Row="1"
+                            Background="#E6E6E6"
+                            Padding="20"
+                            CornerRadius="8 8 8 8"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch">
+                            <TextBlock Text="Ρυθμίσεις" Foreground="Black"></TextBlock>
+                        </Border>
+                    </Grid>
+                    
+                </Grid>
+
+
+                <Grid Grid.Row="2" Margin="0 20 10 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="0" Margin="0 0 10 0">
+                        <Border
+                            Grid.Row="0"
+                            Background="#E6E6E6"
+                            Padding="20"
+                            CornerRadius="8 8 8 8"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch">
+                            <TextBlock Text="Αναγνώριση Παλάμης" Foreground="Black"></TextBlock>
+                        </Border>
+                    </Grid>
+
+                    <Grid Grid.Column="1" Margin="10 0 0 0">
+                        <Border
+                            Grid.Row="1"
+                            Background="#E6E6E6"
+                            Padding="20"
+                            CornerRadius="8 8 8 8"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch">
+                            <TextBlock Text="Αναγνώριση Προσώπου" Foreground="Black"></TextBlock>
+                        </Border>
+                    </Grid>
+
+                </Grid>
+                
+            </Grid>
+            
+            
+            
+            
+            
+            
+            
+            
+            <!-- Right Side -->
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0" Margin="10 0 0 0">
+                    <Border
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Background="#E6E6E6"
+                        Padding="42"
+                        CornerRadius="8 8 8 8">
+                        <TextBlock Text="Είστε ενεργή εδώ και 2:20:56" 
+                                   Foreground="Black"
+                                   FontSize="24">
+                        </TextBlock>
+                    </Border> 
+                    
+                </Grid>
+                
+                
+                <Grid Grid.Row="1" Margin="10 30 0 0">
+                    <Border
+                        Grid.Row="1"
+                        Background="#E6E6E6"
+                        Padding="20"
+                        CornerRadius="8 8 8 8"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch">
+                        <TextBlock Text="Στατιστικα" Foreground="Black"></TextBlock>
+                    </Border> 
+                    
+                </Grid>
+                
+                
+            </Grid>
+            
+            
+
+                    
+
+        </Grid>
+    </Border>
+    
+</UserControl>

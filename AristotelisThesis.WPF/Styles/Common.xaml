@@ -1,0 +1,51 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <!-- Colors -->
+    <Color x:Key="Primary1">#1C1D1C</Color>
+    <Color x:Key="Success1">#BEDB39</Color>
+    <Color x:Key="Danger1">#FF5252</Color>
+
+    <Color x:Key="Primary">#0D6EFD</Color>
+    <Color x:Key="Secondary">#6C757D</Color>
+    <Color x:Key="Success">#198754</Color>
+    <Color x:Key="Danger">#DC3545</Color>
+    <Color x:Key="Warning">#FFC107</Color>
+    <Color x:Key="Info">#0DCAF0</Color>
+    <Color x:Key="Light">#F8F9FA</Color>
+    <Color x:Key="Dark">#212529</Color>
+
+
+    <!-- Brushes -->
+    <SolidColorBrush x:Key="ColorPrimary" Color="{StaticResource Primary}"/>
+    <SolidColorBrush x:Key="ColorSecondary" Color="{StaticResource Secondary}"/>
+    <SolidColorBrush x:Key="ColorSuccess" Color="{StaticResource Success}"/>
+    <SolidColorBrush x:Key="ColorDanger" Color="{StaticResource Danger}"/>
+    <SolidColorBrush x:Key="ColorWarning" Color="{StaticResource Warning}"/>
+    <SolidColorBrush x:Key="ColorInfo" Color="{StaticResource Info}"/>
+    <SolidColorBrush x:Key="ColorLight" Color="{StaticResource Light}"/>
+    <SolidColorBrush x:Key="ColorDark" Color="{StaticResource Dark}"/>
+
+    
+    <!-- Font Family -->
+    <Style TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="Manrope" />
+    </Style>
+    
+    <Style TargetType="Button">
+        <Setter Property="FontFamily" Value="Manrope" />
+    </Style>
+
+    <Style TargetType="Label">
+        <Setter Property="FontFamily" Value="Manrope" />
+    </Style>
+    
+    <Style TargetType="RadioButton">
+        <Setter Property="FontFamily" Value="Manrope" />
+    </Style>
+
+
+
+    
+    
+</ResourceDictionary>
