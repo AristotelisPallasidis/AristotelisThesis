@@ -48,7 +48,7 @@
                         FontFamily="Manrope">
                     </TextBlock>
                     <TextBlock 
-                        Text="ΔΙΠΑΕ - Προπτυχιακός Φοιτητής - Τμήμα Πληροφορικής"
+                        Text="ΔΠΘ - Προπτυχιακός Φοιτητής - Τμήμα Πληροφορικής"
                         Grid.Row="2"
                         Foreground="White" 
                         FontSize="16" 
