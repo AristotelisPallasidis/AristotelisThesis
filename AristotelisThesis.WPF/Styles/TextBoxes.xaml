@@ -6,9 +6,9 @@
 
         <Setter Property="Width" Value="240"/>
         <Setter Property="Height" Value="30"/>
-        
+
         <Setter Property="Padding" Value="4"/>
-        
+
         <Setter Property="BorderThickness" Value="0"/>
 
         <Setter Property="HorizontalAlignment" Value="Left"/>
@@ -17,7 +17,7 @@
         <Setter Property="Foreground" Value="{StaticResource ColorLight}"/>
 
         <Setter Property="Cursor" Value="IBeam" />
-        
+
         <Setter Property="FontSize" Value="14" />
         <Setter Property="FontWeight" Value="Regular" />
         <Setter Property="FontFamily" Value="Manrope" />
@@ -37,6 +37,6 @@
         </Setter>
 
     </Style>
-    
-    
+
+
 </ResourceDictionary>

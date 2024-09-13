@@ -1,6 +1,7 @@
 ﻿using AristotelisThesis.WPF.Commands;
 using AristotelisThesis.WPF.Models;
 using AristotelisThesis.WPF.ViewModels;
+using System.ComponentModel;
 using System.Windows.Input;
 
 namespace AristotelisThesis.WPF.State.Navigators
@@ -25,3 +26,10 @@ namespace AristotelisThesis.WPF.State.Navigators
 
     }
 }
+
+// MOVED TO Models/ObservableObject.cs
+//public event PropertyChangedEventHandler? PropertyChanged;
+//protected void OnPropertyChanged(string proprertyName)
+//{
+//    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(proprertyName));
+//}

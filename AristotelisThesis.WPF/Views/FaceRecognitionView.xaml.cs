@@ -24,5 +24,10 @@ namespace AristotelisThesis.WPF.Views
         {
             InitializeComponent();
         }
+
+        private void UpdateFaceButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

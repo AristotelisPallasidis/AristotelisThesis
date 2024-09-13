@@ -1,0 +1,10 @@
+﻿
+# Packages to Install
+
+
+
+
+
+## Tutorial Packages
+1.  install Microsoft.AspNet.Identity.Core
+	ye

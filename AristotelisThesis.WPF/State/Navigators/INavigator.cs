@@ -1,22 +1,25 @@
 ﻿using AristotelisThesis.WPF.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace AristotelisThesis.WPF.State.Navigators
 {
     public enum ViewType
     {
+        Login,
+        LoginWithFace,
+        LoginWithPalmprint,
         Dashboard,
         FaceRecognition,
         PalmprintRecognition,
         Statistics,
         Profile,
         Settings,
-        Login
+        //Register01ViewModel,
+        //Register02WithInformationViewModel,
+        //Register03InstructionsForPalmprintViewModel,
+        //Register04WithPalmprintViewModel,
+        //Register05InstructionsForFaceViewModel,
+        //Register06WithFaceViewModel,
     }
 
     public interface INavigator
@@ -24,4 +27,5 @@ namespace AristotelisThesis.WPF.State.Navigators
         ViewModelBase CurrentViewModel { get; set; }
         ICommand UpdateCurrentViewModelCommand { get; }
     }
+
 }

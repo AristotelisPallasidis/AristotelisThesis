@@ -11,21 +11,20 @@ namespace AristotelisThesis.WPF.Commands
 {
     public class UpdateCurrentViewModelCommand : ICommand
     {
-        public event EventHandler? CanExecuteChanged;
-
-        private readonly INavigator _navigator;
+        public event EventHandler CanExecuteChanged;
+        public readonly INavigator _navigator;
 
         public UpdateCurrentViewModelCommand(INavigator navigator)
         {
             _navigator = navigator;
         }
 
-        public bool CanExecute(object? parameter)
+        public bool CanExecute(object parameter)
         {
             return true;
         }
 
-        public void Execute(object? parameter)
+        public void Execute(object parameter)
         {
             if (parameter is ViewType)
             {
@@ -33,6 +32,15 @@ namespace AristotelisThesis.WPF.Commands
 
                 switch (viewType)
                 {
+                    case ViewType.Login:
+                        _navigator.CurrentViewModel = new LoginViewModel();
+                        break;
+                    case ViewType.LoginWithFace:
+                        _navigator.CurrentViewModel = new LoginWithFaceViewModel();
+                        break;
+                    case ViewType.LoginWithPalmprint:
+                        _navigator.CurrentViewModel = new LoginWithPalmprintViewModel();
+                        break;
                     case ViewType.Dashboard:
                         _navigator.CurrentViewModel = new DashboardViewModel();
                         break;
@@ -42,20 +50,38 @@ namespace AristotelisThesis.WPF.Commands
                     case ViewType.PalmprintRecognition:
                         _navigator.CurrentViewModel = new PalmprintRecognitionViewModel();
                         break;
+                    case ViewType.Statistics:
+                        _navigator.CurrentViewModel = new StatisticsViewModel();
+                        break;
                     case ViewType.Profile:
                         _navigator.CurrentViewModel = new ProfileViewModel();
                         break;
                     case ViewType.Settings:
                         _navigator.CurrentViewModel = new SettingsViewModel();
                         break;
-                    case ViewType.Statistics:
-                        _navigator.CurrentViewModel = new StatisticsViewModel();
-                        break;
+                    //case ViewType.Register01ViewModel:
+                    //    _navigator.CurrentViewModel = new Register01ViewModel();
+                    //    break;
+                    //case ViewType.Register02WithInformationViewModel:
+                    //    _navigator.CurrentViewModel = new Register02WithInformationViewModel();
+                    //    break;
+                    //case ViewType.Register03InstructionsForPalmprintViewModel:
+                    //    _navigator.CurrentViewModel = new Register03InstructionsForPalmprintViewModel();
+                    //    break;
+                    //case ViewType.Register04WithPalmprintViewModel:
+                    //    _navigator.CurrentViewModel = new Register04WithPalmprintViewModel();
+                    //    break;
+                    //case ViewType.Register05InstructionsForFaceViewModel:
+                    //    _navigator.CurrentViewModel = new Register05InstructionsForFaceViewModel();
+                    //    break;
+                    //case ViewType.Register06WithFaceViewModel:
+                    //    _navigator.CurrentViewModel = new Register06WithFaceViewModel();
+                    //    break;
                     default:
-                        _navigator.CurrentViewModel = new DashboardViewModel();
                         break;
                 }
             }
         }
     }
 }
+   

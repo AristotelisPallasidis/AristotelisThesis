@@ -6,8 +6,8 @@
              xmlns:local="clr-namespace:AristotelisThesis.WPF.Views"
              mc:Ignorable="d" 
              d:DesignHeight="650" d:DesignWidth="1200" Background="#1D1C1D">
-    
-    
+
+
     <Grid Margin="20">
 
         <Grid.RowDefinitions>
@@ -16,7 +16,7 @@
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
-        
+
 
         <Grid Grid.Column="0" Grid.Row="0" Margin="0 20 0 10">
             <TextBlock

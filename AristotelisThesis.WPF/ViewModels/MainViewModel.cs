@@ -13,8 +13,8 @@ namespace AristotelisThesis.WPF.ViewModels
 
         public MainViewModel()
         {
-            //Navigator.UpdateCurrentViewModelCommand.Execute(ViewType.Dashboard);
-            Navigator.UpdateCurrentViewModelCommand.Execute(ViewType.Login);
+            Navigator.UpdateCurrentViewModelCommand.Execute(ViewType.Dashboard);
+            //Navigator.UpdateCurrentViewModelCommand.Execute(ViewType.Login);
         }
     }
 }

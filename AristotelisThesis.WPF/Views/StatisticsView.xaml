@@ -4,14 +4,93 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:AristotelisThesis.WPF.Views"
+
+            xmlns:controls="clr-namespace:AristotelisThesis.WPF.Controls"
+
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="850" d:DesignWidth="1400">
+
+
 
     <Border Background="#1D1C1D" BorderBrush="Black" BorderThickness="1,1,1,1" CornerRadius="24,24,24,24">
         <Grid Margin="20">
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Στατιστικά" Style="{StaticResource PageTitle}"/>
-            </StackPanel>
+
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!-- ROW TITLE -->
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Orientation="Horizontal" Grid.Column="0">
+                    <Image Source="C:\Users\Aristotelis\Desktop\repos\AristotelisThesis\AristotelisThesis.WPF\Assets\Icons\ChartIconSolid.png" Width="30" Height="30" Margin="0 0 10 0"></Image>
+                    <TextBlock 
+                        Text="Στατιστικά" 
+                        Grid.Column="0"
+                        Style="{StaticResource PageTitle}">
+                    </TextBlock>
+                </StackPanel>
+
+                <!-- CLOCK CARD -->
+                <Grid Grid.Column="2">
+                    <controls:ClockCard Width="280"/>
+                    <!-- {Binding nowTime - start }-->
+                </Grid>
+
+            </Grid>
+
+            <!-- CONTENT -->
+            <Grid Grid.Row="1" Margin="0 10 0 0">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0" VerticalAlignment="Center">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="0" Margin="0 0 20 0" VerticalAlignment="Center">
+                        <controls:MonthlyActiveHoursCard />
+                    </Grid>
+
+                    <Grid Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                        <controls:WeeklyStreakCard  />
+                    </Grid>
+
+                </Grid>
+
+
+                <Grid Grid.Row="1" VerticalAlignment="Bottom">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="0" Margin="0 0 20 0">
+                        <controls:WeeklyStreakCard VerticalAlignment="Bottom" />
+
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <controls:WeeklyActiveHoursCard VerticalAlignment="Bottom" />
+
+                    </Grid>
+                </Grid>
+
+            </Grid>
+
 
         </Grid>
     </Border>

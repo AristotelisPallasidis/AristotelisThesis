@@ -10,50 +10,50 @@
              xmlns:converters="clr-namespace:AristotelisThesis.WPF.Converters"
              
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="1200">
+             d:DesignHeight="150" d:DesignWidth="1400">
+
 
     <UserControl.Resources>
         <converters:EqualValueToParameterConverter x:Key="EqualValueToParameterConverter" />
     </UserControl.Resources>
-    <Grid>
 
+
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0" HorizontalAlignment="Left">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
             </Grid.ColumnDefinitions>
 
             <Image 
                 Grid.Column="0" 
-                Source="C:\Users\Aristotelis\source\repos\AristotelisThesis\AristotelisThesis.WPF\Assets\IHUBlackLogo.png" 
-                Height="50" 
-                Width="50">
+                Source="C:\Users\Aristotelis\Desktop\repos\AristotelisThesis\AristotelisThesis.WPF\Assets\DUTH-Logo.jpg"
+                Height="60" 
+                Width="60">
             </Image>
 
             <TextBlock 
                 Grid.Column="1" 
-                FontFamily="Manrope"
                 Padding="10"
                 Foreground="Black"
                 FontSize="20" 
                 FontWeight="Bold">
-                    ΔΙΠΑΕ ΣΥΣΤΗΜΑΤΑ 
+                    ΔΠΘ ΣΥΣΤΗΜΑΤΑ 
                     <LineBreak />
                     ΤΑΥΤΟΠΟΙΗΣΗΣ
             </TextBlock>
-
         </Grid>
 
 
         <Grid Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center">
-            <!-- -->
+
             <Grid.Resources>
                 <Style BasedOn="{StaticResource NavButton}" TargetType="RadioButton" />
-            </Grid.Resources> 
+            </Grid.Resources>
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto" />
@@ -63,17 +63,16 @@
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
             </Grid.ColumnDefinitions>
 
-            
             <RadioButton 
                 Grid.Column="0" 
                 Content="Αρχική"
                 IsChecked="{Binding CurrentViewModel, Mode=OneWay, ConverterParameter={x:Type vm:DashboardViewModel}, Converter={StaticResource EqualValueToParameterConverter}}"
                 Command="{Binding UpdateCurrentViewModelCommand}"
-                CommandParameter="{x:Static nav:ViewType.Dashboard}"
-                >
+                CommandParameter="{x:Static nav:ViewType.Dashboard}">
             </RadioButton>
 
             <RadioButton 
@@ -81,8 +80,7 @@
                 Content="Αναγνώριση Προσώπου"
                 IsChecked="{Binding CurrentViewModel, Mode=OneWay, ConverterParameter={x:Type vm:FaceRecognitionViewModel}, Converter={StaticResource EqualValueToParameterConverter}}"
                 Command="{Binding UpdateCurrentViewModelCommand}"
-                CommandParameter="{x:Static nav:ViewType.FaceRecognition}"
-                >
+                CommandParameter="{x:Static nav:ViewType.FaceRecognition}">
             </RadioButton>
 
             <RadioButton 
@@ -90,8 +88,7 @@
                 Content="Αναγνώριση Παλάμης"
                 IsChecked="{Binding CurrentViewModel, Mode=OneWay, ConverterParameter={x:Type vm:PalmprintRecognitionViewModel}, Converter={StaticResource EqualValueToParameterConverter}}"
                 Command="{Binding UpdateCurrentViewModelCommand}"
-                CommandParameter="{x:Static nav:ViewType.PalmprintRecognition}"
-                >
+                CommandParameter="{x:Static nav:ViewType.PalmprintRecognition}">
             </RadioButton>
 
             <RadioButton 
@@ -99,8 +96,7 @@
                 Content="Στατιστικά"
                 IsChecked="{Binding CurrentViewModel, Mode=OneWay, ConverterParameter={x:Type vm:StatisticsViewModel}, Converter={StaticResource EqualValueToParameterConverter}}"
                 Command="{Binding UpdateCurrentViewModelCommand}"
-                CommandParameter="{x:Static nav:ViewType.Statistics}"
-                >
+                CommandParameter="{x:Static nav:ViewType.Statistics}">
             </RadioButton>
 
             <RadioButton 
@@ -108,8 +104,7 @@
                 Content="Προφιλ"
                 IsChecked="{Binding CurrentViewModel, Mode=OneWay, ConverterParameter={x:Type vm:ProfileViewModel}, Converter={StaticResource EqualValueToParameterConverter}}"
                 Command="{Binding UpdateCurrentViewModelCommand}"
-                CommandParameter="{x:Static nav:ViewType.Profile}"
-                >
+                CommandParameter="{x:Static nav:ViewType.Profile}">
             </RadioButton>
 
             <RadioButton 
@@ -117,23 +112,21 @@
                 Content="Ρυθμίσης"
                 IsChecked="{Binding CurrentViewModel, Mode=OneWay, ConverterParameter={x:Type vm:SettingsViewModel}, Converter={StaticResource EqualValueToParameterConverter}}"
                 Command="{Binding UpdateCurrentViewModelCommand}"
-                CommandParameter="{x:Static nav:ViewType.Settings}"
-                >
+                CommandParameter="{x:Static nav:ViewType.Settings}">
             </RadioButton>
 
-        <!--
+            <!-- LOG OUT BUTTON -->
             <RadioButton 
                 Grid.Column="6"
-                Content="Αποσ"
-                IsChecked="{Binding CurrentViewModel, Mode=OneWay, ConverterParameter={x:Type vm:SettingsViewModel}, Converter={StaticResource EqualValueToParameterConverter}}"
                 Command="{Binding UpdateCurrentViewModelCommand}"
                 CommandParameter="{x:Static nav:ViewType.Settings}">
             </RadioButton>
-        -->
-
+            <StackPanel Orientation="Horizontal" Grid.Column="6">
+                <Image Source="https://pics.freeicons.io/uploads/icons/png/16147924811618134427-512.png" Width="26" />
+            </StackPanel>
+            <!-- Navigate to loginScreen -->
         </Grid>
 
-            
-
     </Grid>
+
 </UserControl>

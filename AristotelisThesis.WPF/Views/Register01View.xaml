@@ -26,7 +26,7 @@
             </TextBlock>
         </Grid>
 
-        
+
         <Grid Grid.Row="1" Margin="0 10 0 10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
@@ -111,7 +111,7 @@
                     kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
                 </TextBox>
             </ScrollViewer>
-        
+
         </Grid>
 
 

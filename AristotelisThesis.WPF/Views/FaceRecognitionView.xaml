@@ -4,10 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:AristotelisThesis.WPF.Views"
+
+             xmlns:controls="clr-namespace:AristotelisThesis.WPF.Controls"
+
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    
-    <Border Background="#1D1C1D" BorderBrush="Black" BorderThickness="1,1,1,1" CornerRadius="24,24,24,24">
+             d:DesignHeight="650" d:DesignWidth="1440">
+
+    <Border Background="#1D1C1D" BorderBrush="Black" BorderThickness="1 1 1 1" CornerRadius="24 24 24 24">
         <Grid Margin="20">
 
             <Grid.RowDefinitions>
@@ -23,43 +26,157 @@
                     <ColumnDefinition Width="auto" />
                 </Grid.ColumnDefinitions>
 
-                <Grid Grid.Column="0">
+                <StackPanel Orientation="Horizontal" Grid.Column="0">
+                    <Image Source="C:\Users\Aristotelis\Desktop\repos\AristotelisThesis\AristotelisThesis.WPF\Assets\Icons\FaceIconSolid.png" Width="30" Height="30" Margin="0 0 10 0"></Image>
                     <TextBlock 
                         Text="Αναγνώριση Προσώπου" 
+                        Grid.Column="0"
                         Style="{StaticResource PageTitle}">
                     </TextBlock>
+                </StackPanel>
 
-                </Grid>
-                
+
+                <!-- CLOCK CARD -->
                 <Grid Grid.Column="2">
-                    
+                    <controls:ClockCard Width="280"/>
                     <!-- <card:ClockCard String Format {Binding Gender dispay end } {Binding nowTime - start }-->
-                    <Border
-                        Grid.Column="2"
-                        Background="#E6E6E6"
-                        Padding="10 4"
-                        CornerRadius="8 8 8 8"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center">
-
-                        <TextBlock 
-                            Text="Ενεργός/ή 3h 12m 24s"
-                            TextAlignment="Right"
-                            Foreground="Black"
-                            FontSize="16"
-                            FontWeight="SemiBold"
-                            FontFamily="Manrope">
-                        </TextBlock>
-
-                    </Border>
-                    <!-- <card:ClockCard String Format {Binding Gender dispay end } {Binding nowTime - start }-->
-
                 </Grid>
-                
-                
+
+
             </Grid>
 
+
+
+            <Grid Grid.Row="1" Margin="0 90 0 0" >
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0" >
+                    <Image 
+                        Source="C:\Users\Aristotelis\Desktop\repos\AristotelisThesis\AristotelisThesis.WPF\Assets\01.jpeg" 
+                        HorizontalAlignment="Left" 
+                        VerticalAlignment="Stretch">
+                    </Image>
+                </Grid>
+
+                <Grid Grid.Column="1">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+
+                    <Grid Grid.Column="0" VerticalAlignment="Stretch">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="0">
+                            <Image Source="C:\Users\Aristotelis\Desktop\repos\AristotelisThesis\AristotelisThesis.WPF\Assets\01.jpeg" Width="90"></Image>
+                        </Grid>
+
+                        <Grid Grid.Row="1">
+                            <Image Source="C:\Users\Aristotelis\Desktop\repos\AristotelisThesis\AristotelisThesis.WPF\Assets\01.jpeg" Width="90"></Image>
+                        </Grid>
+
+                        <Grid Grid.Row="2">
+                            <Image Source="C:\Users\Aristotelis\Desktop\repos\AristotelisThesis\AristotelisThesis.WPF\Assets\01.jpeg" Width="90"></Image>
+                        </Grid>
+
+                        <Grid Grid.Row="3">
+                            <Image Source="C:\Users\Aristotelis\Desktop\repos\AristotelisThesis\AristotelisThesis.WPF\Assets\01.jpeg" Width="90"></Image>
+                        </Grid>
+
+                        <Grid Grid.Row="4">
+                            <Image Source="C:\Users\Aristotelis\Desktop\repos\AristotelisThesis\AristotelisThesis.WPF\Assets\01.jpeg" Width="90"></Image>
+                        </Grid>
+                    </Grid>
+
+
+                    <Grid Grid.Column="1" VerticalAlignment="Stretch">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="0">
+                            <Image Source="C:\Users\Aristotelis\Desktop\repos\AristotelisThesis\AristotelisThesis.WPF\Assets\01.jpeg" Width="90"></Image>
+                        </Grid>
+
+                        <Grid Grid.Row="1">
+                            <Image Source="C:\Users\Aristotelis\Desktop\repos\AristotelisThesis\AristotelisThesis.WPF\Assets\01.jpeg" Width="90"></Image>
+                        </Grid>
+
+                        <Grid Grid.Row="2">
+                            <Image Source="C:\Users\Aristotelis\Desktop\repos\AristotelisThesis\AristotelisThesis.WPF\Assets\01.jpeg" Width="90"></Image>
+                        </Grid>
+
+                        <Grid Grid.Row="3">
+                            <Image Source="C:\Users\Aristotelis\Desktop\repos\AristotelisThesis\AristotelisThesis.WPF\Assets\01.jpeg" Width="90"></Image>
+                        </Grid>
+
+                        <Grid Grid.Row="4">
+                            <Image Source="C:\Users\Aristotelis\Desktop\repos\AristotelisThesis\AristotelisThesis.WPF\Assets\01.jpeg" Width="90"></Image>
+                        </Grid>
+
+                    </Grid>
+
+                </Grid>
+
+                <Grid Grid.Column="3" VerticalAlignment="Bottom">
+
+                    <Border
+                        BorderBrush="{StaticResource ColorWarning}" 
+                        BorderThickness="2" 
+                        CornerRadius="6 6 6 6" 
+                        Padding="26 32 70 32" >
+
+                        <Grid Grid.Column="1" Background="Transparent">
+                            <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
+
+                                <TextBlock Text="Ενημέρωση στοιχείων Προσώπου"
+                                   FontSize="20"
+                                   FontWeight="Bold"
+                                   Foreground="White">
+                                </TextBlock>
+
+                                <TextBlock Text="* Η ενημέρωση εικόνων θα διαγράψη τις υπάρχουσες εικόνες"
+                                   Margin="0 4 0 0"
+                                   FontSize="12"
+                                   FontWeight="Light"
+                                   Foreground="{StaticResource ColorLight}">
+                                </TextBlock>
+
+                                <Button 
+                                    Content="Ενημέρωση στοιχείων"
+                                    Click="UpdateFaceButton_Click"
+                                    Margin="0 10 0 0"
+                                    Cursor="Hand">
+                                </Button>
+
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+
+                </Grid>
+
+
+
+            </Grid>
         </Grid>
     </Border>
-    
+
 </UserControl>

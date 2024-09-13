@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AristotelisThesis.WPF.Commands;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,19 @@ namespace AristotelisThesis.WPF.Views
         public ProfileView()
         {
             InitializeComponent();
+
+            // Load an Image from the db that the user has registered with
+            // Image = db.GetImage(); 
+
+            // Fill the text with the user's data
+            txtName.Text = "Αριστοτέλης";
+            txtSurname.Text = "Παλλασίδης";
+            txtDepartment.Text = "Τμήμα - " + "Πληροφορικής";
+            txtAEM.Text = "AEM - " + "4509";
+            txtSemester.Text = "Εξάμηνο - " + "12";
+            txtYearOfEntry.Text = "Έτος Εισαγωγής - " + "2018";
+            txtEmail.Text = "Email - " + "arpalla@teiemt.gr";
         }
+
     }
 }

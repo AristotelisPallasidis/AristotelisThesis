@@ -5,8 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:AristotelisThesis.WPF.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="650" d:DesignWidth="1000">
-    
+             d:DesignHeight="850" d:DesignWidth="1640">
+
     <Border Background="#1D1C1D" BorderBrush="Black" BorderThickness="1,1,1,1" CornerRadius="24,24,24,24">
         <Grid Margin="20">
 
@@ -15,7 +15,7 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            
+
             <!-- Left Side -->
             <Grid Grid.Column="0">
                 <Grid.RowDefinitions>
@@ -31,22 +31,24 @@
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
                     </Grid.RowDefinitions>
-                    
+
                     <TextBlock 
-                        Text="Καλησπέρα"
+                        Text="Καλωσορίσατε"
                         Grid.Row="0"
                         Foreground="White" 
                         FontSize="35" 
                         FontFamily="Manrope">
                     </TextBlock>
                     <TextBlock 
-                        Text="Αριστοτελία Παλλασίδου"
+                        Text="Name Surname"
+                        Name="txtFullName"
                         Grid.Row="1"
                         Foreground="White" 
                         FontSize="35" 
                         FontWeight="ExtraBold" 
                         FontFamily="Manrope">
                     </TextBlock>
+
                     <TextBlock 
                         Text="ΔΠΘ - Προπτυχιακός Φοιτητής - Τμήμα Πληροφορικής"
                         Grid.Row="2"
@@ -55,6 +57,24 @@
                         FontFamily="Manrope"
                         Margin="0 10 0 0">
                     </TextBlock>
+                    <!-- 
+                    <TextBlock 
+                        Text="Προπτυχιακός Φοιτητής - "
+                        Grid.Row="2"
+                        Foreground="White" 
+                        FontSize="16" 
+                        FontFamily="Manrope"
+                        Margin="0 10 0 0">
+                    </TextBlock>
+                    <TextBlock 
+                        Text="Τμήμα Πληροφορικής"
+                        Grid.Row="2"
+                        Foreground="White" 
+                        FontSize="16" 
+                        FontFamily="Manrope"
+                        Margin="0 10 0 0">
+                    </TextBlock>
+                    -->
                 </Grid>
 
 
@@ -87,7 +107,7 @@
                             <TextBlock Text="Ρυθμίσεις" Foreground="Black"></TextBlock>
                         </Border>
                     </Grid>
-                    
+
                 </Grid>
 
 
@@ -113,26 +133,31 @@
                         <Border
                             Grid.Row="1"
                             Background="#E6E6E6"
-                            Padding="20"
+                            Padding="10"
                             CornerRadius="8 8 8 8"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Stretch">
-                            <TextBlock Text="Αναγνώριση Προσώπου" Foreground="Black"></TextBlock>
+
+
+                            <Image 
+                                Source="C:\Users\Aristotelis\Desktop\repos\AristotelisThesis\AristotelisThesis.WPF\Assets\Group-22.png" 
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"></Image>
                         </Border>
                     </Grid>
 
                 </Grid>
-                
+
             </Grid>
-            
-            
-            
-            
-            
-            
-            
-            
-            <!-- Right Side -->
+
+
+
+
+
+
+
+
+            <!-- RIGHT SIDE -->
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />
@@ -146,15 +171,14 @@
                         Background="#E6E6E6"
                         Padding="42"
                         CornerRadius="8 8 8 8">
-                        <TextBlock Text="Είστε ενεργή εδώ και 2:20:56" 
+                        <TextBlock Text="Η διάρκεια συνδεσης σας ειναι 3h 12m 24s" 
                                    Foreground="Black"
                                    FontSize="24">
                         </TextBlock>
-                    </Border> 
-                    
+                    </Border>
                 </Grid>
-                
-                
+
+
                 <Grid Grid.Row="1" Margin="10 30 0 0">
                     <Border
                         Grid.Row="1"
@@ -164,18 +188,17 @@
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch">
                         <TextBlock Text="Στατιστικα" Foreground="Black"></TextBlock>
-                    </Border> 
-                    
+                    </Border>
                 </Grid>
-                
-                
-            </Grid>
-            
-            
 
-                    
+
+            </Grid>
+
+
+
+
 
         </Grid>
     </Border>
-    
+
 </UserControl>

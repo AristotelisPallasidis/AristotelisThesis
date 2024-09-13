@@ -5,21 +5,21 @@
              
              xmlns:views="clr-namespace:AristotelisThesis.WPF.Views"
              xmlns:viewModels="clr-namespace:AristotelisThesis.WPF.ViewModels">
-    
-    
+
+
     <Application.Resources>
         <ResourceDictionary>
 
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Styles/Common.xaml"/>
-                <ResourceDictionary Source="/Styles/NavigationBar.xaml"/> 
+                <ResourceDictionary Source="/Styles/NavigationBar.xaml"/>
                 <ResourceDictionary Source="/Styles/Buttons.xaml"/>
                 <ResourceDictionary Source="/Styles/TextBlocks.xaml"/>
                 <ResourceDictionary Source="/Styles/TextBoxes.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
-            
-            <!-- Views Inside the User's Profile -->
+
+            <!-- Views of User's Profile -->
             <DataTemplate DataType="{x:Type viewModels:DashboardViewModel}">
                 <views:DashboardView />
             </DataTemplate>
@@ -44,39 +44,49 @@
                 <views:SettingsView />
             </DataTemplate>
 
+
+            <!-- View of Login -->
             <DataTemplate DataType="{x:Type viewModels:LoginViewModel}">
                 <views:LoginView />
             </DataTemplate>
-            
-            
-            <!-- Views of Registration Process 
+
+            <DataTemplate DataType="{x:Type viewModels:LoginWithFaceViewModel}">
+                <views:LoginWithFaceView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModels:LoginWithPalmprintViewModel}">
+                <views:LoginWithPalmprintView />
+            </DataTemplate>
+
+
+            <!-- Views of Registration Process -->
             <DataTemplate DataType="{x:Type viewModels:Register01ViewModel}">
                 <views:Register01View />
             </DataTemplate>
-            
+
             <DataTemplate DataType="{x:Type viewModels:Register02WithInformationViewModel}">
                 <views:Register02WithInformationView />
             </DataTemplate>
-            
+
             <DataTemplate DataType="{x:Type viewModels:Register03InstructionsForPalmprintViewModel}">
                 <views:Register03InstructionsForPalmprintView />
             </DataTemplate>
-            
+
             <DataTemplate DataType="{x:Type viewModels:Register04WithPalmprintViewModel}">
                 <views:Register04WithPalmprintView />
             </DataTemplate>
-            
+
             <DataTemplate DataType="{x:Type viewModels:Register05InstructionsForFaceViewModel}">
                 <views:Register05InstructionsForFaceView />
             </DataTemplate>
-            
+
             <DataTemplate DataType="{x:Type viewModels:Register06WithFaceViewModel}">
                 <views:Register06WithFaceView />
             </DataTemplate>
-            -->
-            
-            
+
 
         </ResourceDictionary>
     </Application.Resources>
+
+
 </Application>

@@ -8,29 +8,29 @@
 
     <!-- LOGIN WITH PALMPRINT BUTTON -->
     <Style x:Key="LoginWithPalmprintButton" TargetType="Button">
-        
+
         <Setter Property="Width" Value="100" />
-        
+
         <Setter Property="Padding" Value="0 3" />
-        
+
         <Setter Property="Foreground" Value="#1D1C1D" />
         <Setter Property="Background" Value="#BEDB39" />
-        
+
         <Setter Property="BorderThickness" Value="0" />
-        
+
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
-        
+
         <Setter Property="FontFamily" Value="Manrope" />
         <Setter Property="FontWeight" Value="SemiBold" />
-        
+
         <Setter Property="Cursor" Value="Hand" />
-        
+
     </Style>
-    
-    
-    
-    
+
+
+
+
 
     <!-- /////////////////////////////////////////////////////////////// -->
     <!-- REGISTRATION BUTTONS -->
@@ -38,19 +38,19 @@
 
     <!-- NEXT BUTTON -->
     <Style x:Key="NextButton" TargetType="Button">
-        
+
         <Setter Property="Width" Value="100" />
-        
+
         <Setter Property="Padding" Value="0 3" />
-        
+
         <Setter Property="Foreground" Value="#1D1C1D" />
         <Setter Property="Background" Value="#BEDB39" />
-        
+
         <Setter Property="BorderThickness" Value="0" />
-        
+
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
-        
+
         <Setter Property="FontFamily" Value="Manrope" />
         <Setter Property="FontWeight" Value="SemiBold" />
 
@@ -58,14 +58,14 @@
 
     </Style>
 
-    
+
     <!-- BACK BUTTON -->
     <Style x:Key="BackButton" TargetType="Button">
 
         <Setter Property="Width" Value="100" />
-        
+
         <Setter Property="Padding" Value="0 3" />
-        
+
         <Setter Property="Foreground" Value="{StaticResource ColorLight}" />
         <Setter Property="Background" Value="Transparent" />
 
@@ -75,17 +75,17 @@
         <Setter Property="FontWeight" Value="Regular" />
 
         <Setter Property="Cursor" Value="Hand" />
-        
+
     </Style>
-    
-    
-    
-    
-    
+
+
+
+
+
     <!-- /////////////////////////////////////////////////////////////// -->
     <!-- STATISTICS BUTTONS -->
     <!-- /////////////////////////////////////////////////////////////// -->
-    
+
     <!-- SAVE CHANGES BUTTION -->
     <Style x:Key="SaveChangesButton" TargetType="Button">
 
@@ -120,24 +120,24 @@
         </Style.Triggers>
 
     </Style>
-    
-    
+
+
     <!-- DELETE ACCOUNT BUTTION -->
     <Style x:Key="DeleteAccountButton" TargetType="Button">
-        
+
         <Setter Property="Width" Value="100" />
-        
+
         <Setter Property="Margin" Value="0 12 0 0" />
         <Setter Property="Padding" Value="12 6" />
 
         <Setter Property="Foreground" Value="{StaticResource ColorLight}" />
         <Setter Property="Background" Value="{StaticResource ColorDanger}" />
-        
+
         <Setter Property="BorderThickness" Value="0" />
 
         <Setter Property="HorizontalContentAlignment" Value="Left" />
         <Setter Property="HorizontalAlignment" Value="Left" />
-        
+
         <Setter Property="FontSize" Value="16" />
         <Setter Property="FontWeight" Value="SemiBold" />
 

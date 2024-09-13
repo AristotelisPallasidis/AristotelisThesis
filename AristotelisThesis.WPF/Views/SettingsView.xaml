@@ -4,10 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:AristotelisThesis.WPF.Views"
+
+             xmlns:controls="clr-namespace:AristotelisThesis.WPF.Controls"
+
              mc:Ignorable="d"
-             d:DesignHeight="450" d:DesignWidth="800">
-    
-    
+             d:DesignHeight="850" d:DesignWidth="1440">
+
+
     <Border Background="#1D1C1D" BorderBrush="Black" BorderThickness="1 1 1 1" CornerRadius="24 24 24 24">
         <Grid Margin="20">
 
@@ -25,40 +28,28 @@
                     <ColumnDefinition Width="auto" />
                 </Grid.ColumnDefinitions>
 
-                <TextBlock 
-                    Text="Ρυθμίσης" 
-                    Grid.Column="0"
-                    Style="{StaticResource PageTitle}">
-                </TextBlock>
-                
-                <!-- <card:ClockCard String Format {Binding Gender dispay end } {Binding nowTime - start }-->
-                <Border
-                    Grid.Column="2"
-                    Background="#E6E6E6"
-                    Padding="10 4"
-                    CornerRadius="8 8 8 8"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center">
-
+                <StackPanel Orientation="Horizontal" Grid.Column="0">
+                    <Image Source="C:\Users\Aristotelis\Desktop\repos\AristotelisThesis\AristotelisThesis.WPF\Assets\Icons\GearIconSolid.png" Width="30" Height="30" Margin="0 0 10 0"></Image>
                     <TextBlock 
-                        Text="Ενεργός/ή 3h 12m 24s"
-                        TextAlignment="Right"
-                        Foreground="Black"
-                        FontSize="16"
-                        FontWeight="SemiBold"
-                        FontFamily="Manrope">
+                        Text="Ρυθμίσης" 
+                        Grid.Column="0"
+                        Style="{StaticResource PageTitle}">
                     </TextBlock>
-                    
-                </Border>
-                <!-- <card:ClockCard String Format {Binding Gender dispay end } {Binding nowTime - start }-->
-                
+                </StackPanel>
+
+
+                <!-- CLOCK CARD -->
+                <Grid Grid.Column="2">
+                    <controls:ClockCard Width="280"/>
+                    <!-- <card:ClockCard String Format {Binding Gender dispay end } {Binding nowTime - start }-->
+                </Grid>
             </Grid>
 
-            
-            
+
+
             <!-- CONTENT -->
             <Grid Grid.Row="1" Margin="0 20">
-                
+
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
@@ -80,10 +71,10 @@
                             FontFamily="Manrope">
                         </TextBlock>
                     </Grid>
-                    
-                    
+
+
                     <Grid Grid.Row="1">
-                        
+
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
@@ -99,7 +90,7 @@
                                 <RowDefinition Height="auto" />
                             </Grid.RowDefinitions>
 
-                            <!-- First name -->
+                            <!-- NAME -->
                             <TextBlock
                                 Grid.Row="0"
                                 Text="Όνομα:"
@@ -107,12 +98,14 @@
                             </TextBlock>
                             <TextBox 
                                 Grid.Row="1"
+                                Name="inputName"
+                                CaretBrush="White"
                                 Style="{StaticResource TextBoxOfInput}"
                                 MaxLength="20" 
                                 AcceptsReturn="False">
                             </TextBox>
 
-                            <!-- Address -->
+                            <!-- ADDRESS -->
                             <TextBlock
                                 Grid.Row="2"
                                 Text="Διεύθυνση Κατοικίας:"
@@ -120,12 +113,14 @@
                             </TextBlock>
                             <TextBox 
                                 Grid.Row="3"
+                                Name="inputAddress"
+                                CaretBrush="White"
                                 Style="{StaticResource TextBoxOfInput}"
                                 MaxLength="20" 
                                 AcceptsReturn="False">
                             </TextBox>
 
-                            <!-- Gender -->
+                            <!-- GENDER -->
                             <TextBlock
                                 Grid.Row="4"
                                 Text="Φύλο:"
@@ -146,10 +141,10 @@
                                     FontFamily="Manrope">
                                 </RadioButton>
                             </StackPanel>
-                            
+
                         </Grid>
-                        
-                        
+
+
                         <Grid Grid.Column="1">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="auto" />
@@ -159,9 +154,9 @@
                                 <RowDefinition Height="auto" />
                                 <RowDefinition Height="auto" />
                             </Grid.RowDefinitions>
-                            
-                            
-                            <!-- Last name -->
+
+
+                            <!-- SURNAME -->
                             <TextBlock
                                  Grid.Row="0"
                                  Text="Επίθετο:"
@@ -169,12 +164,14 @@
                             </TextBlock>
                             <TextBox 
                                  Grid.Row="1"
+                                 Name="inputSurname"
+                                 CaretBrush="White"
                                  Style="{StaticResource TextBoxOfInput}"
                                  MaxLength="20" 
                                  AcceptsReturn="False">
                             </TextBox>
 
-                            <!-- Contact Phone -->
+                            <!-- PHONE NUMBER -->
                             <TextBlock
                                 Grid.Row="2"
                                 Text="Τηλέφωνο Επικοινωνίας:"
@@ -182,12 +179,14 @@
                             </TextBlock>
                             <TextBox 
                                 Grid.Row="3"
+                                Name="inputPhoneNumber"
+                                CaretBrush="White"
                                 Style="{StaticResource TextBoxOfInput}"
                                 MaxLength="9" 
                                 AcceptsReturn="False">
                             </TextBox>
-                            
-                            <!-- Ημερομηνία Γέννησης -->
+
+                            <!-- DATE OF BIRTH -->
                             <TextBlock
                                 Grid.Row="4"
                                 Text="Ημερομηνία Γέννησης:dd/mm/yyyy"
@@ -195,27 +194,30 @@
                             </TextBlock>
                             <TextBox 
                                 Grid.Row="5"
+                                Name="inputDateOfBirth"
+                                CaretBrush="White"
                                 Style="{StaticResource TextBoxOfInput}"
                                 MaxLength="9" 
                                 AcceptsReturn="False">
                             </TextBox>
 
                         </Grid>
-                        
-                        
-                        
-                        
+
+
+
+
                     </Grid>
 
 
                 </Grid>
-                
+
                 <Grid Grid.Column="1">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
                     </Grid.RowDefinitions>
 
+                    <!-- TITLE -->
                     <Grid Grid.Row="0">
                         <TextBlock 
                             Text="Επεξεργασία Ακαδημαϊκών Στοιχείων" 
@@ -233,7 +235,7 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
-                        
+
                         <Grid Grid.Column="0">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*" />
@@ -248,7 +250,7 @@
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
 
-                            <!-- Academic Email -->
+                            <!-- EMAIL ADDRESS -->
                             <TextBlock
                                 Grid.Row="0"
                                 Text="Ακαδημαϊκό Ηλεκτρ. Ταχυδρομείο"
@@ -256,12 +258,14 @@
                             </TextBlock>
                             <TextBox 
                                 Grid.Row="1"
+                                Name="inputEmail"
+                                CaretBrush="White"
                                 Style="{StaticResource TextBoxOfInput}"
                                 MaxLength="20" 
                                 AcceptsReturn="False">
                             </TextBox>
 
-                            <!-- Department -->
+                            <!-- DEPARTMENT -->
                             <TextBlock
                                 Grid.Row="4"
                                 Text="Τμήμα"
@@ -269,12 +273,14 @@
                             </TextBlock>
                             <TextBox 
                                 Grid.Row="5"
+                                Name="inputDepartment"
+                                IsEnabled="False"
                                 Style="{StaticResource TextBoxOfInput}"
                                 MaxLength="20" 
                                 AcceptsReturn="False">
                             </TextBox>
 
-                            <!-- Year of Study -->
+                            <!-- YEAR OF ENTRY -->
                             <TextBlock
                                 Grid.Row="6"
                                 Text="Χρονιά Εισαγωγής"
@@ -282,14 +288,15 @@
                             </TextBlock>
                             <TextBox 
                                 Grid.Row="7"
+                                Name="inputYearOfEntry"
+                                IsEnabled="False"
                                 Style="{StaticResource TextBoxOfInput}"
                                 MaxLength="20" 
                                 AcceptsReturn="False">
                             </TextBox>
 
-
-
                         </Grid>
+
 
                         <Grid Grid.Column="1">
                             <Grid.RowDefinitions>
@@ -302,17 +309,19 @@
                             <!-- AEM -->
                             <TextBlock
                                 Grid.Row="0"
-                                Text="ΑΕΜ Φοιτητή"
+                                Text="ΑΕΜ"
                                 Style="{StaticResource TextBlockOfInput}">
                             </TextBlock>
                             <TextBox 
                                 Grid.Row="1"
+                                Name="inputAEM"
+                                IsEnabled="False"
                                 Style="{StaticResource TextBoxOfInput}"
                                 MaxLength="20" 
                                 AcceptsReturn="False">
                             </TextBox>
 
-                            <!-- Semester -->
+                            <!-- SEMESTER -->
                             <TextBlock
                                 Grid.Row="2"
                                 Text="Εξάμηνο (Τρέχον)"
@@ -320,6 +329,8 @@
                             </TextBlock>
                             <TextBox 
                                 Grid.Row="3"
+                                Name="inputSemester"
+                                CaretBrush="White"
                                 Style="{StaticResource TextBoxOfInput}"
                                 MaxLength="20" 
                                 AcceptsReturn="False">
@@ -327,13 +338,13 @@
 
                         </Grid>
                     </Grid>
-                    
-                    
+
+
                 </Grid>
             </Grid>
-            
-            
-            
+
+
+
             <!-- BUTTONS -->
             <Grid Grid.Row="2">
 
@@ -342,14 +353,13 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="auto" />
                 </Grid.ColumnDefinitions>
-                
+
                 <Grid Grid.Column="0">
                     <Button
                         Content="Αποθήκευση Αλλαγών"
-                        x:Name="SaveChangesButton"
+                        Click="SaveChangesButton_Click"
                         Style="{StaticResource SaveChangesButton}"
-                        Height="60"
-                        >
+                        Height="60">
                     </Button>
                 </Grid>
 
@@ -358,7 +368,7 @@
                         BorderThickness="2" 
                         CornerRadius="6 6 6 6" 
                         Padding="26 32 70 32" >
-                    
+
                     <Grid Grid.Column="1" Background="Transparent">
                         <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
 
@@ -367,22 +377,22 @@
                                        FontWeight="Bold"
                                        Foreground="White">
                             </TextBlock>
-                            
+
                             <TextBlock Text="* Η οριστική διαγραφή λογαρισμού ειναι μη αναστρέψη"
                                        Margin="0 4 0 0"
                                        FontSize="12"
                                        FontWeight="Light"
                                        Foreground="{StaticResource ColorLight}">
                             </TextBlock>
-                            
+
                             <Button Content="Διαγραφή Λογαριασμού"
-                                    x:Name="DeleteAccountButton"
+                                    Click="DeleteAccountButton_Click"
                                     Style="{StaticResource DeleteAccountButton}">
                             </Button>
-                            
+
                         </StackPanel>
                     </Grid>
-                    
+
                 </Border>
 
             </Grid>
@@ -390,5 +400,5 @@
 
         </Grid>
     </Border>
-    
+
 </UserControl>

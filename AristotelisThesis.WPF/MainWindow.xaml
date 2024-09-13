@@ -8,23 +8,25 @@
         xmlns:controls="clr-namespace:AristotelisThesis.WPF.Controls"
         
         mc:Ignorable="d"
-        Title="ΔΙΠΑΕ Σύστημα Ταυτοποίησης" 
+        Title="ΔΠΘ Σύστημα Ταυτοποίησης"  
+        Width="1440"
         WindowState="Maximized"
-        Icon="C:\Users\Aristotelis\source\repos\AristotelisThesis\AristotelisThesis.WPF\Assets\App_Logo.png">
-    
-    
+        Icon="C:\Users\Aristotelis\Desktop\repos\AristotelisThesis\AristotelisThesis.WPF\Assets\ico\DUTH-Logo.ico">
+
     <Grid Margin="30">
-        
+
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
+
         <controls:NavigationBar Grid.Row="0" DataContext="{Binding Navigator}" />
+
+
         <ContentControl Grid.Row="1" Content="{Binding Navigator.CurrentViewModel}" />
 
-        
     </Grid>
-    
-    
+
+
 </Window>
