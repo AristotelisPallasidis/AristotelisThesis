@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:AristotelisThesis.WPF.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Background="#1D1C1D">
+             d:DesignHeight="650" d:DesignWidth="1200" Background="#1D1C1D">
     <Grid Margin="20">
 
         <Grid.RowDefinitions>
@@ -21,120 +21,144 @@
 
         <Grid Grid.Column="0" Grid.Row="0" Margin="0 20 0 10">
             <TextBlock
-            Text="Οδηγίες - Εγγραφή μέσω Παλάμης"
-            Grid.Row="0"
-            FontFamily="Manrope"
-            FontSize="20"
-            FontWeight="Bold"
-            Foreground="White"
-            >
+                Text="Οδηγίες - Εγγραφή μέσω Παλάμης"
+                Style="{StaticResource PageTitle}">
             </TextBlock>
         </Grid>
 
-        <Grid Grid.Column="0" Grid.Row="1" Margin="0 10 0 0">
+        <Grid Grid.Column="0" Grid.Row="1" Margin="0 10 10 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
-
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
-
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
 
             <!-- Step 1 -->
-            <TextBlock
-                Grid.Row="0"
-                Text="Βημα 1"
-                FontFamily="Manrope"
-                FontSize="12"
-                FontWeight="Bold"
-                Foreground="White"
-                Margin="0 0 0 6">
-            </TextBlock>
-            <TextBlock 
-                Grid.Row="1"
-                Foreground="White" 
-                FontFamily="Manrope" 
-                FontSize="10" 
-                HorizontalAlignment="Left"
-                TextAlignment="Left">
-                Βεβαιωθειτε οτι η συσκευη ειναι συνδεδεμενη με τον υπολογιστή
-            </TextBlock>
+            <Grid Grid.Column="0" Grid.Row="0" Margin="0 12 0 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <TextBlock
+                    Text="Βήμα 1"
+                    Grid.Row="0"
+                    FontFamily="Manrope"
+                    FontSize="22"
+                    FontWeight="Bold"
+                    Foreground="White"
+                    Margin="0 0 0 6">
+                </TextBlock>
+                <TextBlock 
+                    Foreground="White" 
+                    Grid.Row="1"
+                    FontFamily="Manrope" 
+                    FontSize="16" 
+                    HorizontalAlignment="Left"
+                    TextAlignment="Left"
+                    TextWrapping="Wrap"
+                    Margin="0 0 0 10">
+                    Συνδέστε την κάμερα στον υπολογιστή σας και βεβαιωθείτε ότι αναγνωρίζεται σωστά. Ελέγξτε τις συνδέσεις και τις ρυθμίσεις για να διασφαλίσετε ότι η κάμερα λειτουργεί κανονικά.
+                </TextBlock>
+            </Grid>
 
             <!-- Step 2 -->
-            <TextBlock
-                Grid.Row="2"
-                Text="Βημα 2"
-                FontFamily="Manrope"
-                FontSize="14"
-                FontWeight="Bold"
-                Foreground="White"
-                Margin="0,11,0,5">
-            </TextBlock>
-            <TextBlock 
-                Grid.Row="3"
-                Foreground="White" 
-                FontFamily="Manrope" 
-                FontSize="10" 
-                HorizontalAlignment="Left"
-                TextAlignment="Left">
-                Τοποθετήστε την παλάμη σας πανω απο την τρυπα στην συσκευη
-            </TextBlock>
+            <Grid Grid.Column="0" Grid.Row="2" Margin="0 12 0 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <TextBlock
+                    Text="Βήμα 2"
+                    Grid.Row="0"
+                    FontFamily="Manrope"
+                    FontSize="22"
+                    FontWeight="Bold"
+                    Foreground="White"
+                    Margin="0 0 0 6">
+                </TextBlock>
+                <TextBlock 
+                    Foreground="White" 
+                    Grid.Row="1"
+                    FontFamily="Manrope" 
+                    FontSize="16" 
+                    HorizontalAlignment="Left"
+                    TextAlignment="Left"
+                    TextWrapping="Wrap"
+                    Margin="0 0 0 10">
+                    Ανοίξτε την εφαρμογή και πλοηγηθείτε στις ρυθμίσεις της κάμερας. Επιλέξτε την ενσωματωμένη κάμερα του υπολογιστή σας και βεβαιωθείτε ότι είναι επιλεγμένη.
+                </TextBlock>
+            </Grid>
 
             <!-- Step 3 -->
-            <TextBlock
-                Grid.Row="4"
-                Text="Βημα 3"
-                FontFamily="Manrope"
-                FontSize="14"
-                FontWeight="Bold"
-                Foreground="White"
-                Margin="0 10 0 6">
-            </TextBlock>
-            <TextBlock 
-                Grid.Row="5"
-                Foreground="White" 
-                FontFamily="Manrope" 
-                FontSize="10" 
-                HorizontalAlignment="Left"
-                TextAlignment="Left">
-                    Βεβαιωθειτε οτι η συσκευη ειναι συνδεδεμενη με τον υπολογιστή
-            </TextBlock>
+            <Grid Grid.Column="0" Grid.Row="4" Margin="0 12 0 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <TextBlock
+                    Text="Βήμα 3"
+                    Grid.Row="0"
+                    FontFamily="Manrope"
+                    FontSize="22"
+                    FontWeight="Bold"
+                    Foreground="White"
+                    Margin="0 0 0 6">
+                </TextBlock>
+                <TextBlock 
+                    Foreground="White" 
+                    Grid.Row="1"
+                    FontFamily="Manrope" 
+                    FontSize="16" 
+                    HorizontalAlignment="Left"
+                    TextAlignment="Left"
+                    TextWrapping="Wrap"
+                    Margin="0 0 0 10">
+                    Από τη λίστα των καμερών, επιλέξτε την ενσωματωμένη. Εάν υπάρχουν πολλές επιλογές, επιλέξτε τη σωστή για καλύτερη ποιότητα εικόνας.
+                </TextBlock>
+            </Grid>
 
             <!-- Step 4 -->
-            <TextBlock
-                Grid.Row="6"
-                Text="Βήμα 4"
-                FontFamily="Manrope"
-                FontSize="14"
-                FontWeight="Bold"
-                Foreground="White"
-                Margin="0 10 0 6">
-            </TextBlock>
-            <TextBlock 
-                Grid.Row="7"
-                Foreground="White" 
-                FontFamily="Manrope" 
-                FontSize="10" 
-                HorizontalAlignment="Left"
-                TextAlignment="Left">
-                    Βεβαιωθειτε οτι η συσκευη ειναι συνδεδεμενη με τον υπολογιστή
-            </TextBlock>
-
+            <Grid Grid.Column="0" Grid.Row="6" Margin="0 12 0 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <TextBlock
+                    Text="Βήμα 4"
+                    Grid.Row="0"
+                    FontFamily="Manrope"
+                    FontSize="22"
+                    FontWeight="Bold"
+                    Foreground="White"
+                    Margin="0 0 0 6">
+                </TextBlock>
+                <TextBlock 
+                    Foreground="White" 
+                    Grid.Row="1"
+                    FontFamily="Manrope" 
+                    FontSize="16" 
+                    HorizontalAlignment="Left"
+                    TextAlignment="Left"
+                    TextWrapping="Wrap"
+                    Margin="0 0 0 10">
+                    Τοποθετήστε το δεξί σας χέρι πάνω από την οπτική τρύπα της κάμερας. Βεβαιωθείτε ότι η παλάμη σας αγγίζει ελαφρά την τρύπα και τα δάχτυλά σας δεν την αγγίζουν.
+                </TextBlock>
+            </Grid>
         </Grid>
 
-        <Grid Grid.Column="1" Grid.Row="1">
+        <Grid Grid.Column="1" Grid.Row="1" Margin="0 10 10 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
             <Grid.RowDefinitions>
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
@@ -143,10 +167,120 @@
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
 
+            <!-- Step 5 -->
+            <Grid Grid.Column="1" Grid.Row="0" Margin="0 12 0 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <TextBlock
+                    Text="Βήμα 5"
+                    Grid.Row="0"
+                    FontFamily="Manrope"
+                    FontSize="22"
+                    FontWeight="Bold"
+                    Foreground="White"
+                    Margin="0 0 0 6">
+                </TextBlock>
+                <TextBlock 
+                    Foreground="White" 
+                    Grid.Row="1"
+                    FontFamily="Manrope" 
+                    FontSize="16" 
+                    HorizontalAlignment="Left"
+                    TextAlignment="Left"
+                    TextWrapping="Wrap"
+                    Margin="0 0 0 10">
+                    Διασφαλίστε ότι μόνο η παλάμη σας έρχεται σε επαφή με την τρύπα και ότι τα δάχτυλά σας δεν καλύπτουν ή αγγίζουν την τρύπα για καλύτερη καταγραφή.
+                </TextBlock>
+            </Grid>
 
+            <!-- Step 6 -->
+            <Grid Grid.Column="1" Grid.Row="2" Margin="0 12 0 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <TextBlock
+                    Text="Βήμα 6"
+                    Grid.Row="0"
+                    FontFamily="Manrope"
+                    FontSize="22"
+                    FontWeight="Bold"
+                    Foreground="White"
+                    Margin="0 0 0 6">
+                </TextBlock>
+                <TextBlock 
+                    Foreground="White" 
+                    Grid.Row="1"
+                    FontFamily="Manrope" 
+                    FontSize="16" 
+                    HorizontalAlignment="Left"
+                    TextAlignment="Left"
+                    TextWrapping="Wrap"
+                    Margin="0 0 0 10">
+                    Ενεργοποιήστε την κάμερα μέσω της εφαρμογής. Ρυθμίστε τη φωτεινότητα και την εστίαση αν χρειάζεται, ώστε η εικόνα να είναι όσο το δυνατόν πιο καθαρή.
+                </TextBlock>
+            </Grid>
+
+            <!-- Step 7 -->
+            <Grid Grid.Column="1" Grid.Row="4" Margin="0 12 0 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <TextBlock
+                    Text="Βήμα 7"
+                    Grid.Row="0"
+                    FontFamily="Manrope"
+                    FontSize="22"
+                    FontWeight="Bold"
+                    Foreground="White"
+                    Margin="0 0 0 6">
+                </TextBlock>
+                <TextBlock 
+                    Foreground="White" 
+                    Grid.Row="1"
+                    FontFamily="Manrope" 
+                    FontSize="16" 
+                    HorizontalAlignment="Left"
+                    TextAlignment="Left"
+                    TextWrapping="Wrap"
+                    Margin="0 0 0 10">
+                    Ακολουθήστε τις οδηγίες της εφαρμογής για να τραβήξετε τη φωτογραφία με την παλάμη σας σωστά τοποθετημένη.
+                </TextBlock>
+            </Grid>
+
+            <!-- Step 8 -->
+            <Grid Grid.Column="1" Grid.Row="6" Margin="0 12 0 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <TextBlock
+                    Text="Βήμα 8"
+                    Grid.Row="0"
+                    FontFamily="Manrope"
+                    FontSize="22"
+                    FontWeight="Bold"
+                    Foreground="White"
+                    Margin="0 0 0 6">
+                </TextBlock>
+                <TextBlock 
+                    Foreground="White" 
+                    Grid.Row="1"
+                    FontFamily="Manrope" 
+                    FontSize="16" 
+                    HorizontalAlignment="Left"
+                    TextAlignment="Left"
+                    TextWrapping="Wrap"
+                    Margin="0 0 0 10">
+                    Επανεξετάστε την εικόνα που καταγράφηκε για να διασφαλίσετε ότι είναι καθαρή και σωστά καταγεγραμμένη. Αν χρειαστεί, επαναλάβετε τη διαδικασία για να βελτιώσετε την ποιότητα της εικόνας.
+                </TextBlock>
+            </Grid>
         </Grid>
 
-        <Grid Grid.Column="0" Grid.Row="2">
+        <Grid Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                 <Button 
                     Content="Επόμενο"

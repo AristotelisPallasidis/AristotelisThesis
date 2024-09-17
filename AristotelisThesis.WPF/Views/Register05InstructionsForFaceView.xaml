@@ -5,7 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:AristotelisThesis.WPF.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="650" d:DesignWidth="1200"
+             Background="#1D1C1D">
     <Grid Margin="20">
 
         <Grid.RowDefinitions>
@@ -21,120 +22,145 @@
 
         <Grid Grid.Column="0" Grid.Row="0" Margin="0 20 0 10">
             <TextBlock
-        Text="Οδηγίες - Εγγραφή μεσω Προσώπου"
-        Grid.Row="0"
-        FontFamily="Manrope"
-        FontSize="20"
-        FontWeight="Bold"
-        Foreground="White"
-        >
+                Text="Οδηγίες - Εγγραφή μεσω Προσώπου"
+                Grid.Row="0"
+                Style="{StaticResource PageTitle}">
             </TextBlock>
         </Grid>
 
-        <Grid Grid.Column="0" Grid.Row="1" Margin="0 10 0 0">
+        <Grid Grid.Column="0" Grid.Row="1" Margin="0 10 10 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
-
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
-
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
 
             <!-- Step 1 -->
-            <TextBlock
-                Grid.Row="0"
-                Text="Βημα 1"
-                FontFamily="Manrope"
-                FontSize="12"
-                FontWeight="Bold"
-                Foreground="White"
-                Margin="0 0 0 6">
-            </TextBlock>
-            <TextBlock 
-                Grid.Row="1"
-                Foreground="White" 
-                FontFamily="Manrope" 
-                FontSize="10" 
-                HorizontalAlignment="Left"
-                TextAlignment="Left">
-                Βεβαιωθειτε οτι η συσκευη ειναι συνδεδεμενη με τον υπολογιστή
-            </TextBlock>
+            <Grid Grid.Column="0" Grid.Row="0" Margin="0 12 0 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <TextBlock
+                    Text="Βήμα 1"
+                    Grid.Row="0"
+                    FontFamily="Manrope"
+                    FontSize="22"
+                    FontWeight="Bold"
+                    Foreground="White"
+                    Margin="0 0 0 6">
+                </TextBlock>
+                <TextBlock 
+                    Foreground="White" 
+                    Grid.Row="1"
+                    FontFamily="Manrope" 
+                    FontSize="16" 
+                    HorizontalAlignment="Left"
+                    TextAlignment="Left"
+                    TextWrapping="Wrap"
+                    Margin="0 0 0 10">
+                    Συνδέστε την κάμερα στον υπολογιστή σας και βεβαιωθείτε ότι αναγνωρίζεται σωστά. Ελέγξτε τις ρυθμίσεις για να διασφαλίσετε ότι η κάμερα λειτουργεί κανονικά.
+                </TextBlock>
+            </Grid>
 
             <!-- Step 2 -->
-            <TextBlock
-                Grid.Row="2"
-                Text="Βημα 2"
-                FontFamily="Manrope"
-                FontSize="14"
-                FontWeight="Bold"
-                Foreground="White"
-                Margin="0,11,0,5">
-            </TextBlock>
-            <TextBlock 
-                Grid.Row="3"
-                Foreground="White" 
-                FontFamily="Manrope" 
-                FontSize="10" 
-                HorizontalAlignment="Left"
-                TextAlignment="Left">
-                Βεβαιωθειτε οτι η συσκευη ειναι συνδεδεμενη με τον υπολογιστή
-            </TextBlock>
+            <Grid Grid.Column="0" Grid.Row="2" Margin="0 12 0 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <TextBlock
+                    Text="Βήμα 2"
+                    Grid.Row="0"
+                    FontFamily="Manrope"
+                    FontSize="22"
+                    FontWeight="Bold"
+                    Foreground="White"
+                    Margin="0 0 0 6">
+                </TextBlock>
+                <TextBlock 
+                    Foreground="White" 
+                    Grid.Row="1"
+                    FontFamily="Manrope" 
+                    FontSize="16" 
+                    HorizontalAlignment="Left"
+                    TextAlignment="Left"
+                    TextWrapping="Wrap"
+                    Margin="0 0 0 10">
+                    Από τη λίστα καμερών, επιλέξτε την ενσωματωμένη κάμερα του φορητού σας υπολογιστή για την καλύτερη ποιότητα.
+                </TextBlock>
+            </Grid>
 
             <!-- Step 3 -->
-            <TextBlock
-                Grid.Row="4"
-                Text="Βημα 3"
-                FontFamily="Manrope"
-                FontSize="14"
-                FontWeight="Bold"
-                Foreground="White"
-                Margin="0 10 0 6">
-            </TextBlock>
-            <TextBlock 
-                Grid.Row="5"
-                Foreground="White" 
-                FontFamily="Manrope" 
-                FontSize="10" 
-                HorizontalAlignment="Left"
-                TextAlignment="Left">
-                    Βεβαιωθειτε οτι η συσκευη ειναι συνδεδεμενη με τον υπολογιστή
-            </TextBlock>
+            <Grid Grid.Column="0" Grid.Row="4" Margin="0 12 0 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <TextBlock
+                    Text="Βήμα 3"
+                    Grid.Row="0"
+                    FontFamily="Manrope"
+                    FontSize="22"
+                    FontWeight="Bold"
+                    Foreground="White"
+                    Margin="0 0 0 6">
+                </TextBlock>
+                <TextBlock 
+                    Foreground="White" 
+                    Grid.Row="1"
+                    FontFamily="Manrope" 
+                    FontSize="16" 
+                    HorizontalAlignment="Left"
+                    TextAlignment="Left"
+                    TextWrapping="Wrap"
+                    Margin="0 0 0 10">
+                    Ρυθμίστε τις παραμέτρους φωτεινότητας και εστίασης της κάμερας για να εξασφαλίσετε καθαρή εικόνα.
+                </TextBlock>
+            </Grid>
 
             <!-- Step 4 -->
-            <TextBlock
-                Grid.Row="6"
-                Text="Βήμα 4"
-                FontFamily="Manrope"
-                FontSize="14"
-                FontWeight="Bold"
-                Foreground="White"
-                Margin="0 10 0 6">
-            </TextBlock>
-            <TextBlock 
-                Grid.Row="7"
-                Foreground="White" 
-                FontFamily="Manrope" 
-                FontSize="10" 
-                HorizontalAlignment="Left"
-                TextAlignment="Left">
-                    Βεβαιωθειτε οτι η συσκευη ειναι συνδεδεμενη με τον υπολογιστή
-            </TextBlock>
-
+            <Grid Grid.Column="0" Grid.Row="6" Margin="0 12 0 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <TextBlock
+                    Text="Βήμα 4"
+                    Grid.Row="0"
+                    FontFamily="Manrope"
+                    FontSize="22"
+                    FontWeight="Bold"
+                    Foreground="White"
+                    Margin="0 0 0 6">
+                </TextBlock>
+                <TextBlock 
+                    Foreground="White" 
+                    Grid.Row="1"
+                    FontFamily="Manrope" 
+                    FontSize="16" 
+                    HorizontalAlignment="Left"
+                    TextAlignment="Left"
+                    TextWrapping="Wrap"
+                    Margin="0 0 0 10">
+                    Σταθείτε μπροστά στην κάμερα και βεβαιωθείτε ότι το πρόσωπό σας είναι πλήρως εντός του κάδρου.
+                </TextBlock>
+            </Grid>
         </Grid>
 
-        <Grid Grid.Column="1" Grid.Row="1">
+        <Grid Grid.Column="1" Grid.Row="1" Margin="0 10 10 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
             <Grid.RowDefinitions>
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
@@ -143,8 +169,119 @@
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
 
+            <!-- Step 5 -->
+            <Grid Grid.Column="1" Grid.Row="0" Margin="0 12 0 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <TextBlock
+                    Text="Βήμα 5"
+                    Grid.Row="0"
+                    FontFamily="Manrope"
+                    FontSize="22"
+                    FontWeight="Bold"
+                    Foreground="White"
+                    Margin="0 0 0 6">
+                </TextBlock>
+                <TextBlock 
+                    Foreground="White" 
+                    Grid.Row="1"
+                    FontFamily="Manrope" 
+                    FontSize="16" 
+                    HorizontalAlignment="Left"
+                    TextAlignment="Left"
+                    TextWrapping="Wrap"
+                    Margin="0 0 0 10">
+                    Ακολουθήστε τις οδηγίες για να τραβήξετε 11 φωτογραφίες με διαφορετικές εκφράσεις, φωτισμό και στάσεις του προσώπου σας.
+                </TextBlock>
+            </Grid>
 
+            <!-- Step 6 -->
+            <Grid Grid.Column="1" Grid.Row="2" Margin="0 12 0 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <TextBlock
+                    Text="Βήμα 6"
+                    Grid.Row="0"
+                    FontFamily="Manrope"
+                    FontSize="22"
+                    FontWeight="Bold"
+                    Foreground="White"
+                    Margin="0 0 0 6">
+                </TextBlock>
+                <TextBlock 
+                    Foreground="White" 
+                    Grid.Row="1"
+                    FontFamily="Manrope" 
+                    FontSize="16" 
+                    HorizontalAlignment="Left"
+                    TextAlignment="Left"
+                    TextWrapping="Wrap"
+                    Margin="0 0 0 10">
+                    Ελέγξτε τις φωτογραφίες για να βεβαιωθείτε ότι είναι ευκρινείς και χρησιμοποιήσιμες για αναγνώριση προσώπου.
+                </TextBlock>
+            </Grid>
+
+            <!-- Step 7 -->
+            <Grid Grid.Column="1" Grid.Row="4" Margin="0 12 0 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <TextBlock
+                    Text="Βήμα 7"
+                    Grid.Row="0"
+                    FontFamily="Manrope"
+                    FontSize="22"
+                    FontWeight="Bold"
+                    Foreground="White"
+                    Margin="0 0 0 6">
+                </TextBlock>
+                <TextBlock 
+                    Foreground="White" 
+                    Grid.Row="1"
+                    FontFamily="Manrope" 
+                    FontSize="16" 
+                    HorizontalAlignment="Left"
+                    TextAlignment="Left"
+                    TextWrapping="Wrap"
+                    Margin="0 0 0 10">
+                    Ανεβάστε τις φωτογραφίες και προχωρήστε με την εγγραφή της αναγνώρισης προσώπου.
+                </TextBlock>
+            </Grid>
+
+            <!-- Step 8 -->
+            <Grid Grid.Column="1" Grid.Row="6" Margin="0 12 0 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <TextBlock
+                    Text="Βήμα 8"
+                    Grid.Row="0"
+                    FontFamily="Manrope"
+                    FontSize="22"
+                    FontWeight="Bold"
+                    Foreground="White"
+                    Margin="0 0 0 6">
+                </TextBlock>
+                <TextBlock 
+                    Foreground="White" 
+                    Grid.Row="1"
+                    FontFamily="Manrope" 
+                    FontSize="16" 
+                    HorizontalAlignment="Left"
+                    TextAlignment="Left"
+                    TextWrapping="Wrap"
+                    Margin="0 0 0 10">
+                    Ολοκληρώστε τη διαδικασία και επιβεβαιώστε ότι η εγγραφή σας ήταν επιτυχής.
+                </TextBlock>
+            </Grid>
         </Grid>
+    
 
         <Grid Grid.Column="0" Grid.Row="2">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">

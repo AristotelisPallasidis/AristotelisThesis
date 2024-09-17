@@ -22,11 +22,7 @@
             <TextBlock
                 Text="Εισαγωγή προσωπικών στοιχείων"
                 Grid.Row="0"
-                FontFamily="Manrope"
-                FontSize="20"
-                FontWeight="Bold"
-                Foreground="White"
-                >
+                Style="{StaticResource PageTitle}">
             </TextBlock>
         </Grid>
 
@@ -49,7 +45,7 @@
                     <TextBlock 
                         Text="Προσωπικά Στοιχεία" 
                         Foreground="White" 
-                        FontSize="16" 
+                        FontSize="24" 
                         FontWeight="ExtraBold" 
                         FontFamily="Manrope">
                     </TextBlock>
@@ -194,7 +190,7 @@
                     <TextBlock 
                         Text="Ακαδημαϊκά Στοιχεία" 
                         Foreground="White" 
-                        FontSize="16" 
+                        FontSize="24" 
                         FontWeight="ExtraBold" 
                         FontFamily="Manrope">
                     </TextBlock>
