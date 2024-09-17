@@ -35,16 +35,13 @@
                     </TextBlock>
                 </StackPanel>
 
-
                 <!-- CLOCK CARD -->
                 <Grid Grid.Column="2">
                     <controls:ClockCard Width="280"/>
                     <!-- <card:ClockCard String Format {Binding Gender dispay end } {Binding nowTime - start }-->
                 </Grid>
 
-
             </Grid>
-
 
 
             <Grid Grid.Row="1" Margin="0 90 0 0" >
@@ -136,9 +133,9 @@
 
                 </Grid>
 
-                <Grid Grid.Column="3" VerticalAlignment="Bottom">
-
-                    <Border
+                <Grid Grid.Column="3">
+                    <Border VerticalAlignment="Bottom"
+                        Grid.Row="1"
                         BorderBrush="{StaticResource ColorWarning}" 
                         BorderThickness="2" 
                         CornerRadius="6 6 6 6" 
@@ -173,10 +170,10 @@
 
                 </Grid>
 
-
-
             </Grid>
+
         </Grid>
+
     </Border>
 
 </UserControl>

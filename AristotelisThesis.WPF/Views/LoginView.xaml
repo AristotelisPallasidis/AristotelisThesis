@@ -6,52 +6,62 @@
              xmlns:local="clr-namespace:AristotelisThesis.WPF.Views"
              xmlns:style="clr-namespace:AristotelisThesis.WPF"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Background="#1D1C1D">
+             d:DesignHeight="850" d:DesignWidth="1440" 
+             Background="#1D1C1D">
+    
     <Grid Margin="30">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Column="0" VerticalAlignment="Center">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
+        <Grid Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
 
-            <Image 
-                Grid.Row="0"
-                Source="C:\Users\Aristotelis\Desktop\repos\AristotelisThesis\AristotelisThesis.WPF\Assets\download.jpg"
-                HorizontalAlignment="Left"
-                Height="50" 
-                Width="50">
-            </Image>
+            <Grid Grid.Column="0">
+                <Image 
+                    Source="C:\Users\Aristotelis\Desktop\test2\AristotelisThesis\AristotelisThesis.WPF\Assets\duth-logo-white.png"
+                    Height="200" 
+                    Width="200">
+                </Image>
+            </Grid>
 
-            <TextBlock 
-                Grid.Row="1"
-                TextWrapping="Wrap"
-                FontWeight="Bold"
-                Margin="0 6"
-                FontFamily="Manrope"
-                Foreground="White" 
-                FontSize="40">
-                    ΔΠΘ Σύστημα
-                    <LineBreak />
-                    Ταυτοποίησης
-            </TextBlock>
+            <Grid Grid.Column="1" VerticalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
 
-            <TextBlock 
-                Grid.Row="2"
-                Text="Το μέλλον των συστημάτων ελέγχου ταυτότητας" 
-                FontFamily="Manrope"
-                Foreground="White" 
-                FontSize="15">
-            </TextBlock>
+                <Grid Grid.Row="0">
+                    <TextBlock 
+                        FontWeight="Bold"
+                        Margin="0 6"
+                        FontFamily="Manrope"
+                        Foreground="White" 
+                        FontSize="44">
+                            ΔΠΘ Σύστημα
+                            <LineBreak />
+                            Ταυτοποίησης
+                    </TextBlock>
+                </Grid>
+
+                <Grid Grid.Row="1">
+                    <TextBlock 
+                         Text="Το μέλλον των συστημάτων ελέγχου ταυτότητας" 
+                         FontFamily="Manrope"
+                         Foreground="White" 
+                         FontSize="16">
+                    </TextBlock>
+
+                </Grid>
+            </Grid>
 
         </Grid>
 
-
+        
 
         <Grid Grid.Column="1" VerticalAlignment="Center">
             <Grid.RowDefinitions>
@@ -60,8 +70,13 @@
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
+                
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
-
 
             <TextBlock 
                 Grid.Row="0"
@@ -70,9 +85,9 @@
                 FontWeight="Bold"
                 Text="Σύνδεση" 
                 FontFamily="Manrope"
-                Padding="10 10 10 10" 
+                Padding="0 30" 
                 Foreground="White" 
-                FontSize="25">
+                FontSize="34">
             </TextBlock>
 
             <Button
@@ -81,12 +96,12 @@
                 Command="{Binding ViewLoginWithFaceCommand}"
                 FontFamily="Manrope"
                 Foreground="White" 
-                FontSize="12" 
+                FontSize="16" 
                 HorizontalAlignment="Center"
                 BorderThickness="0"
-                Padding="17 8"
+                Padding="32 14"
                 Cursor="Hand"
-                Background="#000000" 
+                Background="#303030" 
                 Margin="0 0 0 10">
             </Button>
 
@@ -95,13 +110,13 @@
                 Content="Σύνδεση μέσω Παλάμης" 
                 Command="{Binding ViewLoginWithPalmprintCommand}"
                 Foreground="White" 
-                FontSize="12" 
+                FontSize="16" 
                 HorizontalAlignment="Center"
                 FontFamily="Manrope"
                 BorderThickness="0"
-                Padding="24 8"
+                Padding="32 14"
                 Cursor="Hand"
-                Background="#000000">
+                Background="#303030">
             </Button>
 
             <TextBlock
@@ -111,7 +126,7 @@
                 Margin="0 10" 
                 Foreground="White" 
                 FontFamily="Manrope"
-                FontSize="13">
+                FontSize="16">
             </TextBlock>
 
             <Button
@@ -129,8 +144,15 @@
                 Background="#1D1C1D">
             </Button>
 
+            <TextBlock Grid.Row="5" Text="Username" FontSize="16" Foreground="white" Width="120"></TextBlock>
+            <TextBox Grid.Row="6" Width="120" FontSize="16" Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+
+            <TextBlock Grid.Row="7" Width="120" Text="Password" FontSize="16" Foreground="white"></TextBlock>
+            <TextBox Grid.Row="8" Width="120" FontSize="16" Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+
+            <Button Grid.Row="9" Width="120" x:Name="loginButton" Content="Login" Margin="0 30 "></Button>
         </Grid>
 
-
     </Grid>
+    
 </UserControl>

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace AristotelisThesis.WPF.Views
 {
@@ -23,6 +24,45 @@ namespace AristotelisThesis.WPF.Views
         public DashboardView()
         {
             InitializeComponent();
+
+
+            string name = "Αριστοτελία";
+            string surname = "Παλλασίδου";
+            //txtFullName.Text = $"{App.CurrentUser.FullName}";
+            txtFullName.Text = $"{name} {surname}";
+
+
+            //bool isUndergraduate = true;
+            bool isUndergraduate = false;
+            string userSex = "male";
+            //string userSex = "female";
+
+            if (isUndergraduate)
+            {
+                if (userSex == "male")
+                {
+                    txtStudentLevelandSex.Text = "Προπτυχιακός Φοιτητής -";
+                }
+                else
+                {
+                    txtStudentLevelandSex.Text = $"Προπτυχιακή Φοιτήτρια -";
+                }
+            }
+            else
+            {
+                if (userSex == "male")
+                {
+                    txtStudentLevelandSex.Text = "Μεταπτυχιακός Φοιτητής -";
+                }
+                else
+                {
+                    txtStudentLevelandSex.Text = $"Μεταπτυχιακή Φοιτήτρια -";
+                }
+            }
+
+            string department = "Πληροφορικής";
+            txtDepartment.Text = $"Τμήμα {department}";
+
         }
     }
 }

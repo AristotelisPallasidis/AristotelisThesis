@@ -14,12 +14,12 @@ namespace AristotelisThesis.WPF.State.Navigators
         Statistics,
         Profile,
         Settings,
-        //Register01ViewModel,
-        //Register02WithInformationViewModel,
-        //Register03InstructionsForPalmprintViewModel,
-        //Register04WithPalmprintViewModel,
-        //Register05InstructionsForFaceViewModel,
-        //Register06WithFaceViewModel,
+        Register01ViewModel,
+        Register02WithInformationViewModel,
+        Register03InstructionsForPalmprintViewModel,
+        Register04WithPalmprintViewModel,
+        Register05InstructionsForFaceViewModel,
+        Register06WithFaceViewModel,
     }
 
     public interface INavigator

@@ -39,6 +39,7 @@
                         FontSize="35" 
                         FontFamily="Manrope">
                     </TextBlock>
+                    
                     <TextBlock 
                         Text="Name Surname"
                         Name="txtFullName"
@@ -50,31 +51,16 @@
                     </TextBlock>
 
                     <TextBlock 
-                        Text="ΔΠΘ - Προπτυχιακός Φοιτητής - Τμήμα Πληροφορικής"
-                        Grid.Row="2"
+                        Grid.Row="2" 
                         Foreground="White" 
                         FontSize="16" 
-                        FontFamily="Manrope"
+                        FontFamily="Manrope" 
                         Margin="0 10 0 0">
+                            <Run Text="ΔΠΘ -" />
+                            <Run x:Name="txtStudentLevelandSex" Text="Προπ/ΜεταΠ Φοιτητής/τρια -" />
+                            <Run x:Name="txtDepartment" Text="Τμήμα ΔΠΘ" />
                     </TextBlock>
-                    <!-- 
-                    <TextBlock 
-                        Text="Προπτυχιακός Φοιτητής - "
-                        Grid.Row="2"
-                        Foreground="White" 
-                        FontSize="16" 
-                        FontFamily="Manrope"
-                        Margin="0 10 0 0">
-                    </TextBlock>
-                    <TextBlock 
-                        Text="Τμήμα Πληροφορικής"
-                        Grid.Row="2"
-                        Foreground="White" 
-                        FontSize="16" 
-                        FontFamily="Manrope"
-                        Margin="0 10 0 0">
-                    </TextBlock>
-                    -->
+
                 </Grid>
 
 

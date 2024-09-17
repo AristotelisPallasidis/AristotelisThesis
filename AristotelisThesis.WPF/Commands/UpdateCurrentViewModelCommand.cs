@@ -59,24 +59,24 @@ namespace AristotelisThesis.WPF.Commands
                     case ViewType.Settings:
                         _navigator.CurrentViewModel = new SettingsViewModel();
                         break;
-                    //case ViewType.Register01ViewModel:
-                    //    _navigator.CurrentViewModel = new Register01ViewModel();
-                    //    break;
-                    //case ViewType.Register02WithInformationViewModel:
-                    //    _navigator.CurrentViewModel = new Register02WithInformationViewModel();
-                    //    break;
-                    //case ViewType.Register03InstructionsForPalmprintViewModel:
-                    //    _navigator.CurrentViewModel = new Register03InstructionsForPalmprintViewModel();
-                    //    break;
-                    //case ViewType.Register04WithPalmprintViewModel:
-                    //    _navigator.CurrentViewModel = new Register04WithPalmprintViewModel();
-                    //    break;
-                    //case ViewType.Register05InstructionsForFaceViewModel:
-                    //    _navigator.CurrentViewModel = new Register05InstructionsForFaceViewModel();
-                    //    break;
-                    //case ViewType.Register06WithFaceViewModel:
-                    //    _navigator.CurrentViewModel = new Register06WithFaceViewModel();
-                    //    break;
+                    case ViewType.Register01ViewModel:
+                        _navigator.CurrentViewModel = new Register01ViewModel();
+                        break;
+                    case ViewType.Register02WithInformationViewModel:
+                        _navigator.CurrentViewModel = new Register02WithInformationViewModel();
+                        break;
+                    case ViewType.Register03InstructionsForPalmprintViewModel:
+                        _navigator.CurrentViewModel = new Register03InstructionsForPalmprintViewModel();
+                        break;
+                    case ViewType.Register04WithPalmprintViewModel:
+                        _navigator.CurrentViewModel = new Register04WithPalmprintViewModel();
+                        break;
+                    case ViewType.Register05InstructionsForFaceViewModel:
+                        _navigator.CurrentViewModel = new Register05InstructionsForFaceViewModel();
+                        break;
+                    case ViewType.Register06WithFaceViewModel:
+                        _navigator.CurrentViewModel = new Register06WithFaceViewModel();
+                        break;
                     default:
                         break;
                 }
