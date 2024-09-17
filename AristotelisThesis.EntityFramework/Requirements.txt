@@ -1,0 +1,16 @@
+﻿
+# Packages to Install
+
+1.	install Microsoft.EntityFrameworkCore            --version 6.0.30
+2.	install Microsoft.EntityFrameworkCore.SqlServer  --version 6.0.30
+3.	install Microsoft.EntityFrameworkCore.Tools      --version 6.0.30
+3.	install Microsoft.EntityFrameworkCore.Sqlite     --version 6.0.30
+
+
+# Talk to the DB
+
+	PM> add-migration
+	PM> update-database
+	PM> remove-migration
+
+	ye
