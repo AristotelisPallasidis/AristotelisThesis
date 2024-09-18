@@ -145,7 +145,7 @@
                             <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
 
                                 <TextBlock Text="Ενημέρωση στοιχείων Προσώπου"
-                                   FontSize="20"
+                                   FontSize="24"
                                    FontWeight="Bold"
                                    Foreground="White">
                                 </TextBlock>
@@ -160,6 +160,7 @@
                                 <Button 
                                     Content="Ενημέρωση στοιχείων"
                                     Click="UpdateFaceButton_Click"
+                                    FontSize="16"
                                     Margin="0 10 0 0"
                                     Cursor="Hand">
                                 </Button>
