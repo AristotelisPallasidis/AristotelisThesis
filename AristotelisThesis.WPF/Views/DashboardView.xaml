@@ -35,7 +35,7 @@
                     <TextBlock 
                         Text="Καλωσορίσατε"
                         Grid.Row="0"
-                        Foreground="White" 
+                        Foreground="{StaticResource ColorLight}" 
                         FontSize="35" 
                         FontFamily="Manrope">
                     </TextBlock>
@@ -44,7 +44,7 @@
                         Text="Name Surname"
                         Name="txtFullName"
                         Grid.Row="1"
-                        Foreground="White" 
+                        Foreground="{StaticResource ColorLight}"
                         FontSize="35" 
                         FontWeight="ExtraBold" 
                         FontFamily="Manrope">
@@ -52,7 +52,7 @@
 
                     <TextBlock 
                         Grid.Row="2" 
-                        Foreground="White" 
+                        Foreground="{StaticResource ColorLight}"
                         FontSize="16" 
                         FontFamily="Manrope" 
                         Margin="0 10 0 0">
@@ -78,7 +78,17 @@
                             CornerRadius="8 8 8 8"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Stretch">
-                            <TextBlock Text="Προφιλ" Foreground="Black"></TextBlock>
+                            <StackPanel Orientation="Vertical">
+
+                                <TextBlock 
+                                    Text="Προφιλ"
+                                    FontSize="20"
+                                    FontWeight="Bold"
+                                    
+                                    Foreground="Black">
+                                </TextBlock>
+                                <TextBlock Text="Προφιλ" Foreground="Black"></TextBlock>
+                            </StackPanel>
                         </Border>
                     </Grid>
 
@@ -90,7 +100,9 @@
                             CornerRadius="8 8 8 8"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Stretch">
-                            <TextBlock Text="Ρυθμίσεις" Foreground="Black"></TextBlock>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="Ρυθμίσεις" Foreground="Black"></TextBlock>
+                            </StackPanel>
                         </Border>
                     </Grid>
 
@@ -111,7 +123,9 @@
                             CornerRadius="8 8 8 8"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Stretch">
-                            <TextBlock Text="Αναγνώριση Παλάμης" Foreground="Black"></TextBlock>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="Αναγνώριση Παλάμης" Foreground="Black"></TextBlock>
+                            </StackPanel>
                         </Border>
                     </Grid>
 
@@ -124,11 +138,14 @@
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Stretch">
 
+                            <StackPanel Orientation="Vertical">
 
-                            <Image 
+                                <Image 
                                 Source="C:\Users\Aristotelis\Desktop\repos\AristotelisThesis\AristotelisThesis.WPF\Assets\Group-22.png" 
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Stretch"></Image>
+
+                            </StackPanel>
                         </Border>
                     </Grid>
 
@@ -157,9 +174,10 @@
                         Background="#E6E6E6"
                         Padding="42"
                         CornerRadius="8 8 8 8">
-                        <TextBlock Text="Η διάρκεια συνδεσης σας ειναι 3h 12m 24s" 
-                                   Foreground="Black"
-                                   FontSize="24">
+                        <TextBlock 
+                            Text="Η διάρκεια συνδεσης σας ειναι 3h 12m 24s" 
+                            Foreground="Black"
+                            FontSize="24">
                         </TextBlock>
                     </Border>
                 </Grid>
@@ -173,7 +191,13 @@
                         CornerRadius="8 8 8 8"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch">
-                        <TextBlock Text="Στατιστικα" Foreground="Black"></TextBlock>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock 
+                                Text="Στατιστικα" 
+                                Foreground="Black">
+                            </TextBlock>
+                        </StackPanel>
+
                     </Border>
                 </Grid>
 

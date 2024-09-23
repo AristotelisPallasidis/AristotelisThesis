@@ -4,10 +4,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AristotelisThesis.WPF", "AristotelisThesis.WPF\AristotelisThesis.WPF.csproj", "{B312167B-7E79-44F9-9030-765646B08C4A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3F0A04F9-4CBD-47D0-AC7D-319123C1EA07} = {3F0A04F9-4CBD-47D0-AC7D-319123C1EA07}
+		{6B146D24-D02D-4D9E-A11A-B8BA13F96061} = {6B146D24-D02D-4D9E-A11A-B8BA13F96061}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AristotelisThesis.Domain", "AristotelisThesis.Domain\AristotelisThesis.Domain.csproj", "{3F0A04F9-4CBD-47D0-AC7D-319123C1EA07}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AristotelisThesis.EntityFramework", "AristotelisThesis.EntityFramework\AristotelisThesis.EntityFramework.csproj", "{6B146D24-D02D-4D9E-A11A-B8BA13F96061}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AristotelisThesis.EntityFramework", "AristotelisThesis.EntityFramework\AristotelisThesis.EntityFramework.csproj", "{6B146D24-D02D-4D9E-A11A-B8BA13F96061}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

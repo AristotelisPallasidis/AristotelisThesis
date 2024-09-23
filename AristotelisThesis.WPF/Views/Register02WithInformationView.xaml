@@ -267,6 +267,8 @@
                             <RowDefinition Height="auto" />
                             <RowDefinition Height="auto" />
                             <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
                         </Grid.RowDefinitions>
 
                         <!-- AEM -->
@@ -295,6 +297,27 @@
                     AcceptsReturn="False">
                         </TextBox>
 
+                        <!-- Degree -->
+                        <TextBlock
+                            Grid.Row="4"
+                            Text="Πτυχίο:"
+                            Style="{StaticResource TextBlockOfInput}">
+                        </TextBlock>
+                        <StackPanel Orientation="Horizontal" Grid.Row="5">
+                            <RadioButton 
+                                Content="Προπτυχιακό"
+                                Foreground="{StaticResource ColorLight}"
+                                FontSize="14"
+                                FontFamily="Manrope"
+                                Margin="0 0 16 0">
+                            </RadioButton>
+                            <RadioButton 
+                                Content="Μεταπτυχιακό"
+                                Foreground="{StaticResource ColorLight}"
+                                FontSize="14"
+                                FontFamily="Manrope">
+                            </RadioButton>
+                        </StackPanel>
                     </Grid>
                 </Grid>
 

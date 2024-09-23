@@ -42,7 +42,7 @@
                 Foreground="Black"
                 FontSize="20" 
                 FontWeight="Bold">
-                    ΔΠΘ ΣΥΣΤΗΜΑΤΑ 
+                    ΔΠΘ ΣΥΣΤΗΜΑ
                     <LineBreak />
                     ΤΑΥΤΟΠΟΙΗΣΗΣ
             </TextBlock>
@@ -118,12 +118,12 @@
             <!-- LOG OUT BUTTON -->
             <RadioButton 
                 Grid.Column="6"
+                Content="Αποσύνδεση"
+                Foreground="{StaticResource ColorDanger}"
+                IsChecked="{Binding CurrentViewModel, Mode=OneWay, ConverterParameter={x:Type vm:LoginViewModel}, Converter={StaticResource EqualValueToParameterConverter}}"
                 Command="{Binding UpdateCurrentViewModelCommand}"
-                CommandParameter="{x:Static nav:ViewType.Settings}">
+                CommandParameter="{x:Static nav:ViewType.Login}">
             </RadioButton>
-            <StackPanel Orientation="Horizontal" Grid.Column="6">
-                <Image Source="https://pics.freeicons.io/uploads/icons/png/16147924811618134427-512.png" Width="26" />
-            </StackPanel>
             <!-- Navigate to loginScreen -->
         </Grid>
 
