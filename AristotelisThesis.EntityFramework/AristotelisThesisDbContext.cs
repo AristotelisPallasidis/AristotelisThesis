@@ -9,6 +9,9 @@ namespace AristotelisThesis.EntityFramework
 {
     public class AristotelisThesisDbContext : DbContext
     {
-        //public DbSet<> dbSet { get; set; }
+        public AristotelisThesisDbContext(DbContextOptions options) : base(options) { }
+
+        // Add to DbSet all the entities
+        //public DbSet<Student> Students { get; set; }
     }
 }

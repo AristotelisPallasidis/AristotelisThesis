@@ -36,12 +36,12 @@ namespace AristotelisThesis.Domain.Models
         // Contact phone number (must be 10 digits and start with "69")
         [Required(ErrorMessage = "Contact Phone is required.")]
         [RegularExpression("^69[0-9]{8}$", ErrorMessage = "Contact Phone must be 10 digits and start with '69'.")]
-        public string ContactPhone { get; set; }
+        public string Phone { get; set; }
 
         // Home address
         [Required(ErrorMessage = "Home Address is required.")]
         [StringLength(200, ErrorMessage = "Home Address cannot be longer than 200 characters.")]
-        public string HomeAddress { get; set; }
+        public string Address { get; set; }
 
         // Academic email (must contain @ and .gr)
         [Required(ErrorMessage = "Academic Email is required.")]

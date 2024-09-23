@@ -4,6 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:AristotelisThesis.WPF.Views"
+             
+             xmlns:controls="clr-namespace:AristotelisThesis.WPF.Controls"
+
              mc:Ignorable="d" 
              d:DesignHeight="850" d:DesignWidth="1640">
 
@@ -82,12 +85,18 @@
 
                                 <TextBlock 
                                     Text="Προφιλ"
-                                    FontSize="20"
+                                    FontSize="22"
                                     FontWeight="Bold"
-                                    
-                                    Foreground="Black">
+                                    Foreground="{StaticResource ColorDark}">
                                 </TextBlock>
-                                <TextBlock Text="Προφιλ" Foreground="Black"></TextBlock>
+                                <Separator Width="auto" Margin="0 10"/>
+
+                                <TextBlock 
+                                    TextWrapping="Wrap" 
+                                    Text="Οι εσωτερικες ρυθμισης σας δινουν την δυνατοτητα να ενημερωσετε ορισμενα απο τα προσωπικα σας στοιχεια τα οποια εισαγαγατε κατα την εγγραφη σας στην πλατφορμα του πανεπιστημιου."
+                                    Foreground="{StaticResource ColorDark}"
+                                    FontSize="16">
+                                </TextBlock>
                             </StackPanel>
                         </Border>
                     </Grid>
@@ -101,7 +110,19 @@
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Stretch">
                             <StackPanel Orientation="Vertical">
-                                <TextBlock Text="Ρυθμίσεις" Foreground="Black"></TextBlock>
+                                <TextBlock 
+                                    Text="Ρυθμίσεις" 
+                                    FontSize="22"
+                                    FontWeight="Bold"
+                                    Foreground="{StaticResource ColorDark}">
+                                </TextBlock>
+                                <Separator Width="auto" Margin="0 10"/>
+                                <TextBlock 
+                                    TextWrapping="Wrap" 
+                                    Text="Οι εσωτερικες ρυθμισης σας δινουν την δυνατοτητα να ενημερωσετε ορισμενα απο τα προσωπικα σας στοιχεια τα οποια εισαγαγατε κατα την εγγραφη σας στην πλατφορμα του πανεπιστημιου."
+                                    Foreground="{StaticResource ColorDark}"
+                                    FontSize="16">
+                                </TextBlock>
                             </StackPanel>
                         </Border>
                     </Grid>
@@ -124,7 +145,19 @@
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Stretch">
                             <StackPanel Orientation="Vertical">
-                                <TextBlock Text="Αναγνώριση Παλάμης" Foreground="Black"></TextBlock>
+                                <TextBlock 
+                                    Text="Αναγνώριση Παλάμης" 
+                                    FontSize="22"
+                                    FontWeight="Bold"
+                                    Foreground="{StaticResource ColorDark}">
+                                </TextBlock>
+                                <Separator Width="auto" Margin="0 10"/>
+                                <TextBlock 
+                                    TextWrapping="Wrap" 
+                                    Text="Οι εσωτερικες ρυθμισης σας δινουν την δυνατοτητα να ενημερωσετε ορισμενα απο τα προσωπικα σας στοιχεια τα οποια εισαγαγατε κατα την εγγραφη σας στην πλατφορμα του πανεπιστημιου."
+                                    Foreground="{StaticResource ColorDark}"
+                                    FontSize="16">
+                                </TextBlock>
                             </StackPanel>
                         </Border>
                     </Grid>
@@ -139,12 +172,19 @@
                             VerticalAlignment="Stretch">
 
                             <StackPanel Orientation="Vertical">
-
-                                <Image 
-                                Source="C:\Users\Aristotelis\Desktop\repos\AristotelisThesis\AristotelisThesis.WPF\Assets\Group-22.png" 
-                                HorizontalAlignment="Stretch"
-                                VerticalAlignment="Stretch"></Image>
-
+                                <TextBlock 
+                                    Text="Αναγνώριση Προσώπου" 
+                                    FontSize="22"
+                                    FontWeight="Bold"
+                                    Foreground="{StaticResource ColorDark}">
+                                </TextBlock>
+                                <Separator Width="auto" Margin="0 10"/>
+                                <TextBlock 
+                                    TextWrapping="Wrap" 
+                                    Text="Οι εσωτερικες ρυθμισης σας δινουν την δυνατοτητα να ενημερωσετε ορισμενα απο τα προσωπικα σας στοιχεια τα οποια εισαγαγατε κατα την εγγραφη σας στην πλατφορμα του πανεπιστημιου."
+                                    Foreground="{StaticResource ColorDark}"
+                                    FontSize="16">
+                                </TextBlock>
                             </StackPanel>
                         </Border>
                     </Grid>
@@ -174,11 +214,9 @@
                         Background="#E6E6E6"
                         Padding="42"
                         CornerRadius="8 8 8 8">
-                        <TextBlock 
-                            Text="Η διάρκεια συνδεσης σας ειναι 3h 12m 24s" 
-                            Foreground="Black"
-                            FontSize="24">
-                        </TextBlock>
+
+                            <controls:ClockCard Width="260" FontSize="34"/>
+                            
                     </Border>
                 </Grid>
 
@@ -191,22 +229,50 @@
                         CornerRadius="8 8 8 8"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch">
+                        
                         <StackPanel Orientation="Vertical">
                             <TextBlock 
-                                Text="Στατιστικα" 
-                                Foreground="Black">
+                                Text="Στατιστικά Στοιχεία" 
+                                FontSize="22"
+                                FontWeight="Bold"
+                                Foreground="{StaticResource ColorDark}">
                             </TextBlock>
+                            <Separator Width="auto" Margin="0 10"/>
+
+
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="auto" />
+                                    <!-- This row will stretch -->
+                                </Grid.RowDefinitions>
+
+                                <TextBlock 
+                                    Grid.Row="0"
+                                    Text="Εβδομαδιαίο σύνολο ώρων σύνδεσης" 
+                                    FontSize="20">
+                                </TextBlock>
+
+                                <TextBlock 
+                                    Grid.Row="2"
+                                    Text="64" 
+                                    Foreground="{StaticResource ColorSuccess}" 
+                                    FontSize="120"
+                                    FontWeight="Black"
+                                    HorizontalAlignment="Right" 
+                                    VerticalAlignment="Stretch"
+                                    Margin="0 200 10 10"> <!-- Margin ensures some space from edges -->
+                                </TextBlock>
+                            </Grid>
+
                         </StackPanel>
 
                     </Border>
+                    
                 </Grid>
 
-
             </Grid>
-
-
-
-
 
         </Grid>
     </Border>
