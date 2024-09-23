@@ -33,7 +33,7 @@
                         Text="Διάρκεια -" 
                         HorizontalAlignment="Right"
                         VerticalAlignment="Center"
-                        Foreground="Black"
+                        Foreground="{StaticResource ColorDark}"
                         FontFamily="Manrope"
                         FontSize="18">
                     </TextBlock>
@@ -42,10 +42,10 @@
 
                 <Grid Grid.Column="1">
                     <TextBlock 
-                        Text="3h 12m 24s"
-                        HorizontalAlignment="Left"
+                        x:Name="SessionTimeTextBlock"
+                        Text="{Binding SessionTime}"
                         VerticalAlignment="Center"
-                        Foreground="Black"
+                        Foreground="{StaticResource ColorDark}"
                         FontFamily="Manrope"
                         FontSize="18">
                     </TextBlock>
