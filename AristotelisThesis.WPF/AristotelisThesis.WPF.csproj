@@ -9,7 +9,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="State\Authenticators\" />
+    <Compile Remove="State\Authenticators\**" />
+    <EmbeddedResource Remove="State\Authenticators\**" />
+    <None Remove="State\Authenticators\**" />
+    <Page Remove="State\Authenticators\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AristotelisThesis.Domain\AristotelisThesis.Domain.csproj" />
   </ItemGroup>
 
 </Project>
