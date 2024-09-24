@@ -8,12 +8,8 @@ using System.Xml;
 
 namespace AristotelisThesis.Domain.Models
 {
-    public class Student
+    public class Student : DomainObject
     {
-        // Unique student ID (could be generated automatically or manually assigned)
-        [Required(ErrorMessage = "Student ID is required.")]
-        public int Id { get; set; }
-
         // Student's first name
         [Required(ErrorMessage = "Name is required.")]
         [StringLength(20, ErrorMessage = "Name cannot be longer than 20 characters.")]
@@ -23,6 +19,12 @@ namespace AristotelisThesis.Domain.Models
         [Required(ErrorMessage = "Surname is required.")]
         [StringLength(20, ErrorMessage = "Surname cannot be longer than 20 characters.")]
         public string Surname { get; set; }
+
+        // -----------------------------------------------------------------------
+        public string Username { get; set; }
+        public string Password { get; set; }
+        // -----------------------------------------------------------------------
+
 
         // Gender (must be male or female)
         [Required(ErrorMessage = "Sex is required.")]
@@ -59,7 +61,7 @@ namespace AristotelisThesis.Domain.Models
 
         // Current semester of the student
         [Required(ErrorMessage = "Semester is required.")]
-        [Range(1, 8, ErrorMessage = "Semester must be between 1 and 8.")]
+        [Range(1, 12, ErrorMessage = "Semester must be between 1 and 12.")]
         public int Semester { get; set; }
 
         // Year the student entered the institution
