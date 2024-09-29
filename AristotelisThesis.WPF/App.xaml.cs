@@ -10,6 +10,10 @@ namespace AristotelisThesis.WPF
     /// </summary>
     public partial class App : Application
     {
+        /// <summary>
+        /// This function is called when the application starts. It creates the main window and sets the view model.
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnStartup(StartupEventArgs e)
         {
             Window window = new MainWindow();
