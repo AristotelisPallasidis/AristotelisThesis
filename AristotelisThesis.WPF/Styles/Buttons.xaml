@@ -79,72 +79,86 @@
     </Style>
 
 
-
-
-
     <!-- /////////////////////////////////////////////////////////////// -->
     <!-- STATISTICS BUTTONS -->
     <!-- /////////////////////////////////////////////////////////////// -->
 
     <!-- SAVE CHANGES BUTTION -->
     <Style x:Key="SaveChangesButton" TargetType="Button">
-
-        <Setter Property="Padding" Value="30 2" />
-
+        <Setter Property="Padding" Value="30 10" />
         <Setter Property="Foreground" Value="{StaticResource ColorLight}" />
         <Setter Property="Background" Value="{StaticResource ColorSuccess}" />
-
         <Setter Property="BorderThickness" Value="0" />
-
         <Setter Property="FontFamily" Value="Manrope" />
         <Setter Property="FontSize" Value="16" />
         <Setter Property="FontWeight" Value="SemiBold" />
-
         <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="BorderBrush" Value="{StaticResource ColorSuccess}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Margin" Value="0 5" />
 
-        <!-- Trigger to change background color on hover -->
         <Style.Triggers>
             <EventTrigger RoutedEvent="MouseEnter">
                 <BeginStoryboard>
                     <Storyboard>
-                        <ColorAnimation To="#218838" Duration="0:0:0.1" Storyboard.TargetProperty="Background.Color"/>
+                        <ColorAnimation To="#28a745" Duration="0:0:0.1" Storyboard.TargetProperty="Background.Color"/>
+                        <ColorAnimation To="#155724" Duration="0:0:0.1" Storyboard.TargetProperty="BorderBrush.Color"/>
+                        <DoubleAnimation To="1.1" Duration="0:0:0.1" Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleX)"/>
+                        <DoubleAnimation To="1.1" Duration="0:0:0.1" Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleY)"/>
                     </Storyboard>
                 </BeginStoryboard>
             </EventTrigger>
             <EventTrigger RoutedEvent="MouseLeave">
                 <BeginStoryboard>
                     <Storyboard>
-                        <ColorAnimation To="#218838" Duration="0:0:0.1" Storyboard.TargetProperty="Background.Color"/>
+                        <ColorAnimation To="{StaticResource Success}" Duration="0:0:0.1" Storyboard.TargetProperty="Background.Color"/>
+                        <ColorAnimation To="{StaticResource Success}" Duration="0:0:0.1" Storyboard.TargetProperty="Background.Color"/>
+                        <DoubleAnimation To="1.0" Duration="0:0:0.1" Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleX)"/>
+                        <DoubleAnimation To="1.0" Duration="0:0:0.1" Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleY)"/>
                     </Storyboard>
                 </BeginStoryboard>
             </EventTrigger>
         </Style.Triggers>
-
     </Style>
+
 
 
     <!-- DELETE ACCOUNT BUTTION -->
     <Style x:Key="DeleteAccountButton" TargetType="Button">
-
-        <Setter Property="Width" Value="100" />
-
-        <Setter Property="Margin" Value="0 12 0 0" />
-        <Setter Property="Padding" Value="12 6" />
-
+        <Setter Property="Padding" Value="30 10" />
         <Setter Property="Foreground" Value="{StaticResource ColorLight}" />
         <Setter Property="Background" Value="{StaticResource ColorDanger}" />
-
         <Setter Property="BorderThickness" Value="0" />
-
-        <Setter Property="HorizontalContentAlignment" Value="Left" />
-        <Setter Property="HorizontalAlignment" Value="Left" />
-
         <Setter Property="FontFamily" Value="Manrope" />
         <Setter Property="FontSize" Value="16" />
         <Setter Property="FontWeight" Value="SemiBold" />
-
         <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="BorderBrush" Value="{StaticResource ColorDanger}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Margin" Value="0 5" />
 
+        <!-- Hover Effect -->
+        <Style.Triggers>
+            <EventTrigger RoutedEvent="MouseEnter">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <ColorAnimation To="#218838" Duration="0:0:0.1" Storyboard.TargetProperty="Background.Color"/>
+                        <DoubleAnimation To="1.1" Duration="0:0:0.1" Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleX)"/>
+                        <DoubleAnimation To="1.1" Duration="0:0:0.1" Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleY)"/>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+            <EventTrigger RoutedEvent="MouseLeave">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <ColorAnimation To="{StaticResource Danger}" Duration="0:0:0.1" Storyboard.TargetProperty="Background.Color"/>
+                        <DoubleAnimation To="1.0" Duration="0:0:0.1" Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleX)"/>
+                        <DoubleAnimation To="1.0" Duration="0:0:0.1" Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleY)"/>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Style.Triggers>
     </Style>
-
+    
+    
 </ResourceDictionary>

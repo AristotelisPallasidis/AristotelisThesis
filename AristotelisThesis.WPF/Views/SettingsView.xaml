@@ -349,52 +349,84 @@
             <Grid Grid.Row="2">
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto" />
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
                 <Grid Grid.Column="0">
-                    <Button
-                        Content="Αποθήκευση Αλλαγών"
-                        Click="SaveChangesButton_Click"
-                        Style="{StaticResource SaveChangesButton}"
-                        Height="60">
-                    </Button>
+                    
+                    <Border Grid.Column="2"
+                        BorderBrush="{StaticResource ColorSuccess}" 
+                        BorderThickness="2" 
+                        CornerRadius="6" 
+                        Padding="26 32 70 32">
+
+                        <Grid Grid.Column="1" Background="Transparent">
+                            <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="0">
+
+                                <TextBlock Text="Αποθήκευση Αλλαγών"
+                                   FontSize="18"
+                                   FontWeight="Bold"
+                                   Foreground="{StaticResource ColorLight}">
+                                </TextBlock>
+
+                                <TextBlock Text="* Αποθήκευση μπορεί να γίνει μόνο με αλλαγές στις πληροφορίες σας."
+                                   Margin="0 4 0 0"
+                                   FontSize="12"
+                                   FontWeight="Light"
+                                   Foreground="{StaticResource ColorLight}">
+                                </TextBlock>
+
+                                <Button Content="Αποθήκευση"
+                    Click="SaveChangesButton_Click"
+                    Style="{StaticResource SaveChangesButton}"
+                    Margin="0 10 0 0">
+                                </Button>
+
+                            </StackPanel>
+                        </Grid>
+
+                    </Border>
+
                 </Grid>
 
-                <Border Grid.Column="2"
-                        BorderBrush="#FF5252" 
+
+                <Grid Grid.Column="2">
+                    <Border Grid.Column="2"
+                        BorderBrush="{StaticResource ColorDanger}" 
                         BorderThickness="2" 
-                        CornerRadius="6 6 6 6" 
-                        Padding="26 32 70 32" >
+                        CornerRadius="6" 
+                        Padding="26 32 70 32">
 
-                    <Grid Grid.Column="1" Background="Transparent">
-                        <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
+                        <Grid Grid.Column="1" Background="Transparent">
+                            <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="0">
 
-                            <TextBlock Text="Οριστική διαγραφή λογαρισμού"
-                                       FontSize="18"
-                                       FontWeight="Bold"
-                                       Foreground="White">
-                            </TextBlock>
+                                <TextBlock Text="Διαγραφή λογαρισμού"
+                                   FontSize="18"
+                                   FontWeight="Bold"
+                                   Foreground="{StaticResource ColorLight}">
+                                </TextBlock>
 
-                            <TextBlock Text="* Η οριστική διαγραφή λογαρισμού ειναι μη αναστρέψη"
-                                       Margin="0 4 0 0"
-                                       FontSize="12"
-                                       FontWeight="Light"
-                                       Foreground="{StaticResource ColorLight}">
-                            </TextBlock>
+                                <TextBlock Text="* Η οριστική διαγραφή του λογαριασμού σας είναι μη αναστρέψιμη."
+                                   Margin="0 4 0 0"
+                                   FontSize="12"
+                                   FontWeight="Light"
+                                   Foreground="{StaticResource ColorLight}">
+                                </TextBlock>
 
-                            <Button Content="Διαγραφή Λογαριασμού"
+                                <Button Content="Διαγραφή Λογαριασμού"
                                     Click="DeleteAccountButton_Click"
-                                    Style="{StaticResource DeleteAccountButton}">
-                            </Button>
+                                    Style="{StaticResource DeleteAccountButton}"
+                                    Margin="0 10 0 0">
+                                </Button>
 
-                        </StackPanel>
-                    </Grid>
+                            </StackPanel>
+                        </Grid>
 
-                </Border>
-
+                    </Border>
+                </Grid>
+                
             </Grid>
 
 

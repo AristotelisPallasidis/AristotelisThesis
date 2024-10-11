@@ -86,7 +86,7 @@
                                 Name="txtAEM"
                                 Text="1234" 
                                 FontWeight="ExtraBold"
-                                Opacity="10"
+                                Opacity="0.7"
                                 Foreground="#f5f5f5" 
                                 FontSize="16">
                             </TextBlock>
