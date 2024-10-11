@@ -1,33 +1,27 @@
-﻿using AristotelisThesis.WPF.State.Navigators;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AristotelisThesis.WPF.Commands;
+using AristotelisThesis.WPF.State.Authenticators;
+using AristotelisThesis.WPF.State.Navigators;
+using AristotelisThesis.WPF.ViewModels.Factories;
+using System.Windows.Input;
 
 namespace AristotelisThesis.WPF.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
-        public INavigator Navigator { get; set; } = new Navigator();
+        private readonly IAristotelisThesisViewModelFactory _viewModelFactory;
 
-        public MainViewModel()
+        public INavigator Navigator { get; set; }
+        public IAuthenticator Authenticator { get; }
+        public ICommand UpdateCurrentViewModelCommand { get; }
+
+        public MainViewModel(INavigator navigator, IAristotelisThesisViewModelFactory viewModelFactory, IAuthenticator authenticator)
         {
-            //Navigator.UpdateCurrentViewModelCommand.Execute(ViewType.Dashboard);
+            Navigator = navigator;
+            _viewModelFactory = viewModelFactory;
+            Authenticator = authenticator;
 
-            Navigator.UpdateCurrentViewModelCommand.Execute(ViewType.Login);
-            //Navigator.UpdateCurrentViewModelCommand.Execute(ViewType.LoginWithFace);
-            //Navigator.UpdateCurrentViewModelCommand.Execute(ViewType.LoginWithPalmprint);
-
-
-            //Navigator.UpdateCurrentViewModelCommand.Execute(ViewType.Register01ViewModel);
-            //Navigator.UpdateCurrentViewModelCommand.Execute(ViewType.Register02WithInformationViewModel);
-            //Navigator.UpdateCurrentViewModelCommand.Execute(ViewType.Register03InstructionsForPalmprintViewModel);
-            //Navigator.UpdateCurrentViewModelCommand.Execute(ViewType.Register04WithPalmprintViewModel);
-            //Navigator.UpdateCurrentViewModelCommand.Execute(ViewType.Register05InstructionsForFaceViewModel);
-            //Navigator.UpdateCurrentViewModelCommand.Execute(ViewType.Register06WithFaceViewModel);
-
-
+            UpdateCurrentViewModelCommand = new UpdateCurrentViewModelCommand(navigator, _viewModelFactory);
+            UpdateCurrentViewModelCommand.Execute(ViewType.Login);
         }
     }
 }

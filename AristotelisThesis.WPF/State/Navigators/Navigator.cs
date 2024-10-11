@@ -1,7 +1,7 @@
 ﻿using AristotelisThesis.WPF.Commands;
 using AristotelisThesis.WPF.Models;
 using AristotelisThesis.WPF.ViewModels;
-using System.ComponentModel;
+using AristotelisThesis.WPF.ViewModels.Factories;
 using System.Windows.Input;
 
 namespace AristotelisThesis.WPF.State.Navigators
@@ -21,8 +21,5 @@ namespace AristotelisThesis.WPF.State.Navigators
                 OnPropertyChanged(nameof(CurrentViewModel));
             }
         }
-
-        public ICommand UpdateCurrentViewModelCommand => new UpdateCurrentViewModelCommand(this);
-
     }
 }

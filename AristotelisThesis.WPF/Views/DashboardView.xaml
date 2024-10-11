@@ -10,6 +10,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="850" d:DesignWidth="1640">
 
+    
     <Border Background="#1D1C1D" BorderBrush="Black" BorderThickness="1,1,1,1" CornerRadius="24,24,24,24">
         <Grid Margin="20">
 
@@ -39,25 +40,22 @@
                         Text="Καλωσορίσατε"
                         Grid.Row="0"
                         Foreground="{StaticResource ColorLight}" 
-                        FontSize="35" 
-                        FontFamily="Manrope">
+                        FontSize="35">
                     </TextBlock>
                     
                     <TextBlock 
-                        Text="Name Surname"
+                        Text="{Binding FullName}"
                         Name="txtFullName"
                         Grid.Row="1"
                         Foreground="{StaticResource ColorLight}"
                         FontSize="35" 
-                        FontWeight="ExtraBold" 
-                        FontFamily="Manrope">
+                        FontWeight="ExtraBold">
                     </TextBlock>
 
                     <TextBlock 
                         Grid.Row="2" 
                         Foreground="{StaticResource ColorLight}"
                         FontSize="16" 
-                        FontFamily="Manrope" 
                         Margin="0 10 0 0">
                             <Run Text="ΔΠΘ -" />
                             <Run x:Name="txtStudentLevelandSex" Text="Προπ/ΜεταΠ Φοιτητής/τρια -" />
@@ -72,6 +70,7 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
+                    
 
                     <Grid Grid.Column="0" Margin="0 0 10 0">
                         <Border
@@ -221,7 +220,7 @@
                 </Grid>
 
 
-                <Grid Grid.Row="1" Margin="10 30 0 0">
+                <Grid Grid.Row="1" Margin="10 15 0 0">
                     <Border
                         Grid.Row="1"
                         Background="#E6E6E6"

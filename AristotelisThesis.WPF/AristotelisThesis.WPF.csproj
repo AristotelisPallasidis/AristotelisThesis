@@ -9,13 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="State\Authenticators\**" />
-    <EmbeddedResource Remove="State\Authenticators\**" />
-    <None Remove="State\Authenticators\**" />
-    <Page Remove="State\Authenticators\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="LoadingSpinner.WPF" Version="1.0.0" />
   </ItemGroup>
 

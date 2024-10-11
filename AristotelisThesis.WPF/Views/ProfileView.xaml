@@ -27,7 +27,6 @@
             </Grid.RowDefinitions>
 
 
-            <!-- ROW TITLE -->
             <Grid Grid.Row="0">
 
                 <Grid.ColumnDefinitions>
@@ -36,7 +35,6 @@
                     <ColumnDefinition Width="auto" />
                 </Grid.ColumnDefinitions>
 
-                <!-- TITLE SCREEN-->
                 <StackPanel Orientation="Horizontal" Grid.Column="0">
                     <Image Source="C:\Users\Aristotelis\Desktop\repos\AristotelisThesis\AristotelisThesis.WPF\Assets\Icons\UserIconSolid.png" Width="30" Height="30" Margin="0 0 10 0"></Image>
                     <TextBlock 
@@ -46,10 +44,8 @@
                     </TextBlock>
                 </StackPanel>
 
-                <!-- CLOCK CARD -->
                 <Grid Grid.Column="2">
                     <controls:ClockCard Width="280"/>
-                    <!-- <card:ClockCard String Format {Binding Gender display end } {Binding nowTime - start }-->
                 </Grid>
 
             </Grid>
@@ -60,81 +56,107 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
+                
+                <Grid Grid.Column="0" Margin="0 0 80 0" HorizontalAlignment="Right" VerticalAlignment="Center">
 
-                <Grid Grid.Column="0" VerticalAlignment="Center">
+                    <Ellipse Width="300" Height="300" Margin="0 0 50 0">
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="C:\Users\Aristotelis\Desktop\repos\AristotelisThesis\AristotelisThesis.WPF\Assets\01.jpeg"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
 
-                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center"  VerticalAlignment="Center">
+                    <Ellipse Width="300" Height="300" Margin="0 0 50 0" Stroke="White" StrokeThickness="3">
+                        <Ellipse.Effect>
+                            <DropShadowEffect Color="Black" BlurRadius="15" ShadowDepth="5"/>
+                        </Ellipse.Effect>
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="C:\Users\Aristotelis\Desktop\repos\AristotelisThesis\AristotelisThesis.WPF\Assets\01.jpeg"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
 
-                        <TextBlock 
-                            Name="txtName"
-                            Text="Name" 
-                            Margin="0 8 0 0" 
-                            HorizontalAlignment="Left"
-                            Foreground="White" 
-                            FontSize="36" 
-                            FontWeight="ExtraBold">
-                        </TextBlock>
-                        <TextBlock 
-                            Name="txtSurname"
-                            Text="Surname"
-                            HorizontalAlignment="Left"
-                            Foreground="White"
-                            FontSize="36" 
-                            FontWeight="ExtraBold">
-                        </TextBlock>
-                        <TextBlock 
-                            Name="txtDepartment"
-                            Text="Τμήμα - Computer Science"
-                            Margin="0 20 0 0"  
-                            HorizontalAlignment="Left" 
-                            Foreground="White" 
-                            FontSize="18">
-                        </TextBlock>
-                        <TextBlock 
-                            Text="AEM - 0000" 
-                            Name="txtAEM"
-                            Margin="0 8 0 0"  
-                            HorizontalAlignment="Left" 
-                            Foreground="White" 
-                            FontSize="18">
-                        </TextBlock>
-                        <TextBlock 
-                            Text="Εξάμηνο - 00" 
-                            Name="txtSemester"
-                            Margin="0 8 0 0"  
-                            HorizontalAlignment="Left" 
-                            Foreground="White" 
-                            FontSize="18">
-                        </TextBlock>
-                        <TextBlock 
-                            Text="Έτος Εισαγωγής - 2024"
-                            Name="txtYearOfEntry"
-                            Margin="0 8 0 0"  
-                            HorizontalAlignment="Left" 
-                            Foreground="White" 
-                            FontSize="18">
-                        </TextBlock>
-                        <TextBlock 
-                            Text="Email - joe.doe@example.com"
-                            Name="txtEmail"
-                            Margin="0 8 0 0"  
-                            HorizontalAlignment="Left" 
-                            Foreground="White" 
-                            FontSize="18">
-                        </TextBlock>
-
-                    </StackPanel>
                 </Grid>
 
+                <Grid Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left">
 
-                <Grid Grid.Column="1" Margin="0 0 80 0" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20">
 
-                    <Image 
-                        Source="C:\Users\Aristotelis\Desktop\repos\AristotelisThesis\AristotelisThesis.WPF\Assets\01.jpeg" 
-                        Width="300" 
-                        Height="300" 
-                        Margin="0 0 50 0">
-                    </Image>
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
+                            
+                            <TextBlock 
+                                Name="txtAEM"
+                                Text="1234" 
+                                FontWeight="ExtraBold"
+                                Opacity="10"
+                                Foreground="#f5f5f5" 
+                                FontSize="16">
+                            </TextBlock>
+
+                            <!-- Name and Surname -->
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                <TextBlock 
+                                    Name="txtName"
+                                    Text="Name" 
+                                    Foreground="{StaticResource ColorLight}"
+                                    FontSize="36" 
+                                    FontWeight="ExtraLight"/>
+                                <TextBlock 
+                                    Name="txtSurname"
+                                    Text=" Doe"
+                                    Foreground="{StaticResource ColorLight}"
+                                    FontSize="36" 
+                                    FontWeight="ExtraBold"
+                                    Margin="10 0"/>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <!-- Separator -->
+                        <Separator Width="auto" Margin="0 20"/>
+
+                        <!-- Department -->
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="https://img.icons8.com/ios-filled/50/FFFFFF/graduation-cap.png" Width="20" Height="20" Margin="0 0 10 0"/>
+                            <TextBlock 
+                                Name="txtDepartment"
+                                Text="Πληροφορικής" 
+                                Foreground="{StaticResource ColorLight}"
+                                FontSize="18" 
+                                FontWeight="Regular"/>
+                        </StackPanel>
+
+                        
+
+                        <!-- Semester -->
+                        <StackPanel Orientation="Horizontal" Margin="0 12 0 0">
+                            <Image Source="https://img.icons8.com/ios-filled/50/FFFFFF/calendar.png" Width="20" Height="20" Margin="0 0 10 0"/>
+                            <TextBlock 
+                                Name="txtSemester"
+                                Text="Εξάμηνο - 7" 
+                                Foreground="{StaticResource ColorLight}"
+                                FontSize="18"/>
+                        </StackPanel>
+
+                        <!-- Year of Entry -->
+                        <StackPanel Orientation="Horizontal" Margin="0 12 0 0">
+                            <Image Source="https://img.icons8.com/ios-filled/50/FFFFFF/time-machine.png" Width="20" Height="20" Margin="0 0 10 0"/>
+                            <TextBlock 
+                                Name="txtYearOfEntry"
+                                Text="Έτος Εισαγωγής - 2024" 
+                                Foreground="{StaticResource ColorLight}"
+                                FontSize="18"/>
+                        </StackPanel>
+
+                        <!-- Email -->
+                        <StackPanel Orientation="Horizontal" Margin="0 12 0 0">
+                            <Image Source="https://img.icons8.com/ios-filled/50/FFFFFF/new-post.png" Width="20" Height="20" Margin="0 0 10 0"/>
+                            <TextBlock 
+                                Name="txtEmail"
+                                Text="joe.doe@example.com" 
+                                Foreground="{StaticResource ColorLight}"
+                                FontSize="18"/>
+                        </StackPanel>
+
+                    </StackPanel>
+
                 </Grid>
 
             </Grid>

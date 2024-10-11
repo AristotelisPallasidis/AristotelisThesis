@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AristotelisThesis.WPF.Commands;
+using AristotelisThesis.WPF.State.Authenticators;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,21 @@ namespace AristotelisThesis.WPF.Controls
     /// </summary>
     public partial class NavigationBar : UserControl
     {
+        private readonly IAuthenticator _authenticator;
+
         public NavigationBar()
         {
             InitializeComponent();
+        }
+
+        public NavigationBar(IAuthenticator authenticator)
+        {
+            _authenticator = authenticator;
+        }
+
+        private void Logout_Click(object sender, RoutedEventArgs e)
+        {
+            _authenticator.Logout();
         }
     }
 }

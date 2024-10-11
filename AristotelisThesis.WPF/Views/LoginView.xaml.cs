@@ -20,24 +20,27 @@ namespace AristotelisThesis.WPF.Views
     /// </summary>
     public partial class LoginView : UserControl
     {
+        public static readonly DependencyProperty LoginCommandProperty =
+             DependencyProperty.Register("LoginCommand", typeof(ICommand), typeof(LoginView), new PropertyMetadata(null));
+
+        public ICommand LoginCommand
+        {
+            get { return (ICommand)GetValue(LoginCommandProperty); }
+            set { SetValue(LoginCommandProperty, value); }
+        }
+
         public LoginView()
         {
             InitializeComponent();
         }
 
-        private void LoginWithFaceButton_Click(object sender, RoutedEventArgs e)
+        private void Login_Click(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("Click");
-        }
-        private void LoginWithPalmprintButton_Click(object sender, RoutedEventArgs e)
-        {
-            Console.WriteLine("Click");
-
-        }
-        private void RegisterButton_Click(object sender, RoutedEventArgs e)
-        {
-            Console.WriteLine("Click");
-
+            if (LoginCommand != null)
+            {
+                string password = pbPassword.Password;
+                LoginCommand.Execute(password);
+            }
         }
     }
 }

@@ -238,16 +238,16 @@
 
                         <Grid Grid.Column="0">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
                             </Grid.RowDefinitions>
 
                             <!-- EMAIL ADDRESS -->
@@ -268,7 +268,7 @@
                             <!-- DEPARTMENT -->
                             <TextBlock
                                 Grid.Row="4"
-                                Text="Τμήμα"
+                                Text="Τμήμα:"
                                 Style="{StaticResource TextBlockOfInput}">
                             </TextBlock>
                             <TextBox 
@@ -283,7 +283,7 @@
                             <!-- YEAR OF ENTRY -->
                             <TextBlock
                                 Grid.Row="6"
-                                Text="Χρονιά Εισαγωγής"
+                                Text="Χρονιά Εισαγωγής:"
                                 Style="{StaticResource TextBlockOfInput}">
                             </TextBlock>
                             <TextBox 
@@ -309,7 +309,7 @@
                             <!-- AEM -->
                             <TextBlock
                                 Grid.Row="0"
-                                Text="ΑΕΜ"
+                                Text="ΑΕΜ:"
                                 Style="{StaticResource TextBlockOfInput}">
                             </TextBlock>
                             <TextBox 
@@ -324,7 +324,7 @@
                             <!-- SEMESTER -->
                             <TextBlock
                                 Grid.Row="2"
-                                Text="Εξάμηνο (Τρέχον)"
+                                Text="Εξάμηνο (Τρέχον):"
                                 Style="{StaticResource TextBlockOfInput}">
                             </TextBlock>
                             <TextBox 

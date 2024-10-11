@@ -1,37 +1,111 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <Style x:Key="NavButton" TargetType="RadioButton">
+    <!-- /////////////////////////////////////////////////////////////// -->
+    <!-- NORMAL - NAVIGATION RADIO BUTTON -->
+    <!-- /////////////////////////////////////////////////////////////// -->
 
+    <Style x:Key="NavButton" TargetType="RadioButton">
+        <!-- General Style -->
+        <Setter Property="Padding" Value="10 6" />
+        <Setter Property="Margin" Value="2 0" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="FontFamily" Value="Manrope" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Foreground" Value="#404040"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="RadioButton">
+                    <TextBlock Text="{TemplateBinding Content}" 
+                            Foreground="{TemplateBinding Foreground}"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            FontWeight="Normal"
+                            Padding="10" />
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="Foreground" Value="{StaticResource ColorDark}" />
+                            <Setter Property="FontWeight" Value="Bold" />
+                        </Trigger>
+
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="{StaticResource ColorSuccess}" />
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <!-- Primary color on hover -->
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <!-- /////////////////////////////////////////////////////////////// -->
+    <!-- LOGOUT - NAVIGATION RADIO BUTTON -->
+    <!-- /////////////////////////////////////////////////////////////// -->
+    
+    <Style x:Key="LogoutButton" TargetType="RadioButton">
         <!-- General Style -->
         <Setter Property="Padding" Value="10 6" />
         <Setter Property="Margin" Value="12 0" />
         <Setter Property="FontSize" Value="16" />
         <Setter Property="FontFamily" Value="Manrope" />
         <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Foreground" Value="{StaticResource ColorDanger}" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="{StaticResource ColorDanger}" />
+        <!-- Constant border color -->
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
 
+        <!-- Control Template -->
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="RadioButton">
-
-                    <Grid x:Name="gridMain">
-                        <TextBlock 
-                            Text="{TemplateBinding Content}" 
-                            Padding="{TemplateBinding Padding}"
-                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}">
-                        </TextBlock>
-                    </Grid>
+                    <Border x:Name="borderMain"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="1"
+                        CornerRadius="8"
+                        Padding="{TemplateBinding Padding}">
+                        <TextBlock Text="{TemplateBinding Content}" 
+                               Foreground="{TemplateBinding Foreground}"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               FontSize="16"
+                               FontWeight="Bold"/>
+                    </Border>
 
                     <ControlTemplate.Triggers>
+                        <!-- Checked state -->
                         <Trigger Property="IsChecked" Value="True">
-                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter TargetName="borderMain" Property="Background" Value="{StaticResource ColorDanger}" />
+                            <Setter Property="Foreground" Value="White" />
+                        </Trigger>
+
+                        <!-- Hover state -->
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="borderMain" Property="Background" Value="{StaticResource ColorDanger}" />
+                            <Setter Property="Foreground" Value="{StaticResource ColorLight}" />
+                        </Trigger>
+
+                        <!-- Pressed state -->
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="borderMain" Property="Background" Value="#FFD4DA" />
+                            <Setter Property="Foreground" Value="White" />
                         </Trigger>
                     </ControlTemplate.Triggers>
-
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-
     </Style>
+
+
 
 </ResourceDictionary>

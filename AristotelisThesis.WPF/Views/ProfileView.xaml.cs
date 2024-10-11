@@ -31,11 +31,11 @@ namespace AristotelisThesis.WPF.Views
             // Fill the text with the user's data
             txtName.Text = "Αριστοτέλης";
             txtSurname.Text = "Παλλασίδης";
-            txtDepartment.Text = "Τμήμα - " + "Πληροφορικής";
-            txtAEM.Text = "AEM - " + "4509";
-            txtSemester.Text = "Εξάμηνο - " + "12";
-            txtYearOfEntry.Text = "Έτος Εισαγωγής - " + "2018";
-            txtEmail.Text = "Email - " + "arpalla@teiemt.gr";
+            txtDepartment.Text = "Τμήμα " + "Πληροφορικής";
+            txtAEM.Text = "4509";
+            txtSemester.Text = "12" + "ο " + "Εξάμηνο";
+            txtYearOfEntry.Text = "Έτος Εισαγωγής " + "2018";
+            txtEmail.Text = "arpalla@teiemt.gr";
         }
 
     }

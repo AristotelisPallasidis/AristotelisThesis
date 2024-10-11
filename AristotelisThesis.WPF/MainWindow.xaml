@@ -13,20 +13,41 @@
         WindowState="Maximized"
         Icon="C:\Users\Aristotelis\Desktop\repos\AristotelisThesis\AristotelisThesis.WPF\Assets\ico\DUTH-Logo.ico">
 
-    <Grid Margin="30">
+    <Grid>
+        <Grid.Style>
+            <Style TargetType="Grid">
+                <Setter Property="Margin" Value="0" />
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Authenticator.IsLoggedIn}" Value="True">
+                        <Setter Property="Margin" Value="30" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Style>
 
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
+        <Grid Grid.Row="0">
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Authenticator.IsLoggedIn}" Value="False">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
 
-        <controls:NavigationBar Grid.Row="0" DataContext="{Binding Navigator}" />
+            <controls:NavigationBar />
+        </Grid>
 
-
-        <ContentControl Grid.Row="1" Content="{Binding Navigator.CurrentViewModel}" />
+        <Grid Grid.Row="1">
+            <ContentControl Content="{Binding Navigator.CurrentViewModel}" />
+        </Grid>
 
     </Grid>
-
 
 </Window>

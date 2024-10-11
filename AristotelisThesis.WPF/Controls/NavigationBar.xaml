@@ -4,129 +4,104 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:AristotelisThesis.WPF.Controls"
-             
              xmlns:nav="clr-namespace:AristotelisThesis.WPF.State.Navigators"
              xmlns:vm="clr-namespace:AristotelisThesis.WPF.ViewModels"
              xmlns:converters="clr-namespace:AristotelisThesis.WPF.Converters"
-             
              mc:Ignorable="d" 
              d:DesignHeight="150" d:DesignWidth="1400">
-
 
     <UserControl.Resources>
         <converters:EqualValueToParameterConverter x:Key="EqualValueToParameterConverter" />
     </UserControl.Resources>
-
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" HorizontalAlignment="Left">
+        
+        <Grid Grid.Row="0" HorizontalAlignment="Stretch">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="auto" />
             </Grid.ColumnDefinitions>
 
-            <Image 
-                Grid.Column="0" 
-                Source="C:\Users\Aristotelis\Desktop\repos\AristotelisThesis\AristotelisThesis.WPF\Assets\DUTH-Logo.jpg"
-                Height="60" 
-                Width="60">
-            </Image>
+            <Grid Grid.Column="0">
+            <StackPanel Orientation="Horizontal">
+                
+                <Image 
+                    Source="C:\Users\Aristotelis\Desktop\repos\AristotelisThesis\AristotelisThesis.WPF\Assets\DUTH-Logo.jpg"
+                    Height="60" 
+                    Width="60">
+                </Image>
 
-            <TextBlock 
-                Grid.Column="1" 
-                Padding="10"
-                Foreground="Black"
-                FontSize="20" 
-                FontWeight="Bold">
+                <TextBlock 
+                    Padding="10"
+                    Foreground="{StaticResource ColorDark}"
+                    FontSize="20" 
+                    FontWeight="ExtraBold"
+                    VerticalAlignment="Center">
                     ΔΠΘ ΣΥΣΤΗΜΑ
                     <LineBreak />
                     ΤΑΥΤΟΠΟΙΗΣΗΣ
-            </TextBlock>
-        </Grid>
+                </TextBlock>
+                
+            </StackPanel>
+            </Grid>
 
+            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <RadioButton 
+                    Style="{StaticResource NavButton}"
+                    Content="Αρχική"
+                    IsChecked="{Binding Navigator.CurrentViewModel, Mode=OneWay, Converter={StaticResource EqualValueToParameterConverter}, ConverterParameter={x:Type vm:DashboardViewModel}}"
+                    Command="{Binding UpdateCurrentViewModelCommand}"
+                    CommandParameter="{x:Static nav:ViewType.Dashboard}" />
 
-        <Grid Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center">
+                <RadioButton 
+                    Style="{StaticResource NavButton}"
+                    Content="Αναγνώριση Προσώπου"
+                    IsChecked="{Binding Navigator.CurrentViewModel, Mode=OneWay, Converter={StaticResource EqualValueToParameterConverter}, ConverterParameter={x:Type vm:FaceRecognitionViewModel}}"
+                    Command="{Binding UpdateCurrentViewModelCommand}"
+                    CommandParameter="{x:Static nav:ViewType.FaceRecognition}" />
 
-            <Grid.Resources>
-                <Style BasedOn="{StaticResource NavButton}" TargetType="RadioButton" />
-            </Grid.Resources>
+                <RadioButton 
+                    Style="{StaticResource NavButton}"
+                    Content="Αναγνώριση Παλάμης"
+                    IsChecked="{Binding Navigator.CurrentViewModel, Mode=OneWay, Converter={StaticResource EqualValueToParameterConverter}, ConverterParameter={x:Type vm:PalmprintRecognitionViewModel}}"
+                    Command="{Binding UpdateCurrentViewModelCommand}"
+                    CommandParameter="{x:Static nav:ViewType.PalmprintRecognition}" />
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="auto" />
-            </Grid.ColumnDefinitions>
+                <RadioButton 
+                    Style="{StaticResource NavButton}"
+                    Content="Στατιστικά"
+                    IsChecked="{Binding Navigator.CurrentViewModel, Mode=OneWay, Converter={StaticResource EqualValueToParameterConverter}, ConverterParameter={x:Type vm:StatisticsViewModel}}"
+                    Command="{Binding UpdateCurrentViewModelCommand}"
+                    CommandParameter="{x:Static nav:ViewType.Statistics}" />
 
-            <RadioButton 
-                Grid.Column="0" 
-                Content="Αρχική"
-                IsChecked="{Binding CurrentViewModel, Mode=OneWay, ConverterParameter={x:Type vm:DashboardViewModel}, Converter={StaticResource EqualValueToParameterConverter}}"
-                Command="{Binding UpdateCurrentViewModelCommand}"
-                CommandParameter="{x:Static nav:ViewType.Dashboard}">
-            </RadioButton>
+                <RadioButton 
+                    Style="{StaticResource NavButton}"
+                    Content="Προφιλ"
+                    IsChecked="{Binding Navigator.CurrentViewModel, Mode=OneWay, Converter={StaticResource EqualValueToParameterConverter}, ConverterParameter={x:Type vm:ProfileViewModel}}"
+                    Command="{Binding UpdateCurrentViewModelCommand}"
+                    CommandParameter="{x:Static nav:ViewType.Profile}" />
 
-            <RadioButton 
-                Grid.Column="1" 
-                Content="Αναγνώριση Προσώπου"
-                IsChecked="{Binding CurrentViewModel, Mode=OneWay, ConverterParameter={x:Type vm:FaceRecognitionViewModel}, Converter={StaticResource EqualValueToParameterConverter}}"
-                Command="{Binding UpdateCurrentViewModelCommand}"
-                CommandParameter="{x:Static nav:ViewType.FaceRecognition}">
-            </RadioButton>
-
-            <RadioButton 
-                Grid.Column="2" 
-                Content="Αναγνώριση Παλάμης"
-                IsChecked="{Binding CurrentViewModel, Mode=OneWay, ConverterParameter={x:Type vm:PalmprintRecognitionViewModel}, Converter={StaticResource EqualValueToParameterConverter}}"
-                Command="{Binding UpdateCurrentViewModelCommand}"
-                CommandParameter="{x:Static nav:ViewType.PalmprintRecognition}">
-            </RadioButton>
-
-            <RadioButton 
-                Grid.Column="3" 
-                Content="Στατιστικά"
-                IsChecked="{Binding CurrentViewModel, Mode=OneWay, ConverterParameter={x:Type vm:StatisticsViewModel}, Converter={StaticResource EqualValueToParameterConverter}}"
-                Command="{Binding UpdateCurrentViewModelCommand}"
-                CommandParameter="{x:Static nav:ViewType.Statistics}">
-            </RadioButton>
+                <RadioButton 
+                    Style="{StaticResource NavButton}"
+                    Content="Ρυθμίσης"
+                    IsChecked="{Binding Navigator.CurrentViewModel, Mode=OneWay, Converter={StaticResource EqualValueToParameterConverter}, ConverterParameter={x:Type vm:SettingsViewModel}}"
+                    Command="{Binding UpdateCurrentViewModelCommand}"
+                    CommandParameter="{x:Static nav:ViewType.Settings}" />
+            </StackPanel>
 
             <RadioButton 
-                Grid.Column="4" 
-                Content="Προφιλ"
-                IsChecked="{Binding CurrentViewModel, Mode=OneWay, ConverterParameter={x:Type vm:ProfileViewModel}, Converter={StaticResource EqualValueToParameterConverter}}"
-                Command="{Binding UpdateCurrentViewModelCommand}"
-                CommandParameter="{x:Static nav:ViewType.Profile}">
-            </RadioButton>
-
-            <RadioButton 
-                Grid.Column="5" 
-                Content="Ρυθμίσης"
-                IsChecked="{Binding CurrentViewModel, Mode=OneWay, ConverterParameter={x:Type vm:SettingsViewModel}, Converter={StaticResource EqualValueToParameterConverter}}"
-                Command="{Binding UpdateCurrentViewModelCommand}"
-                CommandParameter="{x:Static nav:ViewType.Settings}">
-            </RadioButton>
-
-            <!-- LOG OUT BUTTON -->
-            <RadioButton 
-                Grid.Column="6"
+                Grid.Column="2"
                 Content="Αποσύνδεση"
-                Foreground="{StaticResource ColorDanger}"
-                IsChecked="{Binding CurrentViewModel, Mode=OneWay, ConverterParameter={x:Type vm:LoginViewModel}, Converter={StaticResource EqualValueToParameterConverter}}"
-                Command="{Binding UpdateCurrentViewModelCommand}"
-                CommandParameter="{x:Static nav:ViewType.Login}">
+                Click="Logout_Click"
+                Style="{StaticResource LogoutButton}"
+                VerticalAlignment="Center">
             </RadioButton>
-            <!-- Navigate to loginScreen -->
+            
         </Grid>
-
     </Grid>
-
 </UserControl>

@@ -22,9 +22,8 @@ namespace AristotelisThesis.Domain.Models
 
         // -----------------------------------------------------------------------
         public string Username { get; set; }
-        public string Password { get; set; }
-        // -----------------------------------------------------------------------
-
+        public string PasswordHash { get; set; }
+        // ----------------------------------------------------------------------
 
         // Gender (must be male or female)
         [Required(ErrorMessage = "Sex is required.")]

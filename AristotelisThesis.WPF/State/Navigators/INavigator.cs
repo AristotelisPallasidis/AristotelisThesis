@@ -1,5 +1,4 @@
 ﻿using AristotelisThesis.WPF.ViewModels;
-using System.Windows.Input;
 
 namespace AristotelisThesis.WPF.State.Navigators
 {
@@ -25,7 +24,6 @@ namespace AristotelisThesis.WPF.State.Navigators
     public interface INavigator
     {
         ViewModelBase CurrentViewModel { get; set; }
-        ICommand UpdateCurrentViewModelCommand { get; }
     }
 
 }
