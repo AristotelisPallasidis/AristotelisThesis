@@ -24,26 +24,23 @@
             <StackPanel Orientation="Vertical">
                 <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
                     <Image Source="C:\Users\Aristotelis\Desktop\repos\AristotelisThesis\AristotelisThesis.WPF\Assets\Icons\Trash-Icon.png" Width="20" Height="20" Margin="0 0 10 0"></Image>
-                    <TextBlock Text="Διαγραφή Λογαριασμού" Foreground="{StaticResource ColorLight}" FontSize="20" FontWeight="Bold" FontFamily="Manrope"></TextBlock>
+                    <TextBlock Text="Οριστική Διαγραφή Λογαριασμού" Foreground="{StaticResource ColorLight}" FontSize="20" FontWeight="Bold"></TextBlock>
                 </StackPanel>
 
 
                 <TextBlock 
-                    Text="Ειστε σιγουροι οτι θελετε να διαγραψετε τον λογαριασμο σας?" 
+                    Text="Είστε σίγουροι οτι θέλετε να διαγράψετε τον λογαριασμό σας?" 
                     Foreground="{StaticResource ColorLight}" 
-                    FontFamily="Manrope"
                     FontSize="14">
                 </TextBlock>
                 <TextBlock 
-                    Text="Η διαγραφη του λογαρισμους σας ειναι μη αναστρεψιμοι." 
+                    Text="Η διαγραφή του λογαρισμού σας ειναι μη αναστρέψιμη." 
                     Foreground="{StaticResource ColorLight}" 
-                    FontFamily="Manrope"
                     FontSize="14">
                 </TextBlock>
                 <TextBlock 
-                    Text="Ολα τα προσωπικα σας στοιχεια θα διαφραουν." 
+                    Text="Όλα τα προσωπικά σας στοιχεία θα διαγραφούν." 
                     Foreground="{StaticResource ColorLight}" 
-                    FontFamily="Manrope"
                     FontSize="14">
                 </TextBlock>
             

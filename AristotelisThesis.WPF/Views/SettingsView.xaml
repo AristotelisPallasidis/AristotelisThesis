@@ -371,7 +371,7 @@
                                    Foreground="{StaticResource ColorLight}">
                                 </TextBlock>
 
-                                <TextBlock Text="* Αποθήκευση μπορεί να γίνει μόνο με αλλαγές στις πληροφορίες σας."
+                                <TextBlock Text="Αποθήκευση μπορεί να γίνει μόνο με αλλαγές στις πληροφορίες σας."
                                    Margin="0 4 0 0"
                                    FontSize="12"
                                    FontWeight="Light"

@@ -54,6 +54,7 @@ namespace AristotelisThesis.WPF.Views
 
         private void SaveChangesButton_Click(object sender, RoutedEventArgs e)
         {
+            MessageBox.Show("Οι αλλαγές αποθηκεύτηκαν επιτυχώς!", "Αποθήκευση Αλλαγών", MessageBoxButton.OK, MessageBoxImage.Information);
             Console.WriteLine("Save Changes");
         }
     }
