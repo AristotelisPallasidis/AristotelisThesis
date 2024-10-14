@@ -10,8 +10,10 @@ namespace AristotelisThesis.WPF.State.Authenticators
 {
     public interface IAuthenticator
     {
-        //Student CurrentStudent { get; }
+        Student CurrentStudent { get; }
         bool IsLoggedIn { get; }
+
+        event Action StateChanged;
 
         Task<RegistrationResult> Register(string email, string username, string password, string confirmPassword, string name, string surname, string sex, string phone, string address, string department, int semester, int aem, DateTime dateOfBirth, bool isPostgraduate);
         Task<bool> Login(string username, string password);

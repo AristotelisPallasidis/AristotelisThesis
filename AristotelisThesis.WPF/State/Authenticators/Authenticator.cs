@@ -1,34 +1,41 @@
 ﻿using AristotelisThesis.Domain.Models;
 using AristotelisThesis.Domain.Services.AuthenticationServices;
 using AristotelisThesis.WPF.Models;
+using AristotelisThesis.WPF.State.Accounts;
 
 namespace AristotelisThesis.WPF.State.Authenticators
 {
-    public class Authenticator : ObservableObject, IAuthenticator
+    public class Authenticator : IAuthenticator
     {
         private readonly IAuthenticationService _authenticationService;
+        private readonly IAccountStore _accountStore;
 
-        public Authenticator(IAuthenticationService authenticationService)
+        public Authenticator(IAuthenticationService authenticationService, IAccountStore accountStore)
         {
             _authenticationService = authenticationService;
+            _accountStore = accountStore;
         }
 
-        private Student _currentStudent;
         public Student CurrentStudent
         {
             get
             {
-                return _currentStudent;
+                return _accountStore.CurrentStudent;
             }
             private set
             {
-                _currentStudent = value;
-                OnPropertyChanged(nameof(CurrentStudent));
-                OnPropertyChanged(nameof(IsLoggedIn));
+                _accountStore.CurrentStudent = value;
+                StateChanged?.Invoke();
             }
         }
 
+        /// <summary>
+        /// This function is used to check if a student is logged in.
+        /// </summary>
         public bool IsLoggedIn => CurrentStudent != null;
+
+        public event Action StateChanged;
+
 
         /// <summary>
         /// This function is used to login a student to the system.
@@ -72,5 +79,6 @@ namespace AristotelisThesis.WPF.State.Authenticators
         {
             return await _authenticationService.Register(email, username, password, confirmPassword, name, surname, sex, phone, address, department, semester, aem, dateOfBirth, isPostgraduate);
         }
+    
     }
 }
