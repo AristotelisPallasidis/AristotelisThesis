@@ -29,13 +29,13 @@ namespace AristotelisThesis.WPF.Views
             // Image = db.GetImage(); 
 
             // Fill the text with the user's data
-            txtName.Text = "Αριστοτέλης";
-            txtSurname.Text = "Παλλασίδης";
-            txtDepartment.Text = "Τμήμα " + "Πληροφορικής";
-            txtAEM.Text = "4509";
-            txtSemester.Text = "12" + "ο " + "Εξάμηνο";
-            txtYearOfEntry.Text = "Έτος Εισαγωγής " + "2018";
-            txtEmail.Text = "arpalla@teiemt.gr";
+            //txtName.Text = "Αριστοτέλης";
+            //txtSurname.Text = "Παλλασίδης";
+            //txtDepartment.Text = "Τμήμα " + "Πληροφορικής";
+            //txtAEM.Text = "4509";
+            //txtSemester.Text = "12" + "ο " + "Εξάμηνο";
+            //txtYearOfEntry.Text = "Έτος Εισαγωγής " + "2018";
+            //txtEmail.Text = "arpalla@teiemt.gr";
         }
 
     }

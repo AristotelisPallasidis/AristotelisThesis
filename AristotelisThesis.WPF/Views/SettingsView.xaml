@@ -98,7 +98,7 @@
                             </TextBlock>
                             <TextBox 
                                 Grid.Row="1"
-                                Name="inputName"
+                                Text="{Binding StudentName, Mode=TwoWay}"
                                 CaretBrush="White"
                                 Style="{StaticResource TextBoxOfInput}"
                                 MaxLength="20" 
@@ -113,7 +113,7 @@
                             </TextBlock>
                             <TextBox 
                                 Grid.Row="3"
-                                Name="inputAddress"
+                                Text="{Binding StudentAddress, Mode=TwoWay}"
                                 CaretBrush="White"
                                 Style="{StaticResource TextBoxOfInput}"
                                 MaxLength="20" 
@@ -164,7 +164,7 @@
                             </TextBlock>
                             <TextBox 
                                  Grid.Row="1"
-                                 Name="inputSurname"
+                                 Text="{Binding StudentSurname, Mode=TwoWay}"
                                  CaretBrush="White"
                                  Style="{StaticResource TextBoxOfInput}"
                                  MaxLength="20" 
@@ -179,7 +179,7 @@
                             </TextBlock>
                             <TextBox 
                                 Grid.Row="3"
-                                Name="inputPhoneNumber"
+                                Text="{Binding StudentPhone, Mode=TwoWay}"
                                 CaretBrush="White"
                                 Style="{StaticResource TextBoxOfInput}"
                                 MaxLength="9" 
@@ -194,7 +194,7 @@
                             </TextBlock>
                             <TextBox 
                                 Grid.Row="5"
-                                Name="inputDateOfBirth"
+                                Text="{Binding StudentDateOfBirth, Mode=TwoWay}"
                                 CaretBrush="White"
                                 Style="{StaticResource TextBoxOfInput}"
                                 MaxLength="9" 
@@ -220,7 +220,7 @@
                     <!-- TITLE -->
                     <Grid Grid.Row="0">
                         <TextBlock 
-                            Text="Επεξεργασία Ακαδημαϊκών Στοιχείων" 
+                            Text="Προβολή Ακαδημαϊκών Στοιχείων" 
                             Foreground="White" 
                             FontSize="20" 
                             FontWeight="ExtraBold" 
@@ -258,10 +258,11 @@
                             </TextBlock>
                             <TextBox 
                                 Grid.Row="1"
-                                Name="inputEmail"
+                                Text="{Binding StudentAcademicEmail, Mode=OneWay}"
                                 CaretBrush="White"
                                 Style="{StaticResource TextBoxOfInput}"
                                 MaxLength="20" 
+                                IsEnabled="False"
                                 AcceptsReturn="False">
                             </TextBox>
 
@@ -273,10 +274,10 @@
                             </TextBlock>
                             <TextBox 
                                 Grid.Row="5"
-                                Name="inputDepartment"
-                                IsEnabled="False"
+                                Text="{Binding StudentDepartment, Mode=OneWay}"
                                 Style="{StaticResource TextBoxOfInput}"
                                 MaxLength="20" 
+                                IsEnabled="False"
                                 AcceptsReturn="False">
                             </TextBox>
 
@@ -288,10 +289,10 @@
                             </TextBlock>
                             <TextBox 
                                 Grid.Row="7"
-                                Name="inputYearOfEntry"
-                                IsEnabled="False"
+                                Text="{Binding StudentYearOfEntry, Mode=OneWay}"
                                 Style="{StaticResource TextBoxOfInput}"
                                 MaxLength="20" 
+                                IsEnabled="False"
                                 AcceptsReturn="False">
                             </TextBox>
 
@@ -314,10 +315,10 @@
                             </TextBlock>
                             <TextBox 
                                 Grid.Row="1"
-                                Name="inputAEM"
-                                IsEnabled="False"
+                                Text="{Binding StudentAEM, Mode=OneWay}"
                                 Style="{StaticResource TextBoxOfInput}"
                                 MaxLength="20" 
+                                IsEnabled="False"
                                 AcceptsReturn="False">
                             </TextBox>
 
@@ -329,10 +330,11 @@
                             </TextBlock>
                             <TextBox 
                                 Grid.Row="3"
-                                Name="inputSemester"
+                                Text="{Binding StudentSemester, Mode=OneWay}"
                                 CaretBrush="White"
                                 Style="{StaticResource TextBoxOfInput}"
                                 MaxLength="20" 
+                                IsEnabled="False"
                                 AcceptsReturn="False">
                             </TextBox>
 
@@ -345,7 +347,7 @@
 
 
 
-            <!-- BUTTONS -->
+            <!-- ACTION BUTTONS -->
             <Grid Grid.Row="2">
 
                 <Grid.ColumnDefinitions>
@@ -354,8 +356,9 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
+                <!-- UPDATE DATA ACCOUNT -->
                 <Grid Grid.Column="0">
-                    
+
                     <Border Grid.Column="2"
                         BorderBrush="{StaticResource ColorSuccess}" 
                         BorderThickness="2" 
@@ -391,7 +394,7 @@
 
                 </Grid>
 
-
+                <!-- DELETE ACCOUNT -->
                 <Grid Grid.Column="2">
                     <Border Grid.Column="2"
                         BorderBrush="{StaticResource ColorDanger}" 

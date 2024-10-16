@@ -44,8 +44,7 @@
                     </TextBlock>
                     
                     <TextBlock 
-                        Text="{Binding FullName}"
-                        Name="txtFullName"
+                        Text="{Binding StudentFullName}"
                         Grid.Row="1"
                         Foreground="{StaticResource ColorLight}"
                         FontSize="35" 
@@ -58,9 +57,10 @@
                         FontSize="16" 
                         Margin="0 10 0 0">
                             <Run Text="ΔΠΘ -" />
-                            <Run x:Name="txtStudentLevelandSex" Text="Προπ/ΜεταΠ Φοιτητής/τρια -" />
-                            <Run x:Name="txtDepartment" Text="Τμήμα ΔΠΘ" />
-                    </TextBlock>
+                            <Run Text="{Binding StudentLevelAndGender, Mode=OneWay}" />
+                            <Run Text="{Binding StudentDepartment, Mode=OneWay}" />
+                        </TextBlock>
+
 
                 </Grid>
 

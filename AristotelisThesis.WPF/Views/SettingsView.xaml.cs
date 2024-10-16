@@ -1,20 +1,9 @@
-﻿using AristotelisThesis.WPF.Windows;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AristotelisThesis.Domain.Models;
+using AristotelisThesis.Domain.Services;
+using AristotelisThesis.WPF.State.Accounts;
+using AristotelisThesis.WPF.Windows;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace AristotelisThesis.WPF.Views
 {
@@ -25,21 +14,7 @@ namespace AristotelisThesis.WPF.Views
     {
         public SettingsView()
         {
-
             InitializeComponent();
-
-            // load the user's data from the database
-            inputName.Text = "Αριστοτέλης";
-            inputSurname.Text = "Παλλασίδης";
-            inputAddress.Text = "Αναγεννήσεως 19, Πευκα, Θεσσαλονίκη";
-            inputEmail.Text = "arpalla@teiemt.gr";
-            inputPhoneNumber.Text = "2101234567";
-            inputDepartment.Text = "Πληροφορικής";
-            inputYearOfEntry.Text = "2018";
-            inputDateOfBirth.Text = "2000-10-30";
-            inputAEM.Text = "4509";
-            inputSemester.Text = "12";
-
         }
 
         private void DeleteAccountButton_Click(object sender, RoutedEventArgs e)
@@ -55,6 +30,8 @@ namespace AristotelisThesis.WPF.Views
         private void SaveChangesButton_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Οι αλλαγές αποθηκεύτηκαν επιτυχώς!", "Αποθήκευση Αλλαγών", MessageBoxButton.OK, MessageBoxImage.Information);
+            //_dataService.Update();
+            //_accountService.Update(_accountStore.CurrentAccount.AccountHolder.Id, Account);
             Console.WriteLine("Save Changes");
         }
     }

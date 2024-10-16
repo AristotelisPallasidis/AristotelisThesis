@@ -5,24 +5,29 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AristotelisThesis.WPF.State.Accounts;
+using AristotelisThesis.Domain.Models;
 
 namespace AristotelisThesis.WPF.ViewModels
 {
     public class ProfileViewModel : ViewModelBase
     {
+        private readonly IAccountStore _accountStore;
 
-        // find the use by his/hers id
-        // and load all the data
-        // fill the boxes with the data
+        public ProfileViewModel(IAccountStore accountStore)
+        {
+            _accountStore = accountStore;
+        }
 
-        //txtName.Text = Student.Name.ToString();
-        //txtSurname.Text = Student.Name.ToString();
-        //txtAcademicEmail.Text = Student.AcademicEmail.ToString();
-        //txtAEM.Text = Student.AEM.ToString();
-        //txtSemester.Text = Student.Semester.ToString();
-        //txtYearOfStudy.Text = Student.YearOfStudy.ToString();
-        //txtDepartmentId.Text = Student.DepartmentId.ToString();
+        // ADD THE IMAGE OF THE CURRENT STUDENT (TAKE THE FIRST FROM THE FACE DATABASE)
 
+        public int StudentAEM => _accountStore.CurrentAccount.AccountHolder.AEM;
+        public string StudentName => _accountStore.CurrentAccount.AccountHolder.Name;
+        public string StudentSurname => _accountStore.CurrentAccount.AccountHolder.Surname;
+        public string StudentDepartment => "Τμήμα " + _accountStore.CurrentAccount.AccountHolder.Department;
+        public string StudentSemester => $"{_accountStore.CurrentAccount.AccountHolder.Semester}ο εξάμηνο";
+        public string StudentYearOfEntry => $"Έτος εισαγωγής {_accountStore.CurrentAccount.AccountHolder.YearOfEntry}";
+        public string StudentAcademicEmail => _accountStore.CurrentAccount.AccountHolder.AcademicEmail;
 
     }
 }
