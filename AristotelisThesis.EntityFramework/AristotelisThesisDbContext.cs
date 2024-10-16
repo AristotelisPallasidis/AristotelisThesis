@@ -15,7 +15,8 @@ namespace AristotelisThesis.EntityFramework
 
         // Add to DbSet all the entities
         public DbSet<Student> Students { get; set; }
+        public DbSet<Account> Accounts { get; set; }
 
-       
+
     }
 }

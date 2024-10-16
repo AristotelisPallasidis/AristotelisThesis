@@ -4,6 +4,7 @@ using AristotelisThesis.EntityFramework;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AristotelisThesis.EntityFramework.Migrations
 {
     [DbContext(typeof(AristotelisThesisDbContext))]
-    partial class AristotelisThesisDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241016102324_addAccountRelatedToStudent")]
+    partial class addAccountRelatedToStudent
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,24 +24,6 @@ namespace AristotelisThesis.EntityFramework.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("AristotelisThesis.Domain.Models.Account", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("AccountHolderId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AccountHolderId");
-
-                    b.ToTable("Accounts");
-                });
 
             modelBuilder.Entity("AristotelisThesis.Domain.Models.Student", b =>
                 {
@@ -105,17 +90,6 @@ namespace AristotelisThesis.EntityFramework.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Students");
-                });
-
-            modelBuilder.Entity("AristotelisThesis.Domain.Models.Account", b =>
-                {
-                    b.HasOne("AristotelisThesis.Domain.Models.Student", "AccountHolder")
-                        .WithMany()
-                        .HasForeignKey("AccountHolderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("AccountHolder");
                 });
 #pragma warning restore 612, 618
         }

@@ -12,6 +12,6 @@ namespace AristotelisThesis.WPF.State.Accounts
     /// </summary>
     public interface IAccountStore
     {
-        Student CurrentStudent { get; set; }
+        Account CurrentAccount { get; set; }
     }
 }

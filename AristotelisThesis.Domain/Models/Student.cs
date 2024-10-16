@@ -71,5 +71,6 @@ namespace AristotelisThesis.Domain.Models
         // Indicates if the student is undergraduate or postgraduate
         [Required(ErrorMessage = "Study level is required.")]
         public bool IsPostgraduate { get; set; }
+
     }
 }

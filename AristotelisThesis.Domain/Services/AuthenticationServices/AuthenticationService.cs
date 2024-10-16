@@ -6,12 +6,12 @@ namespace AristotelisThesis.Domain.Services.AuthenticationServices
 {
     public class AuthenticationService : IAuthenticationService
     {
-        private readonly IStudentService _studentService;
+        private readonly IAccountService _accountService;
         private readonly IPasswordHasher _passwordHasher;
 
-        public AuthenticationService(IStudentService studentService, IPasswordHasher passwordHasher)
+        public AuthenticationService(IAccountService accountService, IPasswordHasher passwordHasher)
         {
-            _studentService = studentService;
+            _accountService = accountService;
             _passwordHasher = passwordHasher;
         }
 
@@ -22,19 +22,18 @@ namespace AristotelisThesis.Domain.Services.AuthenticationServices
         /// <param name="password"></param>
         /// <returns></returns>
         /// <exception cref="InvalidPasswordException"></exception>
-        public async Task<Student> Login(string username, string password)
+        public async Task<Account> Login(string username, string password)
         {
-            Student storedStudent = await _studentService.GetByUsername(username);
+            Account storedStudentAccount = await _accountService.GetByUsername(username);
 
-            PasswordVerificationResult passwordResult = _passwordHasher.VerifyHashedPassword(storedStudent.PasswordHash, password);
+            PasswordVerificationResult passwordResult = _passwordHasher.VerifyHashedPassword(storedStudentAccount.AccountHolder.PasswordHash, password);
 
             if (passwordResult != PasswordVerificationResult.Success)
             {
                 throw new InvalidPasswordException(username, password);
             }
 
-            return storedStudent;
-
+            return storedStudentAccount;
         }
 
         /// <summary>
@@ -55,7 +54,7 @@ namespace AristotelisThesis.Domain.Services.AuthenticationServices
         /// <param name="dateOfBirth"></param>
         /// <param name="isPostgraduate"></param>
         /// <returns></returns>
-        public async Task<RegistrationResult> Register(string email, string username, string password, string confirmPassword, string name, string surname, string sex, string phone, string address, string department, int semester, int aem, DateTime dateOfBirth, bool isPostgraduate)
+        public async Task<RegistrationResult> Register(string email, string username, string password, string confirmPassword, string name, string surname, string sex, string phone, string address, string department, int semester, int aem, DateTime dateOfBirth, int yearOfEntry, bool isPostgraduate)
         {
             RegistrationResult result = RegistrationResult.Success;
 
@@ -64,13 +63,13 @@ namespace AristotelisThesis.Domain.Services.AuthenticationServices
                 result = RegistrationResult.PasswordsDoNotMatch;
             }
 
-            Student emailAccount = await _studentService.GetByAcademicEmail(email);
+            Account emailAccount = await _accountService.GetByAcademicEmail(email);
             if (emailAccount != null)
             {
                 result = RegistrationResult.EmailAlreadyExists;
             }
 
-            Student usernameStudent= await _studentService.GetByUsername(username);
+            Account usernameStudent= await _accountService.GetByUsername(username);
             if (usernameStudent != null)
             {
                 result = RegistrationResult.UsernameAlreadyExists;
@@ -94,11 +93,17 @@ namespace AristotelisThesis.Domain.Services.AuthenticationServices
                     AEM = aem,
                     DateOfBirth = dateOfBirth,
                     Department = department,
+                    YearOfEntry = yearOfEntry,
                     IsPostgraduate = isPostgraduate,
-
                 };
 
-                await _studentService.Create(newStudent);
+                Account newAccount = new Account()
+                {
+                    AccountHolder = newStudent
+                };
+
+                //await _studentService.Create(newStudent);
+                await _accountService.Create(newAccount);
             }
 
             return result;

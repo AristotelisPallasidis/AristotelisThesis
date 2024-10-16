@@ -2,21 +2,26 @@
 using AristotelisThesis.Domain.Services;
 using AristotelisThesis.EntityFramework.Services.Common;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace AristotelisThesis.EntityFramework.Services
 {
-    public class StudentDataService : IStudentService
+    public class AccountDataService : IAccountService
     {
         private readonly AristotelisThesisDbContextFactory _contextFactory;
-        private readonly NonQueryDataService<Student> _nonQueryDataService;
+        private readonly NonQueryDataService<Account> _nonQueryDataService;
 
-        public StudentDataService(AristotelisThesisDbContextFactory contextFactory)
+        public AccountDataService(AristotelisThesisDbContextFactory contextFactory)
         {
             _contextFactory = contextFactory;
-            _nonQueryDataService = new NonQueryDataService<Student>(contextFactory);
+            _nonQueryDataService = new NonQueryDataService<Account>(contextFactory);
         }
 
-        public async Task<Student> Create(Student entity)
+        public async Task<Account> Create(Account entity)
         {
             return await _nonQueryDataService.Create(entity);
         }
@@ -26,47 +31,50 @@ namespace AristotelisThesis.EntityFramework.Services
             return await _nonQueryDataService.Delete(id);
         }
 
-        public async Task<Student> Get(int id)
+        public async Task<Account> Get(int id)
         {
             using (AristotelisThesisDbContext context = _contextFactory.CreateDbContext())
             {
-                Student entity = await context.Students
+                Account entity = await context.Accounts
+                    .Include(a => a.AccountHolder)
                     .FirstOrDefaultAsync(e => e.Id == id);
-                
+
                 return entity;
             }
         }
 
-        public async Task<IEnumerable<Student>> GetAll()
+        public async Task<IEnumerable<Account>> GetAll()
         {
             using (AristotelisThesisDbContext context = _contextFactory.CreateDbContext())
             {
-                IEnumerable<Student> entities = await 
-                    context.Students.ToListAsync();
+                IEnumerable<Account> entities = await
+                    context.Accounts.ToListAsync();
 
                 return entities;
             }
         }
 
-        public async Task<Student> GetByAcademicEmail(string email)
+        public async Task<Account> GetByAcademicEmail(string email)
         {
             using (AristotelisThesisDbContext context = _contextFactory.CreateDbContext())
             {
-                return await context.Students
-                    .FirstOrDefaultAsync(a => a.AcademicEmail == email);
+                return await context.Accounts
+                    .Include(a => a.AccountHolder)
+                    .FirstOrDefaultAsync(a => a.AccountHolder.AcademicEmail == email);
             }
         }
 
-        public async Task<Student> GetByUsername(string username)
+        public async Task<Account> GetByUsername(string username)
         {
             using (AristotelisThesisDbContext context = _contextFactory.CreateDbContext())
             {
-                return await context.Students
-                    .FirstOrDefaultAsync(a => a.Username == username);
+                return await context.Accounts
+                    .Include(a => a.AccountHolder)
+                    .FirstOrDefaultAsync(a => a.AccountHolder.Username == username);
             }
         }
 
-        public async Task<Student> Update(int id, Student entity)
+        public async Task<Account> Update(int id, Account entity)
         {
             return await _nonQueryDataService.Update(id, entity);
         }

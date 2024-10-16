@@ -10,6 +10,6 @@ namespace AristotelisThesis.WPF.State.Accounts
 {
     public class AccountStore : IAccountStore
     {
-        public Student CurrentStudent { get; set; }
+        public Account CurrentAccount { get; set; }
     }
 }

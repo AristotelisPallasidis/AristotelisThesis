@@ -16,15 +16,15 @@ namespace AristotelisThesis.WPF.State.Authenticators
             _accountStore = accountStore;
         }
 
-        public Student CurrentStudent
+        public Account CurrentAccount
         {
             get
             {
-                return _accountStore.CurrentStudent;
+                return _accountStore.CurrentAccount;
             }
             private set
             {
-                _accountStore.CurrentStudent = value;
+                _accountStore.CurrentAccount = value;
                 StateChanged?.Invoke();
             }
         }
@@ -32,7 +32,7 @@ namespace AristotelisThesis.WPF.State.Authenticators
         /// <summary>
         /// This function is used to check if a student is logged in.
         /// </summary>
-        public bool IsLoggedIn => CurrentStudent != null;
+        public bool IsLoggedIn => CurrentAccount != null;
 
         public event Action StateChanged;
 
@@ -49,7 +49,7 @@ namespace AristotelisThesis.WPF.State.Authenticators
 
             try
             {
-                CurrentStudent = await _authenticationService.Login(username, password);
+                CurrentAccount = await _authenticationService.Login(username, password);
             }
             catch (Exception)
             {
@@ -64,7 +64,8 @@ namespace AristotelisThesis.WPF.State.Authenticators
         /// </summary>
         public void Logout()
         {
-            CurrentStudent = null;
+            _accountStore.CurrentAccount.AccountHolder = null;
+            //CurrentAccount = null;
         }
 
         /// <summary>
@@ -75,9 +76,9 @@ namespace AristotelisThesis.WPF.State.Authenticators
         /// <param name="password"></param>
         /// <param name="confirmPassword"></param>
         /// <returns></returns>
-        public async Task<RegistrationResult> Register(string email, string username, string password, string confirmPassword, string name, string surname, string sex, string phone, string address, string department, int semester, int aem, DateTime dateOfBirth, bool isPostgraduate)
+        public async Task<RegistrationResult> Register(string email, string username, string password, string confirmPassword, string name, string surname, string sex, string phone, string address, string department, int semester, int aem, DateTime dateOfBirth, int yearOfEntry, bool isPostgraduate)
         {
-            return await _authenticationService.Register(email, username, password, confirmPassword, name, surname, sex, phone, address, department, semester, aem, dateOfBirth, isPostgraduate);
+            return await _authenticationService.Register(email, username, password, confirmPassword, name, surname, sex, phone, address, department, semester, aem, dateOfBirth, yearOfEntry, isPostgraduate);
         }
     
     }
