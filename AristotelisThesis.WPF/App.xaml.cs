@@ -3,6 +3,7 @@ using AristotelisThesis.Domain.Services;
 using AristotelisThesis.Domain.Services.AuthenticationServices;
 using AristotelisThesis.EntityFramework;
 using AristotelisThesis.EntityFramework.Services;
+using AristotelisThesis.WPF.State.Accounts;
 using AristotelisThesis.WPF.State.Authenticators;
 using AristotelisThesis.WPF.State.Navigators;
 using AristotelisThesis.WPF.ViewModels;
@@ -22,6 +23,29 @@ namespace AristotelisThesis.WPF
         {
             IServiceProvider serviceProvider = CreateServiceProvider();
 
+            IAuthenticationService authentication = serviceProvider.GetRequiredService<IAuthenticationService>();
+            //authentication.Login("Aris", "aris");
+            //authentication.Register(
+            //   "aristotelis.pallasid@gmail.com", // email
+            //   "aristotelis",                    // username
+            //   "aris",                           // password
+            //   "aris",                           // confirmPassword
+            //   "Aristotelis",                    // name
+            //   "Pallasidis",                     // surname
+            //   "Male",                           // sex
+            //   "6933015797",                     // phone
+            //   "Anagenniseos 19 Pefka Thessalonikis",// address
+            //   "Computer Science",               // department
+            //   2,                                // semester
+            //   4509,                             // aem
+            //   new DateTime(2000, 10, 30),       // dateOfBirth
+            //   2019,                             // yearOfEntry
+            //   false                             // isPostgraduate
+            //);
+            
+
+
+
             Window window = serviceProvider.GetRequiredService<MainWindow>();
             window.Show();
 
@@ -39,8 +63,8 @@ namespace AristotelisThesis.WPF
             // Register services
             services.AddSingleton<AristotelisThesisDbContextFactory>();
             services.AddSingleton<IAuthenticationService, AuthenticationService>();
-            services.AddSingleton<IDataService<Student>, StudentDataService>();
-            services.AddSingleton<IStudentService, StudentDataService>();
+            services.AddSingleton<IDataService<Account>, AccountDataService>();
+            services.AddSingleton<IAccountService, AccountDataService>();
 
             services.AddSingleton<IPasswordHasher, PasswordHasher>();
 
@@ -105,9 +129,10 @@ namespace AristotelisThesis.WPF
             });
 
 
-            // Register view models
-            services.AddScoped<INavigator, Navigator>();
-            services.AddScoped<IAuthenticator, Authenticator>();
+            // This is were we manage the STATES of the application
+            services.AddSingleton<INavigator, Navigator>();
+            services.AddSingleton<IAuthenticator, Authenticator>();
+            services.AddSingleton<IAccountStore, AccountStore>();
 
 
             //services.AddScoped<LoginWithFaceViewModel>();
