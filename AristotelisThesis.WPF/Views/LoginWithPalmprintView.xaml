@@ -44,7 +44,7 @@
                 Foreground="White"
                 Margin="0 0 0 6">
             </TextBlock>
-
+            <Separator Width="600" Margin="0 10"/>
 
             <!-- Camera Input 
             <Image Grid.Column="1" x:Name="CameraFeed" Stretch="Fill" />
@@ -60,7 +60,7 @@
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0">
-                <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
 
                     <StackPanel Orientation="Horizontal">
 
@@ -84,8 +84,8 @@
                             FontSize="16"
                             Cursor="Hand">
                         </Button>
-
                     </StackPanel>
+                    <Separator Width="600" Margin="0 10"/>
 
                     <!-- 
                     <ListBox x:Name="CameraList" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" SelectionChanged="CameraList_SelectionChanged"/>
@@ -130,6 +130,7 @@
                 </Button>
                 <Button 
                     Content="Ακύρωση"
+                    Command="{Binding GoToViewLoginCommand}"
                     Style="{StaticResource BackButton}">
                 </Button>
             </StackPanel>

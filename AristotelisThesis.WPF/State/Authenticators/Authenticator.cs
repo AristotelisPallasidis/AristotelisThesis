@@ -1,6 +1,5 @@
 ﻿using AristotelisThesis.Domain.Models;
 using AristotelisThesis.Domain.Services.AuthenticationServices;
-using AristotelisThesis.WPF.Models;
 using AristotelisThesis.WPF.State.Accounts;
 
 namespace AristotelisThesis.WPF.State.Authenticators

@@ -27,10 +27,17 @@ namespace AristotelisThesis.WPF.ViewModels
         }
 
         public ICommand LoginCommand { get; }
+        public ICommand GoToViewLoginWithFaceCommand { get; }
+        public ICommand GoToViewLoginWithPalmprintCommand { get; }
+        public ICommand GoToViewRegister01Command { get; }
 
-        public LoginViewModel(IAuthenticator authenticator, IRenavigator renavigator)
+
+        public LoginViewModel(IAuthenticator authenticator, IRenavigator loginRenavigator, IRenavigator faceLoginRenavigator, IRenavigator palmprintLoginRenavigator, IRenavigator register01Renavigator)
         {
-            LoginCommand = new LoginCommand(this, authenticator, renavigator);
+            LoginCommand = new LoginCommand(this, authenticator, loginRenavigator);
+            GoToViewLoginWithFaceCommand = new RenavigateCommand(faceLoginRenavigator);
+            GoToViewLoginWithPalmprintCommand = new RenavigateCommand(palmprintLoginRenavigator);
+            GoToViewRegister01Command = new RenavigateCommand(register01Renavigator);
         }
     }
 

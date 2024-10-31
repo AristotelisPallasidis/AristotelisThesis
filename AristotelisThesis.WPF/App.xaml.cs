@@ -119,13 +119,51 @@ namespace AristotelisThesis.WPF
                 return () => services.GetRequiredService<SettingsViewModel>();
 
             });
+            
+            
+
+
+            services.AddSingleton<ViewModelDelegateRenavigator<LoginViewModel>>();
+            services.AddSingleton<CreateViewModel<LoginWithFaceViewModel>>(services =>
+            {
+                return () => new LoginWithFaceViewModel(
+                    services.GetRequiredService<ViewModelDelegateRenavigator<LoginViewModel>>()
+                );
+            });
+            
+            services.AddSingleton<CreateViewModel<LoginWithPalmprintViewModel>>(services =>
+            {
+                return () => new LoginWithPalmprintViewModel(
+                    services.GetRequiredService<ViewModelDelegateRenavigator<LoginViewModel>>()
+                );
+            });
+
+
+            services.AddSingleton<CreateViewModel<Register01ViewModel>>(services =>
+            {
+                return () => new Register01ViewModel(
+                    services.GetRequiredService<ViewModelDelegateRenavigator<LoginViewModel>>()
+                );
+            });
+
+
+
+
+
 
             services.AddSingleton<ViewModelDelegateRenavigator<DashboardViewModel>>();
+            services.AddSingleton<ViewModelDelegateRenavigator<LoginWithFaceViewModel>>();
+            services.AddSingleton<ViewModelDelegateRenavigator<LoginWithPalmprintViewModel>>();
+            services.AddSingleton<ViewModelDelegateRenavigator<Register01ViewModel>>();
             services.AddSingleton<CreateViewModel<LoginViewModel>>(services =>
             {
                 return () => new LoginViewModel(
                     services.GetRequiredService<IAuthenticator>(),
-                    services.GetRequiredService<ViewModelDelegateRenavigator<DashboardViewModel>>());
+                    services.GetRequiredService<ViewModelDelegateRenavigator<DashboardViewModel>>(),
+                    services.GetRequiredService<ViewModelDelegateRenavigator<LoginWithFaceViewModel>>(),
+                    services.GetRequiredService<ViewModelDelegateRenavigator<LoginWithPalmprintViewModel>>(),
+                    services.GetRequiredService<ViewModelDelegateRenavigator<Register01ViewModel>>()
+                );
             });
 
 
@@ -135,20 +173,12 @@ namespace AristotelisThesis.WPF
             services.AddSingleton<IAccountStore, AccountStore>();
 
 
-            //services.AddScoped<LoginWithFaceViewModel>();
-            //services.AddScoped<LoginWithPalmprintViewModel>();
             //services.AddScoped<Register01ViewModel>();
             //services.AddScoped<Register02WithInformationViewModel>();
             //services.AddScoped<Register03InstructionsForPalmprintViewModel>();
             //services.AddScoped<Register04WithPalmprintViewModel>();
             //services.AddScoped<Register05InstructionsForFaceViewModel>();
             //services.AddScoped<Register06WithFaceViewModel>();
-            //services.AddScoped<DashboardViewModel>();
-            //services.AddScoped<FaceRecognitionViewModel>();
-            //services.AddScoped<PalmprintRecognitionViewModel>();
-            //services.AddScoped<ProfileViewModel>();
-            //services.AddScoped<StatisticsViewModel>();
-            //services.AddScoped<SettingsViewModel>();
             services.AddScoped<MainViewModel>();
 
 

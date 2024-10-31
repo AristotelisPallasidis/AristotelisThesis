@@ -1,5 +1,4 @@
 ﻿using AristotelisThesis.WPF.Commands;
-using AristotelisThesis.WPF.Models;
 using AristotelisThesis.WPF.ViewModels;
 using AristotelisThesis.WPF.ViewModels.Factories;
 using System.Windows.Input;

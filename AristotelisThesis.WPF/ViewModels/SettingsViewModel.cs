@@ -1,8 +1,5 @@
-﻿using AristotelisThesis.WPF.Models;
-using AristotelisThesis.WPF.State.Accounts;
+﻿using AristotelisThesis.WPF.State.Accounts;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 

@@ -134,6 +134,7 @@
                 </Button>
                 <Button 
                     Content="Ακύρωση"
+                    Command="{Binding GoToViewLoginCommand}"
                     Style="{StaticResource BackButton}">
                 </Button>
             </StackPanel>
