@@ -13,15 +13,15 @@ namespace AvailableCamerasAutomaticLoad
     /// </summary>
     public partial class MainWindow : Window
     {
-        private FilterInfoCollection videoDevices;  // List of cameras
-        private VideoCaptureDevice videoSource;     // The selected camera device
-        private int frameCounter = 0;
-        private const int frameUpdateInterval = 5;
-
         public MainWindow()
         {
             InitializeComponent();
         }
+
+        private FilterInfoCollection videoDevices;  // List of cameras
+        private VideoCaptureDevice videoSource;     // The selected camera device
+        private int frameCounter = 0;
+        private const int frameUpdateInterval = 5;
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {

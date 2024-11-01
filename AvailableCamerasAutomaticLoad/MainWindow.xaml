@@ -5,21 +5,145 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AvailableCamerasAutomaticLoad"
         mc:Ignorable="d"
-        Title="Available Cameras" Height="450" Width="800"
+        d:DesignHeight="850" d:DesignWidth="1440"
+        Background="#1D1C1D"
+        Title="Available Cameras"
         Loaded="Window_Loaded" Closing="Window_Closing">
-    <Grid>
+    
+    <Grid Margin="60">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <!-- Add Refresh Button -->
-        <StackPanel Grid.Column="0">
-            <Button Content="Refresh" Click="RefreshButton_Click" Width="100" Margin="5"/>
-            <ListBox x:Name="CameraList" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" SelectionChanged="CameraList_SelectionChanged"/>
-        </StackPanel>
+        <Grid Grid.Column="0" Grid.Row="0" Margin="0 20 0 10">
+            <TextBlock
+                Text="Σύνδεση μεσω Παλάμης"
+                Grid.Row="0">
+            </TextBlock>
+        </Grid>
 
-        <!-- This Image control will display the live feed -->
-        <Image Grid.Column="1" x:Name="CameraFeed" Stretch="Fill" />
+        <Grid Grid.Column="0" Grid.Row="1" Margin="0 10 0 0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <!-- Camera Text-->
+            <TextBlock
+                Grid.Row="0"
+                Text="Κάμερα"
+                FontFamily="Manrope"
+                FontSize="24"
+                FontWeight="Bold"
+                Foreground="White"
+                Margin="0 0 0 6">
+            </TextBlock>
+
+
+            <!-- Camera Feed -->
+            <Grid Grid.Row="1" HorizontalAlignment="Left">
+                <!-- This Image control will display the live feed -->
+                <Image Grid.Column="1" x:Name="CameraFeed" Stretch="Fill" />
+
+            </Grid>
+
+
+        </Grid>
+
+        <Grid Grid.Column="1" Grid.Row="1" Margin="12 0 0 0">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
+
+                    <StackPanel Orientation="Horizontal">
+
+                        <!-- Available Cameras -->
+                        <TextBlock
+                            Grid.Row="0"
+                            Text="Διαθέσιμες Κάμερες"
+                            FontFamily="Manrope"
+                            FontSize="24"
+                            FontWeight="Bold"
+                            Foreground="White"
+                            Margin="0 10 0 6">
+                        </TextBlock>
+
+                        <!--Click="RefreshButton_Click" -->
+                        <Button 
+                            Click="RefreshButton_Click"
+                            Content="Ανανέωση"
+                            Margin="30 10 0 6"
+                            Padding="18 6"
+                            BorderThickness="0"
+                            Background="White"
+                            FontSize="16"
+                            Cursor="Hand">
+                        </Button>
+                    </StackPanel>
+
+                    <!-- Camera List -->
+                    <ListBox 
+                        x:Name="CameraList"
+                        HorizontalAlignment="Stretch" 
+                        VerticalAlignment="Stretch" 
+                        Width="auto" 
+                        SelectionChanged="CameraList_SelectionChanged"/>
+
+                </StackPanel>
+            </Grid>
+
+            <!-- Buttons -->
+            <StackPanel Orientation="Horizontal" Grid.Row="1">
+                <Button 
+                    Grid.Row="3"
+                    FontFamily="Manrope"
+                    FontSize="16"
+                    Content="Βγάλε φωτογραφία"
+                    Padding="18 6"
+                    Margin="0 0 8 0"
+                    BorderThickness="0"
+                    Background="White"
+                    Cursor="Hand">
+                </Button>
+                <Button 
+                    Grid.Row="3"
+                    FontFamily="Manrope"
+                    FontSize="16"
+                    Content="Επανάληψη"
+                    Padding="14 6"
+                    Margin="0"
+                    BorderThickness="0"
+                    Background="White"
+                    Foreground="Black"
+                    Cursor="Hand">
+                </Button>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Column="0" Grid.Row="2" Margin="0 60 0 0">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <Button 
+                    Content="Σύνδεση">
+                </Button>
+                <Button 
+                    Content="Ακύρωση"
+                    Command="{Binding GoToViewLoginCommand}">
+                </Button>
+            </StackPanel>
+        </Grid>
+
     </Grid>
 </Window>
