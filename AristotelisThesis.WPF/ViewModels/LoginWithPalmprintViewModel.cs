@@ -1,11 +1,6 @@
-﻿using AristotelisThesis.WPF.Commands;
+﻿using System.Windows.Input;
+using AristotelisThesis.WPF.Commands;
 using AristotelisThesis.WPF.State.Navigators;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
 
 namespace AristotelisThesis.WPF.ViewModels
 {
@@ -17,5 +12,6 @@ namespace AristotelisThesis.WPF.ViewModels
         {
             GoToViewLoginCommand = new RenavigateCommand(loginRenavigator);
         }
+
     }
 }

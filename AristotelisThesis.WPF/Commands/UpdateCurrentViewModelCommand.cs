@@ -6,7 +6,7 @@ namespace AristotelisThesis.WPF.Commands
 {
     public class UpdateCurrentViewModelCommand : ICommand
     {
-        public event EventHandler CanExecuteChanged;
+        public event EventHandler? CanExecuteChanged;
 
         public readonly INavigator _navigator;
         private readonly IAristotelisThesisViewModelFactory _viewModelFactory;
@@ -17,12 +17,12 @@ namespace AristotelisThesis.WPF.Commands
             _viewModelFactory = viewModelFactory;
         }
 
-        public bool CanExecute(object parameter)
+        public bool CanExecute(object? parameter)
         {
             return true;
         }
 
-        public void Execute(object parameter)
+        public void Execute(object? parameter)
         {
             if (parameter is ViewType)
             {

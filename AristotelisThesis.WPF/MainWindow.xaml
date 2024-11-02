@@ -31,6 +31,7 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
+            
             <Grid.Style>
                 <Style TargetType="Grid">
                     <Style.Triggers>
@@ -42,6 +43,7 @@
             </Grid.Style>
 
             <controls:NavigationBar />
+            
         </Grid>
 
         <Grid Grid.Row="1">

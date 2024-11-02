@@ -26,24 +26,22 @@ namespace AristotelisThesis.WPF
             IAuthenticationService authentication = serviceProvider.GetRequiredService<IAuthenticationService>();
             //authentication.Login("Aris", "aris");
             //authentication.Register(
-            //   "aristotelis.pallasid@gmail.com", // email
-            //   "aristotelis",                    // username
-            //   "aris",                           // password
-            //   "aris",                           // confirmPassword
-            //   "Aristotelis",                    // name
-            //   "Pallasidis",                     // surname
-            //   "Male",                           // sex
+            //   "maria.pallasid@gmail.com", // email
+            //   "maria",                    // username
+            //   "maria",                           // password
+            //   "maria",                           // confirmPassword
+            //   "Maria",                    // name
+            //   "Pallasidou",                     // surname
+            //   "Female",                           // sex
             //   "6933015797",                     // phone
             //   "Anagenniseos 19 Pefka Thessalonikis",// address
-            //   "Computer Science",               // department
+            //   "Φυσικής",                        // department
             //   2,                                // semester
-            //   4509,                             // aem
-            //   new DateTime(2000, 10, 30),       // dateOfBirth
+            //   4510,                             // aem
+            //   new DateTime(1998, 9, 23),       // dateOfBirth
             //   2019,                             // yearOfEntry
-            //   false                             // isPostgraduate
+            //   true                             // isPostgraduate
             //);
-            
-
 
 
             Window window = serviceProvider.GetRequiredService<MainWindow>();
@@ -173,12 +171,6 @@ namespace AristotelisThesis.WPF
             services.AddSingleton<IAccountStore, AccountStore>();
 
 
-            //services.AddScoped<Register01ViewModel>();
-            //services.AddScoped<Register02WithInformationViewModel>();
-            //services.AddScoped<Register03InstructionsForPalmprintViewModel>();
-            //services.AddScoped<Register04WithPalmprintViewModel>();
-            //services.AddScoped<Register05InstructionsForFaceViewModel>();
-            //services.AddScoped<Register06WithFaceViewModel>();
             services.AddScoped<MainViewModel>();
 
 

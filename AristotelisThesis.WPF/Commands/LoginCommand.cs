@@ -19,22 +19,21 @@ namespace AristotelisThesis.WPF.Commands
             _renavigator = renavigator;
         }
 
-        public event EventHandler CanExecuteChanged;
+        public event EventHandler? CanExecuteChanged;
 
-        public bool CanExecute(object parameter)
+        public bool CanExecute(object? parameter)
         {
             return true;
         }
 
-        public async void Execute(object parameter)
+        public async void Execute(object? parameter)
         {
             bool success = await _authenticator.Login(_loginViewModel.Username, parameter.ToString());
 
-            if(success)
+            if (success)
             {
                 _renavigator.Renavigate();
             }
         }
-
     }
 }

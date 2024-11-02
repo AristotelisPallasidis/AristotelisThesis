@@ -10,12 +10,12 @@ namespace AristotelisThesis.WPF.Commands
     {
         private readonly IRenavigator _renavigator;
 
+        public event EventHandler? CanExecuteChanged;
+
         public RenavigateCommand(IRenavigator renavigator)
         {
             _renavigator = renavigator;
         }
-
-        public event EventHandler? CanExecuteChanged;
 
         public bool CanExecute(object? parameter)
         {
