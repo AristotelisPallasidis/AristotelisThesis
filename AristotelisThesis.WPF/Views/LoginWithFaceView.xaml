@@ -6,12 +6,14 @@
              xmlns:local="clr-namespace:AristotelisThesis.WPF.Views"
              mc:Ignorable="d" 
              d:DesignHeight="850" d:DesignWidth="1440"
-             Background="#1D1C1D">
-    <Grid Margin="20">
+             Background="#1D1C1D"
+             Loaded="Window_Loaded">
+
+    <Grid Margin="40">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="*" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
@@ -20,9 +22,9 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Column="0" Grid.Row="0" Margin="0,20,0,10">
+        <Grid Grid.Column="0" Grid.Row="0" Margin="0 20 0 10">
             <TextBlock
-                Text="Σύνδεση μέσω Προσώπου"
+                Text="Σύνδεση μεσω Προσώπου"
                 Grid.Row="0"
                 Style="{StaticResource PageTitle}">
             </TextBlock>
@@ -30,41 +32,56 @@
 
         <Grid Grid.Column="0" Grid.Row="1" Margin="0 10 0 0">
 
-            <Grid Grid.Column="0" Grid.Row="1" Margin="0 10 0 0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
-                </Grid.RowDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
 
-                <!-- Camera Text-->
-                <TextBlock
-                    Grid.Row="0"
-                    Text="Κάμερα"
-                    FontFamily="Manrope"
-                    FontSize="24"
-                    FontWeight="Bold"
-                    Foreground="White"
-                    Margin="0 0 0 6">
-                </TextBlock>
+            <!-- Camera Text-->
+            <TextBlock
+                Grid.Row="0"
+                Text="Κάμερα"
+                FontSize="24"
+                FontWeight="Bold"
+                Foreground="White"
+                Margin="0 0 0 6">
+            </TextBlock>
 
-
-                <!-- Camera Input 
-                <Image Grid.Column="1" x:Name="CameraFeed" Stretch="Fill" />
-                -->
-
+            <!-- Camera Feed -->
+            <Grid Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Image x:Name="CameraFeed" Stretch="Fill" />
             </Grid>
 
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button 
+                    Content="Απενεργοποίηση Κάμερας"
+                    Click="StopCameraButton_Click"
+                    Margin="0 10 0 0"
+                    Padding="18 6"
+                    BorderThickness="0"
+                    Background="White"
+                    FontSize="16"
+                    Cursor="Hand">
+                </Button>
+            </Grid>
 
         </Grid>
 
-        <Grid Grid.Column="1" Margin="12 57 0 82" Grid.RowSpan="4">
+        <Grid Grid.Column="1" Grid.Row="1" Margin="12 0 0 0">
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0">
-                <StackPanel Orientation="Vertical">
+
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
 
                     <StackPanel Orientation="Horizontal">
 
@@ -78,10 +95,12 @@
                             Foreground="White"
                             Margin="0 10 0 6">
                         </TextBlock>
-                        
-                        <!--Click="RefreshButton_Click" -->
+
+                        <!--
+                        -->
                         <Button 
                             Content="Ανανέωση"
+                            Click="RefreshButton_Click" 
                             Margin="30 10 0 6"
                             Padding="18 6"
                             BorderThickness="0"
@@ -89,31 +108,34 @@
                             FontSize="16"
                             Cursor="Hand">
                         </Button>
-
                     </StackPanel>
 
-                    <!-- 
-                    <ListBox x:Name="CameraList" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" SelectionChanged="CameraList_SelectionChanged"/>
-                    -->
+                    <ListBox 
+                        x:Name="CameraList" 
+                        SelectionChanged="CameraList_SelectionChanged"
+                        HorizontalAlignment="Stretch" 
+                        VerticalAlignment="Stretch" 
+                        Width="auto">
+                    </ListBox>
 
                 </StackPanel>
+
             </Grid>
+
+            <!-- Buttons -->
             <StackPanel Orientation="Horizontal" Grid.Row="1">
                 <Button 
                     Grid.Row="3"
-                    FontFamily="Manrope"
                     FontSize="16"
                     Content="Βγάλε φωτογραφία"
                     Padding="18 6"
                     Margin="0 0 8 0"
                     BorderThickness="0"
                     Background="White"
-                    Foreground="Black"
                     Cursor="Hand">
                 </Button>
                 <Button 
                     Grid.Row="3"
-                    FontFamily="Manrope"
                     FontSize="16"
                     Content="Επανάληψη"
                     Padding="14 6"
@@ -124,10 +146,12 @@
                     Cursor="Hand">
                 </Button>
             </StackPanel>
+
         </Grid>
 
-        <Grid Grid.Column="0" Grid.Row="3" Margin="0,60,0,0">
-            <StackPanel Orientation="Horizontal">
+        <Grid Grid.Column="0" Grid.Row="2" Margin="0 60 0 0">
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                 <Button 
                     Content="Σύνδεση"
                     Style="{StaticResource NextButton}">
