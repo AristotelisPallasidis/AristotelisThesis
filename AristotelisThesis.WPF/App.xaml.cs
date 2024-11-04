@@ -8,6 +8,7 @@ using AristotelisThesis.WPF.State.Authenticators;
 using AristotelisThesis.WPF.State.Navigators;
 using AristotelisThesis.WPF.ViewModels;
 using AristotelisThesis.WPF.ViewModels.Factories;
+using AristotelisThesis.WPF.Views;
 using Microsoft.AspNet.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using System.Windows;
@@ -117,10 +118,12 @@ namespace AristotelisThesis.WPF
                 return () => services.GetRequiredService<SettingsViewModel>();
 
             });
-            
-            
 
 
+
+            // --------------------------------------------------------------------------------
+            // Register LoginWithFaceViewModel & LoginWithPalmprintViewModel
+            // --------------------------------------------------------------------------------
             services.AddSingleton<ViewModelDelegateRenavigator<LoginViewModel>>();
             services.AddSingleton<CreateViewModel<LoginWithFaceViewModel>>(services =>
             {
@@ -136,23 +139,80 @@ namespace AristotelisThesis.WPF
                 );
             });
 
+            // --------------------------------------------------------------------------------
+            // Register
+            // --------------------------------------------------------------------------------
+
+            services.AddSingleton<ViewModelDelegateRenavigator<Register01ViewModel>>();
+            services.AddSingleton<ViewModelDelegateRenavigator<Register02WithInformationViewModel>>();
+            services.AddSingleton<ViewModelDelegateRenavigator<Register03InstructionsForPalmprintViewModel>>();
+            services.AddSingleton<ViewModelDelegateRenavigator<Register04WithPalmprintViewModel>>();
+            services.AddSingleton<ViewModelDelegateRenavigator<Register05InstructionsForFaceViewModel>>();
+            services.AddSingleton<ViewModelDelegateRenavigator<Register06WithFaceViewModel>>();
+
 
             services.AddSingleton<CreateViewModel<Register01ViewModel>>(services =>
             {
                 return () => new Register01ViewModel(
-                    services.GetRequiredService<ViewModelDelegateRenavigator<LoginViewModel>>()
+                    services.GetRequiredService<ViewModelDelegateRenavigator<LoginViewModel>>(),
+                    services.GetRequiredService<ViewModelDelegateRenavigator<Register02WithInformationViewModel>>()
+                );
+            });
+
+            services.AddSingleton<CreateViewModel<Register02WithInformationViewModel>>(services =>
+            {
+                return () => new Register02WithInformationViewModel(
+                    services.GetRequiredService<ViewModelDelegateRenavigator<Register01ViewModel>>(),
+                    services.GetRequiredService<ViewModelDelegateRenavigator<Register03InstructionsForPalmprintViewModel>>()
+                );
+            });
+            
+            services.AddSingleton<CreateViewModel<Register03InstructionsForPalmprintViewModel>>(services =>
+            {
+                return () => new Register03InstructionsForPalmprintViewModel(
+                    services.GetRequiredService<ViewModelDelegateRenavigator<Register02WithInformationViewModel>>(),
+                    services.GetRequiredService<ViewModelDelegateRenavigator<Register04WithPalmprintViewModel>>()
+                );
+            });
+            
+            services.AddSingleton<CreateViewModel<Register04WithPalmprintViewModel>>(services =>
+            {
+                return () => new Register04WithPalmprintViewModel(
+                    services.GetRequiredService<ViewModelDelegateRenavigator<Register03InstructionsForPalmprintViewModel>>(),
+                    services.GetRequiredService<ViewModelDelegateRenavigator<Register05InstructionsForFaceViewModel>>()
+                );
+            });
+            
+            services.AddSingleton<CreateViewModel<Register05InstructionsForFaceViewModel>>(services =>
+            {
+                return () => new Register05InstructionsForFaceViewModel(
+                    services.GetRequiredService<ViewModelDelegateRenavigator<Register04WithPalmprintViewModel>>(),
+                    services.GetRequiredService<ViewModelDelegateRenavigator<Register06WithFaceViewModel>>()
+                );
+            });
+            
+            services.AddSingleton<CreateViewModel<Register06WithFaceViewModel>>(services =>
+            {
+                return () => new Register06WithFaceViewModel(
+                    services.GetRequiredService<ViewModelDelegateRenavigator<Register05InstructionsForFaceViewModel>>(),
+                    services.GetRequiredService<ViewModelDelegateRenavigator<DashboardViewModel>>()
                 );
             });
 
 
-
+            services.AddSingleton<CreateViewModel<Register06WithFaceViewModel>>(services =>
+            {
+                return () => new Register06WithFaceViewModel(
+                    services.GetRequiredService<ViewModelDelegateRenavigator<Register05InstructionsForFaceViewModel>>(),
+                    services.GetRequiredService<ViewModelDelegateRenavigator<DashboardViewModel>>()
+                );
+            });
 
 
 
             services.AddSingleton<ViewModelDelegateRenavigator<DashboardViewModel>>();
             services.AddSingleton<ViewModelDelegateRenavigator<LoginWithFaceViewModel>>();
             services.AddSingleton<ViewModelDelegateRenavigator<LoginWithPalmprintViewModel>>();
-            services.AddSingleton<ViewModelDelegateRenavigator<Register01ViewModel>>();
             services.AddSingleton<CreateViewModel<LoginViewModel>>(services =>
             {
                 return () => new LoginViewModel(
