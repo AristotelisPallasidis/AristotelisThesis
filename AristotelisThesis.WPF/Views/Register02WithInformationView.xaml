@@ -5,18 +5,16 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:AristotelisThesis.WPF.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="650" d:DesignWidth="1200" Background="#1D1C1D">
+             d:DesignWidth="1920" d:DesignHeight="1080"
+             Background="#1D1C1D">
 
-
-    <Grid Margin="20">
+    <Grid Margin="40">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
-
-
 
         <Grid Grid.Column="0" Grid.Row="0" Margin="0 20 0 10">
             <TextBlock
@@ -151,23 +149,23 @@
                     Style="{StaticResource TextBlockOfInput}">
                         </TextBlock>
                         <TextBox 
-                    Grid.Row="3"
-                    Style="{StaticResource TextBoxOfInput}"
-                    MaxLength="9" 
-                    AcceptsReturn="False">
+                            Grid.Row="3"
+                            Style="{StaticResource TextBoxOfInput}"
+                            MaxLength="9" 
+                            AcceptsReturn="False">
                         </TextBox>
 
                         <!-- Ημερομηνία Γέννησης -->
                         <TextBlock
-                    Grid.Row="4"
-                    Text="Ημερομηνία Γέννησης:dd/mm/yyyy"
-                    Style="{StaticResource TextBlockOfInput}">
+                            Grid.Row="4"
+                            Text="Ημερομηνία Γέννησης:dd/mm/yyyy"
+                            Style="{StaticResource TextBlockOfInput}">
                         </TextBlock>
                         <TextBox 
-                    Grid.Row="5"
-                    Style="{StaticResource TextBoxOfInput}"
-                    MaxLength="9" 
-                    AcceptsReturn="False">
+                            Grid.Row="5"
+                            Style="{StaticResource TextBoxOfInput}"
+                            MaxLength="9" 
+                            AcceptsReturn="False">
                         </TextBox>
 
                     </Grid>
@@ -329,11 +327,13 @@
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                 <Button 
                     Content="Επόμενο"
+                    Command="{Binding GoToViewRegister03InstructionsForPalmprintCommand}"
                     Style="{StaticResource NextButton}"
                     Cursor="Hand">
                 </Button>
                 <Button 
                     Content="Πίσω"
+                    Command="{Binding GoToViewRegister01Command}"
                     Style="{StaticResource BackButton}">
                 </Button>
             </StackPanel>

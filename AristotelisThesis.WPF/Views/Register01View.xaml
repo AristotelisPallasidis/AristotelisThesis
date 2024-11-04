@@ -4,9 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="850" d:DesignWidth="1440" 
+             d:DesignWidth="1920" d:DesignHeight="1080"
              Background="#1D1C1D">
-    <Grid Margin="20">
+    
+    <Grid Margin="40">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
@@ -698,6 +699,7 @@
                 <Button 
                     Content="Επόμενο"
                     x:Name="NextButton"
+                    Command="{Binding GoToViewRegister02WithInformationCommand}"
                     Style="{StaticResource NextButton}">
                 </Button>
                 <Button 

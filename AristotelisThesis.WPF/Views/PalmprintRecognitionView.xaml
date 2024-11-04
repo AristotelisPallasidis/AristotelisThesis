@@ -8,9 +8,9 @@
              xmlns:controls="clr-namespace:AristotelisThesis.WPF.Controls"
 
              mc:Ignorable="d" 
-             d:DesignHeight="650" d:DesignWidth="1440">
+             d:DesignWidth="1920" d:DesignHeight="1080">
 
-    <Border Background="#1D1C1D" BorderBrush="Black" BorderThickness="1,1,1,1" CornerRadius="24,24,24,24">
+    <Border Background="#1D1C1D" BorderBrush="Transparent" BorderThickness="1,1,1,1" CornerRadius="24,24,24,24">
         <Grid Margin="20">
 
             <Grid.RowDefinitions>
@@ -222,9 +222,12 @@
 
                                 <Button 
                                     Content="Ενημέρωση στοιχείων"
-                                    Click="UpdatePalmprintButton_Click"
+                                    BorderThickness="0"
+                                    Background="{StaticResource ColorWarning}"
+                                    IsEnabled="False"
+                                    FontSize="14"
+                                    Padding="0 4"
                                     Margin="0 10 0 0"
-                                    FontSize="16"
                                     Cursor="Hand">
                                 </Button>
 

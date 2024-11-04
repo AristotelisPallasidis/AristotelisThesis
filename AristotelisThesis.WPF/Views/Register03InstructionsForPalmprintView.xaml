@@ -5,8 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:AristotelisThesis.WPF.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="650" d:DesignWidth="1200" Background="#1D1C1D">
-    <Grid Margin="20">
+             d:DesignWidth="1920" d:DesignHeight="1080"
+             Background="#1D1C1D">
+    
+    <Grid Margin="40">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
@@ -284,11 +286,13 @@
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                 <Button 
                     Content="Επόμενο"
+                    Command="{Binding GoToViewRegister04WithPalmprintCommand}"
                     Style="{StaticResource NextButton}"
                     Cursor="Hand">
                 </Button>
                 <Button 
                     Content="Πίσω"
+                    Command="{Binding GoToViewRegister02WithInformationCommand}"
                     Style="{StaticResource BackButton}"
                     Cursor="Hand">
                 </Button>

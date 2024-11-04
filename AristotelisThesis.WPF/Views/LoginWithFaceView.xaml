@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:AristotelisThesis.WPF.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="850" d:DesignWidth="1440"
+             d:DesignWidth="1920" d:DesignHeight="1080" 
              Background="#1D1C1D"
              Loaded="Window_Loaded">
 

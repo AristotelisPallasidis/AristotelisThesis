@@ -11,7 +11,7 @@
              xmlns:converters="clr-namespace:AristotelisThesis.WPF.Converters"
 
              mc:Ignorable="d" 
-             d:DesignHeight="850" d:DesignWidth="1440">
+             d:DesignWidth="1920" d:DesignHeight="1080">
 
     <UserControl.Resources>
         <converters:EqualValueToParameterConverter x:Key="EqualValueToParameterConverter" />

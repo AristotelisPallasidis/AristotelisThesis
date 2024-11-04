@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:AristotelisThesis.WPF.Views"
              xmlns:style="clr-namespace:AristotelisThesis.WPF"
              mc:Ignorable="d" 
-             d:DesignHeight="850" d:DesignWidth="1440" 
+             d:DesignWidth="1920" d:DesignHeight="1080" 
              Background="#1D1C1D">
     
     <Grid>
@@ -21,7 +21,7 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Grid Grid.Column="0">
+            <Grid Grid.Column="0" Margin="0 0 8 0">
                 <Image 
                     Source="C:\Users\Aristotelis\Desktop\test2\AristotelisThesis\AristotelisThesis.WPF\Assets\duth-logo-white.png"
                     Height="200" 
