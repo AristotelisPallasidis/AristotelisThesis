@@ -137,32 +137,43 @@
             
             <!-- ////////////////////////// -->
 
-            <TextBlock 
-                Grid.Row="5" 
-                Text="Username" 
-                FontSize="12" 
-                Foreground="white" 
-                Width="120">
-            </TextBlock>
+            <Grid Grid.Row="5" Width="300">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <StackPanel Orientation="Vertical">
+                    <TextBlock 
+                        Text="Username" 
+                        FontSize="12" 
+                        Foreground="white" 
+                        Width="120">
+                    </TextBlock>
+                    <TextBox 
+                        Width="120"
+                        FontSize="10" 
+                        Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}">
+                    </TextBox>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch">
+                        <TextBlock Width="120" Text="Password" FontSize="16" Foreground="white"></TextBlock>
+                        <PasswordBox 
+                            Width="120"
+                            FontSize="10" 
+                            x:Name="pbPassword">
+                        </PasswordBox>
+                    </StackPanel>
+                </Grid>
+            </Grid>
 
-            <TextBox 
-                Grid.Row="6" 
-                Width="120"
-                FontSize="10" 
-                Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}">
-            </TextBox>
 
-            <TextBlock Grid.Row="7" Width="120" Text="Password" FontSize="16" Foreground="white"></TextBlock>
-            <PasswordBox 
-                Grid.Row="8"
-                Width="120"
-                FontSize="10" 
-                x:Name="pbPassword">
-            </PasswordBox>
 
             <Button 
-                Grid.Row="9" 
                 Width="120" 
+                Grid.Row="6"
                 FontSize="10"
                 IsDefault="True"
                 Content="Login" 

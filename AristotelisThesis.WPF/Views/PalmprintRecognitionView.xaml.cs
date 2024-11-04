@@ -25,9 +25,5 @@ namespace AristotelisThesis.WPF.Views
             InitializeComponent();
         }
 
-        private void UpdatePalmprintButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }
