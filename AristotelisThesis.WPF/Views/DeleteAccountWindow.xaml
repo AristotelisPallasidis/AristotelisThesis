@@ -63,7 +63,6 @@
                 </Button>
                     <!-- 
                     Click="AcceptButton_Click"
-                    Click="DeclineButton_Click"
                     -->
                 <Button 
                     Content="Ακύρωση" 
