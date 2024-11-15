@@ -52,8 +52,8 @@
                          Foreground="{StaticResource ColorLight}" 
                          FontSize="16">
                     </TextBlock>
-
                 </Grid>
+                
             </Grid>
 
         </Grid>
@@ -75,23 +75,11 @@
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
 
-            <TextBlock 
-                Grid.Row="0"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Center"
-                FontWeight="Bold"
-                Text="Σύνδεση" 
-                FontFamily="Manrope"
-                Padding="0 30" 
-                Foreground="White" 
-                FontSize="34">
-            </TextBlock>
-
             <Grid Grid.Row="1" Margin="0 0 0 2">
 
                 <Button
                     Command="{Binding GoToViewLoginWithFaceCommand}"
-                    Width="370"
+                    Width="380"
                     FontSize="16" 
                     BorderThickness="0"
                     Cursor="Hand"
@@ -116,10 +104,10 @@
                                     </Grid>
                                     <Grid Grid.Column="1">
                                         <StackPanel Grid.Column="1" Margin="12 0" VerticalAlignment="Center">
-                                            <TextBlock Text="Μέσω Προσώπου" FontSize="18" FontWeight="Bold" />
+                                            <TextBlock Text="Σύνδεση μέσω Προσώπου" FontSize="18" FontWeight="Bold" Foreground="{StaticResource ColorDark}" />
                                             <TextBlock 
                                                 Text="Ξεκινήστε τη διαδικασία αναγνώρισης προσώπου με μία ματιά." 
-                                                FontSize="12" Foreground="{StaticResource ColorSecondary}" TextWrapping="Wrap" />
+                                                FontSize="12" Foreground="{StaticResource ColorSecondary}" TextWrapping="Wrap" Margin="0 2 0 0" />
                                         </StackPanel>
                                     </Grid>
                                     <Grid Grid.Column="2">
@@ -137,7 +125,7 @@
 
                 <Button
                     Command="{Binding GoToViewLoginWithPalmprintCommand}"
-                    Width="370"
+                    Width="380"
                     FontSize="16" 
                     BorderThickness="0"
                     Cursor="Hand"
@@ -161,10 +149,10 @@
 
                                     <Grid Grid.Column="1"></Grid>
                                     <StackPanel Grid.Column="1" Margin="12 0" VerticalAlignment="Center">
-                                        <TextBlock Text="Μέσω Παλάμης" FontSize="18" FontWeight="Bold" />
+                                        <TextBlock Text="Σύνδεση μέσω Παλάμης" FontSize="18" Foreground="{StaticResource ColorDark}" FontWeight="Bold" />
                                         <TextBlock 
-                                            Text="Ξεκλειδώστε τον λογαριασμό σας με αναγνώριση παλάμης μεσω της συσκευής."  
-                                            FontSize="12" Foreground="{StaticResource ColorSecondary}" TextWrapping="Wrap" />
+                                            Text="Ξεκλειδώστε τον λογαριασμό σας με την ειδικής συσκευή αναγνώρισης παλάμης."  
+                                            FontSize="12" Foreground="{StaticResource ColorSecondary}" TextWrapping="Wrap" Margin="0 2 0 0" />
                                     </StackPanel>
 
                                     <Grid Grid.Column="1">
@@ -194,7 +182,7 @@
                 Command="{Binding GoToViewRegister01Command}"
                 Foreground="White"
                 FontSize="16"
-                Width="370"
+                Width="376"
                 HorizontalAlignment="Center"
                 BorderBrush="White"
                 BorderThickness="1"
@@ -225,7 +213,7 @@
 
 
             <!-- ////////////////////////// -->
-            <!-- ////////////////////////// -->
+            <!-- ////////////////////////// 
             <Grid Grid.Row="5" Width="300" Margin="0 10 0 0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -259,6 +247,7 @@
                 Click="Login_Click"
                 Margin="0 6 ">
             </Button>
+            -->
             <!-- ////////////////////////// -->
             <!-- ////////////////////////// -->
         
