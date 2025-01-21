@@ -57,7 +57,7 @@ namespace AristotelisThesis.WPF
 
             // 1. Singleton => Only one instance of the service is created and shared across the application.
             // 2. Transient => A new instance of the service is created every time it is requested.
-            // 3. Scoped => A new instance of the service is created once per request within the scope.
+            // 3. Scoped => A new instance of the service is created once per HTTP request (within the scope of HTTP request).
 
             // Register services
             services.AddSingleton<AristotelisThesisDbContextFactory>();
