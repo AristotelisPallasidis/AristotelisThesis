@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace AristotelisThesis.WPF.Controls
 {
     /// <summary>
-    /// Interaction logic for WeeklyStreakCard.xaml
+    /// Interaction logic for DaysAttendedThisWeekCard.xaml
     /// </summary>
-    public partial class WeeklyStreakCard : UserControl
+    public partial class DaysAttendedThisWeekCard : UserControl
     {
-        public WeeklyStreakCard()
+        public DaysAttendedThisWeekCard()
         {
             InitializeComponent();
         }

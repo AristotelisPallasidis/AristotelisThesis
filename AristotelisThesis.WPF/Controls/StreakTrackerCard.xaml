@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="AristotelisThesis.WPF.Controls.TotalHoursWeekCard"
+﻿<UserControl x:Class="AristotelisThesis.WPF.Controls.StreakTrackerCard"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -7,6 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="200" d:DesignWidth="340">
     <Grid>
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
@@ -26,9 +27,9 @@
 
                 <Grid Grid.Row="0">
                     <TextBlock 
-                        Text="Σύνολο παραμονής εβδομάδας" 
-                        FontWeight="Medium" 
-                        FontSize="16">
+                    Text="Τρέχουσα σερί προσέλευση" 
+                    FontWeight="Medium" 
+                    FontSize="16">
                     </TextBlock>
                 </Grid>
 
@@ -36,30 +37,19 @@
                 <Grid Grid.Row="1" Margin="0 30 0 0">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock
-                            Text="24"
+                            Text="6"
+                            Foreground="{StaticResource ColorSuccess}"
+                            VerticalAlignment="Bottom"
                             FontSize="70"
                             FontWeight="Black">
                         </TextBlock>
                         <TextBlock
-                            Text="ώρες"
+                            Text="μέρες"
                             VerticalAlignment="Bottom"
                             Opacity="0.7"
                             FontSize="16"
                             FontWeight="Black"
                             Margin="4 0 20 16">
-                        </TextBlock>
-                        <TextBlock
-                            Text="35"
-                            FontSize="70"
-                            FontWeight="Black">
-                        </TextBlock>
-                        <TextBlock
-                            Text="λεπτά"
-                            VerticalAlignment="Bottom"
-                            Opacity="0.7"
-                            FontSize="16"
-                            FontWeight="Black"
-                            Margin="0 16">
                         </TextBlock>
                     </StackPanel>
                 </Grid>

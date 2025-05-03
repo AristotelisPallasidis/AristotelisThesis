@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace AristotelisThesis.WPF.Controls
 {
     /// <summary>
-    /// Interaction logic for ActiveClockCard.xaml
+    /// Interaction logic for WeeklyAttendanceGraph.xaml
     /// </summary>
-    public partial class ActiveClockCard : UserControl
+    public partial class WeeklyAttendanceGraph : UserControl
     {
-        public ActiveClockCard()
+        public WeeklyAttendanceGraph()
         {
             InitializeComponent();
         }

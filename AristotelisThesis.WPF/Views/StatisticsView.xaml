@@ -46,8 +46,8 @@
 
             </Grid>
 
-            <!-- CONTENT -->
-            <Grid Grid.Row="1" Margin="0 14 10 0">
+            <!-- ROW CONTENT -->
+            <Grid Grid.Row="1" Margin="0 14 0 0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
@@ -56,7 +56,7 @@
 
                 <Grid Grid.Column="0" Margin="0 0 5 0">
                     <!-- WEEK ATTENDANCE GRAPH -->
-                    <controls:WeeklyStreakCard  />
+                    <controls:WeeklyAttendanceGraph  />
                 </Grid>
 
                 <Grid Grid.Column="1" Margin="5 0 0 0">
@@ -76,7 +76,7 @@
                             <controls:TotalHoursWeekCard />
                         </Grid>
                         <Grid Grid.Row="1" Margin="0 5 5 5">
-                            <controls:AttendanceMonthPercentageCard />
+                            <controls:WeeklyAverageActiveTimeCard />
                         </Grid>
 
                         <Grid Grid.Row="2" Margin="0 5 5 0">
@@ -93,14 +93,14 @@
                         </Grid.RowDefinitions>
 
                         <Grid Grid.Row="0" Margin="5 0 0 5">
-                            <controls:AttendanceMonthPercentageCard />
+                            <controls:DaysAttendedThisWeekCard />
                         </Grid>
                         <Grid Grid.Row="1" Margin="5 5 0 5">
-                            <controls:AttendanceMonthPercentageCard />
+                            <controls:TodaysCheckInTimeCard />
                         </Grid>
 
                         <Grid Grid.Row="2" Margin="5 5 0 5">
-                            <controls:AttendanceMonthPercentageCard />
+                            <controls:StreakTrackerCard />
                         </Grid>
                     </Grid>
                 </Grid>
