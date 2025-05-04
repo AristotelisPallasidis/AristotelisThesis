@@ -44,8 +44,6 @@
         <Setter Property="FontFamily" Value="Manrope" />
     </Style>
 
-
-
-
-
+   
 </ResourceDictionary>
+ 

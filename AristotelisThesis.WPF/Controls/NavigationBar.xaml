@@ -8,7 +8,7 @@
              xmlns:vm="clr-namespace:AristotelisThesis.WPF.ViewModels"
              xmlns:converters="clr-namespace:AristotelisThesis.WPF.Converters"
              mc:Ignorable="d" 
-             d:DesignHeight="150" d:DesignWidth="1400">
+             d:DesignHeight="80" d:DesignWidth="1400">
 
     <UserControl.Resources>
         <converters:EqualValueToParameterConverter x:Key="EqualValueToParameterConverter" />
@@ -28,26 +28,24 @@
             </Grid.ColumnDefinitions>
 
             <Grid Grid.Column="0">
-            <StackPanel Orientation="Horizontal">
-                
-                <Image 
-                    Source="C:\Users\Aristotelis\Desktop\repos\AristotelisThesis\AristotelisThesis.WPF\Assets\DUTH-Logo.jpg"
-                    Height="60" 
-                    Width="60">
-                </Image>
+                <StackPanel Orientation="Horizontal">
+                    <Image 
+                        Source="C:\Users\Aristotelis\Desktop\repos\AristotelisThesis\AristotelisThesis.WPF\Assets\DUTH-Logo.jpg"
+                        Height="60" 
+                        Width="60">
+                    </Image>
 
-                <TextBlock 
-                    Padding="10"
-                    Foreground="{StaticResource ColorDark}"
-                    FontSize="20" 
-                    FontWeight="ExtraBold"
-                    VerticalAlignment="Center">
-                    ΔΠΘ ΣΥΣΤΗΜΑ
-                    <LineBreak />
-                    ΤΑΥΤΟΠΟΙΗΣΗΣ
-                </TextBlock>
-                
-            </StackPanel>
+                    <TextBlock 
+                        Padding="0 10"
+                        Foreground="{StaticResource ColorDark}"
+                        FontSize="20" 
+                        FontWeight="ExtraBold"
+                        VerticalAlignment="Center">
+                        ΔΠΘ ΣΥΣΤΗΜΑ
+                        <LineBreak />
+                        ΤΑΥΤΟΠΟΙΗΣΗΣ
+                    </TextBlock>
+                </StackPanel>
             </Grid>
 
             <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
