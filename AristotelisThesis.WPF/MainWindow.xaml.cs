@@ -22,5 +22,8 @@ namespace AristotelisThesis.WPF
 
             DataContext = dataContext;
         }
+
+        private void NavigationBar_Loaded(object sender, RoutedEventArgs e) { }
+
     }
 }

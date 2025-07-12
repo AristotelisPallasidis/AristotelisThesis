@@ -30,8 +30,8 @@
             <Grid Grid.Column="0">
                 <StackPanel Orientation="Horizontal">
                     <Image 
-                        Source="C:\Users\Aristotelis\Desktop\repos\AristotelisThesis\AristotelisThesis.WPF\Assets\DUTH-Logo.jpg"
-                        Height="60" 
+                        Source="C:\Users\Aristotelis\Desktop\test2\AristotelisThesis\AristotelisThesis.WPF\Assets\DUTH-Logo.jpg"
+                        Height="60"
                         Width="60">
                     </Image>
 

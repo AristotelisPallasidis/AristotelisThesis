@@ -27,7 +27,7 @@
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Orientation="Horizontal" Grid.Column="0">
-                    <Image Source="C:\Users\Aristotelis\Desktop\repos\AristotelisThesis\AristotelisThesis.WPF\Assets\Icons\FaceIconSolid.png" Width="30" Height="30" Margin="0 0 10 0"></Image>
+                    <Image Source="C:\Users\Aristotelis\Desktop\test2\AristotelisThesis\AristotelisThesis.WPF\Assets\Icons\FaceIconSolid.png" Width="30" Height="30" Margin="0 0 10 0"></Image>
                     <TextBlock 
                         Text="Αναγνώριση Προσώπου" 
                         Grid.Column="0"
@@ -55,7 +55,7 @@
 
                 <Grid Grid.Column="0" >
                     <Image 
-                        Source="C:\Users\Aristotelis\Desktop\repos\AristotelisThesis\AristotelisThesis.WPF\Assets\01.jpeg" 
+                        Source="C:\Users\Aristotelis\Desktop\test2\AristotelisThesis\AristotelisThesis.WPF\Assets\01.jpeg" 
                         HorizontalAlignment="Left" 
                         VerticalAlignment="Stretch">
                     </Image>
@@ -79,23 +79,23 @@
                         </Grid.RowDefinitions>
 
                         <Grid Grid.Row="0">
-                            <Image Source="C:\Users\Aristotelis\Desktop\repos\AristotelisThesis\AristotelisThesis.WPF\Assets\01.jpeg" Width="90"></Image>
+                            <Image Source="C:\Users\Aristotelis\Desktop\test2\AristotelisThesis\AristotelisThesis.WPF\Assets\01.jpeg" Width="90"></Image>
                         </Grid>
 
                         <Grid Grid.Row="1">
-                            <Image Source="C:\Users\Aristotelis\Desktop\repos\AristotelisThesis\AristotelisThesis.WPF\Assets\01.jpeg" Width="90"></Image>
+                            <Image Source="C:\Users\Aristotelis\Desktop\test2\AristotelisThesis\AristotelisThesis.WPF\Assets\01.jpeg" Width="90"></Image>
                         </Grid>
 
                         <Grid Grid.Row="2">
-                            <Image Source="C:\Users\Aristotelis\Desktop\repos\AristotelisThesis\AristotelisThesis.WPF\Assets\01.jpeg" Width="90"></Image>
+                            <Image Source="C:\Users\Aristotelis\Desktop\test2\AristotelisThesis\AristotelisThesis.WPF\Assets\01.jpeg" Width="90"></Image>
                         </Grid>
 
                         <Grid Grid.Row="3">
-                            <Image Source="C:\Users\Aristotelis\Desktop\repos\AristotelisThesis\AristotelisThesis.WPF\Assets\01.jpeg" Width="90"></Image>
+                            <Image Source="C:\Users\Aristotelis\Desktop\test2\AristotelisThesis\AristotelisThesis.WPF\Assets\01.jpeg" Width="90"></Image>
                         </Grid>
 
                         <Grid Grid.Row="4">
-                            <Image Source="C:\Users\Aristotelis\Desktop\repos\AristotelisThesis\AristotelisThesis.WPF\Assets\01.jpeg" Width="90"></Image>
+                            <Image Source="C:\Users\Aristotelis\Desktop\test2\AristotelisThesis\AristotelisThesis.WPF\Assets\01.jpeg" Width="90"></Image>
                         </Grid>
                     </Grid>
 
@@ -110,23 +110,23 @@
                         </Grid.RowDefinitions>
 
                         <Grid Grid.Row="0">
-                            <Image Source="C:\Users\Aristotelis\Desktop\repos\AristotelisThesis\AristotelisThesis.WPF\Assets\01.jpeg" Width="90"></Image>
+                            <Image Source="C:\Users\Aristotelis\Desktop\test2\AristotelisThesis\AristotelisThesis.WPF\Assets\01.jpeg" Width="90"></Image>
                         </Grid>
 
                         <Grid Grid.Row="1">
-                            <Image Source="C:\Users\Aristotelis\Desktop\repos\AristotelisThesis\AristotelisThesis.WPF\Assets\01.jpeg" Width="90"></Image>
+                            <Image Source="C:\Users\Aristotelis\Desktop\test2\AristotelisThesis\AristotelisThesis.WPF\Assets\01.jpeg" Width="90"></Image>
                         </Grid>
 
                         <Grid Grid.Row="2">
-                            <Image Source="C:\Users\Aristotelis\Desktop\repos\AristotelisThesis\AristotelisThesis.WPF\Assets\01.jpeg" Width="90"></Image>
+                            <Image Source="C:\Users\Aristotelis\Desktop\test2\AristotelisThesis\AristotelisThesis.WPF\Assets\01.jpeg" Width="90"></Image>
                         </Grid>
 
                         <Grid Grid.Row="3">
-                            <Image Source="C:\Users\Aristotelis\Desktop\repos\AristotelisThesis\AristotelisThesis.WPF\Assets\01.jpeg" Width="90"></Image>
+                            <Image Source="C:\Users\Aristotelis\Desktop\test2\AristotelisThesis\AristotelisThesis.WPF\Assets\01.jpeg" Width="90"></Image>
                         </Grid>
 
                         <Grid Grid.Row="4">
-                            <Image Source="C:\Users\Aristotelis\Desktop\repos\AristotelisThesis\AristotelisThesis.WPF\Assets\01.jpeg" Width="90"></Image>
+                            <Image Source="C:\Users\Aristotelis\Desktop\test2\AristotelisThesis\AristotelisThesis.WPF\Assets\01.jpeg" Width="90"></Image>
                         </Grid>
 
                     </Grid>

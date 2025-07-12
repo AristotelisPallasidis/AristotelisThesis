@@ -10,9 +10,9 @@
         Background="{StaticResource ColorDark}" 
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
-        Icon="C:\Users\Aristotelis\Desktop\repos\AristotelisThesis\AristotelisThesis.WPF\Assets\ico\DUTH-Logo.ico">
-    
-    
+        Icon="C:\Users\Aristotelis\Desktop\test2\AristotelisThesis\AristotelisThesis.WPF\Assets\ico\DUTH-Logo.ico">
+
+
     <Grid Margin="20">
 
         <Grid.RowDefinitions>
@@ -23,7 +23,7 @@
         <Grid Grid.Row="0">
             <StackPanel Orientation="Vertical">
                 <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
-                    <Image Source="C:\Users\Aristotelis\Desktop\repos\AristotelisThesis\AristotelisThesis.WPF\Assets\Icons\Trash-Icon.png" Width="20" Height="20" Margin="0 0 10 0"></Image>
+                    <Image Source="C:\Users\Aristotelis\Desktop\test2\AristotelisThesis\AristotelisThesis.WPF\Assets\Icons\Trash-Icon.png" Width="20" Height="20" Margin="0 0 10 0"></Image>
                     <TextBlock Text="Οριστική Διαγραφή Λογαριασμού" Foreground="{StaticResource ColorLight}" FontSize="20" FontWeight="Bold"></TextBlock>
                 </StackPanel>
 
