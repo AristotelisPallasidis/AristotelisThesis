@@ -4,6 +4,7 @@ using AristotelisThesis.EntityFramework;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,13 +12,15 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AristotelisThesis.EntityFramework.Migrations
 {
     [DbContext(typeof(AristotelisThesisDbContext))]
-    partial class AristotelisThesisDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251020180831_AddFaceImage")]
+    partial class AddFaceImage
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "10.0.6")
+                .HasAnnotation("ProductVersion", "8.0.21")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -65,36 +68,6 @@ namespace AristotelisThesis.EntityFramework.Migrations
                     b.HasIndex("StudentId");
 
                     b.ToTable("FaceImages");
-                });
-
-            modelBuilder.Entity("AristotelisThesis.Domain.Models.SessionHistory", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<TimeSpan>("ActiveTime")
-                        .HasColumnType("time");
-
-                    b.Property<DateTime?>("CheckIn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("CheckOut")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("StudentId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("StudentId");
-
-                    b.ToTable("SessionHistories");
                 });
 
             modelBuilder.Entity("AristotelisThesis.Domain.Models.Student", b =>
@@ -176,17 +149,6 @@ namespace AristotelisThesis.EntityFramework.Migrations
                 });
 
             modelBuilder.Entity("AristotelisThesis.Domain.Models.FaceImage", b =>
-                {
-                    b.HasOne("AristotelisThesis.Domain.Models.Student", "Student")
-                        .WithMany()
-                        .HasForeignKey("StudentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Student");
-                });
-
-            modelBuilder.Entity("AristotelisThesis.Domain.Models.SessionHistory", b =>
                 {
                     b.HasOne("AristotelisThesis.Domain.Models.Student", "Student")
                         .WithMany()

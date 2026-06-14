@@ -15,9 +15,16 @@ namespace AristotelisThesis.WPF.ViewModels
         public bool IsLoggedIn => _authenticator.IsLoggedIn;
         public ViewModelBase CurrentViewModel => _navigator.CurrentViewModel;
 
-        public ICommand UpdateCurrentViewModelCommand { get; }
+        /// <summary>
+        /// Shared session start time. Lives on the shell view-model so the nav bar's
+        /// duration counter is visible on every page while logged in.
+        /// </summary>
+        public System.DateTime? LoginTime => _authenticator.LoginTime;
 
-        public MainViewModel(INavigator navigator, IAristotelisThesisViewModelFactory viewModelFactory, IAuthenticator authenticator)
+        public ICommand UpdateCurrentViewModelCommand { get; }
+        public ICommand LogoutCommand { get; }
+
+        public MainViewModel(INavigator navigator, IAristotelisThesisViewModelFactory viewModelFactory, IAuthenticator authenticator, IRenavigator loginRenavigator)
         {
             _navigator = navigator;
             _viewModelFactory = viewModelFactory;
@@ -27,12 +34,15 @@ namespace AristotelisThesis.WPF.ViewModels
             _authenticator.StateChanged += Authenticator_StateChanged;
 
             UpdateCurrentViewModelCommand = new UpdateCurrentViewModelCommand(navigator, _viewModelFactory);
+            LogoutCommand = new LogoutCommand(_authenticator, loginRenavigator);
+
             UpdateCurrentViewModelCommand.Execute(ViewType.Login);
         }
 
         private void Authenticator_StateChanged()
         {
             OnPropertyChanged(nameof(IsLoggedIn));
+            OnPropertyChanged(nameof(LoginTime));
         }
 
         private void Navigator_StateChanged()

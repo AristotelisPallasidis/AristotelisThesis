@@ -19,7 +19,7 @@
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
-        
+
         <Grid Grid.Row="0" HorizontalAlignment="Stretch">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto" />
@@ -92,14 +92,21 @@
                     CommandParameter="{x:Static nav:ViewType.Settings}" />
             </StackPanel>
 
-            <RadioButton 
-                Grid.Column="2"
-                Content="Αποσύνδεση"
-                Click="Logout_Click"
-                Style="{StaticResource LogoutButton}"
-                VerticalAlignment="Center">
-            </RadioButton>
-            
+            <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
+                <local:ClockCard
+                    LoginTime="{Binding LoginTime}"
+                    MinWidth="210"
+                    Margin="0 0 16 0"
+                    VerticalAlignment="Center" />
+
+                <RadioButton
+                    Content="Αποσύνδεση"
+                    Command="{Binding LogoutCommand}"
+                    Style="{StaticResource LogoutButton}"
+                    VerticalAlignment="Center">
+                </RadioButton>
+            </StackPanel>
+
         </Grid>
     </Grid>
 </UserControl>

@@ -1,58 +1,83 @@
-﻿using System;
+using System;
+using System.Diagnostics;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
-using System.ComponentModel;
 
 namespace AristotelisThesis.WPF.Controls
 {
-    public partial class ClockCard : UserControl, INotifyPropertyChanged
+    public partial class ClockCard : UserControl
     {
-        private DispatcherTimer _timer;
-        private TimeSpan _sessionDuration;
+        // Live "how long am I logged in" clock. It counts from the shared login moment
+        // (LoginTime), so it shows the same elapsed time on every page of the app.
+        private readonly DispatcherTimer _timer;
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public static readonly DependencyProperty LoginTimeProperty =
+            DependencyProperty.Register(nameof(LoginTime), typeof(DateTime?), typeof(ClockCard),
+                new PropertyMetadata(null, OnLoginTimeChanged));
 
-        private string _sessionTime;
-        public string SessionTime
+        public DateTime? LoginTime
         {
-            get { return _sessionTime; }
-            set
-            {
-                _sessionTime = value;
-                OnPropertyChanged(nameof(SessionTime));
-            }
+            get => (DateTime?)GetValue(LoginTimeProperty);
+            set => SetValue(LoginTimeProperty, value);
         }
 
         public ClockCard()
         {
             InitializeComponent();
-            DataContext = this; // Set DataContext for data binding
 
-            _sessionDuration = TimeSpan.Zero;
-            SessionTime = _sessionDuration.ToString(@"hh\:mm\:ss");
+            _timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
+            _timer.Tick += (_, __) => Render();
 
-            StartSessionTimer();
+            Loaded += (_, __) => UpdateUI();
+            Unloaded += (_, __) => _timer.Stop();
         }
 
-        private void StartSessionTimer()
+        private static void OnLoginTimeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            _timer = new DispatcherTimer
-            {
-                Interval = TimeSpan.FromSeconds(1) // Set the timer to tick every second
-            };
-
-            _timer.Tick += (s, e) =>
-            {
-                _sessionDuration = _sessionDuration.Add(TimeSpan.FromSeconds(1));
-                SessionTime = _sessionDuration.ToString(@"hh\:mm\:ss"); // Update session time
-            };
-
-            _timer.Start(); // Start the timer
+            ((ClockCard)d).UpdateUI();
         }
 
-        protected void OnPropertyChanged(string propertyName)
+        private void UpdateUI()
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            try
+            {
+                if (LoginTime == null)
+                {
+                    _timer.Stop();
+                    SessionTimeTextBlock.Text = "—";
+                    return;
+                }
+
+                Render();
+                _timer.Start();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Exception in ClockCard: {ex}");
+                _timer.Stop();
+                SessionTimeTextBlock.Text = "—";
+            }
+        }
+
+        private void Render()
+        {
+            DateTime? start = LoginTime;
+            if (start == null)
+            {
+                _timer.Stop();
+                SessionTimeTextBlock.Text = "—";
+                return;
+            }
+
+            TimeSpan elapsed = DateTime.Now - start.Value;
+            if (elapsed < TimeSpan.Zero)
+            {
+                elapsed = TimeSpan.Zero;
+            }
+
+            // Live duration since login, e.g. "00:05:21"
+            SessionTimeTextBlock.Text = $"{(int)elapsed.TotalHours:D2}:{elapsed.Minutes:D2}:{elapsed.Seconds:D2}";
         }
     }
 }

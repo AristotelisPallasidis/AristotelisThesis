@@ -37,10 +37,6 @@
                 </StackPanel>
 
 
-                <!-- CLOCK CARD -->
-                <Grid Grid.Column="2">
-                    <controls:ClockCard Width="280"/>
-                </Grid>
 
 
             </Grid>

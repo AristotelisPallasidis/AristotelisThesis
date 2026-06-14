@@ -1,4 +1,5 @@
 ﻿using AristotelisThesis.Domain.Models;
+using AristotelisThesis.Domain.Services;
 using AristotelisThesis.Domain.Services.AuthenticationServices;
 using AristotelisThesis.WPF.State.Accounts;
 
@@ -8,11 +9,13 @@ namespace AristotelisThesis.WPF.State.Authenticators
     {
         private readonly IAuthenticationService _authenticationService;
         private readonly IAccountStore _accountStore;
+        private readonly ISessionTrackingService _sessionTrackingService;
 
-        public Authenticator(IAuthenticationService authenticationService, IAccountStore accountStore)
+        public Authenticator(IAuthenticationService authenticationService, IAccountStore accountStore, ISessionTrackingService sessionTrackingService)
         {
             _authenticationService = authenticationService;
             _accountStore = accountStore;
+            _sessionTrackingService = sessionTrackingService;
         }
 
         public Account CurrentAccount
@@ -33,6 +36,12 @@ namespace AristotelisThesis.WPF.State.Authenticators
         /// </summary>
         public bool IsLoggedIn => CurrentAccount != null;
 
+        /// <summary>
+        /// The moment the current session started. Backed by the shared account store
+        /// so it is the same value on every page while logged in.
+        /// </summary>
+        public DateTime? LoginTime => _accountStore.LoginTime;
+
         public event Action StateChanged;
 
 
@@ -48,7 +57,18 @@ namespace AristotelisThesis.WPF.State.Authenticators
 
             try
             {
-                CurrentAccount = await _authenticationService.Login(username, password);
+                Account account = await _authenticationService.Login(username, password);
+
+                // Stamp the session start before exposing the account, so any page that
+                // reacts to login already sees a consistent LoginTime.
+                _accountStore.LoginTime = DateTime.Now;
+                CurrentAccount = account;
+
+                // Record the attendance check-in for the now logged-in student.
+                if (CurrentAccount?.AccountHolder != null)
+                {
+                    await _sessionTrackingService.RecordCheckIn(CurrentAccount.AccountHolder.Id);
+                }
             }
             catch (Exception)
             {
@@ -63,22 +83,24 @@ namespace AristotelisThesis.WPF.State.Authenticators
         /// </summary>
         public void Logout()
         {
-            _accountStore.CurrentAccount.AccountHolder = null;
-            //CurrentAccount = null;
+            // Close the attendance session for the outgoing student before clearing state.
+            int? studentId = CurrentAccount?.AccountHolder?.Id;
+            if (studentId.HasValue)
+            {
+                // Run off the UI thread to avoid deadlocking on the async EF call.
+                Task.Run(() => _sessionTrackingService.RecordCheckOut(studentId.Value)).GetAwaiter().GetResult();
+            }
+
+            _accountStore.LoginTime = null;
+            CurrentAccount = null;
         }
 
         /// <summary>
         /// This function is used to register a student to the system. and return the result of the registration.
         /// </summary>
-        /// <param name="email"></param>
-        /// <param name="username"></param>
-        /// <param name="password"></param>
-        /// <param name="confirmPassword"></param>
-        /// <returns></returns>
         public async Task<RegistrationResult> Register(string email, string username, string password, string confirmPassword, string name, string surname, string sex, string phone, string address, string department, int semester, int aem, DateTime dateOfBirth, int yearOfEntry, bool isPostgraduate)
         {
             return await _authenticationService.Register(email, username, password, confirmPassword, name, surname, sex, phone, address, department, semester, aem, dateOfBirth, yearOfEntry, isPostgraduate);
         }
-    
     }
 }

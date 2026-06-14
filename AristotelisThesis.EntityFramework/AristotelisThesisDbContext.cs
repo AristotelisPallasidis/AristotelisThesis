@@ -17,6 +17,36 @@ namespace AristotelisThesis.EntityFramework
         public DbSet<Student> Students { get; set; }
         public DbSet<Account> Accounts { get; set; }
 
+        // Add FaceImages DB set so EF tracks this entity
+        public DbSet<FaceImage> FaceImages { get; set; }
 
+        // Daily attendance ledger; source of truth for the Statistics page.
+        public DbSet<SessionHistory> SessionHistories { get; set; }
+
+        // Optional: configure model details here (see notes)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            // Optional: ensure ImageData is required and configure FK
+            modelBuilder.Entity<FaceImage>(b =>
+            {
+                b.Property(f => f.ImageData).IsRequired();
+                b.Property(f => f.DateCaptured).HasDefaultValueSql("CURRENT_TIMESTAMP");
+                b.HasOne(f => f.Student)
+                 .WithMany() // adjust if Student has collection property
+                 .HasForeignKey(f => f.StudentId)
+                 .OnDelete(DeleteBehavior.Cascade);
+            });
+
+            // SessionHistory: one row per student per day; cascades when the student is removed.
+            modelBuilder.Entity<SessionHistory>(b =>
+            {
+                b.HasOne(s => s.Student)
+                 .WithMany()
+                 .HasForeignKey(s => s.StudentId)
+                 .OnDelete(DeleteBehavior.Cascade);
+            });
+        }
     }
 }
