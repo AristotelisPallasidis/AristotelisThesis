@@ -13,6 +13,9 @@ namespace AristotelisThesis.Domain.Models
         public int WeekLoginStreak { get; set; }
         public TimeSpan WeeklyAverageActiveTime { get; set; }
 
+        // New: optional actual check-in timestamp for today (nullable if not recorded)
+        public DateTime? TodayCheckIn { get; set; }
+
         // Graph Data: One entry per day of current week
         public virtual ICollection<WeeklyAttendanceDataPoint> WeeklyAttendanceGraph { get; set; }
         public virtual Student Student { get; set; }

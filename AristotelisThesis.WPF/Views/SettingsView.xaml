@@ -38,11 +38,6 @@
                 </StackPanel>
 
 
-                <!-- CLOCK CARD -->
-                <Grid Grid.Column="2">
-                    <controls:ClockCard Width="280"/>
-                    <!-- <card:ClockCard String Format {Binding Gender dispay end } {Binding nowTime - start }-->
-                </Grid>
             </Grid>
 
 

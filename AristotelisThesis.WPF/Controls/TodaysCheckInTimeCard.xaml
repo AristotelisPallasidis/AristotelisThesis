@@ -36,14 +36,16 @@
                 <Grid Grid.Row="1" Margin="0 30 0 0">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock
-                            Text="13:45"
+                            x:Name="TimeText"
+                            Text="—"
                             Foreground="Black"
                             VerticalAlignment="Bottom"
                             FontSize="70"
                             FontWeight="Black">
                         </TextBlock>
                         <TextBlock
-                            Text="π.μ"
+                            x:Name="MeridiemText"
+                            Text=""
                             VerticalAlignment="Bottom"
                             Foreground="Black"
                             Opacity="0.7"

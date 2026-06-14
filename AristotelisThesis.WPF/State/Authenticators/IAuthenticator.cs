@@ -13,6 +13,9 @@ namespace AristotelisThesis.WPF.State.Authenticators
         Account CurrentAccount { get; }
         bool IsLoggedIn { get; }
 
+        /// <summary>The moment the current session started, or null when logged out.</summary>
+        DateTime? LoginTime { get; }
+
         event Action StateChanged;
 
         Task<RegistrationResult> Register(string email, string username, string password, string confirmPassword, string name, string surname, string sex, string phone, string address, string department, int semester, int aem, DateTime dateOfBirth, int yearOfEntry, bool isPostgraduate);

@@ -204,18 +204,6 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
-                <Grid Grid.Row="0" Margin="10 0 0 0">
-                    <Border
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Stretch"
-                        Background="#E6E6E6"
-                        Padding="42"
-                        CornerRadius="8 8 8 8">
-
-                            <controls:ClockCard Width="260" FontSize="34"/>
-                            
-                    </Border>
-                </Grid>
 
                 <Grid Grid.Row="1" Margin="10 15 0 0">
                     <Border

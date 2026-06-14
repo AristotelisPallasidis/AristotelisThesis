@@ -65,6 +65,10 @@ namespace AristotelisThesis.WPF
             services.AddSingleton<IDataService<Account>, AccountDataService>();
             services.AddSingleton<IAccountService, AccountDataService>();
 
+            // Attendance tracking + statistics
+            services.AddSingleton<ISessionTrackingService, SessionTrackingService>();
+            services.AddSingleton<IStatisticsService, StatisticsService>();
+
             services.AddSingleton<IPasswordHasher, PasswordHasher>();
 
 
@@ -231,7 +235,15 @@ namespace AristotelisThesis.WPF
             services.AddSingleton<IAccountStore, AccountStore>();
 
 
-            services.AddScoped<MainViewModel>();
+            services.AddScoped<MainViewModel>(services =>
+            {
+                return new MainViewModel(
+                    services.GetRequiredService<INavigator>(),
+                    services.GetRequiredService<IAristotelisThesisViewModelFactory>(),
+                    services.GetRequiredService<IAuthenticator>(),
+                    services.GetRequiredService<ViewModelDelegateRenavigator<LoginViewModel>>()
+                );
+            });
 
 
             services.AddScoped<MainWindow>(s => new MainWindow(s.GetRequiredService<MainViewModel>()));

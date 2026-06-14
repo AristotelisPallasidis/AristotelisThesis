@@ -59,6 +59,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Button 
+                    x:Name="StopCameraButton"
                     Content="Απενεργοποίηση Κάμερας"
                     Click="StopCameraButton_Click"
                     Margin="0 10 0 0"
@@ -96,8 +97,6 @@
                             Margin="0 10 0 6">
                         </TextBlock>
 
-                        <!--
-                        -->
                         <Button 
                             Content="Ανανέωση"
                             Click="RefreshButton_Click" 
@@ -125,6 +124,7 @@
             <!-- Buttons -->
             <StackPanel Orientation="Horizontal" Grid.Row="1">
                 <Button 
+                    x:Name="TakePhotoButton"
                     Grid.Row="3"
                     FontSize="16"
                     Content="Βγάλε φωτογραφία"
@@ -132,9 +132,11 @@
                     Margin="0 0 8 0"
                     BorderThickness="0"
                     Background="White"
-                    Cursor="Hand">
+                    Cursor="Hand"
+                    Click="TakePhotoButton_Click">
                 </Button>
                 <Button 
+                    x:Name="RepeatButton"
                     Grid.Row="3"
                     FontSize="16"
                     Content="Επανάληψη"
@@ -143,7 +145,8 @@
                     BorderThickness="0"
                     Background="White"
                     Foreground="Black"
-                    Cursor="Hand">
+                    Cursor="Hand"
+                    Click="RepeatButton_Click">
                 </Button>
             </StackPanel>
 
