@@ -1,6 +1,4 @@
-﻿using AristotelisThesis.Domain.Models;
-using AristotelisThesis.Domain.Services;
-using AristotelisThesis.WPF.State.Accounts;
+﻿using AristotelisThesis.WPF.ViewModels;
 using AristotelisThesis.WPF.Windows;
 using System.Windows;
 using System.Windows.Controls;
@@ -17,22 +15,45 @@ namespace AristotelisThesis.WPF.Views
             InitializeComponent();
         }
 
-        private void DeleteAccountButton_Click(object sender, RoutedEventArgs e)
+        private async void DeleteAccountButton_Click(object sender, RoutedEventArgs e)
         {
-            Window DeleteAccountWindow = new DeleteAccountWindow();
-            DeleteAccountWindow.Owner = Application.Current.MainWindow;
-            DeleteAccountWindow.ShowDialog();
-            DeleteAccountWindow.Close();
+            var confirm = new DeleteAccountWindow { Owner = Application.Current.MainWindow };
+            bool? confirmed = confirm.ShowDialog();
 
-            Console.WriteLine("Delete Account");
+            if (confirmed != true)
+            {
+                return;
+            }
+
+            if (DataContext is SettingsViewModel vm)
+            {
+                bool ok = await vm.DeleteAccountAndLogout();
+                if (!ok)
+                {
+                    MessageBox.Show("Η διαγραφή του λογαριασμού απέτυχε.", "Διαγραφή Λογαριασμού",
+                        MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
         }
 
-        private void SaveChangesButton_Click(object sender, RoutedEventArgs e)
+        private async void SaveChangesButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Οι αλλαγές αποθηκεύτηκαν επιτυχώς!", "Αποθήκευση Αλλαγών", MessageBoxButton.OK, MessageBoxImage.Information);
-            //_dataService.Update();
-            //_accountService.Update(_accountStore.CurrentAccount.AccountHolder.Id, Account);
-            Console.WriteLine("Save Changes");
+            if (DataContext is not SettingsViewModel vm)
+            {
+                return;
+            }
+
+            bool ok = await vm.SaveChanges();
+            if (ok)
+            {
+                MessageBox.Show("Οι αλλαγές αποθηκεύτηκαν επιτυχώς!", "Αποθήκευση Αλλαγών",
+                    MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                MessageBox.Show("Η αποθήκευση των αλλαγών απέτυχε.", "Αποθήκευση Αλλαγών",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

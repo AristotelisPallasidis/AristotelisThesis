@@ -111,7 +111,7 @@
                                 Text="{Binding StudentAddress, Mode=TwoWay}"
                                 CaretBrush="White"
                                 Style="{StaticResource TextBoxOfInput}"
-                                MaxLength="20" 
+                                MaxLength="200"
                                 AcceptsReturn="False">
                             </TextBox>
 
@@ -122,15 +122,17 @@
                                 Style="{StaticResource TextBlockOfInput}">
                             </TextBlock>
                             <StackPanel Orientation="Horizontal" Grid.Row="5">
-                                <RadioButton 
+                                <RadioButton
                                     Content="Αρσενικό"
+                                    IsChecked="{Binding IsMale, Mode=TwoWay}"
                                     Foreground="{StaticResource ColorLight}"
                                     FontSize="14"
                                     FontFamily="Manrope"
                                     Margin="0 0 16 0">
                                 </RadioButton>
-                                <RadioButton 
+                                <RadioButton
                                     Content="Θυληκό"
+                                    IsChecked="{Binding IsFemale, Mode=TwoWay}"
                                     Foreground="{StaticResource ColorLight}"
                                     FontSize="14"
                                     FontFamily="Manrope">
@@ -177,7 +179,7 @@
                                 Text="{Binding StudentPhone, Mode=TwoWay}"
                                 CaretBrush="White"
                                 Style="{StaticResource TextBoxOfInput}"
-                                MaxLength="9" 
+                                MaxLength="10"
                                 AcceptsReturn="False">
                             </TextBox>
 
@@ -189,10 +191,10 @@
                             </TextBlock>
                             <TextBox 
                                 Grid.Row="5"
-                                Text="{Binding StudentDateOfBirth, Mode=TwoWay}"
+                                Text="{Binding StudentDateOfBirth, Mode=TwoWay, StringFormat=dd/MM/yyyy, ConverterCulture=en-GB, ValidatesOnExceptions=True, UpdateSourceTrigger=LostFocus}"
                                 CaretBrush="White"
                                 Style="{StaticResource TextBoxOfInput}"
-                                MaxLength="9" 
+                                MaxLength="10"
                                 AcceptsReturn="False">
                             </TextBox>
 
