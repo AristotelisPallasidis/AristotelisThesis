@@ -32,6 +32,8 @@ namespace AristotelisThesis.EntityFramework
             modelBuilder.Entity<FaceImage>(b =>
             {
                 b.Property(f => f.ImageData).IsRequired();
+                // 128-d ResNet-34 embedding (512 bytes); nullable until a row is enrolled/backfilled.
+                b.Property(f => f.Embedding).IsRequired(false);
                 b.Property(f => f.DateCaptured).HasDefaultValueSql("CURRENT_TIMESTAMP");
                 b.HasOne(f => f.Student)
                  .WithMany() // adjust if Student has collection property

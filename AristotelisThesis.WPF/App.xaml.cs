@@ -3,6 +3,8 @@ using AristotelisThesis.Domain.Services;
 using AristotelisThesis.Domain.Services.AuthenticationServices;
 using AristotelisThesis.EntityFramework;
 using AristotelisThesis.EntityFramework.Services;
+using AristotelisThesis.WPF.Services;
+using AristotelisThesis.WPF.State;
 using AristotelisThesis.WPF.State.Accounts;
 using AristotelisThesis.WPF.State.Authenticators;
 using AristotelisThesis.WPF.State.Navigators;
@@ -20,9 +22,19 @@ namespace AristotelisThesis.WPF
     /// </summary>
     public partial class App : Application
     {
+        private IServiceProvider? _serviceProvider;
+        private PythonServiceLauncher? _faceServiceLauncher;
+
         protected override void OnStartup(StartupEventArgs e)
         {
             IServiceProvider serviceProvider = CreateServiceProvider();
+            _serviceProvider = serviceProvider;
+
+            // Bring up the Python face-embedding service in the background so the model is
+            // loaded by the time the user reaches the face-login screen. Non-blocking: the UI
+            // starts regardless, and face login degrades gracefully if the service is down.
+            _faceServiceLauncher = serviceProvider.GetRequiredService<PythonServiceLauncher>();
+            _ = _faceServiceLauncher.StartAsync();
 
             IAuthenticationService authentication = serviceProvider.GetRequiredService<IAuthenticationService>();
             //authentication.Login("Aris", "aris");
@@ -51,6 +63,13 @@ namespace AristotelisThesis.WPF
             base.OnStartup(e);
         }
 
+        protected override void OnExit(ExitEventArgs e)
+        {
+            // Kill the Python face service we spawned so it doesn't outlive the app.
+            _faceServiceLauncher?.Dispose();
+            base.OnExit(e);
+        }
+
         public IServiceProvider CreateServiceProvider()
         {
             IServiceCollection services= new ServiceCollection();
@@ -69,6 +88,16 @@ namespace AristotelisThesis.WPF
             services.AddSingleton<ISessionTrackingService, SessionTrackingService>();
             services.AddSingleton<IStatisticsService, StatisticsService>();
 
+            // Profile photo source + face enrollment storage
+            services.AddSingleton<IFaceImageService, FaceImageService>();
+
+            // Face recognition: Python ResNet-34 embedding bridge + its process launcher.
+            services.AddSingleton<IFaceRecognitionService, PythonFaceRecognitionService>();
+            services.AddSingleton<PythonServiceLauncher>();
+
+            // Carries registration-wizard data (personal info + captured faces) across steps.
+            services.AddSingleton<RegistrationStore>();
+
             services.AddSingleton<IPasswordHasher, PasswordHasher>();
 
 
@@ -78,11 +107,15 @@ namespace AristotelisThesis.WPF
 
             services.AddSingleton<LoginViewModel>();
             services.AddSingleton<DashboardViewModel>();
-            services.AddSingleton<FaceRecognitionViewModel>();
+            // Transient so the face gallery reloads for whoever is currently logged in.
+            services.AddTransient<FaceRecognitionViewModel>();
             services.AddSingleton<PalmprintRecognitionViewModel>();
-            services.AddSingleton<ProfileViewModel>();
+            // Per-user view state: resolve a fresh instance on each navigation so a
+            // logout/login as a different student never shows the previous user's
+            // cached fields or profile photo.
+            services.AddTransient<ProfileViewModel>();
             services.AddSingleton<StatisticsViewModel>();
-            services.AddSingleton<SettingsViewModel>();
+            services.AddTransient<SettingsViewModel>();
 
             // --------------------------------------------------------------------------------
             // Register Delegates
@@ -132,6 +165,9 @@ namespace AristotelisThesis.WPF
             services.AddSingleton<CreateViewModel<LoginWithFaceViewModel>>(services =>
             {
                 return () => new LoginWithFaceViewModel(
+                    services.GetRequiredService<IFaceRecognitionService>(),
+                    services.GetRequiredService<IAuthenticator>(),
+                    services.GetRequiredService<ViewModelDelegateRenavigator<DashboardViewModel>>(),
                     services.GetRequiredService<ViewModelDelegateRenavigator<LoginViewModel>>()
                 );
             });
@@ -166,8 +202,10 @@ namespace AristotelisThesis.WPF
             services.AddSingleton<CreateViewModel<Register02WithInformationViewModel>>(services =>
             {
                 return () => new Register02WithInformationViewModel(
+                    services.GetRequiredService<RegistrationStore>(),
                     services.GetRequiredService<ViewModelDelegateRenavigator<Register01ViewModel>>(),
-                    services.GetRequiredService<ViewModelDelegateRenavigator<Register03InstructionsForPalmprintViewModel>>()
+                    // Palmprint steps (03/04) skipped for now: go straight to the face instructions.
+                    services.GetRequiredService<ViewModelDelegateRenavigator<Register05InstructionsForFaceViewModel>>()
                 );
             });
             
@@ -190,7 +228,8 @@ namespace AristotelisThesis.WPF
             services.AddSingleton<CreateViewModel<Register05InstructionsForFaceViewModel>>(services =>
             {
                 return () => new Register05InstructionsForFaceViewModel(
-                    services.GetRequiredService<ViewModelDelegateRenavigator<Register04WithPalmprintViewModel>>(),
+                    // Palmprint steps skipped: Back returns to the personal-info step.
+                    services.GetRequiredService<ViewModelDelegateRenavigator<Register02WithInformationViewModel>>(),
                     services.GetRequiredService<ViewModelDelegateRenavigator<Register06WithFaceViewModel>>()
                 );
             });
@@ -198,15 +237,11 @@ namespace AristotelisThesis.WPF
             services.AddSingleton<CreateViewModel<Register06WithFaceViewModel>>(services =>
             {
                 return () => new Register06WithFaceViewModel(
-                    services.GetRequiredService<ViewModelDelegateRenavigator<Register05InstructionsForFaceViewModel>>(),
-                    services.GetRequiredService<ViewModelDelegateRenavigator<DashboardViewModel>>()
-                );
-            });
-
-
-            services.AddSingleton<CreateViewModel<Register06WithFaceViewModel>>(services =>
-            {
-                return () => new Register06WithFaceViewModel(
+                    services.GetRequiredService<RegistrationStore>(),
+                    services.GetRequiredService<IFaceRecognitionService>(),
+                    services.GetRequiredService<IFaceImageService>(),
+                    services.GetRequiredService<IAccountService>(),
+                    services.GetRequiredService<IAuthenticator>(),
                     services.GetRequiredService<ViewModelDelegateRenavigator<Register05InstructionsForFaceViewModel>>(),
                     services.GetRequiredService<ViewModelDelegateRenavigator<DashboardViewModel>>()
                 );

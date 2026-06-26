@@ -32,8 +32,9 @@ namespace AristotelisThesis.WPF.Views
 
         private void Vm_FrameReady(object? sender, BitmapSource e)
         {
-            // Called from background thread but BitmapSource is frozen in VM, safe to set directly.
-            CameraFeed.Dispatcher.Invoke(() => CameraFeed.Source = e);
+            // BitmapSource is frozen in the VM, so marshal asynchronously (BeginInvoke) to keep
+            // the capture thread from stalling on the UI for every frame.
+            CameraFeed.Dispatcher.BeginInvoke(() => CameraFeed.Source = e);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -43,19 +44,15 @@ namespace AristotelisThesis.WPF.Views
                 return;
             }
 
-            // populate camera list on load
-            _vm.RefreshCameras();
+            // ItemsSource is the observable collection; the async refresh fills it in without
+            // blocking the UI.
             CameraList.ItemsSource = _vm.Cameras;
+            _ = _vm.RefreshCamerasAsync();
         }
 
         private void RefreshButton_Click(object sender, RoutedEventArgs e)
         {
-            if (_vm == null)
-            {
-                return;
-            }
-
-            _vm.RefreshCameras();
+            _ = _vm?.RefreshCamerasAsync();
         }
 
         private void CameraList_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -65,9 +62,9 @@ namespace AristotelisThesis.WPF.Views
                 return;
             }
 
-            if (CameraList.SelectedItem is string s && int.TryParse(s, out int idx))
+            if (CameraList.SelectedIndex >= 0)
             {
-                _vm.StartCamera(idx);
+                _vm.StartCamera(CameraList.SelectedIndex);
             }
         }
 
@@ -89,8 +86,12 @@ namespace AristotelisThesis.WPF.Views
                 return;
             }
 
-            var result = await _vm.TakePhotoAndRecognizeAsync();
-            MessageBox.Show(result, "Αναγνώριση Προσώπου", MessageBoxButton.OK, MessageBoxImage.Information);
+            var result = await _vm.RecognizeAndLoginAsync();
+            MessageBox.Show(
+                result.Message,
+                "Αναγνώριση Προσώπου",
+                MessageBoxButton.OK,
+                result.Success ? MessageBoxImage.Information : MessageBoxImage.Warning);
         }
 
         private void RepeatButton_Click(object sender, RoutedEventArgs e)
@@ -101,10 +102,10 @@ namespace AristotelisThesis.WPF.Views
             }
 
             // Repeat = restart camera (if a camera was selected)
-            if (CameraList.SelectedItem is string s && int.TryParse(s, out int idx))
+            if (CameraList.SelectedIndex >= 0)
             {
                 _vm.StopCamera();
-                _vm.StartCamera(idx);
+                _vm.StartCamera(CameraList.SelectedIndex);
             }
         }
     }

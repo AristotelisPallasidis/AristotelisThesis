@@ -1,0 +1,20 @@
+# Base runtime deps (all ship prebuilt Windows wheels).
+fastapi
+uvicorn[standard]
+pillow
+numpy
+python-multipart
+click
+
+# Prebuilt dlib for Windows (no CMake / Visual C++ build tools needed).
+# This replaces the source-built `dlib` package, which fails to compile without
+# a full C++ toolchain.
+dlib-bin
+
+# The dlib ResNet face models used by face_recognition.
+face_recognition_models
+
+# NOTE: `face_recognition` itself must be installed WITHOUT dependencies, otherwise
+# pip tries to build the source `dlib` package and fails. Install it separately:
+#   pip install face_recognition --no-deps
+# (see install.ps1, which does this for you)
