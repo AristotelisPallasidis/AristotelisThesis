@@ -21,6 +21,9 @@ namespace AristotelisThesis.WPF.ViewModels
     /// </summary>
     public class Register06WithFaceViewModel : ViewModelBase
     {
+        // Number of face photos the user must capture to complete enrollment.
+        private const int RequiredFaceCount = 7;
+
         private readonly CameraCaptureService _camera = new CameraCaptureService();
         private readonly RegistrationStore _registration;
         private readonly IFaceRecognitionService _faceRecognition;
@@ -34,7 +37,7 @@ namespace AristotelisThesis.WPF.ViewModels
         public event EventHandler<BitmapSource>? FrameReady;
         public ObservableCollection<string> Cameras => _camera.Cameras;
 
-        private string _statusText = "Δεν έχει ληφθεί φωτογραφία.";
+        private string _statusText = $"Χρειάζεστε {RequiredFaceCount} φωτογραφίες προσώπου (0/{RequiredFaceCount}).";
         public string StatusText
         {
             get => _statusText;
@@ -72,6 +75,12 @@ namespace AristotelisThesis.WPF.ViewModels
         /// </summary>
         public async Task<string> CapturePhotoAsync()
         {
+            if (_registration.CapturedFaces.Count >= RequiredFaceCount)
+            {
+                StatusText = $"Έχετε ήδη λάβει {RequiredFaceCount} φωτογραφίες. Πατήστε 'Ολοκλήρωση' ή 'Επανάληψη'.";
+                return StatusText;
+            }
+
             byte[]? jpeg = _camera.CaptureJpeg();
             if (jpeg == null)
             {
@@ -87,7 +96,10 @@ namespace AristotelisThesis.WPF.ViewModels
             }
 
             _registration.CapturedFaces.Add((jpeg, embedding));
-            StatusText = $"Ελήφθησαν {_registration.CapturedFaces.Count} φωτογραφία(ες).";
+            int count = _registration.CapturedFaces.Count;
+            StatusText = count >= RequiredFaceCount
+                ? $"Ελήφθησαν {count}/{RequiredFaceCount}. Μπορείτε να ολοκληρώσετε."
+                : $"Ελήφθησαν {count}/{RequiredFaceCount} φωτογραφίες.";
             return StatusText;
         }
 
@@ -97,7 +109,7 @@ namespace AristotelisThesis.WPF.ViewModels
         public void Repeat()
         {
             _registration.CapturedFaces.Clear();
-            StatusText = "Οι φωτογραφίες διαγράφηκαν. Λάβετε ξανά.";
+            StatusText = $"Οι φωτογραφίες διαγράφηκαν. Λάβετε {RequiredFaceCount} ξανά (0/{RequiredFaceCount}).";
         }
 
         /// <summary>
@@ -106,9 +118,10 @@ namespace AristotelisThesis.WPF.ViewModels
         /// </summary>
         public async Task<FaceLoginResult> FinishAsync()
         {
-            if (_registration.CapturedFaces.Count == 0)
+            if (_registration.CapturedFaces.Count < RequiredFaceCount)
             {
-                return new FaceLoginResult(false, "Λάβετε τουλάχιστον μία φωτογραφία προσώπου πριν συνεχίσετε.");
+                return new FaceLoginResult(false,
+                    $"Πρέπει να λάβετε {RequiredFaceCount} φωτογραφίες προσώπου (έχετε {_registration.CapturedFaces.Count}).");
             }
 
             if (!TryBuildStudent(out Student student, out string error))
