@@ -70,27 +70,27 @@
                         <!-- First name -->
                         <TextBlock
                     Grid.Row="0"
-                    Text="Όνομα:"
-                    Style="{StaticResource TextBlockOfInput}">
+                    Style="{StaticResource TextBlockOfInput}"><Run Text="Όνομα:" /><Run Text=" *" Foreground="Red" />
                         </TextBlock>
-                        <TextBox 
+                        <TextBox
                     Grid.Row="1"
                     Style="{StaticResource TextBoxOfInput}"
-                    MaxLength="20" 
-                    AcceptsReturn="False">
+                    MaxLength="20"
+                    AcceptsReturn="False"
+                    Text="{Binding Registration.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                         </TextBox>
 
                         <!-- Address -->
                         <TextBlock
                     Grid.Row="2"
-                    Text="Διεύθυνση Κατοικίας:"
-                    Style="{StaticResource TextBlockOfInput}">
+                    Style="{StaticResource TextBlockOfInput}"><Run Text="Διεύθυνση Κατοικίας:" /><Run Text=" *" Foreground="Red" />
                         </TextBlock>
-                        <TextBox 
+                        <TextBox
                     Grid.Row="3"
                     Style="{StaticResource TextBoxOfInput}"
-                    MaxLength="20" 
-                    AcceptsReturn="False">
+                    MaxLength="200"
+                    AcceptsReturn="False"
+                    Text="{Binding Registration.Address, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                         </TextBox>
 
                         <!-- Gender -->
@@ -100,18 +100,20 @@
                     Style="{StaticResource TextBlockOfInput}">
                         </TextBlock>
                         <StackPanel Orientation="Horizontal" Grid.Row="5">
-                            <RadioButton 
+                            <RadioButton
                         Content="Αρσενικό"
                         Foreground="{StaticResource ColorLight}"
                         FontSize="14"
                         FontFamily="Manrope"
-                        Margin="0 0 16 0">
+                        Margin="0 0 16 0"
+                        IsChecked="{Binding Registration.IsMale, Mode=TwoWay}">
                             </RadioButton>
-                            <RadioButton 
+                            <RadioButton
                         Content="Θυληκό"
                         Foreground="{StaticResource ColorLight}"
                         FontSize="14"
-                        FontFamily="Manrope">
+                        FontFamily="Manrope"
+                        IsChecked="{Binding Registration.IsFemale, Mode=TwoWay}">
                             </RadioButton>
                         </StackPanel>
 
@@ -132,40 +134,40 @@
                         <!-- Last name -->
                         <TextBlock
                      Grid.Row="0"
-                     Text="Επίθετο:"
-                     Style="{StaticResource TextBlockOfInput}">
+                     Style="{StaticResource TextBlockOfInput}"><Run Text="Επίθετο:" /><Run Text=" *" Foreground="Red" />
                         </TextBlock>
-                        <TextBox 
+                        <TextBox
                      Grid.Row="1"
                      Style="{StaticResource TextBoxOfInput}"
-                     MaxLength="20" 
-                     AcceptsReturn="False">
+                     MaxLength="20"
+                     AcceptsReturn="False"
+                     Text="{Binding Registration.Surname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                         </TextBox>
 
                         <!-- Contact Phone -->
                         <TextBlock
                     Grid.Row="2"
-                    Text="Τηλέφωνο Επικοινωνίας:"
-                    Style="{StaticResource TextBlockOfInput}">
+                    Style="{StaticResource TextBlockOfInput}"><Run Text="Τηλέφωνο Επικοινωνίας:" /><Run Text=" *" Foreground="Red" />
                         </TextBlock>
-                        <TextBox 
+                        <TextBox
                             Grid.Row="3"
                             Style="{StaticResource TextBoxOfInput}"
-                            MaxLength="9" 
-                            AcceptsReturn="False">
+                            MaxLength="10"
+                            AcceptsReturn="False"
+                            Text="{Binding Registration.Phone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                         </TextBox>
 
                         <!-- Ημερομηνία Γέννησης -->
                         <TextBlock
                             Grid.Row="4"
-                            Text="Ημερομηνία Γέννησης:dd/mm/yyyy"
-                            Style="{StaticResource TextBlockOfInput}">
+                            Style="{StaticResource TextBlockOfInput}"><Run Text="Ημερομηνία Γέννησης:dd/mm/yyyy" /><Run Text=" *" Foreground="Red" />
                         </TextBlock>
-                        <TextBox 
+                        <TextBox
                             Grid.Row="5"
                             Style="{StaticResource TextBoxOfInput}"
-                            MaxLength="9" 
-                            AcceptsReturn="False">
+                            MaxLength="10"
+                            AcceptsReturn="False"
+                            Text="{Binding Registration.DateOfBirth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                         </TextBox>
 
                     </Grid>
@@ -219,41 +221,41 @@
                         <!-- Academic Email -->
                         <TextBlock
                     Grid.Row="0"
-                    Text="Ακαδημαϊκό Ηλεκτρ. Ταχυδρομείο"
-                    Style="{StaticResource TextBlockOfInput}">
+                    Style="{StaticResource TextBlockOfInput}"><Run Text="Ακαδημαϊκό Ηλεκτρ. Ταχυδρομείο" /><Run Text=" *" Foreground="Red" />
                         </TextBlock>
-                        <TextBox 
+                        <TextBox
                     Grid.Row="1"
                     Style="{StaticResource TextBoxOfInput}"
-                    MaxLength="20" 
-                    AcceptsReturn="False">
+                    MaxLength="50"
+                    AcceptsReturn="False"
+                    Text="{Binding Registration.AcademicEmail, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                         </TextBox>
 
                         <!-- Department -->
                         <TextBlock
                     Grid.Row="4"
-                    Text="Τμήμα"
-                    Style="{StaticResource TextBlockOfInput}">
+                    Style="{StaticResource TextBlockOfInput}"><Run Text="Τμήμα" /><Run Text=" *" Foreground="Red" />
                         </TextBlock>
-                        <TextBox 
-                    Grid.Row="5"
-                    Style="{StaticResource TextBoxOfInput}"
-                    MaxLength="20" 
-                    AcceptsReturn="False">
-                        </TextBox>
+                        <ComboBox Grid.Row="5"
+                            Style="{StaticResource ComboBoxOfInput}"
+                            SelectedValuePath="Content"
+                            SelectedValue="{Binding Registration.Department, Mode=TwoWay}">
+                            <ComboBoxItem Content="Πληροφορική" />
+                            <ComboBoxItem Content="Φυσικό" />
+                            <ComboBoxItem Content="Χημικό" />
+                            <ComboBoxItem Content="Μαθηματικό" />
+                        </ComboBox>
 
                         <!-- Year of Study -->
                         <TextBlock
                     Grid.Row="6"
-                    Text="Χρονιά Εισαγωγής"
-                    Style="{StaticResource TextBlockOfInput}">
+                    Style="{StaticResource TextBlockOfInput}"><Run Text="Χρονιά Εισαγωγής" /><Run Text=" *" Foreground="Red" />
                         </TextBlock>
-                        <TextBox 
-                    Grid.Row="7"
-                    Style="{StaticResource TextBoxOfInput}"
-                    MaxLength="20" 
-                    AcceptsReturn="False">
-                        </TextBox>
+                        <ComboBox Grid.Row="7"
+                    Style="{StaticResource ComboBoxOfInput}"
+                    ItemsSource="{Binding Years}"
+                    SelectedItem="{Binding Registration.YearOfEntry, Mode=TwoWay}">
+                        </ComboBox>
 
 
 
@@ -272,27 +274,27 @@
                         <!-- AEM -->
                         <TextBlock
                     Grid.Row="0"
-                    Text="ΑΕΜ Φοιτητή"
-                    Style="{StaticResource TextBlockOfInput}">
+                    Style="{StaticResource TextBlockOfInput}"><Run Text="ΑΕΜ Φοιτητή" /><Run Text=" *" Foreground="Red" />
                         </TextBlock>
-                        <TextBox 
+                        <TextBox
                     Grid.Row="1"
                     Style="{StaticResource TextBoxOfInput}"
-                    MaxLength="20" 
-                    AcceptsReturn="False">
+                    MaxLength="5"
+                    AcceptsReturn="False"
+                    Text="{Binding Registration.Aem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                         </TextBox>
 
                         <!-- Semester -->
                         <TextBlock
                     Grid.Row="2"
-                    Text="Εξάμηνο (Τρέχον)"
-                    Style="{StaticResource TextBlockOfInput}">
+                    Style="{StaticResource TextBlockOfInput}"><Run Text="Εξάμηνο (Τρέχον)" /><Run Text=" *" Foreground="Red" />
                         </TextBlock>
-                        <TextBox 
+                        <TextBox
                     Grid.Row="3"
                     Style="{StaticResource TextBoxOfInput}"
-                    MaxLength="20" 
-                    AcceptsReturn="False">
+                    MaxLength="2"
+                    AcceptsReturn="False"
+                    Text="{Binding Registration.Semester, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                         </TextBox>
 
                         <!-- Degree -->
@@ -302,18 +304,20 @@
                             Style="{StaticResource TextBlockOfInput}">
                         </TextBlock>
                         <StackPanel Orientation="Horizontal" Grid.Row="5">
-                            <RadioButton 
+                            <RadioButton
                                 Content="Προπτυχιακό"
                                 Foreground="{StaticResource ColorLight}"
                                 FontSize="14"
                                 FontFamily="Manrope"
-                                Margin="0 0 16 0">
+                                Margin="0 0 16 0"
+                                IsChecked="{Binding Registration.IsUndergraduate, Mode=TwoWay}">
                             </RadioButton>
-                            <RadioButton 
+                            <RadioButton
                                 Content="Μεταπτυχιακό"
                                 Foreground="{StaticResource ColorLight}"
                                 FontSize="14"
-                                FontFamily="Manrope">
+                                FontFamily="Manrope"
+                                IsChecked="{Binding Registration.IsPostgraduate, Mode=TwoWay}">
                             </RadioButton>
                         </StackPanel>
                     </Grid>

@@ -5,14 +5,16 @@
     <Style x:Key="TextBoxOfInput" TargetType="Control">
 
         <Setter Property="Width" Value="240"/>
-        <Setter Property="Height" Value="30"/>
+        <Setter Property="Height" Value="36"/>
 
-        <Setter Property="Padding" Value="4"/>
+        <Setter Property="Padding" Value="8,0"/>
 
         <Setter Property="BorderThickness" Value="0"/>
 
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <!-- Center text vertically so descenders (e.g. dd/mm/yyyy, emails) aren't clipped. -->
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
 
         <Setter Property="Foreground" Value="{StaticResource ColorLight}"/>
 
