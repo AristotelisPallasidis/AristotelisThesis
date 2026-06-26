@@ -50,10 +50,11 @@
         <Grid Grid.Row="1">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
 
-                <Button 
-                    Content="Ναι" 
-                    HorizontalAlignment="Left" 
-                    VerticalAlignment="Top" 
+                <Button
+                    Content="Ναι"
+                    Click="AcceptButton_Click"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
                     Width="75"
                     Padding="10 4"
                     Foreground="White"
@@ -61,9 +62,6 @@
                     BorderThickness="0"
                     Background="{StaticResource ColorDanger}">
                 </Button>
-                    <!-- 
-                    Click="AcceptButton_Click"
-                    -->
                 <Button 
                     Content="Ακύρωση" 
                     Click="DeclineButton_Click"

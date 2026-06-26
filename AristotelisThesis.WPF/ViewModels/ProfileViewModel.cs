@@ -1,25 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
+using System;
+using System.IO;
 using System.Threading.Tasks;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using AristotelisThesis.Domain.Services;
 using AristotelisThesis.WPF.State.Accounts;
-using AristotelisThesis.Domain.Models;
 
 namespace AristotelisThesis.WPF.ViewModels
 {
     public class ProfileViewModel : ViewModelBase
     {
-        private readonly IAccountStore _accountStore;
+        // Shown when the student has no enrolled face image. Embedded resource
+        // (see the .csproj) so it resolves on any machine, not just the dev box.
+        private const string FallbackPhotoUri =
+            "pack://application:,,,/Assets/01.jpeg";
 
-        public ProfileViewModel(IAccountStore accountStore)
+        private readonly IAccountStore _accountStore;
+        private readonly IFaceImageService _faceImageService;
+
+        public ProfileViewModel(IAccountStore accountStore, IFaceImageService faceImageService)
         {
             _accountStore = accountStore;
-        }
+            _faceImageService = faceImageService;
 
-        // ADD THE IMAGE OF THE CURRENT STUDENT (TAKE THE FIRST FROM THE FACE DATABASE)
+            _ = LoadPhoto();
+        }
 
         public int StudentAEM => _accountStore.CurrentAccount.AccountHolder.AEM;
         public string StudentName => _accountStore.CurrentAccount.AccountHolder.Name;
@@ -29,5 +34,64 @@ namespace AristotelisThesis.WPF.ViewModels
         public string StudentYearOfEntry => $"Έτος εισαγωγής {_accountStore.CurrentAccount.AccountHolder.YearOfEntry}";
         public string StudentAcademicEmail => _accountStore.CurrentAccount.AccountHolder.AcademicEmail;
 
+        private ImageSource _studentPhoto;
+        public ImageSource StudentPhoto
+        {
+            get => _studentPhoto;
+            private set
+            {
+                _studentPhoto = value;
+                OnPropertyChanged(nameof(StudentPhoto));
+            }
+        }
+
+        private async Task LoadPhoto()
+        {
+            try
+            {
+                int studentId = _accountStore.CurrentAccount.AccountHolder.Id;
+                byte[] data = await _faceImageService.GetFirstImageData(studentId);
+
+                StudentPhoto = data is { Length: > 0 }
+                    ? CreateImage(data)
+                    : LoadFallback();
+            }
+            catch
+            {
+                StudentPhoto = LoadFallback();
+            }
+        }
+
+        private static BitmapImage CreateImage(byte[] data)
+        {
+            var image = new BitmapImage();
+            using (var ms = new MemoryStream(data))
+            {
+                image.BeginInit();
+                image.CacheOption = BitmapCacheOption.OnLoad;
+                image.StreamSource = ms;
+                image.EndInit();
+            }
+            image.Freeze();
+            return image;
+        }
+
+        private static ImageSource LoadFallback()
+        {
+            try
+            {
+                var image = new BitmapImage();
+                image.BeginInit();
+                image.CacheOption = BitmapCacheOption.OnLoad;
+                image.UriSource = new Uri(FallbackPhotoUri, UriKind.Absolute);
+                image.EndInit();
+                image.Freeze();
+                return image;
+            }
+            catch
+            {
+                return null;
+            }
+        }
     }
 }

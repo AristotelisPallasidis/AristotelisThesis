@@ -1,32 +1,27 @@
-﻿using AristotelisThesis.Domain.Services;
-using System.Windows;
+﻿using System.Windows;
 
 namespace AristotelisThesis.WPF.Windows
 {
     /// <summary>
-    /// Interaction logic for DeleteAccountWindow.xaml
+    /// Interaction logic for DeleteAccountWindow.xaml.
+    /// Pure confirmation dialog: returns DialogResult true when the user confirms.
     /// </summary>
     public partial class DeleteAccountWindow : Window
     {
-        IAccountService _accountService;
-     
         public DeleteAccountWindow()
         {
             InitializeComponent();
         }
 
+        // Setting DialogResult closes the dialog and returns to the caller.
         public void AcceptButton_Click(object sender, RoutedEventArgs e)
         {
-            // Close the dialog window
-            this.Close();
+            DialogResult = true;
         }
 
         private void DeclineButton_Click(object sender, RoutedEventArgs e)
         {
-            // Close the dialog window
-            this.Close();
+            DialogResult = false;
         }
-
-
     }
 }

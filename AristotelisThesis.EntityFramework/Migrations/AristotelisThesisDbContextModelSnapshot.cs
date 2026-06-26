@@ -53,6 +53,9 @@ namespace AristotelisThesis.EntityFramework.Migrations
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
+                    b.Property<byte[]>("Embedding")
+                        .HasColumnType("varbinary(max)");
+
                     b.Property<byte[]>("ImageData")
                         .IsRequired()
                         .HasColumnType("varbinary(max)");

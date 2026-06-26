@@ -49,83 +49,32 @@
                 </Grid.ColumnDefinitions>
 
                 <Grid Grid.Column="0" >
-                    <Image 
-                        Source="C:\Users\Aristotelis\Desktop\test2\AristotelisThesis\AristotelisThesis.WPF\Assets\01.jpeg" 
-                        HorizontalAlignment="Left" 
+                    <Image
+                        Source="{Binding PrimaryImage}"
+                        HorizontalAlignment="Left"
                         VerticalAlignment="Stretch">
                     </Image>
                 </Grid>
 
-                <Grid Grid.Column="1">
+                <!-- Gallery of the current user's enrolled face images -->
+                <Grid Grid.Column="1" Grid.ColumnSpan="2">
 
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-
-
-                    <Grid Grid.Column="0" VerticalAlignment="Stretch">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-
-                        <Grid Grid.Row="0">
-                            <Image Source="C:\Users\Aristotelis\Desktop\test2\AristotelisThesis\AristotelisThesis.WPF\Assets\01.jpeg" Width="90"></Image>
-                        </Grid>
-
-                        <Grid Grid.Row="1">
-                            <Image Source="C:\Users\Aristotelis\Desktop\test2\AristotelisThesis\AristotelisThesis.WPF\Assets\01.jpeg" Width="90"></Image>
-                        </Grid>
-
-                        <Grid Grid.Row="2">
-                            <Image Source="C:\Users\Aristotelis\Desktop\test2\AristotelisThesis\AristotelisThesis.WPF\Assets\01.jpeg" Width="90"></Image>
-                        </Grid>
-
-                        <Grid Grid.Row="3">
-                            <Image Source="C:\Users\Aristotelis\Desktop\test2\AristotelisThesis\AristotelisThesis.WPF\Assets\01.jpeg" Width="90"></Image>
-                        </Grid>
-
-                        <Grid Grid.Row="4">
-                            <Image Source="C:\Users\Aristotelis\Desktop\test2\AristotelisThesis\AristotelisThesis.WPF\Assets\01.jpeg" Width="90"></Image>
-                        </Grid>
-                    </Grid>
-
-
-                    <Grid Grid.Column="1" VerticalAlignment="Stretch">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-
-                        <Grid Grid.Row="0">
-                            <Image Source="C:\Users\Aristotelis\Desktop\test2\AristotelisThesis\AristotelisThesis.WPF\Assets\01.jpeg" Width="90"></Image>
-                        </Grid>
-
-                        <Grid Grid.Row="1">
-                            <Image Source="C:\Users\Aristotelis\Desktop\test2\AristotelisThesis\AristotelisThesis.WPF\Assets\01.jpeg" Width="90"></Image>
-                        </Grid>
-
-                        <Grid Grid.Row="2">
-                            <Image Source="C:\Users\Aristotelis\Desktop\test2\AristotelisThesis\AristotelisThesis.WPF\Assets\01.jpeg" Width="90"></Image>
-                        </Grid>
-
-                        <Grid Grid.Row="3">
-                            <Image Source="C:\Users\Aristotelis\Desktop\test2\AristotelisThesis\AristotelisThesis.WPF\Assets\01.jpeg" Width="90"></Image>
-                        </Grid>
-
-                        <Grid Grid.Row="4">
-                            <Image Source="C:\Users\Aristotelis\Desktop\test2\AristotelisThesis\AristotelisThesis.WPF\Assets\01.jpeg" Width="90"></Image>
-                        </Grid>
-
-                    </Grid>
-
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                        <ItemsControl ItemsSource="{Binding FaceImages}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel Orientation="Horizontal" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Margin="6" BorderBrush="#444" BorderThickness="1" CornerRadius="4">
+                                        <Image Source="{Binding}" Width="90" Height="110" Stretch="UniformToFill" />
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
                 </Grid>
 
                 <Grid Grid.Column="3">

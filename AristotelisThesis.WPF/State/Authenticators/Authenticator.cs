@@ -79,6 +79,31 @@ namespace AristotelisThesis.WPF.State.Authenticators
         }
 
         /// <summary>
+        /// Logs in a student via face recognition. Mirrors <see cref="Login"/> on success:
+        /// stamps the session start, exposes the account, and records the attendance check-in.
+        /// </summary>
+        /// <param name="probeEmbedding">The 128-d embedding of the captured face.</param>
+        /// <returns>True when a matching enrolled face is found and the student is logged in.</returns>
+        public async Task<bool> LoginWithFace(float[] probeEmbedding)
+        {
+            Account account = await _authenticationService.LoginWithFace(probeEmbedding);
+            if (account == null)
+            {
+                return false;
+            }
+
+            _accountStore.LoginTime = DateTime.Now;
+            CurrentAccount = account;
+
+            if (CurrentAccount?.AccountHolder != null)
+            {
+                await _sessionTrackingService.RecordCheckIn(CurrentAccount.AccountHolder.Id);
+            }
+
+            return true;
+        }
+
+        /// <summary>
         /// This function is used to logout a student from the system.
         /// </summary>
         public void Logout()

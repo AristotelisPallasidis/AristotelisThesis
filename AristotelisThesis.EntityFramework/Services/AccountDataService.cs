@@ -28,7 +28,28 @@ namespace AristotelisThesis.EntityFramework.Services
 
         public async Task<bool> Delete(int id)
         {
-            return await _nonQueryDataService.Delete(id);
+            // Deleting an account removes its student too; the FK cascade then
+            // cleans up the student's face images and session history.
+            using (AristotelisThesisDbContext context = _contextFactory.CreateDbContext())
+            {
+                Account account = await context.Accounts
+                    .Include(a => a.AccountHolder)
+                    .FirstOrDefaultAsync(a => a.Id == id);
+
+                if (account == null)
+                {
+                    return false;
+                }
+
+                if (account.AccountHolder != null)
+                {
+                    context.Students.Remove(account.AccountHolder);
+                }
+                context.Accounts.Remove(account);
+
+                await context.SaveChangesAsync();
+                return true;
+            }
         }
 
         public async Task<Account> Get(int id)
@@ -61,6 +82,16 @@ namespace AristotelisThesis.EntityFramework.Services
                 return await context.Accounts
                     .Include(a => a.AccountHolder)
                     .FirstOrDefaultAsync(a => a.AccountHolder.AcademicEmail == email);
+            }
+        }
+
+        public async Task<Account> GetByStudentId(int studentId)
+        {
+            using (AristotelisThesisDbContext context = _contextFactory.CreateDbContext())
+            {
+                return await context.Accounts
+                    .Include(a => a.AccountHolder)
+                    .FirstOrDefaultAsync(a => a.AccountHolder.Id == studentId);
             }
         }
 
