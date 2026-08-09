@@ -20,6 +20,9 @@ namespace AristotelisThesis.EntityFramework
         // Add FaceImages DB set so EF tracks this entity
         public DbSet<FaceImage> FaceImages { get; set; }
 
+        // Enrolled palmprint images + feature vectors (mirror of FaceImages).
+        public DbSet<PalmprintImage> PalmprintImages { get; set; }
+
         // Daily attendance ledger; source of truth for the Statistics page.
         public DbSet<SessionHistory> SessionHistories { get; set; }
 
@@ -38,6 +41,18 @@ namespace AristotelisThesis.EntityFramework
                 b.HasOne(f => f.Student)
                  .WithMany() // adjust if Student has collection property
                  .HasForeignKey(f => f.StudentId)
+                 .OnDelete(DeleteBehavior.Cascade);
+            });
+
+            // PalmprintImage: same shape as FaceImage; cascades when the student is removed.
+            modelBuilder.Entity<PalmprintImage>(b =>
+            {
+                b.Property(p => p.ImageData).IsRequired();
+                b.Property(p => p.Embedding).IsRequired(false);
+                b.Property(p => p.DateCaptured).HasDefaultValueSql("CURRENT_TIMESTAMP");
+                b.HasOne(p => p.Student)
+                 .WithMany()
+                 .HasForeignKey(p => p.StudentId)
                  .OnDelete(DeleteBehavior.Cascade);
             });
 
