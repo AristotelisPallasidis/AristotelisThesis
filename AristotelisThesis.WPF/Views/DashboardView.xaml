@@ -19,18 +19,19 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
+            <!-- Shared rows: both columns line up on the same two card rows. -->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
             <!-- ////////////////////////////// -->
             <!-- LEFT SIDE -->
             <!-- ////////////////////////////// -->
-            <Grid Grid.Column="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
 
-                <!-- Welcome & Introduction -->
-                <Grid Grid.Row="0" HorizontalAlignment="Stretch">
+            <!-- Welcome & Introduction -->
+            <Grid Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
@@ -66,7 +67,7 @@
                 </Grid>
 
 
-                <Grid Grid.Row="1" Margin="0 20 10 0">
+                <Grid Grid.Row="1" Grid.Column="0" Margin="0 20 10 0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
@@ -130,7 +131,7 @@
                 </Grid>
 
 
-                <Grid Grid.Row="2" Margin="0 20 10 0">
+                <Grid Grid.Row="2" Grid.Column="0" Margin="0 20 10 0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
@@ -191,70 +192,57 @@
 
                 </Grid>
 
-            </Grid>
-
-            
             <!-- ////////////////////////////// -->
             <!-- RIGHT SIDE -->
             <!-- ////////////////////////////// -->
-            <Grid Grid.Column="1">
-                
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
 
+            <!-- Spans both card rows, so it starts and ends level with the cards on the left. -->
+            <Grid Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Margin="10 20 0 0">
+                <Border
+                    Background="#E6E6E6"
+                    Padding="20"
+                    CornerRadius="8 8 8 8"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch">
 
-                <Grid Grid.Row="1" Margin="10 15 0 0">
-                    <Border
-                        Grid.Row="1"
-                        Background="#E6E6E6"
-                        Padding="20"
-                        CornerRadius="8 8 8 8"
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Stretch">
-                        
-                        <StackPanel Orientation="Vertical">
-                            <TextBlock 
-                                Text="Στατιστικά Στοιχεία" 
-                                FontSize="22"
-                                FontWeight="Bold"
-                                Foreground="{StaticResource ColorDark}">
-                            </TextBlock>
-                            
-                            <Separator Width="auto" Margin="0 10"/>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="*" />
+                            <!-- The percentage takes whatever height is left -->
+                        </Grid.RowDefinitions>
 
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="auto" />
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition Height="auto" />
-                                    <!-- This row will stretch -->
-                                </Grid.RowDefinitions>
+                        <TextBlock
+                            Grid.Row="0"
+                            Text="Στατιστικά Στοιχεία"
+                            FontSize="22"
+                            FontWeight="Bold"
+                            Foreground="{StaticResource ColorDark}">
+                        </TextBlock>
 
-                                <TextBlock 
-                                    Grid.Row="0"
-                                    Text="Εβδομαδιαίο σύνολο ώρων σύνδεσης" 
-                                    FontSize="20">
-                                </TextBlock>
+                        <Separator Grid.Row="1" Width="auto" Margin="0 10"/>
 
-                                <TextBlock 
-                                    Grid.Row="2"
-                                    Text="64" 
-                                    Foreground="{StaticResource ColorSuccess}" 
-                                    FontSize="120"
-                                    FontWeight="Black"
-                                    HorizontalAlignment="Right" 
-                                    VerticalAlignment="Stretch"
-                                    Margin="0 200 10 10"> <!-- Margin ensures some space from edges -->
-                                </TextBlock>
-                            </Grid>
+                        <TextBlock
+                            Grid.Row="2"
+                            Text="Εβδομαδιαίο ποσοστό παρουσίας"
+                            FontSize="20">
+                        </TextBlock>
 
-                        </StackPanel>
+                        <TextBlock
+                            Grid.Row="3"
+                            Text="{Binding WeeklyAttendancePercentage}"
+                            Foreground="{StaticResource ColorSuccess}"
+                            FontSize="120"
+                            FontWeight="Black"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Bottom"
+                            Margin="0 10 10 10"> <!-- Margin ensures some space from edges -->
+                        </TextBlock>
+                    </Grid>
 
-                    </Border>
-                    
-                </Grid>
+                </Border>
 
             </Grid>
 
