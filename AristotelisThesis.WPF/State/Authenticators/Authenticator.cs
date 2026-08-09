@@ -104,6 +104,28 @@ namespace AristotelisThesis.WPF.State.Authenticators
         }
 
         /// <summary>
+        /// Logs in a student via palmprint recognition. Mirrors <see cref="LoginWithFace"/>.
+        /// </summary>
+        public async Task<bool> LoginWithPalmprint(float[] probeEmbedding)
+        {
+            Account account = await _authenticationService.LoginWithPalmprint(probeEmbedding);
+            if (account == null)
+            {
+                return false;
+            }
+
+            _accountStore.LoginTime = DateTime.Now;
+            CurrentAccount = account;
+
+            if (CurrentAccount?.AccountHolder != null)
+            {
+                await _sessionTrackingService.RecordCheckIn(CurrentAccount.AccountHolder.Id);
+            }
+
+            return true;
+        }
+
+        /// <summary>
         /// This function is used to logout a student from the system.
         /// </summary>
         public void Logout()

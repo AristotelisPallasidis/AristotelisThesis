@@ -4,7 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:AristotelisThesis.WPF.Views"
-             mc:Ignorable="d" 
+             xmlns:controls="clr-namespace:AristotelisThesis.WPF.Controls"
+             mc:Ignorable="d"
              d:DesignWidth="1920" d:DesignHeight="1080"
              Background="#1D1C1D"
              Loaded="Window_Loaded">
@@ -51,6 +52,7 @@
             <!-- Camera Feed -->
             <Grid Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Image x:Name="CameraFeed" Stretch="Fill" />
+                <controls:PalmGuideOverlay />
             </Grid>
 
             <Grid Grid.Row="2">
@@ -124,20 +126,20 @@
             
             <!-- Buttons -->
             <StackPanel Orientation="Horizontal" Grid.Row="1">
-                <Button 
-                    Grid.Row="3"
+                <Button
                     FontSize="16"
                     Content="Βγάλε φωτογραφία"
+                    Click="TakePhotoButton_Click"
                     Padding="18 6"
                     Margin="0 0 8 0"
                     BorderThickness="0"
                     Background="White"
                     Cursor="Hand">
                 </Button>
-                <Button 
-                    Grid.Row="3"
+                <Button
                     FontSize="16"
                     Content="Επανάληψη"
+                    Click="RepeatButton_Click"
                     Padding="14 6"
                     Margin="0"
                     BorderThickness="0"

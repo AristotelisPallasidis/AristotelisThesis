@@ -27,6 +27,12 @@ namespace AristotelisThesis.WPF.State.Authenticators
         /// </summary>
         Task<bool> LoginWithFace(float[] probeEmbedding);
 
+        /// <summary>
+        /// Logs in the student whose enrolled palmprint matches the given probe embedding.
+        /// Returns true on a successful match (account set, check-in recorded), false otherwise.
+        /// </summary>
+        Task<bool> LoginWithPalmprint(float[] probeEmbedding);
+
         void Logout();
     }
 }

@@ -34,13 +34,14 @@ namespace AristotelisThesis.WPF.Views
             InitializeComponent();
         }
 
-        private void Login_Click(object sender, RoutedEventArgs e)
-        {
-            if (LoginCommand != null)
-            {
-                string password = pbPassword.Password;
-                LoginCommand.Execute(password);
-            }
-        }
+        // Login with username and password is disabled (UI commented out in LoginView.xaml)
+        //private void Login_Click(object sender, RoutedEventArgs e)
+        //{
+        //    if (LoginCommand != null)
+        //    {
+        //        string password = pbPassword.Password;
+        //        LoginCommand.Execute(password);
+        //    }
+        //}
     }
 }

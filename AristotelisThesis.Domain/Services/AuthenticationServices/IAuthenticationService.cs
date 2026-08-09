@@ -27,7 +27,12 @@ namespace AristotelisThesis.Domain.Services.AuthenticationServices
         /// </summary>
         Task<Account?> LoginWithFace(float[] probeEmbedding);
 
-        // Task<Student> LoginWithPalmprint(string username, string password);
+        /// <summary>
+        /// Matches a probe palmprint embedding against the enrolled embeddings and returns the
+        /// owning <see cref="Account"/> when the best match is within the recognition threshold,
+        /// or null when no enrolled palm is close enough.
+        /// </summary>
+        Task<Account?> LoginWithPalmprint(float[] probeEmbedding);
 
 
     }
