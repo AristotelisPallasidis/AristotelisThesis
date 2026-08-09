@@ -1,0 +1,7 @@
+# Palmprint encoder service deps (all ship prebuilt Windows wheels).
+fastapi
+uvicorn[standard]
+opencv-python
+numpy
+pillow
+python-multipart
