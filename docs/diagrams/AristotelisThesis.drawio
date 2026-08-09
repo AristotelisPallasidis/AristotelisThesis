@@ -1,242 +1,950 @@
-<mxfile host="app.diagrams.net" type="device">
+<mxfile host="app.diagrams.net" pages="9">
   <diagram name="1. System Architecture" id="arch">
-    <mxGraphModel dx="1000" dy="700" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageWidth="900" pageHeight="800" math="0" shadow="0">
+    <mxGraphModel dx="1571" dy="826" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1000" pageHeight="860" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="a_wpf" value="AristotelisThesis.WPF — Presentation (MVVM)" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1"><mxGeometry x="40" y="40" width="440" height="210" as="geometry" /></mxCell>
-        <mxCell id="a_views" value="Views &amp; Controls" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;" vertex="1" parent="1"><mxGeometry x="60" y="90" width="190" height="40" as="geometry" /></mxCell>
-        <mxCell id="a_vms" value="ViewModels" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;" vertex="1" parent="1"><mxGeometry x="270" y="90" width="190" height="40" as="geometry" /></mxCell>
-        <mxCell id="a_cam" value="CameraCaptureService&#10;(OpenCvSharp + AForge)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;" vertex="1" parent="1"><mxGeometry x="60" y="150" width="190" height="50" as="geometry" /></mxCell>
-        <mxCell id="a_bridge" value="PythonFaceRecognitionService&#10;+ PythonServiceLauncher" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;" vertex="1" parent="1"><mxGeometry x="270" y="150" width="190" height="50" as="geometry" /></mxCell>
-        <mxCell id="a_dom" value="AristotelisThesis.Domain — Core" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1"><mxGeometry x="40" y="300" width="440" height="170" as="geometry" /></mxCell>
-        <mxCell id="a_models" value="Models&#10;(Student, Account, FaceImage, SessionHistory)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;" vertex="1" parent="1"><mxGeometry x="60" y="345" width="190" height="50" as="geometry" /></mxCell>
-        <mxCell id="a_ifaces" value="Service Interfaces" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;" vertex="1" parent="1"><mxGeometry x="270" y="345" width="190" height="50" as="geometry" /></mxCell>
-        <mxCell id="a_match" value="AuthenticationService.LoginWithFace + EmbeddingSerializer (L2 distance)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;" vertex="1" parent="1"><mxGeometry x="60" y="410" width="400" height="40" as="geometry" /></mxCell>
-        <mxCell id="a_ef" value="AristotelisThesis.EntityFramework — Data Access" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1"><mxGeometry x="40" y="520" width="440" height="120" as="geometry" /></mxCell>
-        <mxCell id="a_dbctx" value="AristotelisThesisDbContext" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;" vertex="1" parent="1"><mxGeometry x="60" y="565" width="190" height="50" as="geometry" /></mxCell>
-        <mxCell id="a_dataservices" value="Data Services&#10;(AccountDataService, FaceImageService)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;" vertex="1" parent="1"><mxGeometry x="270" y="565" width="190" height="50" as="geometry" /></mxCell>
-        <mxCell id="a_db" value="SQL Server LocalDB&#10;AristotelisThesisDB" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1"><mxGeometry x="170" y="680" width="180" height="80" as="geometry" /></mxCell>
-        <mxCell id="a_py" value="face_service — Python / FastAPI" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1"><mxGeometry x="560" y="40" width="300" height="210" as="geometry" /></mxCell>
-        <mxCell id="a_encode" value="POST /encode · GET /health" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;" vertex="1" parent="1"><mxGeometry x="580" y="100" width="260" height="40" as="geometry" /></mxCell>
-        <mxCell id="a_resnet" value="dlib ResNet-34 (face_recognition)&#10;→ 128-d embedding" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;" vertex="1" parent="1"><mxGeometry x="580" y="160" width="260" height="50" as="geometry" /></mxCell>
-        <mxCell id="a_e1" value="depends on" style="endArrow=open;html=1;" edge="1" parent="1" source="a_wpf" target="a_dom"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="a_e2" value="implements" style="endArrow=open;html=1;dashed=1;" edge="1" parent="1" source="a_ef" target="a_dom"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="a_e3" style="endArrow=open;html=1;" edge="1" parent="1" source="a_dataservices" target="a_dbctx"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="a_e4" style="endArrow=open;html=1;" edge="1" parent="1" source="a_dbctx" target="a_db"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="a_e5" value="HTTP 127.0.0.1:8500" style="endArrow=open;html=1;" edge="1" parent="1" source="a_bridge" target="a_encode"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="a_e6" style="endArrow=open;html=1;" edge="1" parent="1" source="a_encode" target="a_resnet"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="a_wpf" parent="1" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="AristotelisThesis.WPF — Presentation (MVVM)" vertex="1">
+          <mxGeometry height="240" width="440" x="40" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="a_views" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;" value="Views &amp; Controls&#xa;(FaceGuideOverlay, PalmGuideOverlay)" vertex="1">
+          <mxGeometry height="50" width="190" x="60" y="85" as="geometry" />
+        </mxCell>
+        <mxCell id="a_vms" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;" value="ViewModels&#xa;(LoginWithFace / LoginWithPalmprint,&#xa;Register04 palm, Register06 face)" vertex="1">
+          <mxGeometry height="50" width="190" x="270" y="85" as="geometry" />
+        </mxCell>
+        <mxCell id="a_cam" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;" value="CameraCaptureService&#xa;(OpenCvSharp + AForge)" vertex="1">
+          <mxGeometry height="50" width="190" x="60" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="a_bridge" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;" value="PythonFaceRecognitionService&#xa;PythonPalmprintRecognitionService" vertex="1">
+          <mxGeometry height="50" width="190" x="270" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="a_launch" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;" value="PythonServiceLauncher (×2) — spawns uvicorn: face 8500 · palmprint 8501" vertex="1">
+          <mxGeometry height="45" width="400" x="60" y="215" as="geometry" />
+        </mxCell>
+        <mxCell id="a_dom" parent="1" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;fillColor=#d5e8d4;strokeColor=#82b366;" value="AristotelisThesis.Domain — Core" vertex="1">
+          <mxGeometry height="190" width="440" x="40" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="a_models" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;" value="Models&#xa;(Student, Account, FaceImage,&#xa;PalmprintImage, SessionHistory)" vertex="1">
+          <mxGeometry height="60" width="190" x="60" y="375" as="geometry" />
+        </mxCell>
+        <mxCell id="a_ifaces" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;" value="Service Interfaces&#xa;(IFace… / IPalmprint… Recognition&#xa;+ ImageService)" vertex="1">
+          <mxGeometry height="60" width="190" x="270" y="375" as="geometry" />
+        </mxCell>
+        <mxCell id="a_match" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;" value="AuthenticationService.LoginWithFace / LoginWithPalmprint&#xa;+ EmbeddingSerializer (avg L2 distance per student)" vertex="1">
+          <mxGeometry height="50" width="400" x="60" y="450" as="geometry" />
+        </mxCell>
+        <mxCell id="a_ef" parent="1" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;fillColor=#ffe6cc;strokeColor=#d79b00;" value="AristotelisThesis.EntityFramework — Data Access" vertex="1">
+          <mxGeometry height="130" width="440" x="40" y="570" as="geometry" />
+        </mxCell>
+        <mxCell id="a_dbctx" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;" value="AristotelisThesisDbContext" vertex="1">
+          <mxGeometry height="60" width="190" x="60" y="615" as="geometry" />
+        </mxCell>
+        <mxCell id="a_dataservices" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;" value="Data Services&#xa;(AccountDataService, FaceImageService,&#xa;PalmprintImageService)" vertex="1">
+          <mxGeometry height="60" width="190" x="270" y="615" as="geometry" />
+        </mxCell>
+        <mxCell id="a_db" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" value="SQL Server LocalDB&#xa;AristotelisThesisDB" vertex="1">
+          <mxGeometry height="100" width="130" x="195" y="740" as="geometry" />
+        </mxCell>
+        <mxCell id="a_py" parent="1" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;fillColor=#f8cecc;strokeColor=#b85450;" value="face_service — Python / FastAPI (port 8500)" vertex="1">
+          <mxGeometry height="170" width="380" x="560" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="a_encode" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;" value="POST /encode · GET /health" vertex="1">
+          <mxGeometry height="40" width="340" x="580" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="a_resnet" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;" value="dlib ResNet-34 (face_recognition)&#xa;→ 128-d embedding" vertex="1">
+          <mxGeometry height="50" width="340" x="580" y="145" as="geometry" />
+        </mxCell>
+        <mxCell id="a_pyp" parent="1" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;fillColor=#f8cecc;strokeColor=#b85450;" value="palmprint_service — Python / FastAPI (port 8501)" vertex="1">
+          <mxGeometry height="185" width="380" x="560" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="a_encodep" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;" value="POST /encode-palm · GET /health" vertex="1">
+          <mxGeometry height="40" width="340" x="580" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="a_gabor" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;" value="Central palm ROI (128×128, CLAHE)&#xa;→ OpenCV Gabor bank (2 scales × 8 orientations)&#xa;→ 4×4 block energy → 256-d L2-normalized vector" vertex="1">
+          <mxGeometry height="65" width="340" x="580" y="355" as="geometry" />
+        </mxCell>
+        <mxCell id="a_e1" edge="1" parent="1" source="a_wpf" style="endArrow=open;html=1;" target="a_dom" value="depends on">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a_e2" edge="1" parent="1" source="a_ef" style="endArrow=open;html=1;dashed=1;" target="a_dom" value="implements">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a_e3" edge="1" parent="1" source="a_dataservices" style="endArrow=open;html=1;" target="a_dbctx">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a_e4" edge="1" parent="1" source="a_dbctx" style="endArrow=open;html=1;" target="a_db">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a_e5" edge="1" parent="1" source="a_bridge" style="endArrow=open;html=1;" target="a_encode" value="HTTP 127.0.0.1:8500">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a_e6" edge="1" parent="1" source="a_encode" style="endArrow=open;html=1;" target="a_resnet">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a_e7" edge="1" parent="1" source="a_bridge" style="endArrow=open;html=1;" target="a_encodep" value="HTTP 127.0.0.1:8501">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a_e8" edge="1" parent="1" source="a_encodep" style="endArrow=open;html=1;" target="a_gabor">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
   <diagram name="2. Runtime / Deployment" id="deploy">
-    <mxGraphModel dx="1000" dy="700" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageWidth="850" pageHeight="500" math="0" shadow="0">
+    <mxGraphModel dx="1000" dy="700" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageWidth="900" pageHeight="560" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="d_user" value="User" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1"><mxGeometry x="60" y="120" width="40" height="80" as="geometry" /></mxCell>
-        <mxCell id="d_app" value="AristotelisThesis.WPF.exe&#10;(.NET 10 desktop app)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1"><mxGeometry x="220" y="60" width="240" height="80" as="geometry" /></mxCell>
-        <mxCell id="d_py" value="Python service process&#10;uvicorn app:app @ 127.0.0.1:8500&#10;(dlib ResNet-34 loaded once)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1"><mxGeometry x="220" y="220" width="240" height="90" as="geometry" /></mxCell>
-        <mxCell id="d_db" value="SQL Server LocalDB&#10;AristotelisThesisDB" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1"><mxGeometry x="560" y="50" width="180" height="90" as="geometry" /></mxCell>
-        <mxCell id="d_cam" value="Webcam" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;" vertex="1" parent="1"><mxGeometry x="560" y="230" width="150" height="60" as="geometry" /></mxCell>
-        <mxCell id="d_e1" value="interacts" style="endArrow=open;html=1;" edge="1" parent="1" source="d_user" target="d_app"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="d_e2" value="frames" style="endArrow=open;html=1;" edge="1" parent="1" source="d_cam" target="d_app"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="d_e3" value="spawns / kills (PythonServiceLauncher)" style="endArrow=open;html=1;dashed=1;" edge="1" parent="1" source="d_app" target="d_py"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="d_e4" value="HTTP POST /encode" style="endArrow=open;html=1;" edge="1" parent="1" source="d_app" target="d_py"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="d_e5" value="EF Core / SQL" style="endArrow=open;html=1;" edge="1" parent="1" source="d_app" target="d_db"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="d_user" value="User" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="60" y="160" width="40" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="d_app" value="AristotelisThesis.WPF.exe&#xa;(.NET 10 desktop app)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="220" y="60" width="240" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="d_py" value="face_service process&#xa;uvicorn app:app @ 127.0.0.1:8500&#xa;(dlib ResNet-34 loaded once)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="220" y="230" width="240" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="d_pyp" value="palmprint_service process&#xa;uvicorn app:app @ 127.0.0.1:8501&#xa;(Gabor kernel bank precomputed once)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="220" y="370" width="240" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="d_db" value="SQL Server LocalDB&#xa;AristotelisThesisDB" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="620" y="50" width="180" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="d_cam" value="Webcam&#xa;(face + palm frames)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="630" y="230" width="160" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="d_note" value="Each launcher first probes GET /health:&#xa;an already-running service is reused,&#xa;otherwise uvicorn is spawned and killed on exit." style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillColor=#f5f5f5;strokeColor=#cccccc;" vertex="1" parent="1">
+          <mxGeometry x="600" y="370" width="270" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="d_e1" value="interacts" style="endArrow=open;html=1;" edge="1" parent="1" source="d_user" target="d_app">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d_e2" value="frames" style="endArrow=open;html=1;" edge="1" parent="1" source="d_cam" target="d_app">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d_e3" value="spawns / kills (PythonServiceLauncher)" style="endArrow=open;html=1;dashed=1;" edge="1" parent="1" source="d_app" target="d_py">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d_e4" value="HTTP POST /encode" style="endArrow=open;html=1;" edge="1" parent="1" source="d_app" target="d_py">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d_e5" value="EF Core / SQL" style="endArrow=open;html=1;" edge="1" parent="1" source="d_app" target="d_db">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d_e6" value="spawns / kills (PythonServiceLauncher)" style="endArrow=open;html=1;dashed=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="d_app" target="d_pyp">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d_e7" value="HTTP POST /encode-palm" style="endArrow=open;html=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=0.75;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="d_app" target="d_pyp">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
   <diagram name="3. ER (Relational)" id="er-rel">
-    <mxGraphModel dx="1000" dy="700" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageWidth="850" pageHeight="650" math="0" shadow="0">
+    <mxGraphModel dx="1000" dy="700" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageWidth="1060" pageHeight="720" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="er_student" value="&lt;b&gt;STUDENT&lt;/b&gt;&lt;hr&gt;Id : int (PK)&lt;br&gt;Name&lt;br&gt;Surname&lt;br&gt;Username&lt;br&gt;PasswordHash&lt;br&gt;Sex&lt;br&gt;DateOfBirth&lt;br&gt;Phone&lt;br&gt;Address&lt;br&gt;AcademicEmail&lt;br&gt;AEM&lt;br&gt;Department&lt;br&gt;Semester&lt;br&gt;YearOfEntry&lt;br&gt;IsPostgraduate" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fillColor=#dae8fc;strokeColor=#6c8ebf;spacingLeft=8;" vertex="1" parent="1"><mxGeometry x="40" y="40" width="220" height="310" as="geometry" /></mxCell>
-        <mxCell id="er_account" value="&lt;b&gt;ACCOUNT&lt;/b&gt;&lt;hr&gt;Id : int (PK)&lt;br&gt;AccountHolderId : int (FK)" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fillColor=#d5e8d4;strokeColor=#82b366;spacingLeft=8;" vertex="1" parent="1"><mxGeometry x="360" y="40" width="240" height="90" as="geometry" /></mxCell>
-        <mxCell id="er_face" value="&lt;b&gt;FACE_IMAGE&lt;/b&gt;&lt;hr&gt;Id : int (PK)&lt;br&gt;StudentId : int (FK)&lt;br&gt;ImageData : varbinary&lt;br&gt;Embedding : varbinary (128-d)&lt;br&gt;DateCaptured" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fillColor=#ffe6cc;strokeColor=#d79b00;spacingLeft=8;" vertex="1" parent="1"><mxGeometry x="360" y="180" width="240" height="120" as="geometry" /></mxCell>
-        <mxCell id="er_session" value="&lt;b&gt;SESSION_HISTORY&lt;/b&gt;&lt;hr&gt;Id : int (PK)&lt;br&gt;StudentId : int (FK)&lt;br&gt;Date&lt;br&gt;ActiveTime&lt;br&gt;CheckIn (nullable)&lt;br&gt;CheckOut (nullable)" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fillColor=#f8cecc;strokeColor=#b85450;spacingLeft=8;" vertex="1" parent="1"><mxGeometry x="360" y="350" width="240" height="140" as="geometry" /></mxCell>
-        <mxCell id="er_e1" value="is holder of" style="edgeStyle=entityRelationEdgeStyle;html=1;startArrow=ERmandOne;startFill=0;endArrow=ERzeroToOne;endFill=0;" edge="1" parent="1" source="er_student" target="er_account"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="er_e2" value="enrolls" style="edgeStyle=entityRelationEdgeStyle;html=1;startArrow=ERmandOne;startFill=0;endArrow=ERzeroToMany;endFill=0;" edge="1" parent="1" source="er_student" target="er_face"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="er_e3" value="logs" style="edgeStyle=entityRelationEdgeStyle;html=1;startArrow=ERmandOne;startFill=0;endArrow=ERzeroToMany;endFill=0;" edge="1" parent="1" source="er_student" target="er_session"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="er_student" value="&lt;b&gt;STUDENT&lt;/b&gt;&lt;hr&gt;Id : int (PK)&lt;br&gt;Name&lt;br&gt;Surname&lt;br&gt;Username&lt;br&gt;PasswordHash (empty — biometric-only)&lt;br&gt;Sex&lt;br&gt;DateOfBirth&lt;br&gt;Phone&lt;br&gt;Address&lt;br&gt;AcademicEmail&lt;br&gt;AEM&lt;br&gt;Department&lt;br&gt;Semester&lt;br&gt;YearOfEntry&lt;br&gt;IsPostgraduate" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fillColor=#dae8fc;strokeColor=#6c8ebf;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="250" height="330" as="geometry" />
+        </mxCell>
+        <mxCell id="er_account" value="&lt;b&gt;ACCOUNT&lt;/b&gt;&lt;hr&gt;Id : int (PK)&lt;br&gt;AccountHolderId : int (FK)" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fillColor=#d5e8d4;strokeColor=#82b366;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="390" y="40" width="260" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="er_face" value="&lt;b&gt;FACE_IMAGE&lt;/b&gt;&lt;hr&gt;Id : int (PK)&lt;br&gt;StudentId : int (FK, cascade)&lt;br&gt;ImageData : varbinary(max)&lt;br&gt;Embedding : varbinary (128-d floats)&lt;br&gt;DateCaptured : datetime2" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fillColor=#ffe6cc;strokeColor=#d79b00;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="390" y="180" width="260" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="er_palm" value="&lt;b&gt;PALMPRINT_IMAGE&lt;/b&gt;&lt;hr&gt;Id : int (PK)&lt;br&gt;StudentId : int (FK, cascade)&lt;br&gt;ImageData : varbinary(max)&lt;br&gt;Embedding : varbinary (256-d floats, nullable)&lt;br&gt;DateCaptured : datetime2" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fillColor=#e1d5e7;strokeColor=#9673a6;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="390" y="350" width="260" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="er_session" value="&lt;b&gt;SESSION_HISTORY&lt;/b&gt;&lt;hr&gt;Id : int (PK)&lt;br&gt;StudentId : int (FK)&lt;br&gt;Date&lt;br&gt;ActiveTime&lt;br&gt;CheckIn (nullable)&lt;br&gt;CheckOut (nullable)" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fillColor=#f8cecc;strokeColor=#b85450;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="390" y="520" width="260" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="er_e1" value="is holder of" style="edgeStyle=entityRelationEdgeStyle;html=1;startArrow=ERmandOne;startFill=0;endArrow=ERzeroToOne;endFill=0;" edge="1" parent="1" source="er_student" target="er_account">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="er_e2" value="enrolls face" style="edgeStyle=entityRelationEdgeStyle;html=1;startArrow=ERmandOne;startFill=0;endArrow=ERzeroToMany;endFill=0;" edge="1" parent="1" source="er_student" target="er_face">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="er_e4" value="enrolls palm" style="edgeStyle=entityRelationEdgeStyle;html=1;startArrow=ERmandOne;startFill=0;endArrow=ERzeroToMany;endFill=0;" edge="1" parent="1" source="er_student" target="er_palm">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="er_e3" value="logs" style="edgeStyle=entityRelationEdgeStyle;html=1;startArrow=ERmandOne;startFill=0;endArrow=ERzeroToMany;endFill=0;" edge="1" parent="1" source="er_student" target="er_session">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="er_note" value="Registration stores 7 face rows and 7 palm rows per student;&#xa;login scores a probe against the average distance to a student&#39;s rows." style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillColor=#f5f5f5;strokeColor=#cccccc;" vertex="1" parent="1">
+          <mxGeometry x="40" y="420" width="290" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="er_derived_hdr" value="&lt;b&gt;Derived read-model&lt;/b&gt; — computed at runtime by StatisticsService,&#xa;&lt;b&gt;no table and no DbSet&lt;/b&gt; exists for these (dashed = not persisted)." style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillColor=#f5f5f5;strokeColor=#cccccc;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="710" y="40" width="310" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="er_stats" value="&lt;b&gt;ATTENDANCE_STATISTICS&lt;/b&gt; &lt;i&gt;(derived)&lt;/i&gt;&lt;hr&gt;Id : int (PK, in-memory only)&lt;br&gt;StudentId : int&lt;br&gt;MonthlyAttendancePercentage : double&lt;br&gt;TodayActiveTime : TimeSpan&lt;br&gt;TodayCheckIn : datetime (nullable)&lt;br&gt;DaysAttendedThisWeek : int&lt;br&gt;MonthlyActiveHours : double&lt;br&gt;WeekLoginStreak : int&lt;br&gt;WeeklyAverageActiveTime : TimeSpan" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fillColor=#fff2cc;strokeColor=#d6b656;spacingLeft=8;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="710" y="150" width="310" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="er_wpoint" value="&lt;b&gt;WEEKLY_ATTENDANCE_DATA_POINT&lt;/b&gt; &lt;i&gt;(derived)&lt;/i&gt;&lt;hr&gt;Id : int (PK, in-memory only)&lt;br&gt;AttendanceStatisticsId : int (FK)&lt;br&gt;Date : datetime&lt;br&gt;ActiveTime : TimeSpan" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fillColor=#fff2cc;strokeColor=#d6b656;spacingLeft=8;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="710" y="430" width="310" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="er_e5" value="aggregated per student&#xa;by StatisticsService" style="edgeStyle=entityRelationEdgeStyle;html=1;dashed=1;startArrow=ERzeroToMany;startFill=0;endArrow=ERmandOne;endFill=0;" edge="1" parent="1" source="er_session" target="er_stats">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="er_e6" value="graph — exactly 7 (Mon..Sun)" style="edgeStyle=entityRelationEdgeStyle;html=1;dashed=1;startArrow=ERmandOne;startFill=0;endArrow=ERoneToMany;endFill=0;" edge="1" parent="1" source="er_stats" target="er_wpoint">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
   <diagram name="4. Domain Class Diagram" id="class">
-    <mxGraphModel dx="1000" dy="700" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageWidth="950" pageHeight="650" math="0" shadow="0">
+    <mxGraphModel dx="1000" dy="700" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageWidth="1000" pageHeight="980" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="c_obj" value="&lt;b&gt;DomainObject&lt;/b&gt;&lt;hr&gt;+ Id : int" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1"><mxGeometry x="60" y="40" width="180" height="50" as="geometry" /></mxCell>
-        <mxCell id="c_student" value="&lt;b&gt;Student&lt;/b&gt;&lt;hr&gt;+ Name, Surname&lt;br&gt;+ Username, PasswordHash&lt;br&gt;+ AcademicEmail, AEM&lt;br&gt;+ ...demographics" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1"><mxGeometry x="40" y="150" width="220" height="100" as="geometry" /></mxCell>
-        <mxCell id="c_account" value="&lt;b&gt;Account&lt;/b&gt;&lt;hr&gt;+ AccountHolder : Student" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1"><mxGeometry x="300" y="150" width="200" height="60" as="geometry" /></mxCell>
-        <mxCell id="c_face" value="&lt;b&gt;FaceImage&lt;/b&gt;&lt;hr&gt;+ StudentId : int&lt;br&gt;+ ImageData : byte[]&lt;br&gt;+ Embedding : byte[]&lt;br&gt;+ DateCaptured : DateTime" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1"><mxGeometry x="40" y="300" width="220" height="100" as="geometry" /></mxCell>
-        <mxCell id="c_session" value="&lt;b&gt;SessionHistory&lt;/b&gt;&lt;hr&gt;+ Date, ActiveTime&lt;br&gt;+ CheckIn?, CheckOut?" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1"><mxGeometry x="300" y="300" width="200" height="80" as="geometry" /></mxCell>
-        <mxCell id="c_iauth" value="&lt;b&gt;&amp;laquo;interface&amp;raquo; IAuthenticationService&lt;/b&gt;&lt;hr&gt;+ Login(user, pass) : Account&lt;br&gt;+ LoginWithFace(probe) : Account&lt;br&gt;+ Register(...) : RegistrationResult" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1"><mxGeometry x="580" y="40" width="320" height="90" as="geometry" /></mxCell>
-        <mxCell id="c_irec" value="&lt;b&gt;&amp;laquo;interface&amp;raquo; IFaceRecognitionService&lt;/b&gt;&lt;hr&gt;+ EncodeAsync(jpeg) : float[]&lt;br&gt;+ IsHealthyAsync() : bool" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1"><mxGeometry x="580" y="160" width="320" height="80" as="geometry" /></mxCell>
-        <mxCell id="c_iimg" value="&lt;b&gt;&amp;laquo;interface&amp;raquo; IFaceImageService&lt;/b&gt;&lt;hr&gt;+ SaveFaceImage(id, jpeg, emb)&lt;br&gt;+ GetAllEmbeddings()&lt;br&gt;+ GetAllImageData(id)&lt;br&gt;+ GetFirstImageData(id)" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1"><mxGeometry x="580" y="270" width="320" height="100" as="geometry" /></mxCell>
-        <mxCell id="c_emb" value="&lt;b&gt;EmbeddingSerializer (static)&lt;/b&gt;&lt;hr&gt;+ ToBytes / ToFloats&lt;br&gt;+ Distance(a, b) : double" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1"><mxGeometry x="580" y="400" width="320" height="70" as="geometry" /></mxCell>
-        <mxCell id="c_g1" style="endArrow=block;endFill=0;html=1;" edge="1" parent="1" source="c_student" target="c_obj"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="c_g2" style="endArrow=block;endFill=0;html=1;" edge="1" parent="1" source="c_account" target="c_obj"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="c_g3" style="endArrow=block;endFill=0;html=1;" edge="1" parent="1" source="c_face" target="c_obj"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="c_g4" style="endArrow=block;endFill=0;html=1;" edge="1" parent="1" source="c_session" target="c_obj"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="c_a1" value="AccountHolder" style="endArrow=open;html=1;" edge="1" parent="1" source="c_account" target="c_student"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="c_d1" value="matches against" style="endArrow=open;dashed=1;html=1;" edge="1" parent="1" source="c_iauth" target="c_iimg"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="c_d2" value="L2 distance" style="endArrow=open;dashed=1;html=1;" edge="1" parent="1" source="c_iauth" target="c_emb"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="c_obj" value="&lt;b&gt;DomainObject&lt;/b&gt;&lt;hr&gt;+ Id : int" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="60" y="40" width="180" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="c_student" value="&lt;b&gt;Student&lt;/b&gt;&lt;hr&gt;+ Name, Surname&lt;br&gt;+ Username, PasswordHash&lt;br&gt;+ AcademicEmail, AEM&lt;br&gt;+ ...demographics" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="40" y="150" width="220" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="c_account" value="&lt;b&gt;Account&lt;/b&gt;&lt;hr&gt;+ AccountHolder : Student" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="310" y="150" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="c_face" value="&lt;b&gt;FaceImage&lt;/b&gt;&lt;hr&gt;+ StudentId : int&lt;br&gt;+ ImageData : byte[]&lt;br&gt;+ Embedding : byte[] (128-d)&lt;br&gt;+ DateCaptured : DateTime" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="40" y="300" width="220" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="c_palm" value="&lt;b&gt;PalmprintImage&lt;/b&gt;&lt;hr&gt;+ StudentId : int&lt;br&gt;+ ImageData : byte[]&lt;br&gt;+ Embedding : byte[]? (256-d)&lt;br&gt;+ DateCaptured : DateTime" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="40" y="440" width="220" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="c_session" value="&lt;b&gt;SessionHistory&lt;/b&gt;&lt;hr&gt;+ Date, ActiveTime&lt;br&gt;+ CheckIn?, CheckOut?" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="310" y="300" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="c_iauth" value="&lt;b&gt;&amp;laquo;interface&amp;raquo; IAuthenticationService&lt;/b&gt;&lt;hr&gt;+ Login(user, pass) : Account&lt;br&gt;+ LoginWithFace(probe) : Account?&lt;br&gt;+ LoginWithPalmprint(probe) : Account?&lt;br&gt;+ Register(...) : RegistrationResult" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="590" y="40" width="350" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="c_irec" value="&lt;b&gt;&amp;laquo;interface&amp;raquo; IFaceRecognitionService&lt;/b&gt;&lt;hr&gt;+ EncodeAsync(jpeg) : float[]?&lt;br&gt;+ IsHealthyAsync() : bool" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="590" y="180" width="350" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="c_irecp" value="&lt;b&gt;&amp;laquo;interface&amp;raquo; IPalmprintRecognitionService&lt;/b&gt;&lt;hr&gt;+ EncodeAsync(jpeg) : float[]?&lt;br&gt;+ IsHealthyAsync() : bool" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="590" y="290" width="350" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="c_iimg" value="&lt;b&gt;&amp;laquo;interface&amp;raquo; IFaceImageService&lt;/b&gt;&lt;hr&gt;+ SaveFaceImage(id, jpeg, emb)&lt;br&gt;+ GetAllEmbeddings()&lt;br&gt;+ GetAllImageData(id) · GetFirstImageData(id)" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="590" y="400" width="350" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="c_iimgp" value="&lt;b&gt;&amp;laquo;interface&amp;raquo; IPalmprintImageService&lt;/b&gt;&lt;hr&gt;+ SavePalmprintImage(id, jpeg, emb)&lt;br&gt;+ GetAllEmbeddings()&lt;br&gt;+ GetAllImageData(id) · GetFirstImageData(id)" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="590" y="520" width="350" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="c_emb" value="&lt;b&gt;EmbeddingSerializer (static)&lt;/b&gt;&lt;hr&gt;+ ToBytes / ToFloats&lt;br&gt;+ Distance(a, b) : double  (L2)" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="590" y="640" width="350" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="c_thr" value="Thresholds (AuthenticationService):&#xa;face ≤ 0.45  ·  palm ≤ 0.6&#xa;(average L2 distance per student)" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillColor=#f5f5f5;strokeColor=#cccccc;" vertex="1" parent="1">
+          <mxGeometry x="310" y="440" width="230" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="c_g1" style="endArrow=block;endFill=0;html=1;" edge="1" parent="1" source="c_student" target="c_obj">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c_g2" style="endArrow=block;endFill=0;html=1;" edge="1" parent="1" source="c_account" target="c_obj">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c_g3" style="endArrow=block;endFill=0;html=1;" edge="1" parent="1" source="c_face" target="c_obj">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c_g5" style="endArrow=block;endFill=0;html=1;" edge="1" parent="1" source="c_palm" target="c_obj">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c_g4" style="endArrow=block;endFill=0;html=1;" edge="1" parent="1" source="c_session" target="c_obj">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c_a1" value="AccountHolder" style="endArrow=open;html=1;" edge="1" parent="1" source="c_account" target="c_student">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c_d1" value="matches faces against" style="endArrow=open;dashed=1;html=1;" edge="1" parent="1" source="c_iauth" target="c_iimg">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c_d3" value="matches palms against" style="endArrow=open;dashed=1;html=1;" edge="1" parent="1" source="c_iauth" target="c_iimgp">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c_d2" value="L2 distance" style="endArrow=open;dashed=1;html=1;" edge="1" parent="1" source="c_iauth" target="c_emb">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c_stats" value="&lt;b&gt;AttendanceStatistics&lt;/b&gt;&amp;nbsp;&lt;i&gt;&amp;laquo;read-model&amp;raquo;&lt;/i&gt;&lt;hr&gt;+ StudentId : int&lt;br&gt;+ MonthlyAttendancePercentage : double&lt;br&gt;+ TodayActiveTime : TimeSpan&lt;br&gt;+ TodayCheckIn : DateTime?&lt;br&gt;+ DaysAttendedThisWeek : int&lt;br&gt;+ MonthlyActiveHours : double&lt;br&gt;+ WeekLoginStreak : int&lt;br&gt;+ WeeklyAverageActiveTime : TimeSpan&lt;br&gt;+ WeeklyAttendanceGraph : ICollection&amp;lt;WeeklyAttendanceDataPoint&amp;gt;&lt;br&gt;+ Student : Student" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;fillColor=#dae8fc;strokeColor=#6c8ebf;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="580" width="310" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="c_wpoint" value="&lt;b&gt;WeeklyAttendanceDataPoint&lt;/b&gt;&amp;nbsp;&lt;i&gt;&amp;laquo;read-model&amp;raquo;&lt;/i&gt;&lt;hr&gt;+ AttendanceStatisticsId : int&lt;br&gt;+ Date : DateTime&lt;br&gt;+ ActiveTime : TimeSpan&lt;br&gt;+ AttendanceStatistics : AttendanceStatistics" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;fillColor=#dae8fc;strokeColor=#6c8ebf;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="390" y="580" width="190" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="c_istats" value="&lt;b&gt;&amp;laquo;interface&amp;raquo; IStatisticsService&lt;/b&gt;&lt;hr&gt;+ GetForStudent(studentId) : AttendanceStatistics&lt;br&gt;&lt;i&gt;impl. StatisticsService (EntityFramework)&lt;/i&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="590" y="750" width="350" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="c_statnote" value="AttendanceStatistics / WeeklyAttendanceDataPoint are &lt;b&gt;not persisted&lt;/b&gt;:&#xa;no DbSet, no table. StatisticsService projects them from the&#xa;student&#39;s SessionHistory rows each time the Statistics page opens.&#xa;(dashed border = derived read-model)" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillColor=#f5f5f5;strokeColor=#cccccc;" vertex="1" parent="1">
+          <mxGeometry x="40" y="800" width="500" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="c_g6" style="endArrow=block;endFill=0;html=1;edgeStyle=orthogonalEdgeStyle;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="c_stats" target="c_obj">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="15" y="680" />
+              <mxPoint x="15" y="65" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c_g7" style="endArrow=block;endFill=0;html=1;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="c_wpoint" target="c_obj">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="565" y="615" />
+              <mxPoint x="565" y="65" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c_c1" value="WeeklyAttendanceGraph&#xa;1 → 7 (Mon..Sun)" style="endArrow=open;html=1;startArrow=diamondThin;startFill=1;startSize=14;" edge="1" parent="1" source="c_stats" target="c_wpoint">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c_a2" value="Student" style="endArrow=open;html=1;" edge="1" parent="1" source="c_stats" target="c_student">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c_d4" value="aggregates" style="endArrow=open;dashed=1;html=1;" edge="1" parent="1" source="c_istats" target="c_session">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c_d5" value="&amp;laquo;creates&amp;raquo;" style="endArrow=open;dashed=1;html=1;" edge="1" parent="1" source="c_istats" target="c_stats">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
   <diagram name="5. Registration Flow" id="reg">
-    <mxGraphModel dx="1000" dy="700" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageWidth="900" pageHeight="750" math="0" shadow="0">
+    <mxGraphModel dx="1000" dy="700" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageWidth="900" pageHeight="740" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="r_login" value="Login screen" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;" vertex="1" parent="1"><mxGeometry x="60" y="40" width="160" height="40" as="geometry" /></mxCell>
-        <mxCell id="r_r1" value="Register01&#10;Privacy policy / terms" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;" vertex="1" parent="1"><mxGeometry x="60" y="110" width="160" height="50" as="geometry" /></mxCell>
-        <mxCell id="r_r2" value="Register02&#10;Personal info form (red * fields)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;" vertex="1" parent="1"><mxGeometry x="60" y="190" width="160" height="60" as="geometry" /></mxCell>
-        <mxCell id="r_valid" value="All required fields valid?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1"><mxGeometry x="50" y="290" width="180" height="90" as="geometry" /></mxCell>
-        <mxCell id="r_r5" value="Register05&#10;Face capture instructions" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;" vertex="1" parent="1"><mxGeometry x="330" y="300" width="180" height="60" as="geometry" /></mxCell>
-        <mxCell id="r_r6" value="Register06&#10;Capture 3-5 face photos (oval guide)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;" vertex="1" parent="1"><mxGeometry x="330" y="390" width="180" height="60" as="geometry" /></mxCell>
-        <mxCell id="r_enc" value="Each photo &#8594; /encode &#8594; 128-d&#10;(stored in RegistrationStore)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;" vertex="1" parent="1"><mxGeometry x="330" y="480" width="210" height="60" as="geometry" /></mxCell>
-        <mxCell id="r_finish" value="Click 'Ολοκλήρωση'" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1"><mxGeometry x="335" y="570" width="180" height="80" as="geometry" /></mxCell>
-        <mxCell id="r_create" value="Create Student + Account&#10;(biometric-only)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;" vertex="1" parent="1"><mxGeometry x="620" y="580" width="200" height="60" as="geometry" /></mxCell>
-        <mxCell id="r_save" value="Save FaceImages + embeddings to DB" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;" vertex="1" parent="1"><mxGeometry x="620" y="490" width="200" height="50" as="geometry" /></mxCell>
-        <mxCell id="r_auto" value="Auto-login via enrolled face&#10;(records check-in)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;" vertex="1" parent="1"><mxGeometry x="620" y="400" width="200" height="60" as="geometry" /></mxCell>
-        <mxCell id="r_dash" value="Dashboard" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;" vertex="1" parent="1"><mxGeometry x="650" y="320" width="140" height="40" as="geometry" /></mxCell>
-        <mxCell id="r_skip" value="Register03/04 — Palmprint&#10;(placeholder, skipped)" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;fillColor=#eeeeee;strokeColor=#999999;fontColor=#777777;" vertex="1" parent="1"><mxGeometry x="60" y="430" width="180" height="50" as="geometry" /></mxCell>
-        <mxCell id="r_e1" style="endArrow=open;html=1;" edge="1" parent="1" source="r_login" target="r_r1"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="r_e2" style="endArrow=open;html=1;" edge="1" parent="1" source="r_r1" target="r_r2"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="r_e3" style="endArrow=open;html=1;" edge="1" parent="1" source="r_r2" target="r_valid"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="r_e4" value="No (Next disabled)" style="endArrow=open;html=1;dashed=1;" edge="1" parent="1" source="r_valid" target="r_r2"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="r_e5" value="Yes" style="endArrow=open;html=1;" edge="1" parent="1" source="r_valid" target="r_r5"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="r_e6" style="endArrow=open;html=1;" edge="1" parent="1" source="r_r5" target="r_r6"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="r_e7" style="endArrow=open;html=1;" edge="1" parent="1" source="r_r6" target="r_enc"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="r_e8" style="endArrow=open;html=1;" edge="1" parent="1" source="r_enc" target="r_finish"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="r_e9" style="endArrow=open;html=1;" edge="1" parent="1" source="r_finish" target="r_create"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="r_e10" style="endArrow=open;html=1;" edge="1" parent="1" source="r_create" target="r_save"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="r_e11" style="endArrow=open;html=1;" edge="1" parent="1" source="r_save" target="r_auto"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="r_e12" style="endArrow=open;html=1;" edge="1" parent="1" source="r_auto" target="r_dash"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="r_login" value="Login screen" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;" vertex="1" parent="1">
+          <mxGeometry x="60" y="40" width="180" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="r_r1" value="Register01&#xa;Privacy policy / terms" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;" vertex="1" parent="1">
+          <mxGeometry x="60" y="110" width="180" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="r_r2" value="Register02&#xa;Personal info form (red * fields)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;" vertex="1" parent="1">
+          <mxGeometry x="60" y="190" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="r_valid" value="All required fields valid?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="55" y="285" width="190" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="r_r3" value="Register03&#xa;Palmprint capture instructions" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;" vertex="1" parent="1">
+          <mxGeometry x="60" y="415" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="r_r4" value="Register04&#xa;Capture 7 palm photos&#xa;(PalmGuideOverlay box)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;" vertex="1" parent="1">
+          <mxGeometry x="60" y="505" width="180" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="r_encp" value="Each palm → /encode-palm → 256-d&#xa;(stored in RegistrationStore.CapturedPalms)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;" vertex="1" parent="1">
+          <mxGeometry x="45" y="605" width="210" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="r_r5" value="Register05&#xa;Face capture instructions" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;" vertex="1" parent="1">
+          <mxGeometry x="345" y="605" width="190" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="r_r6" value="Register06&#xa;Capture 7 face photos (oval guide)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;" vertex="1" parent="1">
+          <mxGeometry x="345" y="510" width="190" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="r_enc" value="Each face → /encode → 128-d&#xa;(stored in RegistrationStore.CapturedFaces)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;" vertex="1" parent="1">
+          <mxGeometry x="335" y="410" width="210" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="r_finish" value="Click &#39;Ολοκλήρωση&#39;&#xa;(needs 7 faces)" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="340" y="285" width="200" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="r_create" value="Create Student + Account&#xa;(biometric-only: no typed password)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;" vertex="1" parent="1">
+          <mxGeometry x="630" y="285" width="210" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="r_save" value="Save 7 FaceImages + 7 PalmprintImages&#xa;(images + embeddings) to DB" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;" vertex="1" parent="1">
+          <mxGeometry x="630" y="400" width="210" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="r_auto" value="Auto-login via first enrolled face&#xa;(records check-in)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;" vertex="1" parent="1">
+          <mxGeometry x="630" y="510" width="210" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="r_dash" value="Dashboard" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;" vertex="1" parent="1">
+          <mxGeometry x="665" y="615" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="r_gate4" value="&#39;Επόμενο&#39; stays blocked until 7 palms are captured&#xa;(&#39;Επανάληψη&#39; clears them)" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillColor=#f5f5f5;strokeColor=#cccccc;" vertex="1" parent="1">
+          <mxGeometry x="290" y="700" width="330" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="r_e1" style="endArrow=open;html=1;" edge="1" parent="1" source="r_login" target="r_r1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r_e2" style="endArrow=open;html=1;" edge="1" parent="1" source="r_r1" target="r_r2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r_e3" style="endArrow=open;html=1;" edge="1" parent="1" source="r_r2" target="r_valid">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r_e4" value="No (Next disabled)" style="endArrow=open;html=1;dashed=1;" edge="1" parent="1" source="r_valid" target="r_r2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r_e5" value="Yes" style="endArrow=open;html=1;" edge="1" parent="1" source="r_valid" target="r_r3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r_e6" style="endArrow=open;html=1;" edge="1" parent="1" source="r_r3" target="r_r4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r_e7" style="endArrow=open;html=1;" edge="1" parent="1" source="r_r4" target="r_encp">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r_e8" value="7/7 captured" style="endArrow=open;html=1;" edge="1" parent="1" source="r_encp" target="r_r5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r_e9" style="endArrow=open;html=1;" edge="1" parent="1" source="r_r5" target="r_r6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r_e10" style="endArrow=open;html=1;" edge="1" parent="1" source="r_r6" target="r_enc">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r_e11" style="endArrow=open;html=1;" edge="1" parent="1" source="r_enc" target="r_finish">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r_e12" style="endArrow=open;html=1;" edge="1" parent="1" source="r_finish" target="r_create">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r_e13" style="endArrow=open;html=1;" edge="1" parent="1" source="r_create" target="r_save">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r_e14" style="endArrow=open;html=1;" edge="1" parent="1" source="r_save" target="r_auto">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r_e15" style="endArrow=open;html=1;" edge="1" parent="1" source="r_auto" target="r_dash">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
   <diagram name="6. ER (Elmasri/Navathe)" id="er-chen">
-    <mxGraphModel dx="1000" dy="700" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageWidth="1100" pageHeight="800" math="0" shadow="0">
+    <mxGraphModel dx="1347" dy="708" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="1300" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="ce_legend" value="Legend:  rectangle = entity  ·  diamond = relationship  ·  oval = attribute  ·  &lt;u&gt;underline&lt;/u&gt; = primary key  ·  dashed oval = derived  ·  1 / N = cardinality ratio  ·  (total) = total participation" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillColor=#f5f5f5;strokeColor=#cccccc;" vertex="1" parent="1"><mxGeometry x="450" y="20" width="620" height="50" as="geometry" /></mxCell>
-        <mxCell id="ce_student" value="STUDENT" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="250" y="330" width="150" height="56" as="geometry" /></mxCell>
-        <mxCell id="ce_st1" value="&lt;u&gt;Id&lt;/u&gt;" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="40" y="40" width="150" height="34" as="geometry" /></mxCell>
-        <mxCell id="ce_st2" value="Name" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="40" y="84" width="150" height="34" as="geometry" /></mxCell>
-        <mxCell id="ce_st3" value="Surname" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="40" y="128" width="150" height="34" as="geometry" /></mxCell>
-        <mxCell id="ce_st4" value="Username" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="40" y="172" width="150" height="34" as="geometry" /></mxCell>
-        <mxCell id="ce_st5" value="PasswordHash" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="40" y="216" width="150" height="34" as="geometry" /></mxCell>
-        <mxCell id="ce_st6" value="Sex" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="40" y="260" width="150" height="34" as="geometry" /></mxCell>
-        <mxCell id="ce_st7" value="DateOfBirth" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="40" y="304" width="150" height="34" as="geometry" /></mxCell>
-        <mxCell id="ce_st8" value="Phone" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="40" y="348" width="150" height="34" as="geometry" /></mxCell>
-        <mxCell id="ce_st9" value="Address" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="40" y="392" width="150" height="34" as="geometry" /></mxCell>
-        <mxCell id="ce_st10" value="AcademicEmail" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="40" y="436" width="150" height="34" as="geometry" /></mxCell>
-        <mxCell id="ce_st11" value="AEM" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="40" y="480" width="150" height="34" as="geometry" /></mxCell>
-        <mxCell id="ce_st12" value="Department" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="40" y="524" width="150" height="34" as="geometry" /></mxCell>
-        <mxCell id="ce_st13" value="Semester" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="40" y="568" width="150" height="34" as="geometry" /></mxCell>
-        <mxCell id="ce_st14" value="YearOfEntry" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="40" y="612" width="150" height="34" as="geometry" /></mxCell>
-        <mxCell id="ce_st15" value="IsPostgraduate" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="40" y="656" width="150" height="34" as="geometry" /></mxCell>
-        <mxCell id="ce_la1" style="endArrow=none;html=1;" edge="1" parent="1" source="ce_st1" target="ce_student"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="ce_la2" style="endArrow=none;html=1;" edge="1" parent="1" source="ce_st2" target="ce_student"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="ce_la3" style="endArrow=none;html=1;" edge="1" parent="1" source="ce_st3" target="ce_student"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="ce_la4" style="endArrow=none;html=1;" edge="1" parent="1" source="ce_st4" target="ce_student"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="ce_la5" style="endArrow=none;html=1;" edge="1" parent="1" source="ce_st5" target="ce_student"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="ce_la6" style="endArrow=none;html=1;" edge="1" parent="1" source="ce_st6" target="ce_student"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="ce_la7" style="endArrow=none;html=1;" edge="1" parent="1" source="ce_st7" target="ce_student"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="ce_la8" style="endArrow=none;html=1;" edge="1" parent="1" source="ce_st8" target="ce_student"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="ce_la9" style="endArrow=none;html=1;" edge="1" parent="1" source="ce_st9" target="ce_student"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="ce_la10" style="endArrow=none;html=1;" edge="1" parent="1" source="ce_st10" target="ce_student"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="ce_la11" style="endArrow=none;html=1;" edge="1" parent="1" source="ce_st11" target="ce_student"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="ce_la12" style="endArrow=none;html=1;" edge="1" parent="1" source="ce_st12" target="ce_student"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="ce_la13" style="endArrow=none;html=1;" edge="1" parent="1" source="ce_st13" target="ce_student"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="ce_la14" style="endArrow=none;html=1;" edge="1" parent="1" source="ce_st14" target="ce_student"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="ce_la15" style="endArrow=none;html=1;" edge="1" parent="1" source="ce_st15" target="ce_student"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="ce_holds" value="HOLDS" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1"><mxGeometry x="470" y="110" width="120" height="70" as="geometry" /></mxCell>
-        <mxCell id="ce_account" value="ACCOUNT" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="660" y="120" width="150" height="50" as="geometry" /></mxCell>
-        <mxCell id="ce_ac_id" value="&lt;u&gt;Id&lt;/u&gt;" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="880" y="127" width="120" height="34" as="geometry" /></mxCell>
-        <mxCell id="ce_enrolls" value="ENROLLS" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1"><mxGeometry x="470" y="330" width="120" height="70" as="geometry" /></mxCell>
-        <mxCell id="ce_face" value="FACE_IMAGE" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="660" y="335" width="160" height="50" as="geometry" /></mxCell>
-        <mxCell id="ce_fi1" value="&lt;u&gt;Id&lt;/u&gt;" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="890" y="290" width="120" height="34" as="geometry" /></mxCell>
-        <mxCell id="ce_fi2" value="ImageData" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="890" y="334" width="120" height="34" as="geometry" /></mxCell>
-        <mxCell id="ce_fi3" value="Embedding" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="890" y="378" width="120" height="34" as="geometry" /></mxCell>
-        <mxCell id="ce_fi4" value="DateCaptured" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="890" y="422" width="120" height="34" as="geometry" /></mxCell>
-        <mxCell id="ce_logs" value="LOGS" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1"><mxGeometry x="470" y="560" width="120" height="70" as="geometry" /></mxCell>
-        <mxCell id="ce_session" value="SESSION_HISTORY" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="650" y="565" width="180" height="50" as="geometry" /></mxCell>
-        <mxCell id="ce_se1" value="&lt;u&gt;Id&lt;/u&gt;" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="890" y="515" width="120" height="34" as="geometry" /></mxCell>
-        <mxCell id="ce_se2" value="Date" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="890" y="559" width="120" height="34" as="geometry" /></mxCell>
-        <mxCell id="ce_se3" value="CheckIn" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="890" y="603" width="120" height="34" as="geometry" /></mxCell>
-        <mxCell id="ce_se4" value="CheckOut" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="890" y="647" width="120" height="34" as="geometry" /></mxCell>
-        <mxCell id="ce_se5" value="ActiveTime" style="ellipse;whiteSpace=wrap;html=1;dashed=1;" vertex="1" parent="1"><mxGeometry x="890" y="691" width="120" height="34" as="geometry" /></mxCell>
-        <mxCell id="ce_ra1" style="endArrow=none;html=1;" edge="1" parent="1" source="ce_ac_id" target="ce_account"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="ce_rf1" style="endArrow=none;html=1;" edge="1" parent="1" source="ce_fi1" target="ce_face"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="ce_rf2" style="endArrow=none;html=1;" edge="1" parent="1" source="ce_fi2" target="ce_face"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="ce_rf3" style="endArrow=none;html=1;" edge="1" parent="1" source="ce_fi3" target="ce_face"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="ce_rf4" style="endArrow=none;html=1;" edge="1" parent="1" source="ce_fi4" target="ce_face"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="ce_rs1" style="endArrow=none;html=1;" edge="1" parent="1" source="ce_se1" target="ce_session"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="ce_rs2" style="endArrow=none;html=1;" edge="1" parent="1" source="ce_se2" target="ce_session"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="ce_rs3" style="endArrow=none;html=1;" edge="1" parent="1" source="ce_se3" target="ce_session"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="ce_rs4" style="endArrow=none;html=1;" edge="1" parent="1" source="ce_se4" target="ce_session"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="ce_rs5" style="endArrow=none;html=1;" edge="1" parent="1" source="ce_se5" target="ce_session"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="ce_er1" value="1" style="endArrow=none;html=1;" edge="1" parent="1" source="ce_student" target="ce_holds"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="ce_er2" value="1 (total)" style="endArrow=none;html=1;" edge="1" parent="1" source="ce_holds" target="ce_account"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="ce_er3" value="1" style="endArrow=none;html=1;" edge="1" parent="1" source="ce_student" target="ce_enrolls"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="ce_er4" value="N (total)" style="endArrow=none;html=1;" edge="1" parent="1" source="ce_enrolls" target="ce_face"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="ce_er5" value="1" style="endArrow=none;html=1;" edge="1" parent="1" source="ce_student" target="ce_logs"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="ce_er6" value="N (total)" style="endArrow=none;html=1;" edge="1" parent="1" source="ce_logs" target="ce_session"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ce_legend" parent="1" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillColor=#f5f5f5;strokeColor=#cccccc;" value="Legend:  rectangle = entity  ·  diamond = relationship  ·  oval = attribute  ·  &lt;u&gt;underline&lt;/u&gt; = primary key  ·  dashed oval = derived  ·  1 / N = cardinality ratio  ·  (total) = total participation  ·  &lt;b&gt;dashed rectangle / diamond = derived (computed at runtime, not stored)&lt;/b&gt;" vertex="1">
+          <mxGeometry height="50" width="620" x="450" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_student" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;" value="STUDENT" vertex="1">
+          <mxGeometry height="56" width="150" x="250" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_st1" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="&lt;u&gt;Id&lt;/u&gt;" vertex="1">
+          <mxGeometry height="34" width="150" x="40" y="75" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_st2" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="Name" vertex="1">
+          <mxGeometry height="34" width="150" x="40" y="119" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_st3" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="Surname" vertex="1">
+          <mxGeometry height="34" width="150" x="40" y="163" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_st4" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="Username" vertex="1">
+          <mxGeometry height="34" width="150" x="40" y="207" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_st5" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="PasswordHash" vertex="1">
+          <mxGeometry height="34" width="150" x="40" y="251" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_st6" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="Sex" vertex="1">
+          <mxGeometry height="34" width="150" x="40" y="295" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_st7" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="DateOfBirth" vertex="1">
+          <mxGeometry height="34" width="150" x="40" y="339" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_st8" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="Phone" vertex="1">
+          <mxGeometry height="34" width="150" x="40" y="383" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_st9" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="Address" vertex="1">
+          <mxGeometry height="34" width="150" x="40" y="427" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_st10" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="AcademicEmail" vertex="1">
+          <mxGeometry height="34" width="150" x="40" y="471" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_st11" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="AEM" vertex="1">
+          <mxGeometry height="34" width="150" x="40" y="515" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_st12" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="Department" vertex="1">
+          <mxGeometry height="34" width="150" x="40" y="559" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_st13" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="Semester" vertex="1">
+          <mxGeometry height="34" width="150" x="40" y="603" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_st14" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="YearOfEntry" vertex="1">
+          <mxGeometry height="34" width="150" x="40" y="647" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_st15" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="IsPostgraduate" vertex="1">
+          <mxGeometry height="34" width="150" x="40" y="691" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_la1" edge="1" parent="1" source="ce_st1" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;" target="ce_student">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_la2" edge="1" parent="1" source="ce_st2" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;" target="ce_student">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_la3" edge="1" parent="1" source="ce_st3" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;" target="ce_student">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_la4" edge="1" parent="1" source="ce_st4" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;" target="ce_student">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_la5" edge="1" parent="1" source="ce_st5" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;" target="ce_student">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_la6" edge="1" parent="1" source="ce_st6" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;" target="ce_student">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_la7" edge="1" parent="1" source="ce_st7" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;" target="ce_student">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_la8" edge="1" parent="1" source="ce_st8" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;" target="ce_student">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_la9" edge="1" parent="1" source="ce_st9" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;" target="ce_student">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_la10" edge="1" parent="1" source="ce_st10" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;" target="ce_student">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_la11" edge="1" parent="1" source="ce_st11" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;" target="ce_student">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_la12" edge="1" parent="1" source="ce_st12" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;" target="ce_student">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_la13" edge="1" parent="1" source="ce_st13" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;" target="ce_student">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_la14" edge="1" parent="1" source="ce_st14" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;" target="ce_student">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_la15" edge="1" parent="1" source="ce_st15" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;" target="ce_student">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_holds" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" value="HOLDS" vertex="1">
+          <mxGeometry height="70" width="120" x="470" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_account" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;" value="ACCOUNT" vertex="1">
+          <mxGeometry height="50" width="150" x="660" y="85" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_ac_id" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="&lt;u&gt;Id&lt;/u&gt;" vertex="1">
+          <mxGeometry height="34" width="120" x="890" y="93" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_enrolls" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" value="ENROLLS_FACE" vertex="1">
+          <mxGeometry height="80" width="140" x="460" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_face" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontStyle=1;" value="FACE_IMAGE" vertex="1">
+          <mxGeometry height="50" width="160" x="660" y="255" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_fi1" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="&lt;u&gt;Id&lt;/u&gt;" vertex="1">
+          <mxGeometry height="34" width="120" x="890" y="196" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_fi2" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="ImageData" vertex="1">
+          <mxGeometry height="34" width="120" x="890" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_fi3" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="Embedding" vertex="1">
+          <mxGeometry height="34" width="120" x="890" y="284" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_fi4" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="DateCaptured" vertex="1">
+          <mxGeometry height="34" width="120" x="890" y="328" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_enrollsp" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" value="ENROLLS_PALM" vertex="1">
+          <mxGeometry height="80" width="140" x="460" y="450" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_palm" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;" value="PALMPRINT_IMAGE" vertex="1">
+          <mxGeometry height="50" width="180" x="650" y="465" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_pi1" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="&lt;u&gt;Id&lt;/u&gt;" vertex="1">
+          <mxGeometry height="34" width="120" x="890" y="406" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_pi2" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="ImageData" vertex="1">
+          <mxGeometry height="34" width="120" x="890" y="450" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_pi3" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="Embedding" vertex="1">
+          <mxGeometry height="34" width="120" x="890" y="494" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_pi4" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="DateCaptured" vertex="1">
+          <mxGeometry height="34" width="120" x="890" y="538" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_logs" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" value="LOGS" vertex="1">
+          <mxGeometry height="70" width="120" x="470" y="655" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_session" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;" value="SESSION_HISTORY" vertex="1">
+          <mxGeometry height="50" width="180" x="650" y="665" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_se1" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="&lt;u&gt;Id&lt;/u&gt;" vertex="1">
+          <mxGeometry height="34" width="120" x="890" y="606" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_se2" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="Date" vertex="1">
+          <mxGeometry height="34" width="120" x="890" y="650" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_se3" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="CheckIn" vertex="1">
+          <mxGeometry height="34" width="120" x="890" y="694" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_se4" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="CheckOut" vertex="1">
+          <mxGeometry height="34" width="120" x="890" y="738" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_se5" parent="1" style="ellipse;whiteSpace=wrap;html=1;dashed=1;" value="ActiveTime" vertex="1">
+          <mxGeometry height="34" width="120" x="890" y="782" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_ra1" edge="1" parent="1" source="ce_ac_id" style="endArrow=none;html=1;" target="ce_account">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_rf1" edge="1" parent="1" source="ce_fi1" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;" target="ce_face">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_rf2" edge="1" parent="1" source="ce_fi2" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;" target="ce_face">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_rf3" edge="1" parent="1" source="ce_fi3" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;" target="ce_face">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_rf4" edge="1" parent="1" source="ce_fi4" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;" target="ce_face">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_rp1" edge="1" parent="1" source="ce_pi1" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;" target="ce_palm">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_rp2" edge="1" parent="1" source="ce_pi2" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;" target="ce_palm">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_rp3" edge="1" parent="1" source="ce_pi3" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;" target="ce_palm">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_rp4" edge="1" parent="1" source="ce_pi4" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;" target="ce_palm">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_rs1" edge="1" parent="1" source="ce_se1" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;" target="ce_session">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_rs2" edge="1" parent="1" source="ce_se2" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;" target="ce_session">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_rs3" edge="1" parent="1" source="ce_se3" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;" target="ce_session">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_rs4" edge="1" parent="1" source="ce_se4" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;" target="ce_session">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_rs5" edge="1" parent="1" source="ce_se5" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;" target="ce_session">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_er1" edge="1" parent="1" source="ce_student" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;" target="ce_holds" value="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="420" y="378" />
+              <mxPoint x="420" y="115" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ce_er2" edge="1" parent="1" source="ce_holds" style="endArrow=none;html=1;" target="ce_account" value="1 (total)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_er3" edge="1" parent="1" source="ce_student" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;" target="ce_enrolls" value="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="450" y="378" />
+              <mxPoint x="450" y="280" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ce_er4" edge="1" parent="1" source="ce_enrolls" style="endArrow=none;html=1;" target="ce_face" value="N (total)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_er7" edge="1" parent="1" source="ce_student" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;" target="ce_enrollsp" value="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="450" y="378" />
+              <mxPoint x="450" y="490" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ce_er8" edge="1" parent="1" source="ce_enrollsp" style="endArrow=none;html=1;" target="ce_palm" value="N (total)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_er5" edge="1" parent="1" source="ce_student" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;" target="ce_logs" value="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="420" y="378" />
+              <mxPoint x="420" y="690" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ce_er6" edge="1" parent="1" source="ce_logs" style="endArrow=none;html=1;" target="ce_session" value="N (total)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_dnote" parent="1" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillColor=#f5f5f5;strokeColor=#cccccc;dashed=1;" value="&lt;b&gt;Derived region (dashed)&lt;/b&gt;&#xa;&#xa;ATTENDANCE_STATISTICS and WEEKLY_ATTENDANCE_DATA_POINT are&#xa;&lt;b&gt;not stored&lt;/b&gt; in the database — there is no table and no DbSet for them.&#xa;StatisticsService recomputes the whole region from the student&#39;s&#xa;SESSION_HISTORY rows every time the Statistics page is opened,&#xa;so every attribute below is a derived attribute." vertex="1">
+          <mxGeometry height="160" width="300" x="40" y="820" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_computed" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;dashed=1;" value="COMPUTED_FOR" vertex="1">
+          <mxGeometry height="80" width="160" x="380" y="868" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_stats" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;dashed=1;" value="ATTENDANCE_STATISTICS" vertex="1">
+          <mxGeometry height="56" width="220" x="610" y="880" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_as0" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="&lt;u&gt;StudentId&lt;/u&gt;" vertex="1">
+          <mxGeometry height="34" width="160" x="380" y="770" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_as1" parent="1" style="ellipse;whiteSpace=wrap;html=1;dashed=1;" value="MonthlyAttendancePercentage" vertex="1">
+          <mxGeometry height="34" width="190" x="880" y="830" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_as2" parent="1" style="ellipse;whiteSpace=wrap;html=1;dashed=1;" value="TodayActiveTime" vertex="1">
+          <mxGeometry height="34" width="190" x="880" y="874" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_as3" parent="1" style="ellipse;whiteSpace=wrap;html=1;dashed=1;" value="TodayCheckIn" vertex="1">
+          <mxGeometry height="34" width="190" x="880" y="918" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_as4" parent="1" style="ellipse;whiteSpace=wrap;html=1;dashed=1;" value="DaysAttendedThisWeek" vertex="1">
+          <mxGeometry height="34" width="190" x="880" y="962" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_as5" parent="1" style="ellipse;whiteSpace=wrap;html=1;dashed=1;" value="MonthlyActiveHours" vertex="1">
+          <mxGeometry height="34" width="190" x="880" y="1006" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_as6" parent="1" style="ellipse;whiteSpace=wrap;html=1;dashed=1;" value="WeekLoginStreak" vertex="1">
+          <mxGeometry height="34" width="190" x="880" y="1050" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_as7" parent="1" style="ellipse;whiteSpace=wrap;html=1;dashed=1;" value="WeeklyAverageActiveTime" vertex="1">
+          <mxGeometry height="34" width="190" x="880" y="1094" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_haspoint" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;dashed=1;" value="HAS_POINT" vertex="1">
+          <mxGeometry height="80" width="160" x="640" y="1003" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_wpoint" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;dashed=1;" value="WEEKLY_ATTENDANCE_DATA_POINT" vertex="1">
+          <mxGeometry height="56" width="240" x="600" y="1150" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_wp1" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="&lt;u&gt;Date&lt;/u&gt;" vertex="1">
+          <mxGeometry height="34" width="160" x="360" y="1120" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_wp2" parent="1" style="ellipse;whiteSpace=wrap;html=1;dashed=1;" value="ActiveTime" vertex="1">
+          <mxGeometry height="34" width="160" x="360" y="1180" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_das0" edge="1" parent="1" source="ce_as0" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;" target="ce_stats">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_das1" edge="1" parent="1" source="ce_as1" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;" target="ce_stats">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_das2" edge="1" parent="1" source="ce_as2" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;" target="ce_stats">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_das3" edge="1" parent="1" source="ce_as3" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;" target="ce_stats">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_das4" edge="1" parent="1" source="ce_as4" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;" target="ce_stats">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_das5" edge="1" parent="1" source="ce_as5" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;" target="ce_stats">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_das6" edge="1" parent="1" source="ce_as6" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;" target="ce_stats">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_das7" edge="1" parent="1" source="ce_as7" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;" target="ce_stats">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_dwp1" edge="1" parent="1" source="ce_wp1" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;" target="ce_wpoint">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_dwp2" edge="1" parent="1" source="ce_wp2" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;" target="ce_wpoint">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_er9" edge="1" parent="1" source="ce_student" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="ce_computed" value="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="325" y="908" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ce_er10" edge="1" parent="1" source="ce_computed" style="endArrow=none;html=1;" target="ce_stats" value="1 (derived)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_er11" edge="1" parent="1" source="ce_stats" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="ce_haspoint" value="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_er12" edge="1" parent="1" source="ce_haspoint" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="ce_wpoint" value="7 (total)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ce_derive" edge="1" parent="1" source="ce_session" style="endArrow=open;html=1;dashed=1;edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="ce_stats" value="aggregated by StatisticsService">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
-  <diagram name="7. Face Enrollment (Sequence)" id="seq-enroll">
-    <mxGraphModel dx="1000" dy="700" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageWidth="1200" pageHeight="700" math="0" shadow="0">
+  <diagram name="7. Biometric Enrollment (Sequence)" id="seq-enroll">
+    <mxGraphModel dx="1000" dy="700" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageWidth="1460" pageHeight="1000" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="en1" value="User" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;collapsible=0;outlineConnect=0;size=40;fillColor=#f5f5f5;" vertex="1" parent="1"><mxGeometry x="40" y="40" width="150" height="620" as="geometry" /></mxCell>
-        <mxCell id="en2" value="Register06 (View + VM)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;collapsible=0;outlineConnect=0;size=40;fillColor=#dae8fc;" vertex="1" parent="1"><mxGeometry x="240" y="40" width="160" height="620" as="geometry" /></mxCell>
-        <mxCell id="en3" value="CameraCaptureService" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;collapsible=0;outlineConnect=0;size=40;fillColor=#dae8fc;" vertex="1" parent="1"><mxGeometry x="450" y="40" width="160" height="620" as="geometry" /></mxCell>
-        <mxCell id="en4" value="Python /encode" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;collapsible=0;outlineConnect=0;size=40;fillColor=#f8cecc;" vertex="1" parent="1"><mxGeometry x="660" y="40" width="150" height="620" as="geometry" /></mxCell>
-        <mxCell id="en5" value="Data Layer (Account / Face / DB)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;collapsible=0;outlineConnect=0;size=40;fillColor=#ffe6cc;" vertex="1" parent="1"><mxGeometry x="860" y="40" width="160" height="620" as="geometry" /></mxCell>
-        <mxCell id="en6" value="IAuthenticator" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;collapsible=0;outlineConnect=0;size=40;fillColor=#d5e8d4;" vertex="1" parent="1"><mxGeometry x="1060" y="40" width="120" height="620" as="geometry" /></mxCell>
-        <mxCell id="en_m1" value="Take photo (repeat 3-5x)" style="html=1;verticalAlign=bottom;endArrow=block;exitX=0.5;exitY=0.14;exitDx=0;exitDy=0;entryX=0.5;entryY=0.14;entryDx=0;entryDy=0;" edge="1" parent="1" source="en1" target="en2"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="en_m2" value="CaptureJpeg()" style="html=1;verticalAlign=bottom;endArrow=block;exitX=0.5;exitY=0.20;exitDx=0;exitDy=0;entryX=0.5;entryY=0.20;entryDx=0;entryDy=0;" edge="1" parent="1" source="en2" target="en3"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="en_m3" value="JPEG bytes" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;exitX=0.5;exitY=0.26;exitDx=0;exitDy=0;entryX=0.5;entryY=0.26;entryDx=0;entryDy=0;" edge="1" parent="1" source="en3" target="en2"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="en_m4" value="POST /encode (JPEG)" style="html=1;verticalAlign=bottom;endArrow=block;exitX=0.5;exitY=0.32;exitDx=0;exitDy=0;entryX=0.5;entryY=0.32;entryDx=0;entryDy=0;" edge="1" parent="1" source="en2" target="en4"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="en_m5" value="found, embedding[128]" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;exitX=0.5;exitY=0.38;exitDx=0;exitDy=0;entryX=0.5;entryY=0.38;entryDx=0;entryDy=0;" edge="1" parent="1" source="en4" target="en2"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="en_m6" value="Ολοκλήρωση (Finish)" style="html=1;verticalAlign=bottom;endArrow=block;exitX=0.5;exitY=0.46;exitDx=0;exitDy=0;entryX=0.5;entryY=0.46;entryDx=0;entryDy=0;" edge="1" parent="1" source="en1" target="en2"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="en_m7" value="Create Student+Account; Save FaceImages (+embeddings)" style="html=1;verticalAlign=bottom;endArrow=block;exitX=0.5;exitY=0.52;exitDx=0;exitDy=0;entryX=0.5;entryY=0.52;entryDx=0;entryDy=0;" edge="1" parent="1" source="en2" target="en5"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="en_m8" value="studentId / saved" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;exitX=0.5;exitY=0.58;exitDx=0;exitDy=0;entryX=0.5;entryY=0.58;entryDx=0;entryDy=0;" edge="1" parent="1" source="en5" target="en2"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="en_m9" value="LoginWithFace(firstEmbedding)" style="html=1;verticalAlign=bottom;endArrow=block;exitX=0.5;exitY=0.64;exitDx=0;exitDy=0;entryX=0.5;entryY=0.64;entryDx=0;entryDy=0;" edge="1" parent="1" source="en2" target="en6"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="en_m10" value="success (CurrentAccount set, check-in)" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;exitX=0.5;exitY=0.70;exitDx=0;exitDy=0;entryX=0.5;entryY=0.70;entryDx=0;entryDy=0;" edge="1" parent="1" source="en6" target="en2"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="en_m11" value="navigate to Dashboard" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;exitX=0.5;exitY=0.76;exitDx=0;exitDy=0;entryX=0.5;entryY=0.76;entryDx=0;entryDy=0;" edge="1" parent="1" source="en2" target="en1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="en1" value="User" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;collapsible=0;outlineConnect=0;size=40;fillColor=#f5f5f5;" vertex="1" parent="1">
+          <mxGeometry x="30" y="40" width="150" height="900" as="geometry" />
+        </mxCell>
+        <mxCell id="en2" value="Register04 — palm (View + VM)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;collapsible=0;outlineConnect=0;size=40;fillColor=#e1d5e7;" vertex="1" parent="1">
+          <mxGeometry x="230" y="40" width="160" height="900" as="geometry" />
+        </mxCell>
+        <mxCell id="en3" value="Register06 — face (View + VM)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;collapsible=0;outlineConnect=0;size=40;fillColor=#dae8fc;" vertex="1" parent="1">
+          <mxGeometry x="440" y="40" width="160" height="900" as="geometry" />
+        </mxCell>
+        <mxCell id="en4" value="CameraCaptureService" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;collapsible=0;outlineConnect=0;size=40;fillColor=#dae8fc;" vertex="1" parent="1">
+          <mxGeometry x="650" y="40" width="160" height="900" as="geometry" />
+        </mxCell>
+        <mxCell id="en5" value="Python encoders&#xa;/encode 8500 · /encode-palm 8501" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;collapsible=0;outlineConnect=0;size=40;fillColor=#f8cecc;" vertex="1" parent="1">
+          <mxGeometry x="860" y="40" width="180" height="900" as="geometry" />
+        </mxCell>
+        <mxCell id="en6" value="Data Layer&#xa;(Account / Face / Palm / DB)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;collapsible=0;outlineConnect=0;size=40;fillColor=#ffe6cc;" vertex="1" parent="1">
+          <mxGeometry x="1090" y="40" width="180" height="900" as="geometry" />
+        </mxCell>
+        <mxCell id="en7" value="IAuthenticator" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;collapsible=0;outlineConnect=0;size=40;fillColor=#d5e8d4;" vertex="1" parent="1">
+          <mxGeometry x="1310" y="40" width="130" height="900" as="geometry" />
+        </mxCell>
+        <mxCell id="en_m1" value="Take palm photo (repeat 7×)" style="html=1;verticalAlign=bottom;endArrow=block;exitX=0.5;exitY=0.12;exitDx=0;exitDy=0;entryX=0.5;entryY=0.12;entryDx=0;entryDy=0;" edge="1" parent="1" source="en1" target="en2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="en_m2" value="CaptureJpeg()" style="html=1;verticalAlign=bottom;endArrow=block;exitX=0.5;exitY=0.16;exitDx=0;exitDy=0;entryX=0.5;entryY=0.16;entryDx=0;entryDy=0;" edge="1" parent="1" source="en2" target="en4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="en_m3" value="JPEG bytes" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;exitX=0.5;exitY=0.20;exitDx=0;exitDy=0;entryX=0.5;entryY=0.20;entryDx=0;entryDy=0;" edge="1" parent="1" source="en4" target="en2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="en_m4" value="POST /encode-palm (JPEG)" style="html=1;verticalAlign=bottom;endArrow=block;exitX=0.5;exitY=0.24;exitDx=0;exitDy=0;entryX=0.5;entryY=0.24;entryDx=0;entryDy=0;" edge="1" parent="1" source="en2" target="en5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="en_m5" value="found, embedding[256] → RegistrationStore.CapturedPalms" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;exitX=0.5;exitY=0.28;exitDx=0;exitDy=0;entryX=0.5;entryY=0.28;entryDx=0;entryDy=0;" edge="1" parent="1" source="en5" target="en2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="en_m6" value="Take face photo (repeat 7×)" style="html=1;verticalAlign=bottom;endArrow=block;exitX=0.5;exitY=0.36;exitDx=0;exitDy=0;entryX=0.5;entryY=0.36;entryDx=0;entryDy=0;" edge="1" parent="1" source="en1" target="en3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="en_m7" value="CaptureJpeg()" style="html=1;verticalAlign=bottom;endArrow=block;exitX=0.5;exitY=0.40;exitDx=0;exitDy=0;entryX=0.5;entryY=0.40;entryDx=0;entryDy=0;" edge="1" parent="1" source="en3" target="en4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="en_m8" value="JPEG bytes" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;exitX=0.5;exitY=0.44;exitDx=0;exitDy=0;entryX=0.5;entryY=0.44;entryDx=0;entryDy=0;" edge="1" parent="1" source="en4" target="en3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="en_m9" value="POST /encode (JPEG)" style="html=1;verticalAlign=bottom;endArrow=block;exitX=0.5;exitY=0.48;exitDx=0;exitDy=0;entryX=0.5;entryY=0.48;entryDx=0;entryDy=0;" edge="1" parent="1" source="en3" target="en5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="en_m10" value="found, embedding[128] → RegistrationStore.CapturedFaces" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;exitX=0.5;exitY=0.52;exitDx=0;exitDy=0;entryX=0.5;entryY=0.52;entryDx=0;entryDy=0;" edge="1" parent="1" source="en5" target="en3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="en_m11" value="Ολοκλήρωση (Finish)" style="html=1;verticalAlign=bottom;endArrow=block;exitX=0.5;exitY=0.60;exitDx=0;exitDy=0;entryX=0.5;entryY=0.60;entryDx=0;entryDy=0;" edge="1" parent="1" source="en1" target="en3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="en_m12" value="Create Student+Account; SaveFaceImage ×7; SavePalmprintImage ×7" style="html=1;verticalAlign=bottom;endArrow=block;exitX=0.5;exitY=0.64;exitDx=0;exitDy=0;entryX=0.5;entryY=0.64;entryDx=0;entryDy=0;" edge="1" parent="1" source="en3" target="en6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="en_m13" value="studentId / saved" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;exitX=0.5;exitY=0.68;exitDx=0;exitDy=0;entryX=0.5;entryY=0.68;entryDx=0;entryDy=0;" edge="1" parent="1" source="en6" target="en3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="en_m14" value="LoginWithFace(firstFaceEmbedding)" style="html=1;verticalAlign=bottom;endArrow=block;exitX=0.5;exitY=0.74;exitDx=0;exitDy=0;entryX=0.5;entryY=0.74;entryDx=0;entryDy=0;" edge="1" parent="1" source="en3" target="en7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="en_m15" value="success (CurrentAccount set, check-in recorded)" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;exitX=0.5;exitY=0.78;exitDx=0;exitDy=0;entryX=0.5;entryY=0.78;entryDx=0;entryDy=0;" edge="1" parent="1" source="en7" target="en3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="en_m16" value="navigate to Dashboard" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;exitX=0.5;exitY=0.84;exitDx=0;exitDy=0;entryX=0.5;entryY=0.84;entryDx=0;entryDy=0;" edge="1" parent="1" source="en3" target="en1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
   <diagram name="8. Face Login (Sequence)" id="seq-login">
-    <mxGraphModel dx="1000" dy="700" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageWidth="1200" pageHeight="700" math="0" shadow="0">
+    <mxGraphModel dx="1000" dy="700" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageWidth="1300" pageHeight="720" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="lo1" value="User" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;collapsible=0;outlineConnect=0;size=40;fillColor=#f5f5f5;" vertex="1" parent="1"><mxGeometry x="40" y="40" width="150" height="620" as="geometry" /></mxCell>
-        <mxCell id="lo2" value="LoginWithFace (View + VM)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;collapsible=0;outlineConnect=0;size=40;fillColor=#dae8fc;" vertex="1" parent="1"><mxGeometry x="240" y="40" width="160" height="620" as="geometry" /></mxCell>
-        <mxCell id="lo3" value="CameraCaptureService" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;collapsible=0;outlineConnect=0;size=40;fillColor=#dae8fc;" vertex="1" parent="1"><mxGeometry x="450" y="40" width="160" height="620" as="geometry" /></mxCell>
-        <mxCell id="lo4" value="Python /encode" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;collapsible=0;outlineConnect=0;size=40;fillColor=#f8cecc;" vertex="1" parent="1"><mxGeometry x="660" y="40" width="150" height="620" as="geometry" /></mxCell>
-        <mxCell id="lo5" value="Authenticator + AuthenticationService" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;collapsible=0;outlineConnect=0;size=40;fillColor=#d5e8d4;" vertex="1" parent="1"><mxGeometry x="860" y="40" width="170" height="620" as="geometry" /></mxCell>
-        <mxCell id="lo6" value="FaceImageService + DB" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;collapsible=0;outlineConnect=0;size=40;fillColor=#ffe6cc;" vertex="1" parent="1"><mxGeometry x="1080" y="40" width="150" height="620" as="geometry" /></mxCell>
-        <mxCell id="lo_m1" value="Take photo" style="html=1;verticalAlign=bottom;endArrow=block;exitX=0.5;exitY=0.14;exitDx=0;exitDy=0;entryX=0.5;entryY=0.14;entryDx=0;entryDy=0;" edge="1" parent="1" source="lo1" target="lo2"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="lo_m2" value="CaptureJpeg()" style="html=1;verticalAlign=bottom;endArrow=block;exitX=0.5;exitY=0.20;exitDx=0;exitDy=0;entryX=0.5;entryY=0.20;entryDx=0;entryDy=0;" edge="1" parent="1" source="lo2" target="lo3"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="lo_m3" value="JPEG bytes" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;exitX=0.5;exitY=0.26;exitDx=0;exitDy=0;entryX=0.5;entryY=0.26;entryDx=0;entryDy=0;" edge="1" parent="1" source="lo3" target="lo2"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="lo_m4" value="POST /encode (JPEG)" style="html=1;verticalAlign=bottom;endArrow=block;exitX=0.5;exitY=0.32;exitDx=0;exitDy=0;entryX=0.5;entryY=0.32;entryDx=0;entryDy=0;" edge="1" parent="1" source="lo2" target="lo4"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="lo_m5" value="found, embedding[128]" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;exitX=0.5;exitY=0.38;exitDx=0;exitDy=0;entryX=0.5;entryY=0.38;entryDx=0;entryDy=0;" edge="1" parent="1" source="lo4" target="lo2"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="lo_m6" value="LoginWithFace(embedding)" style="html=1;verticalAlign=bottom;endArrow=block;exitX=0.5;exitY=0.44;exitDx=0;exitDy=0;entryX=0.5;entryY=0.44;entryDx=0;entryDy=0;" edge="1" parent="1" source="lo2" target="lo5"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="lo_m7" value="GetAllEmbeddings()" style="html=1;verticalAlign=bottom;endArrow=block;exitX=0.5;exitY=0.50;exitDx=0;exitDy=0;entryX=0.5;entryY=0.50;entryDx=0;entryDy=0;" edge="1" parent="1" source="lo5" target="lo6"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="lo_m8" value="enrolled embeddings" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;exitX=0.5;exitY=0.56;exitDx=0;exitDy=0;entryX=0.5;entryY=0.56;entryDx=0;entryDy=0;" edge="1" parent="1" source="lo6" target="lo5"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="lo_m9" value="Account if best avg L2 under 0.45, else null" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;exitX=0.5;exitY=0.64;exitDx=0;exitDy=0;entryX=0.5;entryY=0.64;entryDx=0;entryDy=0;" edge="1" parent="1" source="lo5" target="lo2"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="lo_m10" value="Dashboard, or 'No match'" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;exitX=0.5;exitY=0.72;exitDx=0;exitDy=0;entryX=0.5;entryY=0.72;entryDx=0;entryDy=0;" edge="1" parent="1" source="lo2" target="lo1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="lo1" value="User" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;collapsible=0;outlineConnect=0;size=40;fillColor=#f5f5f5;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="150" height="620" as="geometry" />
+        </mxCell>
+        <mxCell id="lo2" value="LoginWithFace (View + VM)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;collapsible=0;outlineConnect=0;size=40;fillColor=#dae8fc;" vertex="1" parent="1">
+          <mxGeometry x="240" y="40" width="160" height="620" as="geometry" />
+        </mxCell>
+        <mxCell id="lo3" value="CameraCaptureService" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;collapsible=0;outlineConnect=0;size=40;fillColor=#dae8fc;" vertex="1" parent="1">
+          <mxGeometry x="450" y="40" width="160" height="620" as="geometry" />
+        </mxCell>
+        <mxCell id="lo4" value="Python /encode (8500)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;collapsible=0;outlineConnect=0;size=40;fillColor=#f8cecc;" vertex="1" parent="1">
+          <mxGeometry x="660" y="40" width="150" height="620" as="geometry" />
+        </mxCell>
+        <mxCell id="lo5" value="Authenticator + AuthenticationService" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;collapsible=0;outlineConnect=0;size=40;fillColor=#d5e8d4;" vertex="1" parent="1">
+          <mxGeometry x="860" y="40" width="170" height="620" as="geometry" />
+        </mxCell>
+        <mxCell id="lo6" value="FaceImageService + DB" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;collapsible=0;outlineConnect=0;size=40;fillColor=#ffe6cc;" vertex="1" parent="1">
+          <mxGeometry x="1080" y="40" width="150" height="620" as="geometry" />
+        </mxCell>
+        <mxCell id="lo_m1" value="Take photo" style="html=1;verticalAlign=bottom;endArrow=block;exitX=0.5;exitY=0.14;exitDx=0;exitDy=0;entryX=0.5;entryY=0.14;entryDx=0;entryDy=0;" edge="1" parent="1" source="lo1" target="lo2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lo_m2" value="CaptureJpeg()" style="html=1;verticalAlign=bottom;endArrow=block;exitX=0.5;exitY=0.20;exitDx=0;exitDy=0;entryX=0.5;entryY=0.20;entryDx=0;entryDy=0;" edge="1" parent="1" source="lo2" target="lo3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lo_m3" value="JPEG bytes" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;exitX=0.5;exitY=0.26;exitDx=0;exitDy=0;entryX=0.5;entryY=0.26;entryDx=0;entryDy=0;" edge="1" parent="1" source="lo3" target="lo2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lo_m4" value="POST /encode (JPEG)" style="html=1;verticalAlign=bottom;endArrow=block;exitX=0.5;exitY=0.32;exitDx=0;exitDy=0;entryX=0.5;entryY=0.32;entryDx=0;entryDy=0;" edge="1" parent="1" source="lo2" target="lo4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lo_m5" value="found, embedding[128]" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;exitX=0.5;exitY=0.38;exitDx=0;exitDy=0;entryX=0.5;entryY=0.38;entryDx=0;entryDy=0;" edge="1" parent="1" source="lo4" target="lo2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lo_m6" value="LoginWithFace(embedding)" style="html=1;verticalAlign=bottom;endArrow=block;exitX=0.5;exitY=0.44;exitDx=0;exitDy=0;entryX=0.5;entryY=0.44;entryDx=0;entryDy=0;" edge="1" parent="1" source="lo2" target="lo5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lo_m7" value="GetAllEmbeddings()" style="html=1;verticalAlign=bottom;endArrow=block;exitX=0.5;exitY=0.50;exitDx=0;exitDy=0;entryX=0.5;entryY=0.50;entryDx=0;entryDy=0;" edge="1" parent="1" source="lo5" target="lo6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lo_m8" value="enrolled embeddings (7 per student)" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;exitX=0.5;exitY=0.56;exitDx=0;exitDy=0;entryX=0.5;entryY=0.56;entryDx=0;entryDy=0;" edge="1" parent="1" source="lo6" target="lo5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lo_m9" value="Account if best avg L2 ≤ 0.45, else null" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;exitX=0.5;exitY=0.64;exitDx=0;exitDy=0;entryX=0.5;entryY=0.64;entryDx=0;entryDy=0;" edge="1" parent="1" source="lo5" target="lo2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lo_m10" value="Dashboard (check-in recorded), or &#39;No match&#39;" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;exitX=0.5;exitY=0.72;exitDx=0;exitDy=0;entryX=0.5;entryY=0.72;entryDx=0;entryDy=0;" edge="1" parent="1" source="lo2" target="lo1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="9. Palmprint Login (Sequence)" id="seq-login-palm">
+    <mxGraphModel dx="1000" dy="700" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageWidth="1300" pageHeight="720" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="pl1" value="User" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;collapsible=0;outlineConnect=0;size=40;fillColor=#f5f5f5;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="150" height="620" as="geometry" />
+        </mxCell>
+        <mxCell id="pl2" value="LoginWithPalmprint (View + PalmGuideOverlay + VM)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;collapsible=0;outlineConnect=0;size=40;fillColor=#e1d5e7;" vertex="1" parent="1">
+          <mxGeometry x="240" y="40" width="160" height="620" as="geometry" />
+        </mxCell>
+        <mxCell id="pl3" value="CameraCaptureService" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;collapsible=0;outlineConnect=0;size=40;fillColor=#dae8fc;" vertex="1" parent="1">
+          <mxGeometry x="450" y="40" width="160" height="620" as="geometry" />
+        </mxCell>
+        <mxCell id="pl4" value="Python /encode-palm (8501)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;collapsible=0;outlineConnect=0;size=40;fillColor=#f8cecc;" vertex="1" parent="1">
+          <mxGeometry x="660" y="40" width="150" height="620" as="geometry" />
+        </mxCell>
+        <mxCell id="pl5" value="Authenticator + AuthenticationService" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;collapsible=0;outlineConnect=0;size=40;fillColor=#d5e8d4;" vertex="1" parent="1">
+          <mxGeometry x="860" y="40" width="170" height="620" as="geometry" />
+        </mxCell>
+        <mxCell id="pl6" value="PalmprintImageService + DB" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;collapsible=0;outlineConnect=0;size=40;fillColor=#ffe6cc;" vertex="1" parent="1">
+          <mxGeometry x="1080" y="40" width="150" height="620" as="geometry" />
+        </mxCell>
+        <mxCell id="pl_m1" value="Align palm in guide box, take photo" style="html=1;verticalAlign=bottom;endArrow=block;exitX=0.5;exitY=0.14;exitDx=0;exitDy=0;entryX=0.5;entryY=0.14;entryDx=0;entryDy=0;" edge="1" parent="1" source="pl1" target="pl2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pl_m2" value="CaptureJpeg()" style="html=1;verticalAlign=bottom;endArrow=block;exitX=0.5;exitY=0.20;exitDx=0;exitDy=0;entryX=0.5;entryY=0.20;entryDx=0;entryDy=0;" edge="1" parent="1" source="pl2" target="pl3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pl_m3" value="JPEG bytes" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;exitX=0.5;exitY=0.26;exitDx=0;exitDy=0;entryX=0.5;entryY=0.26;entryDx=0;entryDy=0;" edge="1" parent="1" source="pl3" target="pl2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pl_m4" value="POST /encode-palm (JPEG)" style="html=1;verticalAlign=bottom;endArrow=block;exitX=0.5;exitY=0.32;exitDx=0;exitDy=0;entryX=0.5;entryY=0.32;entryDx=0;entryDy=0;" edge="1" parent="1" source="pl2" target="pl4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pl_m5" value="found, embedding[256] (Gabor features)" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;exitX=0.5;exitY=0.38;exitDx=0;exitDy=0;entryX=0.5;entryY=0.38;entryDx=0;entryDy=0;" edge="1" parent="1" source="pl4" target="pl2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pl_m6" value="LoginWithPalmprint(embedding)" style="html=1;verticalAlign=bottom;endArrow=block;exitX=0.5;exitY=0.44;exitDx=0;exitDy=0;entryX=0.5;entryY=0.44;entryDx=0;entryDy=0;" edge="1" parent="1" source="pl2" target="pl5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pl_m7" value="GetAllEmbeddings()" style="html=1;verticalAlign=bottom;endArrow=block;exitX=0.5;exitY=0.50;exitDx=0;exitDy=0;entryX=0.5;entryY=0.50;entryDx=0;entryDy=0;" edge="1" parent="1" source="pl5" target="pl6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pl_m8" value="enrolled palm embeddings (7 per student)" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;exitX=0.5;exitY=0.56;exitDx=0;exitDy=0;entryX=0.5;entryY=0.56;entryDx=0;entryDy=0;" edge="1" parent="1" source="pl6" target="pl5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pl_m9" value="Account if best avg L2 ≤ 0.6, else null" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;exitX=0.5;exitY=0.64;exitDx=0;exitDy=0;entryX=0.5;entryY=0.64;entryDx=0;entryDy=0;" edge="1" parent="1" source="pl5" target="pl2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pl_m10" value="Dashboard (check-in recorded), or &#39;No match&#39;" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;exitX=0.5;exitY=0.72;exitDx=0;exitDy=0;entryX=0.5;entryY=0.72;entryDx=0;entryDy=0;" edge="1" parent="1" source="pl2" target="pl1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
