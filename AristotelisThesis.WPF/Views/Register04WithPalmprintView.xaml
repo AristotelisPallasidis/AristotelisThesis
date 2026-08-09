@@ -1,13 +1,15 @@
-﻿<UserControl x:Class="AristotelisThesis.WPF.Views.Register04WithPalmprintView"
+<UserControl x:Class="AristotelisThesis.WPF.Views.Register04WithPalmprintView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:AristotelisThesis.WPF.Views"
-             mc:Ignorable="d" 
+             xmlns:controls="clr-namespace:AristotelisThesis.WPF.Controls"
+             mc:Ignorable="d"
              d:DesignWidth="1920" d:DesignHeight="1080"
-             Background="#1D1C1D">
-    
+             Background="#1D1C1D"
+             Loaded="Window_Loaded">
+
     <Grid Margin="40">
 
         <Grid.RowDefinitions>
@@ -24,19 +26,18 @@
         <Grid Grid.Column="0" Grid.Row="0" Margin="0 20 0 10">
             <TextBlock
                 Text="Εγγραφή μέσω Παλάμης"
-                Grid.Row="0"
                 Style="{StaticResource PageTitle}">
             </TextBlock>
         </Grid>
 
+        <!-- Camera feed -->
         <Grid Grid.Column="0" Grid.Row="1" Margin="0 10 0 0">
-
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
 
-            <!-- Κάμερα Text-->
             <TextBlock
                 Grid.Row="0"
                 Text="Κάμερα"
@@ -47,56 +48,73 @@
                 Margin="0 0 0 6">
             </TextBlock>
 
+            <Grid Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Image x:Name="CameraFeed" Stretch="Fill" />
+                <controls:PalmGuideOverlay />
+            </Grid>
 
-            <!-- Camera Input -->
-
-
+            <TextBlock
+                Grid.Row="2"
+                Foreground="White"
+                FontSize="16"
+                Margin="0 8 0 0"
+                Text="{Binding StatusText}" />
         </Grid>
 
-        <Grid Grid.Column="1" Margin="12 57 0 82" Grid.RowSpan="4">
+        <!-- Camera controls -->
+        <Grid Grid.Column="1" Grid.Row="1" Margin="12 0 0 0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
 
-            <!-- Available Cameras -->
-            <TextBlock
-                Grid.Row="0"
-                Text="Διαθέσιμες Κάμερες"
-                FontFamily="Manrope"
-                FontSize="24"
-                FontWeight="Bold"
-                Foreground="White"
-                Margin="0 10 0 6">
-            </TextBlock>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Grid.Row="1">
-                <Button 
-                    Grid.Row="3"
-                    Content="Άνοιξε Κάμερα"
-                    Padding="18 6"
-                    FontSize="16"
-                    BorderThickness="0"
-                    Background="White"
-                    Foreground="Black"
-                    Cursor="Hand">
-                </Button>
-                <Button 
-                    Grid.Row="3"
-                    FontFamily="Manrope"
-                    FontSize="16"
+            <StackPanel Grid.Row="0" Orientation="Vertical" HorizontalAlignment="Left">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock
+                        Text="Διαθέσιμες Κάμερες"
+                        FontFamily="Manrope"
+                        FontSize="24"
+                        FontWeight="Bold"
+                        Foreground="White"
+                        Margin="0 10 0 6">
+                    </TextBlock>
+                    <Button
+                        Content="Ανανέωση"
+                        Click="RefreshButton_Click"
+                        Margin="30 10 0 6"
+                        Padding="18 6"
+                        BorderThickness="0"
+                        Background="White"
+                        FontSize="16"
+                        Cursor="Hand">
+                    </Button>
+                </StackPanel>
+
+                <ListBox
+                    x:Name="CameraList"
+                    SelectionChanged="CameraList_SelectionChanged"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Width="auto">
+                </ListBox>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Grid.Row="1">
+                <Button
                     Content="Βγάλε φωτογραφία"
+                    Click="TakePhotoButton_Click"
+                    FontSize="16"
                     Padding="18 6"
-                    Margin="8 0"
+                    Margin="0 0 8 0"
                     BorderThickness="0"
                     Background="White"
                     Foreground="Black"
                     Cursor="Hand">
                 </Button>
-                <Button 
-                    Grid.Row="3"
-                    FontFamily="Manrope"
-                    FontSize="16"
+                <Button
                     Content="Επανάληψη"
+                    Click="RepeatButton_Click"
+                    FontSize="16"
                     Padding="14 6"
                     Margin="0"
                     BorderThickness="0"
@@ -109,13 +127,13 @@
 
         <Grid Grid.Column="0" Grid.Row="2">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                <Button 
+                <Button
                     Content="Επόμενο"
                     Command="{Binding GoToViewRegister05InstructionsForFaceCommand}"
                     Style="{StaticResource NextButton}"
                     Cursor="Hand">
                 </Button>
-                <Button 
+                <Button
                     Content="Πίσω"
                     Command="{Binding GoToViewRegister03InstructionsForPalmprintCommand}"
                     Style="{StaticResource BackButton}"

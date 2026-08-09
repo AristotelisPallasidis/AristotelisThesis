@@ -28,6 +28,7 @@ namespace AristotelisThesis.WPF.ViewModels
         private readonly RegistrationStore _registration;
         private readonly IFaceRecognitionService _faceRecognition;
         private readonly IFaceImageService _faceImageService;
+        private readonly IPalmprintImageService _palmImageService;
         private readonly IAccountService _accountService;
         private readonly IAuthenticator _authenticator;
         private readonly IRenavigator _dashboardRenavigator;
@@ -48,6 +49,7 @@ namespace AristotelisThesis.WPF.ViewModels
             RegistrationStore registration,
             IFaceRecognitionService faceRecognition,
             IFaceImageService faceImageService,
+            IPalmprintImageService palmImageService,
             IAccountService accountService,
             IAuthenticator authenticator,
             IRenavigator register05Renavigator,
@@ -56,6 +58,7 @@ namespace AristotelisThesis.WPF.ViewModels
             _registration = registration;
             _faceRecognition = faceRecognition;
             _faceImageService = faceImageService;
+            _palmImageService = palmImageService;
             _accountService = accountService;
             _authenticator = authenticator;
             _dashboardRenavigator = dashboardRenavigator;
@@ -137,6 +140,12 @@ namespace AristotelisThesis.WPF.ViewModels
                 foreach ((byte[] jpeg, float[] embedding) in _registration.CapturedFaces)
                 {
                     await _faceImageService.SaveFaceImage(studentId, jpeg, embedding);
+                }
+
+                // Persist the palms captured earlier in the wizard (Register04).
+                foreach ((byte[] jpeg, float[] embedding) in _registration.CapturedPalms)
+                {
+                    await _palmImageService.SavePalmprintImage(studentId, jpeg, embedding);
                 }
 
                 // Log the new student in via the face we just enrolled (matches itself).

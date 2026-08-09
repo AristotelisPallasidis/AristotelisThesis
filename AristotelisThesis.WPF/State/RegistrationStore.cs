@@ -29,9 +29,10 @@ namespace AristotelisThesis.WPF.State
         public bool IsPostgraduate { get; set; }
         public bool IsUndergraduate { get; set; } = true;
 
-        // --- Captured biometrics (Register06) ---
-        // Each entry is the JPEG image plus its 128-d face embedding.
-        public List<(byte[] Jpeg, float[] Embedding)> CapturedFaces { get; } = new();
+        // --- Captured biometrics ---
+        // Each entry is the JPEG image plus its feature embedding.
+        public List<(byte[] Jpeg, float[] Embedding)> CapturedFaces { get; } = new();   // Register06
+        public List<(byte[] Jpeg, float[] Embedding)> CapturedPalms { get; } = new();   // Register04
 
         public string Sex => IsFemale ? "Female" : "Male";
 
@@ -66,6 +67,7 @@ namespace AristotelisThesis.WPF.State
             IsPostgraduate = false;
             IsUndergraduate = true;
             CapturedFaces.Clear();
+            CapturedPalms.Clear();
         }
     }
 }

@@ -1,0 +1,55 @@
+<UserControl x:Class="AristotelisThesis.WPF.Controls.PalmGuideOverlay"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             d:DesignWidth="640" d:DesignHeight="480"
+             IsHitTestVisible="False"
+             Background="Transparent">
+
+    <!-- A non-interactive hand-shaped guide drawn over the camera feed. The user lines their open
+         palm up inside the silhouette, which keeps the palm centered (in the cropped ROI) and at a
+         consistent distance. Built from a translucent palm + four fingers + thumb.
+
+         The silhouette is a RIGHT hand, palm towards the camera, drawn mirror-style: the thumb sits
+         on the right of the frame and the fingers run little → ring → middle → index from left to
+         right, i.e. the way users see their own right palm in a mirror. -->
+    <Viewbox Stretch="Uniform">
+        <Grid Width="640" Height="700">
+
+            <Canvas Width="640" Height="700">
+                <Canvas.Resources>
+                    <SolidColorBrush x:Key="Hand" Color="#66FF99" Opacity="0.38" />
+                </Canvas.Resources>
+
+                <!-- Palm -->
+                <Ellipse Canvas.Left="205" Canvas.Top="270" Width="230" Height="250" Fill="{StaticResource Hand}" />
+
+                <!-- Fingers (capsules), left to right: little (shortest), ring, middle (tallest),
+                     index. All sit on the same knuckle line (y = 320) inside the palm. -->
+                <Rectangle Canvas.Left="226" Canvas.Top="185" Width="40" Height="135" RadiusX="20" RadiusY="20" Fill="{StaticResource Hand}" />
+                <Rectangle Canvas.Left="272" Canvas.Top="125" Width="44" Height="195" RadiusX="22" RadiusY="22" Fill="{StaticResource Hand}" />
+                <Rectangle Canvas.Left="320" Canvas.Top="100" Width="44" Height="220" RadiusX="22" RadiusY="22" Fill="{StaticResource Hand}" />
+                <Rectangle Canvas.Left="368" Canvas.Top="150" Width="44" Height="170" RadiusX="22" RadiusY="22" Fill="{StaticResource Hand}" />
+
+                <!-- Thumb: on the right of the frame, splayed up and out. -->
+                <Rectangle Canvas.Left="442" Canvas.Top="350" Width="48" Height="160" RadiusX="24" RadiusY="24" Fill="{StaticResource Hand}">
+                    <Rectangle.RenderTransform>
+                        <RotateTransform Angle="40" CenterX="24" CenterY="80" />
+                    </Rectangle.RenderTransform>
+                </Rectangle>
+            </Canvas>
+
+            <TextBlock Text="Τοποθετήστε τη ΔΕΞΙΑ παλάμη σας μέσα στο περίγραμμα"
+                       HorizontalAlignment="Center" VerticalAlignment="Top"
+                       Margin="0 18 0 0"
+                       Foreground="White" FontSize="18" FontWeight="Bold" Opacity="0.9" />
+
+            <TextBlock Text="Ανοιχτή δεξιά παλάμη προς την κάμερα, ούτε πολύ κοντά ούτε πολύ μακριά"
+                       HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                       Margin="0 0 0 24"
+                       Foreground="White" FontSize="14" Opacity="0.8" />
+        </Grid>
+    </Viewbox>
+</UserControl>
