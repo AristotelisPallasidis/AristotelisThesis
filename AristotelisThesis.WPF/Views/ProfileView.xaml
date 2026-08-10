@@ -103,7 +103,7 @@
 
                         <!-- Department -->
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="https://img.icons8.com/ios-filled/50/FFFFFF/graduation-cap.png" Width="20" Height="20" Margin="0 0 10 0"/>
+                            <Image Source="/Assets/Icons/graduation-cap.png" Width="20" Height="20" Margin="0 0 10 0"/>
                             <TextBlock 
                                 Text="{Binding StudentDepartment}" 
                                 Foreground="{StaticResource ColorLight}"
@@ -113,7 +113,7 @@
 
                         <!-- Semester -->
                         <StackPanel Orientation="Horizontal" Margin="0 12 0 0">
-                            <Image Source="https://img.icons8.com/ios-filled/50/FFFFFF/calendar.png" Width="20" Height="20" Margin="0 0 10 0"/>
+                            <Image Source="/Assets/Icons/calendar.png" Width="20" Height="20" Margin="0 0 10 0"/>
                             <TextBlock 
                                 Text="{Binding StudentSemester}" 
                                 Foreground="{StaticResource ColorLight}"
@@ -122,7 +122,7 @@
 
                         <!-- Year of Entry -->
                         <StackPanel Orientation="Horizontal" Margin="0 12 0 0">
-                            <Image Source="https://img.icons8.com/ios-filled/50/FFFFFF/time-machine.png" Width="20" Height="20" Margin="0 0 10 0"/>
+                            <Image Source="/Assets/Icons/time-machine.png" Width="20" Height="20" Margin="0 0 10 0"/>
                             <TextBlock 
                                 Text="{Binding StudentYearOfEntry}"
                                 Foreground="{StaticResource ColorLight}"
@@ -131,7 +131,7 @@
 
                         <!-- Email -->
                         <StackPanel Orientation="Horizontal" Margin="0 12 0 0">
-                            <Image Source="https://img.icons8.com/ios-filled/50/FFFFFF/new-post.png" Width="20" Height="20" Margin="0 0 10 0"/>
+                            <Image Source="/Assets/Icons/new-post.png" Width="20" Height="20" Margin="0 0 10 0"/>
                             <TextBlock 
                                 Text="{Binding StudentAcademicEmail}" 
                                 Foreground="{StaticResource ColorLight}"
