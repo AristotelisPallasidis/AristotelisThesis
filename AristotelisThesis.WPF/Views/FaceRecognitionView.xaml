@@ -27,7 +27,7 @@
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Orientation="Horizontal" Grid.Column="0">
-                    <Image Source="C:\Users\Aristotelis\Desktop\test2\AristotelisThesis\AristotelisThesis.WPF\Assets\Icons\FaceIconSolid.png" Width="30" Height="30" Margin="0 0 10 0"></Image>
+                    <Image Source="/Assets/Icons/FaceIconSolid.png" Width="30" Height="30" Margin="0 0 10 0"></Image>
                     <TextBlock 
                         Text="Αναγνώριση Προσώπου" 
                         Grid.Column="0"

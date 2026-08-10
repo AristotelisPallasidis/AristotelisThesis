@@ -33,7 +33,7 @@
                     <!-- Recolour the icon to white using its alpha as an opacity mask -->
                     <Rectangle Width="30" Height="30" Margin="0 0 10 0" Fill="White">
                         <Rectangle.OpacityMask>
-                            <ImageBrush ImageSource="C:\Users\Aristotelis\Desktop\test2\AristotelisThesis\AristotelisThesis.WPF\Assets\Icons\ChartIconSolid.png" />
+                            <ImageBrush ImageSource="/Assets/Icons/ChartIconSolid.png" />
                         </Rectangle.OpacityMask>
                     </Rectangle>
                     <TextBlock 

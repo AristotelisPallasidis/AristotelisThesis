@@ -28,7 +28,7 @@
 
                 <!-- PAGE TITLE -->
                 <StackPanel Orientation="Horizontal" Grid.Column="0">
-                    <Image Source="C:\Users\Aristotelis\Desktop\test2\AristotelisThesis\AristotelisThesis.WPF\Assets\Icons\HandIconSolid.png" Width="30" Height="30" Margin="0 0 10 0"></Image>
+                    <Image Source="/Assets/Icons/HandIconSolid.png" Width="30" Height="30" Margin="0 0 10 0"></Image>
                     <TextBlock 
                         Text="Αναγνώριση Παλάμης" 
                         Grid.Column="0"

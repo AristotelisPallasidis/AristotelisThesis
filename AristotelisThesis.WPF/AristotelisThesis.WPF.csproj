@@ -18,9 +18,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <!-- Embedded so the profile-photo fallback resolves via pack URI on any machine. -->
-    <None Remove="Assets\01.jpeg" />
-    <Resource Include="Assets\01.jpeg" />
+    <!-- Every image is embedded so it resolves via pack URI on any machine, rather than
+         from a filesystem path that only exists on the developer's. -->
+    <None Remove="Assets\**\*.png" />
+    <None Remove="Assets\**\*.jpg" />
+    <None Remove="Assets\**\*.jpeg" />
+    <None Remove="Assets\**\*.ico" />
+    <Resource Include="Assets\**\*.png" />
+    <Resource Include="Assets\**\*.jpg" />
+    <Resource Include="Assets\**\*.jpeg" />
+    <Resource Include="Assets\**\*.ico" />
   </ItemGroup>
 
   <ItemGroup>
