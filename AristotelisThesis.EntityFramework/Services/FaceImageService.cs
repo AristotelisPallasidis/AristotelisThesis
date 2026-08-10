@@ -39,18 +39,28 @@ namespace AristotelisThesis.EntityFramework.Services
                 .ToListAsync();
         }
 
-        public async Task SaveFaceImage(int studentId, byte[] imageData, float[] embedding)
+        public async Task SaveFaceImages(int studentId, IReadOnlyList<(byte[] ImageData, float[] Embedding)> images)
         {
+            if (images == null || images.Count == 0)
+            {
+                return;
+            }
+
             using AristotelisThesisDbContext context = _contextFactory.CreateDbContext();
 
-            context.FaceImages.Add(new FaceImage
+            DateTime captured = DateTime.Now;
+            foreach ((byte[] imageData, float[] embedding) in images)
             {
-                StudentId = studentId,
-                ImageData = imageData,
-                Embedding = EmbeddingSerializer.ToBytes(embedding),
-                DateCaptured = DateTime.Now
-            });
+                context.FaceImages.Add(new FaceImage
+                {
+                    StudentId = studentId,
+                    ImageData = imageData,
+                    Embedding = EmbeddingSerializer.ToBytes(embedding),
+                    DateCaptured = captured
+                });
+            }
 
+            // One SaveChangesAsync, so an enrolment is stored whole or not at all.
             await context.SaveChangesAsync();
         }
 

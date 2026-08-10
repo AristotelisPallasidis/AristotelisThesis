@@ -10,19 +10,15 @@ namespace AristotelisThesis.Domain.Services
     public interface IPalmprintImageService
     {
         /// <summary>
-        /// Returns the raw bytes of the first stored palm image for the student, or null if none.
-        /// </summary>
-        Task<byte[]> GetFirstImageData(int studentId);
-
-        /// <summary>
         /// Returns the raw bytes of every stored palm image for the student (oldest first).
         /// </summary>
         Task<IReadOnlyList<byte[]>> GetAllImageData(int studentId);
 
         /// <summary>
-        /// Persists a captured palm: the JPEG image plus its feature vector.
+        /// Persists a set of captured palms - each JPEG plus its feature vector - in a single
+        /// save, so an enrolment is never left half-written.
         /// </summary>
-        Task SavePalmprintImage(int studentId, byte[] imageData, float[] embedding);
+        Task SavePalmprintImages(int studentId, IReadOnlyList<(byte[] ImageData, float[] Embedding)> images);
 
         /// <summary>
         /// Returns every enrolled (StudentId, embedding) pair that has a stored embedding.

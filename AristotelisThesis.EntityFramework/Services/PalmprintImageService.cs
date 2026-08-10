@@ -17,17 +17,6 @@ namespace AristotelisThesis.EntityFramework.Services
             _contextFactory = contextFactory;
         }
 
-        public async Task<byte[]> GetFirstImageData(int studentId)
-        {
-            using AristotelisThesisDbContext context = _contextFactory.CreateDbContext();
-
-            return await context.PalmprintImages
-                .Where(p => p.StudentId == studentId)
-                .OrderBy(p => p.Id)
-                .Select(p => p.ImageData)
-                .FirstOrDefaultAsync();
-        }
-
         public async Task<IReadOnlyList<byte[]>> GetAllImageData(int studentId)
         {
             using AristotelisThesisDbContext context = _contextFactory.CreateDbContext();
@@ -39,18 +28,28 @@ namespace AristotelisThesis.EntityFramework.Services
                 .ToListAsync();
         }
 
-        public async Task SavePalmprintImage(int studentId, byte[] imageData, float[] embedding)
+        public async Task SavePalmprintImages(int studentId, IReadOnlyList<(byte[] ImageData, float[] Embedding)> images)
         {
+            if (images == null || images.Count == 0)
+            {
+                return;
+            }
+
             using AristotelisThesisDbContext context = _contextFactory.CreateDbContext();
 
-            context.PalmprintImages.Add(new PalmprintImage
+            DateTime captured = DateTime.Now;
+            foreach ((byte[] imageData, float[] embedding) in images)
             {
-                StudentId = studentId,
-                ImageData = imageData,
-                Embedding = EmbeddingSerializer.ToBytes(embedding),
-                DateCaptured = DateTime.Now
-            });
+                context.PalmprintImages.Add(new PalmprintImage
+                {
+                    StudentId = studentId,
+                    ImageData = imageData,
+                    Embedding = EmbeddingSerializer.ToBytes(embedding),
+                    DateCaptured = captured
+                });
+            }
 
+            // One SaveChangesAsync, so an enrolment is stored whole or not at all.
             await context.SaveChangesAsync();
         }
 
