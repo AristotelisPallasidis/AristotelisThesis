@@ -64,6 +64,12 @@ namespace AristotelisThesis.EntityFramework
                  .HasForeignKey(s => s.StudentId)
                  .OnDelete(DeleteBehavior.Cascade);
             });
+
+            // AEM is the university's student number: unique by definition, so enforce it in
+            // the database rather than relying on the model's documentation alone.
+            modelBuilder.Entity<Student>()
+                .HasIndex(s => s.AEM)
+                .IsUnique();
         }
     }
 }
