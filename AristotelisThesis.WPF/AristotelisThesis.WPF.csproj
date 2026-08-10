@@ -10,7 +10,6 @@
 
   <ItemGroup>
     <PackageReference Include="AForge.Video.DirectShow" Version="2.2.5" />
-    <PackageReference Include="LoadingSpinner.WPF" Version="1.0.0" />
     <PackageReference Include="OpenCvSharp4" Version="4.13.0.20260602" />
     <PackageReference Include="OpenCvSharp4.runtime.win" Version="4.13.0.20260602" />
     <PackageReference Include="OpenCvSharp4.Windows" Version="4.13.0.20260602" />
@@ -28,6 +27,11 @@
     <Resource Include="Assets\**\*.jpg" />
     <Resource Include="Assets\**\*.jpeg" />
     <Resource Include="Assets\**\*.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Copied next to the exe so the connection string can be changed without rebuilding. -->
+    <None Update="appsettings.json" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
   <ItemGroup>

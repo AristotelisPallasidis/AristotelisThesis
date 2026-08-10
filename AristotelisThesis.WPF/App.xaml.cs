@@ -11,8 +11,10 @@ using AristotelisThesis.WPF.State.Navigators;
 using AristotelisThesis.WPF.ViewModels;
 using AristotelisThesis.WPF.ViewModels.Factories;
 using AristotelisThesis.WPF.Views;
-using Microsoft.AspNet.Identity;
 using Microsoft.Extensions.DependencyInjection;
+using System.Diagnostics;
+using System.IO;
+using System.Text.Json;
 using System.Windows;
 
 namespace AristotelisThesis.WPF
@@ -78,6 +80,42 @@ namespace AristotelisThesis.WPF
             base.OnExit(e);
         }
 
+        /// <summary>
+        /// Reads ConnectionStrings:DefaultConnection from appsettings.json beside the exe.
+        /// Returns null when the file is absent or unreadable, which leaves the factory on
+        /// its LocalDB default rather than failing to start.
+        /// </summary>
+        private static string? ReadConnectionString()
+        {
+            try
+            {
+                string path = Path.Combine(AppContext.BaseDirectory, "appsettings.json");
+                if (!File.Exists(path))
+                {
+                    return null;
+                }
+
+                var options = new JsonDocumentOptions
+                {
+                    CommentHandling = JsonCommentHandling.Skip,
+                    AllowTrailingCommas = true
+                };
+
+                using JsonDocument document = JsonDocument.Parse(File.ReadAllText(path), options);
+                if (document.RootElement.TryGetProperty("ConnectionStrings", out JsonElement section) &&
+                    section.TryGetProperty("DefaultConnection", out JsonElement value))
+                {
+                    return value.GetString();
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Could not read appsettings.json, using the default connection string: {ex}");
+            }
+
+            return null;
+        }
+
         public IServiceProvider CreateServiceProvider()
         {
             IServiceCollection services= new ServiceCollection();
@@ -87,7 +125,9 @@ namespace AristotelisThesis.WPF
             // 3. Scoped => A new instance of the service is created once per HTTP request (within the scope of HTTP request).
 
             // Register services
-            services.AddSingleton<AristotelisThesisDbContextFactory>();
+            // Connection string comes from appsettings.json next to the exe, so the database
+            // can be pointed elsewhere without a rebuild; falls back to the LocalDB default.
+            services.AddSingleton(new AristotelisThesisDbContextFactory(ReadConnectionString()));
             services.AddSingleton<IAuthenticationService, AuthenticationService>();
             services.AddSingleton<IDataService<Account>, AccountDataService>();
             services.AddSingleton<IAccountService, AccountDataService>();
@@ -108,23 +148,21 @@ namespace AristotelisThesis.WPF
             // Carries registration-wizard data (personal info + captured faces/palms) across steps.
             services.AddSingleton<RegistrationStore>();
 
-            services.AddSingleton<IPasswordHasher, PasswordHasher>();
-
-
             // Register factories
             services.AddSingleton<IAristotelisThesisViewModelFactory, AristotelisThesisViewModelFactory>();
 
 
             services.AddSingleton<LoginViewModel>();
-            services.AddSingleton<DashboardViewModel>();
             // Transient so the face/palm galleries reload for whoever is currently logged in.
             services.AddTransient<FaceRecognitionViewModel>();
             services.AddTransient<PalmprintRecognitionViewModel>();
             // Per-user view state: resolve a fresh instance on each navigation so a
             // logout/login as a different student never shows the previous user's
-            // cached fields or profile photo.
+            // cached fields, statistics or profile photo. These read their data once, on
+            // construction, so a shared instance would outlive the session it loaded for.
             services.AddTransient<ProfileViewModel>();
-            services.AddSingleton<StatisticsViewModel>();
+            services.AddTransient<DashboardViewModel>();
+            services.AddTransient<StatisticsViewModel>();
             services.AddTransient<SettingsViewModel>();
 
             // --------------------------------------------------------------------------------
@@ -269,8 +307,6 @@ namespace AristotelisThesis.WPF
             services.AddSingleton<CreateViewModel<LoginViewModel>>(services =>
             {
                 return () => new LoginViewModel(
-                    services.GetRequiredService<IAuthenticator>(),
-                    services.GetRequiredService<ViewModelDelegateRenavigator<DashboardViewModel>>(),
                     services.GetRequiredService<ViewModelDelegateRenavigator<LoginWithFaceViewModel>>(),
                     services.GetRequiredService<ViewModelDelegateRenavigator<LoginWithPalmprintViewModel>>(),
                     services.GetRequiredService<ViewModelDelegateRenavigator<Register01ViewModel>>()

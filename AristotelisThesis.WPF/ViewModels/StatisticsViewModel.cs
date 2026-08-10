@@ -33,8 +33,9 @@ namespace AristotelisThesis.WPF.ViewModels
             _authenticator = authenticator;
             _statisticsService = statisticsService;
 
-            // LoginTime lives in shared state; refresh the binding when login/logout happens.
-            _authenticator.StateChanged += () => OnPropertyChanged(nameof(LoginTime));
+            // No subscription to the authenticator here: this view model is resolved fresh on
+            // every navigation, so LoginTime is already set by the time the bindings read it,
+            // and a handler on the long-lived authenticator would keep each instance alive.
 
             // Fire-and-forget the initial load; the cards bind to Statistics and refresh
             // via INotifyPropertyChanged once the data arrives.
