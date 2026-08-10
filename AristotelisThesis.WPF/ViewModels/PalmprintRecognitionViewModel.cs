@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Media;
@@ -22,11 +23,12 @@ namespace AristotelisThesis.WPF.ViewModels
         /// <summary>All enrolled palm images for the current student.</summary>
         public ObservableCollection<ImageSource> PalmImages { get; } = new();
 
-        private ImageSource _primaryImage;
-        public ImageSource PrimaryImage
+        /// <summary>False while the student has nothing enrolled, so the page can say so.</summary>
+        private bool _hasImages;
+        public bool HasImages
         {
-            get => _primaryImage;
-            private set { _primaryImage = value; OnPropertyChanged(nameof(PrimaryImage)); }
+            get => _hasImages;
+            private set { _hasImages = value; OnPropertyChanged(nameof(HasImages)); }
         }
 
         public PalmprintRecognitionViewModel(IAccountStore accountStore, IPalmprintImageService palmImageService)
@@ -53,14 +55,14 @@ namespace AristotelisThesis.WPF.ViewModels
                     }
                 }
 
-                if (PalmImages.Count > 0)
-                {
-                    PrimaryImage = PalmImages[0];
-                }
+                HasImages = PalmImages.Count > 0;
             }
-            catch
+            catch (Exception ex)
             {
-                // Leave an empty gallery on failure.
+                // Leave an empty gallery, but say why in the debug output rather than
+                // failing silently and looking like the student has nothing enrolled.
+                Debug.WriteLine($"Could not load enrolled palm images: {ex}");
+                HasImages = false;
             }
         }
 

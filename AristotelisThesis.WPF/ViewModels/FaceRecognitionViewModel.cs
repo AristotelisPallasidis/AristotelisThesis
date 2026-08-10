@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Media;
@@ -16,22 +17,13 @@ namespace AristotelisThesis.WPF.ViewModels
     /// </summary>
     public class FaceRecognitionViewModel : ViewModelBase
     {
-        // Shown in the main preview when the student has no enrolled face image.
-        private const string FallbackPhotoUri = "pack://application:,,,/Assets/01.jpeg";
-
         private readonly IAccountStore _accountStore;
         private readonly IFaceImageService _faceImageService;
 
         /// <summary>All enrolled face images for the current student.</summary>
         public ObservableCollection<ImageSource> FaceImages { get; } = new();
 
-        private ImageSource _primaryImage;
-        public ImageSource PrimaryImage
-        {
-            get => _primaryImage;
-            private set { _primaryImage = value; OnPropertyChanged(nameof(PrimaryImage)); }
-        }
-
+        /// <summary>False while the student has nothing enrolled, so the page can say so.</summary>
         private bool _hasImages;
         public bool HasImages
         {
@@ -49,7 +41,6 @@ namespace AristotelisThesis.WPF.ViewModels
 
         private async Task LoadImages()
         {
-            PrimaryImage = LoadFallback();
             try
             {
                 int studentId = _accountStore.CurrentAccount.AccountHolder.Id;
@@ -65,14 +56,13 @@ namespace AristotelisThesis.WPF.ViewModels
                 }
 
                 HasImages = FaceImages.Count > 0;
-                if (HasImages)
-                {
-                    PrimaryImage = FaceImages[0];
-                }
             }
-            catch
+            catch (Exception ex)
             {
-                // Leave the fallback preview and an empty gallery on failure.
+                // Leave an empty gallery, but say why in the debug output rather than
+                // failing silently and looking like the student has nothing enrolled.
+                Debug.WriteLine($"Could not load enrolled face images: {ex}");
+                HasImages = false;
             }
         }
 
@@ -88,24 +78,6 @@ namespace AristotelisThesis.WPF.ViewModels
             }
             image.Freeze();
             return image;
-        }
-
-        private static ImageSource LoadFallback()
-        {
-            try
-            {
-                var image = new BitmapImage();
-                image.BeginInit();
-                image.CacheOption = BitmapCacheOption.OnLoad;
-                image.UriSource = new Uri(FallbackPhotoUri, UriKind.Absolute);
-                image.EndInit();
-                image.Freeze();
-                return image;
-            }
-            catch
-            {
-                return null;
-            }
         }
     }
 }
