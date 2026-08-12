@@ -18,14 +18,17 @@ namespace AristotelisThesis.WPF.State.Authenticators
 
         event Action StateChanged;
 
-        Task<RegistrationResult> Register(string email, string username, string password, string confirmPassword, string name, string surname, string sex, string phone, string address, string department, int semester, int aem, DateTime dateOfBirth, int yearOfEntry, bool isPostgraduate);
-        Task<bool> Login(string username, string password);
-
         /// <summary>
         /// Logs in the student whose enrolled face matches the given probe embedding.
         /// Returns true on a successful match (account set, check-in recorded), false otherwise.
         /// </summary>
         Task<bool> LoginWithFace(float[] probeEmbedding);
+
+        /// <summary>
+        /// Logs in the student whose enrolled palmprint matches the given probe embedding.
+        /// Returns true on a successful match (account set, check-in recorded), false otherwise.
+        /// </summary>
+        Task<bool> LoginWithPalmprint(float[] probeEmbedding);
 
         void Logout();
     }

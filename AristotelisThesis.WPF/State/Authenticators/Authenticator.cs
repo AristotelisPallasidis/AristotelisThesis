@@ -45,48 +45,38 @@ namespace AristotelisThesis.WPF.State.Authenticators
         public event Action StateChanged;
 
 
-        /// <summary>
-        /// This function is used to login a student to the system.
-        /// </summary>
-        /// <param name="username"> Student's Username</param>
-        /// <param name="password"> Student's Password</param>
-        /// <returns></returns>
-        public async Task<bool> Login(string username, string password)
-        {
-            bool success = true;
-
-            try
-            {
-                Account account = await _authenticationService.Login(username, password);
-
-                // Stamp the session start before exposing the account, so any page that
-                // reacts to login already sees a consistent LoginTime.
-                _accountStore.LoginTime = DateTime.Now;
-                CurrentAccount = account;
-
-                // Record the attendance check-in for the now logged-in student.
-                if (CurrentAccount?.AccountHolder != null)
-                {
-                    await _sessionTrackingService.RecordCheckIn(CurrentAccount.AccountHolder.Id);
-                }
-            }
-            catch (Exception)
-            {
-                success = false;
-            }
-
-            return success;
-        }
 
         /// <summary>
-        /// Logs in a student via face recognition. Mirrors <see cref="Login"/> on success:
-        /// stamps the session start, exposes the account, and records the attendance check-in.
+        /// Logs in a student via face recognition: stamps the session start, exposes the
+        /// account, and records the attendance check-in.
         /// </summary>
         /// <param name="probeEmbedding">The 128-d embedding of the captured face.</param>
         /// <returns>True when a matching enrolled face is found and the student is logged in.</returns>
         public async Task<bool> LoginWithFace(float[] probeEmbedding)
         {
             Account account = await _authenticationService.LoginWithFace(probeEmbedding);
+            if (account == null)
+            {
+                return false;
+            }
+
+            _accountStore.LoginTime = DateTime.Now;
+            CurrentAccount = account;
+
+            if (CurrentAccount?.AccountHolder != null)
+            {
+                await _sessionTrackingService.RecordCheckIn(CurrentAccount.AccountHolder.Id);
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Logs in a student via palmprint recognition. Mirrors <see cref="LoginWithFace"/>.
+        /// </summary>
+        public async Task<bool> LoginWithPalmprint(float[] probeEmbedding)
+        {
+            Account account = await _authenticationService.LoginWithPalmprint(probeEmbedding);
             if (account == null)
             {
                 return false;
@@ -118,14 +108,6 @@ namespace AristotelisThesis.WPF.State.Authenticators
 
             _accountStore.LoginTime = null;
             CurrentAccount = null;
-        }
-
-        /// <summary>
-        /// This function is used to register a student to the system. and return the result of the registration.
-        /// </summary>
-        public async Task<RegistrationResult> Register(string email, string username, string password, string confirmPassword, string name, string surname, string sex, string phone, string address, string department, int semester, int aem, DateTime dateOfBirth, int yearOfEntry, bool isPostgraduate)
-        {
-            return await _authenticationService.Register(email, username, password, confirmPassword, name, surname, sex, phone, address, department, semester, aem, dateOfBirth, yearOfEntry, isPostgraduate);
         }
     }
 }

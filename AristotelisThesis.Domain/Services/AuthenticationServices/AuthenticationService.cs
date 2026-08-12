@@ -1,6 +1,4 @@
-﻿using AristotelisThesis.Domain.Exceptions;
-using AristotelisThesis.Domain.Models;
-using Microsoft.AspNet.Identity;
+﻿using AristotelisThesis.Domain.Models;
 
 namespace AristotelisThesis.Domain.Services.AuthenticationServices
 {
@@ -12,37 +10,22 @@ namespace AristotelisThesis.Domain.Services.AuthenticationServices
         // Lower = stricter (fewer false accepts, more false rejects).
         private const double FaceMatchThreshold = 0.45;
 
-        private readonly IAccountService _accountService;
-        private readonly IPasswordHasher _passwordHasher;
-        private readonly IFaceImageService _faceImageService;
+        // Max average L2 distance for a palmprint match. The palm feature vectors are
+        // L2-normalized, so distances run ~0..1.4; 0.6 is a starting point - tune with real
+        // captures. Lower = stricter (fewer false accepts, more false rejects).
+        private const double PalmprintMatchThreshold = 0.6;
 
-        public AuthenticationService(IAccountService accountService, IPasswordHasher passwordHasher, IFaceImageService faceImageService)
+        private readonly IAccountService _accountService;
+        private readonly IFaceImageService _faceImageService;
+        private readonly IPalmprintImageService _palmImageService;
+
+        public AuthenticationService(IAccountService accountService, IFaceImageService faceImageService, IPalmprintImageService palmImageService)
         {
             _accountService = accountService;
-            _passwordHasher = passwordHasher;
             _faceImageService = faceImageService;
+            _palmImageService = palmImageService;
         }
 
-        /// <summary>
-        /// This function is used to login a student to the system. It checks if the password is correct. If not, it throws an InvalidPasswordException.
-        /// </summary>
-        /// <param name="username"></param>
-        /// <param name="password"></param>
-        /// <returns></returns>
-        /// <exception cref="InvalidPasswordException"></exception>
-        public async Task<Account> Login(string username, string password)
-        {
-            Account storedStudentAccount = await _accountService.GetByUsername(username);
-
-            PasswordVerificationResult passwordResult = _passwordHasher.VerifyHashedPassword(storedStudentAccount.AccountHolder.PasswordHash, password);
-
-            if (passwordResult != PasswordVerificationResult.Success)
-            {
-                throw new InvalidPasswordException(username, password);
-            }
-
-            return storedStudentAccount;
-        }
 
         /// <summary>
         /// Matches a probe face embedding against all enrolled embeddings using Euclidean
@@ -80,76 +63,36 @@ namespace AristotelisThesis.Domain.Services.AuthenticationServices
         }
 
         /// <summary>
-        /// This function is used to register a new student to the database. It checks if the email and username are unique, and if the passwords match.
+        /// Matches a probe palmprint embedding against all enrolled palm embeddings using the
+        /// average L2 distance per student and returns the owning account when the closest match
+        /// is within the recognition threshold; otherwise returns null.
         /// </summary>
-        /// <param name="email"></param>
-        /// <param name="username"></param>
-        /// <param name="password"></param>
-        /// <param name="confirmPassword"></param>
-        /// <param name="name"></param>
-        /// <param name="surname"></param>
-        /// <param name="sex"></param>
-        /// <param name="phone"></param>
-        /// <param name="address"></param>
-        /// <param name="department"></param>
-        /// <param name="semester"></param>
-        /// <param name="aem"></param>
-        /// <param name="dateOfBirth"></param>
-        /// <param name="isPostgraduate"></param>
-        /// <returns></returns>
-        public async Task<RegistrationResult> Register(string email, string username, string password, string confirmPassword, string name, string surname, string sex, string phone, string address, string department, int semester, int aem, DateTime dateOfBirth, int yearOfEntry, bool isPostgraduate)
+        public async Task<Account?> LoginWithPalmprint(float[] probeEmbedding)
         {
-            RegistrationResult result = RegistrationResult.Success;
-
-            if (password != confirmPassword)
+            if (probeEmbedding == null || probeEmbedding.Length == 0)
             {
-                result = RegistrationResult.PasswordsDoNotMatch;
+                return null;
             }
 
-            Account emailAccount = await _accountService.GetByAcademicEmail(email);
-            if (emailAccount != null)
-            {
-                result = RegistrationResult.EmailAlreadyExists;
-            }
+            IReadOnlyList<(int StudentId, float[] Embedding)> enrolled = await _palmImageService.GetAllEmbeddings();
 
-            Account usernameStudent= await _accountService.GetByUsername(username);
-            if (usernameStudent != null)
-            {
-                result = RegistrationResult.UsernameAlreadyExists;
-            }
-
-            if (result == RegistrationResult.Success)
-            {
-                string hashedPassword = _passwordHasher.HashPassword(password);
-
-                Student newStudent = new Student()
+            var ranked = enrolled
+                .GroupBy(e => e.StudentId)
+                .Select(g => new
                 {
-                    AcademicEmail = email,
-                    Username = username,
-                    PasswordHash = hashedPassword,
-                    Name = name,
-                    Surname = surname,
-                    Phone = phone,
-                    Address = address,
-                    Semester = semester,
-                    Sex = sex,
-                    AEM = aem,
-                    DateOfBirth = dateOfBirth,
-                    Department = department,
-                    YearOfEntry = yearOfEntry,
-                    IsPostgraduate = isPostgraduate,
-                };
+                    StudentId = g.Key,
+                    Score = g.Average(e => EmbeddingSerializer.Distance(probeEmbedding, e.Embedding))
+                })
+                .OrderBy(x => x.Score)
+                .ToList();
 
-                Account newAccount = new Account()
-                {
-                    AccountHolder = newStudent
-                };
-
-                //await _studentService.Create(newStudent);
-                await _accountService.Create(newAccount);
+            if (ranked.Count == 0 || ranked[0].Score > PalmprintMatchThreshold)
+            {
+                return null;
             }
 
-            return result;
+            return await _accountService.GetByStudentId(ranked[0].StudentId);
         }
+
     }
 }

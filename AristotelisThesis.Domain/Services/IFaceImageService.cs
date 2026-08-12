@@ -23,7 +23,7 @@ namespace AristotelisThesis.Domain.Services
         /// <summary>
         /// Persists a captured face: the JPEG image plus its 128-d embedding.
         /// </summary>
-        Task SaveFaceImage(int studentId, byte[] imageData, float[] embedding);
+        Task SaveFaceImages(int studentId, IReadOnlyList<(byte[] ImageData, float[] Embedding)> images);
 
         /// <summary>
         /// Returns every enrolled (StudentId, embedding) pair that has a stored embedding.

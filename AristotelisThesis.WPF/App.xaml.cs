@@ -11,8 +11,10 @@ using AristotelisThesis.WPF.State.Navigators;
 using AristotelisThesis.WPF.ViewModels;
 using AristotelisThesis.WPF.ViewModels.Factories;
 using AristotelisThesis.WPF.Views;
-using Microsoft.AspNet.Identity;
 using Microsoft.Extensions.DependencyInjection;
+using System.Diagnostics;
+using System.IO;
+using System.Text.Json;
 using System.Windows;
 
 namespace AristotelisThesis.WPF
@@ -24,17 +26,24 @@ namespace AristotelisThesis.WPF
     {
         private IServiceProvider? _serviceProvider;
         private PythonServiceLauncher? _faceServiceLauncher;
+        private PythonServiceLauncher? _palmServiceLauncher;
 
         protected override void OnStartup(StartupEventArgs e)
         {
             IServiceProvider serviceProvider = CreateServiceProvider();
             _serviceProvider = serviceProvider;
 
-            // Bring up the Python face-embedding service in the background so the model is
-            // loaded by the time the user reaches the face-login screen. Non-blocking: the UI
-            // starts regardless, and face login degrades gracefully if the service is down.
-            _faceServiceLauncher = serviceProvider.GetRequiredService<PythonServiceLauncher>();
+            // Bring up the Python biometric services in the background so their models are loaded
+            // by the time the user reaches a login screen. Non-blocking: the UI starts regardless,
+            // and each login degrades gracefully if its service is down.
+            _faceServiceLauncher = new PythonServiceLauncher(
+                "face_service", FaceServiceConfig.Host, FaceServiceConfig.Port,
+                () => serviceProvider.GetRequiredService<IFaceRecognitionService>().IsHealthyAsync());
+            _palmServiceLauncher = new PythonServiceLauncher(
+                "palmprint_service", PalmprintServiceConfig.Host, PalmprintServiceConfig.Port,
+                () => serviceProvider.GetRequiredService<IPalmprintRecognitionService>().IsHealthyAsync());
             _ = _faceServiceLauncher.StartAsync();
+            _ = _palmServiceLauncher.StartAsync();
 
             IAuthenticationService authentication = serviceProvider.GetRequiredService<IAuthenticationService>();
             //authentication.Login("Aris", "aris");
@@ -65,9 +74,46 @@ namespace AristotelisThesis.WPF
 
         protected override void OnExit(ExitEventArgs e)
         {
-            // Kill the Python face service we spawned so it doesn't outlive the app.
+            // Kill the Python services we spawned so they don't outlive the app.
             _faceServiceLauncher?.Dispose();
+            _palmServiceLauncher?.Dispose();
             base.OnExit(e);
+        }
+
+        /// <summary>
+        /// Reads ConnectionStrings:DefaultConnection from appsettings.json beside the exe.
+        /// Returns null when the file is absent or unreadable, which leaves the factory on
+        /// its LocalDB default rather than failing to start.
+        /// </summary>
+        private static string? ReadConnectionString()
+        {
+            try
+            {
+                string path = Path.Combine(AppContext.BaseDirectory, "appsettings.json");
+                if (!File.Exists(path))
+                {
+                    return null;
+                }
+
+                var options = new JsonDocumentOptions
+                {
+                    CommentHandling = JsonCommentHandling.Skip,
+                    AllowTrailingCommas = true
+                };
+
+                using JsonDocument document = JsonDocument.Parse(File.ReadAllText(path), options);
+                if (document.RootElement.TryGetProperty("ConnectionStrings", out JsonElement section) &&
+                    section.TryGetProperty("DefaultConnection", out JsonElement value))
+                {
+                    return value.GetString();
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Could not read appsettings.json, using the default connection string: {ex}");
+            }
+
+            return null;
         }
 
         public IServiceProvider CreateServiceProvider()
@@ -79,7 +125,9 @@ namespace AristotelisThesis.WPF
             // 3. Scoped => A new instance of the service is created once per HTTP request (within the scope of HTTP request).
 
             // Register services
-            services.AddSingleton<AristotelisThesisDbContextFactory>();
+            // Connection string comes from appsettings.json next to the exe, so the database
+            // can be pointed elsewhere without a rebuild; falls back to the LocalDB default.
+            services.AddSingleton(new AristotelisThesisDbContextFactory(ReadConnectionString()));
             services.AddSingleton<IAuthenticationService, AuthenticationService>();
             services.AddSingleton<IDataService<Account>, AccountDataService>();
             services.AddSingleton<IAccountService, AccountDataService>();
@@ -88,33 +136,33 @@ namespace AristotelisThesis.WPF
             services.AddSingleton<ISessionTrackingService, SessionTrackingService>();
             services.AddSingleton<IStatisticsService, StatisticsService>();
 
-            // Profile photo source + face enrollment storage
+            // Profile photo source + face/palmprint enrollment storage
             services.AddSingleton<IFaceImageService, FaceImageService>();
+            services.AddSingleton<IPalmprintImageService, PalmprintImageService>();
 
-            // Face recognition: Python ResNet-34 embedding bridge + its process launcher.
+            // Biometric encoders: Python embedding bridges (face on 8500, palmprint on 8501).
+            // Their process launchers are created/owned by App (see OnStartup), not the container.
             services.AddSingleton<IFaceRecognitionService, PythonFaceRecognitionService>();
-            services.AddSingleton<PythonServiceLauncher>();
+            services.AddSingleton<IPalmprintRecognitionService, PythonPalmprintRecognitionService>();
 
-            // Carries registration-wizard data (personal info + captured faces) across steps.
+            // Carries registration-wizard data (personal info + captured faces/palms) across steps.
             services.AddSingleton<RegistrationStore>();
-
-            services.AddSingleton<IPasswordHasher, PasswordHasher>();
-
 
             // Register factories
             services.AddSingleton<IAristotelisThesisViewModelFactory, AristotelisThesisViewModelFactory>();
 
 
             services.AddSingleton<LoginViewModel>();
-            services.AddSingleton<DashboardViewModel>();
-            // Transient so the face gallery reloads for whoever is currently logged in.
+            // Transient so the face/palm galleries reload for whoever is currently logged in.
             services.AddTransient<FaceRecognitionViewModel>();
-            services.AddSingleton<PalmprintRecognitionViewModel>();
+            services.AddTransient<PalmprintRecognitionViewModel>();
             // Per-user view state: resolve a fresh instance on each navigation so a
             // logout/login as a different student never shows the previous user's
-            // cached fields or profile photo.
+            // cached fields, statistics or profile photo. These read their data once, on
+            // construction, so a shared instance would outlive the session it loaded for.
             services.AddTransient<ProfileViewModel>();
-            services.AddSingleton<StatisticsViewModel>();
+            services.AddTransient<DashboardViewModel>();
+            services.AddTransient<StatisticsViewModel>();
             services.AddTransient<SettingsViewModel>();
 
             // --------------------------------------------------------------------------------
@@ -175,6 +223,9 @@ namespace AristotelisThesis.WPF
             services.AddSingleton<CreateViewModel<LoginWithPalmprintViewModel>>(services =>
             {
                 return () => new LoginWithPalmprintViewModel(
+                    services.GetRequiredService<IPalmprintRecognitionService>(),
+                    services.GetRequiredService<IAuthenticator>(),
+                    services.GetRequiredService<ViewModelDelegateRenavigator<DashboardViewModel>>(),
                     services.GetRequiredService<ViewModelDelegateRenavigator<LoginViewModel>>()
                 );
             });
@@ -204,8 +255,7 @@ namespace AristotelisThesis.WPF
                 return () => new Register02WithInformationViewModel(
                     services.GetRequiredService<RegistrationStore>(),
                     services.GetRequiredService<ViewModelDelegateRenavigator<Register01ViewModel>>(),
-                    // Palmprint steps (03/04) skipped for now: go straight to the face instructions.
-                    services.GetRequiredService<ViewModelDelegateRenavigator<Register05InstructionsForFaceViewModel>>()
+                    services.GetRequiredService<ViewModelDelegateRenavigator<Register03InstructionsForPalmprintViewModel>>()
                 );
             });
             
@@ -220,6 +270,8 @@ namespace AristotelisThesis.WPF
             services.AddSingleton<CreateViewModel<Register04WithPalmprintViewModel>>(services =>
             {
                 return () => new Register04WithPalmprintViewModel(
+                    services.GetRequiredService<RegistrationStore>(),
+                    services.GetRequiredService<IPalmprintRecognitionService>(),
                     services.GetRequiredService<ViewModelDelegateRenavigator<Register03InstructionsForPalmprintViewModel>>(),
                     services.GetRequiredService<ViewModelDelegateRenavigator<Register05InstructionsForFaceViewModel>>()
                 );
@@ -228,8 +280,7 @@ namespace AristotelisThesis.WPF
             services.AddSingleton<CreateViewModel<Register05InstructionsForFaceViewModel>>(services =>
             {
                 return () => new Register05InstructionsForFaceViewModel(
-                    // Palmprint steps skipped: Back returns to the personal-info step.
-                    services.GetRequiredService<ViewModelDelegateRenavigator<Register02WithInformationViewModel>>(),
+                    services.GetRequiredService<ViewModelDelegateRenavigator<Register04WithPalmprintViewModel>>(),
                     services.GetRequiredService<ViewModelDelegateRenavigator<Register06WithFaceViewModel>>()
                 );
             });
@@ -240,6 +291,7 @@ namespace AristotelisThesis.WPF
                     services.GetRequiredService<RegistrationStore>(),
                     services.GetRequiredService<IFaceRecognitionService>(),
                     services.GetRequiredService<IFaceImageService>(),
+                    services.GetRequiredService<IPalmprintImageService>(),
                     services.GetRequiredService<IAccountService>(),
                     services.GetRequiredService<IAuthenticator>(),
                     services.GetRequiredService<ViewModelDelegateRenavigator<Register05InstructionsForFaceViewModel>>(),
@@ -255,8 +307,6 @@ namespace AristotelisThesis.WPF
             services.AddSingleton<CreateViewModel<LoginViewModel>>(services =>
             {
                 return () => new LoginViewModel(
-                    services.GetRequiredService<IAuthenticator>(),
-                    services.GetRequiredService<ViewModelDelegateRenavigator<DashboardViewModel>>(),
                     services.GetRequiredService<ViewModelDelegateRenavigator<LoginWithFaceViewModel>>(),
                     services.GetRequiredService<ViewModelDelegateRenavigator<LoginWithPalmprintViewModel>>(),
                     services.GetRequiredService<ViewModelDelegateRenavigator<Register01ViewModel>>()

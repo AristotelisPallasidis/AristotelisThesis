@@ -17,7 +17,7 @@ namespace AristotelisThesis.EntityFramework.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "10.0.6")
+                .HasAnnotation("ProductVersion", "10.0.9")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -68,6 +68,36 @@ namespace AristotelisThesis.EntityFramework.Migrations
                     b.HasIndex("StudentId");
 
                     b.ToTable("FaceImages");
+                });
+
+            modelBuilder.Entity("AristotelisThesis.Domain.Models.PalmprintImage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("DateCaptured")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                    b.Property<byte[]>("Embedding")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<byte[]>("ImageData")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("PalmprintImages");
                 });
 
             modelBuilder.Entity("AristotelisThesis.Domain.Models.SessionHistory", b =>
@@ -164,6 +194,9 @@ namespace AristotelisThesis.EntityFramework.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AEM")
+                        .IsUnique();
+
                     b.ToTable("Students");
                 });
 
@@ -179,6 +212,17 @@ namespace AristotelisThesis.EntityFramework.Migrations
                 });
 
             modelBuilder.Entity("AristotelisThesis.Domain.Models.FaceImage", b =>
+                {
+                    b.HasOne("AristotelisThesis.Domain.Models.Student", "Student")
+                        .WithMany()
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Student");
+                });
+
+            modelBuilder.Entity("AristotelisThesis.Domain.Models.PalmprintImage", b =>
                 {
                     b.HasOne("AristotelisThesis.Domain.Models.Student", "Student")
                         .WithMany()

@@ -23,7 +23,7 @@
 
             <Grid Grid.Column="0" Margin="0 0 8 0">
                 <Image 
-                    Source="C:\Users\Aristotelis\Desktop\test2\AristotelisThesis\AristotelisThesis.WPF\Assets\duth-logo-white.png"
+                    Source="/Assets/duth-logo-white.png"
                     Height="200" 
                     Width="200">
                 </Image>
@@ -98,7 +98,7 @@
 
                                     <Grid Grid.Column="0">
                                         <Border Width="50" Height="50" Background="#303030" CornerRadius="200" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                            <Image Source="C:\Users\Aristotelis\Desktop\test2\AristotelisThesis\AristotelisThesis.WPF\Assets\Icons\FaceIconSolid.png" Width="20" Height="20" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                            <Image Source="/Assets/Icons/FaceIconSolid.png" Width="20" Height="20" VerticalAlignment="Center" HorizontalAlignment="Center" />
                                         </Border>
 
                                     </Grid>
@@ -111,7 +111,7 @@
                                         </StackPanel>
                                     </Grid>
                                     <Grid Grid.Column="2">
-                                        <Image Source="C:\Users\Aristotelis\Desktop\test2\AristotelisThesis\AristotelisThesis.WPF\Assets\Icons\chevron-right-solid.png" Width="30" Height="30" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" />
+                                        <Image Source="/Assets/Icons/chevron-right-solid.png" Width="30" Height="30" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" />
                                     </Grid>
 
                                 </Grid>
@@ -143,7 +143,7 @@
 
                                     <Grid Grid.Column="0">
                                         <Border Width="50" Height="50" Background="#303030" CornerRadius="200" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                            <Image Source="C:\Users\Aristotelis\Desktop\test2\AristotelisThesis\AristotelisThesis.WPF\Assets\Icons\HandIconSolid.png" Width="20" Height="20" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                            <Image Source="/Assets/Icons/HandIconSolid.png" Width="20" Height="20" VerticalAlignment="Center" HorizontalAlignment="Center" />
                                         </Border>
                                     </Grid>
 
@@ -156,7 +156,7 @@
                                     </StackPanel>
 
                                     <Grid Grid.Column="1">
-                                        <Image Source="C:\Users\Aristotelis\Desktop\test2\AristotelisThesis\AristotelisThesis.WPF\Assets\Icons\chevron-right-solid.png" Width="30" Height="30" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" />
+                                        <Image Source="/Assets/Icons/chevron-right-solid.png" Width="30" Height="30" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" />
                                     </Grid>
                                 </Grid>
                             </Border>
@@ -212,46 +212,6 @@
             </Button>
 
 
-            <!-- ////////////////////////// -->
-            <!-- ////////////////////////// 
-            -->
-            <Grid Grid.Row="5" Width="300" Margin="0 10 0 0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Grid Grid.Column="0">
-                    <StackPanel Orientation="Vertical">
-                    <TextBox 
-                        Width="120"
-                        FontSize="10" 
-                        Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}">
-                    </TextBox>
-                    </StackPanel>
-                </Grid>
-                <Grid Grid.Column="1">
-                    <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch">
-                        <PasswordBox 
-                            Width="120"
-                            FontSize="10" 
-                            x:Name="pbPassword">
-                        </PasswordBox>
-                    </StackPanel>
-                </Grid>
-            </Grid>
-            <Button 
-                Width="40" 
-                Grid.Row="6"
-                FontSize="10"
-                IsDefault="True"
-                Content="Login" 
-                Click="Login_Click"
-                Margin="0 6 ">
-            </Button>
-            <!-- ////////////////////////// -->
-            <!-- ////////////////////////// -->
-        
-        
         </Grid>
 
     </Grid>

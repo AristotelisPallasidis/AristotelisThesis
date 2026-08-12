@@ -7,19 +7,13 @@ using System.Threading.Tasks;
 
 namespace AristotelisThesis.Domain.Services.AuthenticationServices
 {
-    public enum RegistrationResult
-    {
-        Success,
-        PasswordsDoNotMatch,
-        EmailAlreadyExists,
-        UsernameAlreadyExists
-    }
-
+    /// <summary>
+    /// Authentication is biometric-only: accounts are created by the registration wizard
+    /// (see Register06WithFaceViewModel) and signed in by matching a face or palm embedding.
+    /// There is no username/password path.
+    /// </summary>
     public interface IAuthenticationService
     {
-        Task<RegistrationResult> Register(string email, string username, string password, string confirmPassword, string name, string surname, string sex, string phone, string address, string department, int semester, int aem, DateTime dateOfBirth,int yearOfEntry, bool isPostgraduate);
-        Task<Account> Login(string username, string password);
-
         /// <summary>
         /// Matches a probe face embedding against the enrolled embeddings and returns the
         /// owning <see cref="Account"/> when the best match is within the recognition threshold,
@@ -27,7 +21,12 @@ namespace AristotelisThesis.Domain.Services.AuthenticationServices
         /// </summary>
         Task<Account?> LoginWithFace(float[] probeEmbedding);
 
-        // Task<Student> LoginWithPalmprint(string username, string password);
+        /// <summary>
+        /// Matches a probe palmprint embedding against the enrolled embeddings and returns the
+        /// owning <see cref="Account"/> when the best match is within the recognition threshold,
+        /// or null when no enrolled palm is close enough.
+        /// </summary>
+        Task<Account?> LoginWithPalmprint(float[] probeEmbedding);
 
 
     }

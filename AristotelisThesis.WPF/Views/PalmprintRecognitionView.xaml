@@ -28,7 +28,7 @@
 
                 <!-- PAGE TITLE -->
                 <StackPanel Orientation="Horizontal" Grid.Column="0">
-                    <Image Source="C:\Users\Aristotelis\Desktop\test2\AristotelisThesis\AristotelisThesis.WPF\Assets\Icons\HandIconSolid.png" Width="30" Height="30" Margin="0 0 10 0"></Image>
+                    <Image Source="/Assets/Icons/HandIconSolid.png" Width="30" Height="30" Margin="0 0 10 0"></Image>
                     <TextBlock 
                         Text="Αναγνώριση Παλάμης" 
                         Grid.Column="0"
@@ -46,91 +46,29 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="2*" />
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="2*" />
                 </Grid.ColumnDefinitions>
 
-                <Grid Grid.Column="0" >
-                    <Image 
-                        Source="C:\Users\Aristotelis\Desktop\test2\AristotelisThesis\AristotelisThesis.WPF\Assets\aristotelis01_palm_sqrt.jpg" 
-                        HorizontalAlignment="Left" 
-                        VerticalAlignment="Stretch">
-                    </Image>
-                </Grid>
+                <!-- Every enrolled palm image, four across. The cells divide the space
+                     available, so the grid always fits the page instead of scrolling.
+                     Uniform keeps the 4:3 captures whole, and centring the border makes
+                     it hug the scaled image. -->
+                <ItemsControl Grid.Column="0" Margin="0 0 20 0" ItemsSource="{Binding PalmImages}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Columns="4" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Margin="6" BorderBrush="#444" BorderThickness="1" CornerRadius="4"
+                                    HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Image Source="{Binding}" Stretch="Uniform" />
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
 
-                <Grid Grid.Column="1">
-
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-
-
-                    <Grid Grid.Column="0" VerticalAlignment="Stretch">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-
-                        <Grid Grid.Row="0">
-                            <Image Source="C:\Users\Aristotelis\Desktop\test2\AristotelisThesis\AristotelisThesis.WPF\Assets\aristotelis01_palm_sqrt.jpg" Width="90"></Image>
-                        </Grid>
-
-                        <Grid Grid.Row="1">
-                            <Image Source="C:\Users\Aristotelis\Desktop\test2\AristotelisThesis\AristotelisThesis.WPF\Assets\aristotelis01_palm_sqrt.jpg" Width="90"></Image>
-                        </Grid>
-
-                        <Grid Grid.Row="2">
-                            <Image Source="C:\Users\Aristotelis\Desktop\test2\AristotelisThesis\AristotelisThesis.WPF\Assets\aristotelis01_palm_sqrt.jpg" Width="90"></Image>
-                        </Grid>
-
-                        <Grid Grid.Row="3">
-                            <Image Source="C:\Users\Aristotelis\Desktop\test2\AristotelisThesis\AristotelisThesis.WPF\Assets\aristotelis01_palm_sqrt.jpg" Width="90"></Image>
-                        </Grid>
-
-                        <Grid Grid.Row="4">
-                            <Image Source="C:\Users\Aristotelis\Desktop\test2\AristotelisThesis\AristotelisThesis.WPF\Assets\aristotelis01_palm_sqrt.jpg" Width="90"></Image>
-                        </Grid>
-                    </Grid>
-
-
-                    <Grid Grid.Column="1" VerticalAlignment="Stretch">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-
-                        <Grid Grid.Row="0">
-                            <Image Source="C:\Users\Aristotelis\Desktop\test2\AristotelisThesis\AristotelisThesis.WPF\Assets\aristotelis01_palm_sqrt.jpg" Width="90"></Image>
-                        </Grid>
-
-                        <Grid Grid.Row="1">
-                            <Image Source="C:\Users\Aristotelis\Desktop\test2\AristotelisThesis\AristotelisThesis.WPF\Assets\aristotelis01_palm_sqrt.jpg" Width="90"></Image>
-                        </Grid>
-
-                        <Grid Grid.Row="2">
-                            <Image Source="C:\Users\Aristotelis\Desktop\test2\AristotelisThesis\AristotelisThesis.WPF\Assets\aristotelis01_palm_sqrt.jpg" Width="90"></Image>
-                        </Grid>
-
-                        <Grid Grid.Row="3">
-                            <Image Source="C:\Users\Aristotelis\Desktop\test2\AristotelisThesis\AristotelisThesis.WPF\Assets\aristotelis01_palm_sqrt.jpg" Width="90"></Image>
-                        </Grid>
-
-                        <Grid Grid.Row="4">
-                            <Image Source="C:\Users\Aristotelis\Desktop\test2\AristotelisThesis\AristotelisThesis.WPF\Assets\aristotelis01_palm_sqrt.jpg" Width="90"></Image>
-                        </Grid>
-
-                    </Grid>
-
-                </Grid>
-
-                <Grid Grid.Column="3">
+                <Grid Grid.Column="1" Margin="20 0 0 0">
 
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto" />
@@ -139,28 +77,28 @@
 
                     <Grid Grid.Row="0">
                         <StackPanel>
-                            <TextBlock 
-                                TextWrapping="Wrap" 
-                                VerticalAlignment="Top" 
-                                Foreground="{StaticResource ColorLight}" 
+                            <TextBlock
+                                TextWrapping="Wrap"
+                                VerticalAlignment="Top"
+                                Foreground="{StaticResource ColorLight}"
                                 FontSize="16"
                                 FontWeight="Bold"
                                 Margin="0,10,0,0">
                                 Πληροφορίες
                             </TextBlock>
-                            <TextBlock 
-                                TextWrapping="Wrap" 
-                                VerticalAlignment="Top" 
-                                Foreground="{StaticResource ColorLight}" 
+                            <TextBlock
+                                TextWrapping="Wrap"
+                                VerticalAlignment="Top"
+                                Foreground="{StaticResource ColorLight}"
                                 FontSize="16">
                                     Η αναγνώριση παλάμης είναι μια τεχνολογία βιομετρίας που χρησιμοποιεί τα μοναδικά μοτίβα στην παλάμη ενός ατόμου για να το αναγνωρίσει. Όπως και τα δακτυλικά αποτυπώματα, κάθε παλάμη έχει ένα μοναδικό σύνολο γραμμών, ραβδώσεων και πτυχών.
                             </TextBlock>
 
                             <!-- How it works section title -->
-                            <TextBlock 
-                                TextWrapping="Wrap" 
-                                VerticalAlignment="Top" 
-                                Foreground="{StaticResource ColorLight}" 
+                            <TextBlock
+                                TextWrapping="Wrap"
+                                VerticalAlignment="Top"
+                                Foreground="{StaticResource ColorLight}"
                                 FontSize="16"
                                 FontWeight="Bold"
                                 Margin="0,10,0,0">
@@ -169,18 +107,18 @@
 
                             <!-- List of steps -->
                             <StackPanel Margin="10,0,0,0">
-                                <TextBlock 
-                                    TextWrapping="Wrap" 
-                                    VerticalAlignment="Top" 
-                                    Foreground="{StaticResource ColorLight}" 
+                                <TextBlock
+                                    TextWrapping="Wrap"
+                                    VerticalAlignment="Top"
+                                    Foreground="{StaticResource ColorLight}"
                                     FontSize="16">
                                     1. Λήψη της παλάμης: Μια κάμερα ή σαρωτής τραβάει μια φωτογραφία της παλάμης.
 
                                 </TextBlock>
-                                <TextBlock 
-                                    TextWrapping="Wrap" 
-                                    VerticalAlignment="Top" 
-                                    Foreground="{StaticResource ColorLight}" 
+                                <TextBlock
+                                    TextWrapping="Wrap"
+                                    VerticalAlignment="Top"
+                                    Foreground="{StaticResource ColorLight}"
                                     FontSize="16">
                                     2. Ανάλυση και Ταύτιση: Το σύστημα εξετάζει τα μοναδικά χαρακτηριστικά της παλάμης και τα συγκρίνει με ένα αποθηκευμένο πρότυπο (αν υπάρχει). Αν υπάρχει ταύτιση, επιβεβαιώνει την ταυτότητα.
                                 </TextBlock>
@@ -189,26 +127,26 @@
                         </StackPanel>
 
                     </Grid>
-                    
+
                     <Border
                         Grid.Row="1"
                         VerticalAlignment="Bottom"
-                        BorderBrush="{StaticResource ColorWarning}" 
-                        BorderThickness="2" 
-                        CornerRadius="6 6 6 6" 
+                        BorderBrush="{StaticResource ColorWarning}"
+                        BorderThickness="2"
+                        CornerRadius="6 6 6 6"
                         Padding="26 32 70 32">
 
                         <Grid Grid.Column="1" Background="Transparent">
                             <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
 
-                                <TextBlock 
+                                <TextBlock
                                     Text="Ενημέρωση στοιχείων Παλάμης"
                                     FontSize="22"
                                     FontWeight="Bold"
                                     Foreground="White">
                                 </TextBlock>
 
-                                <TextBlock 
+                                <TextBlock
                                     Text="* Η ενημέρωση εικόνων θα διαγράψη τις υπάρχουσες εικόνες"
                                     Margin="0 4 0 0"
                                     FontSize="12"
@@ -216,7 +154,7 @@
                                     Foreground="{StaticResource ColorLight}">
                                 </TextBlock>
 
-                                <Button 
+                                <Button
                                     Content="Ενημέρωση στοιχείων"
                                     BorderThickness="0"
                                     Background="{StaticResource ColorWarning}"

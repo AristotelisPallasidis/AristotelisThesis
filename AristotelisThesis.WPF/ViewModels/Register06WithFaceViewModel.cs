@@ -7,6 +7,7 @@ using AristotelisThesis.WPF.State.Authenticators;
 using AristotelisThesis.WPF.State.Navigators;
 using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Globalization;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -28,6 +29,7 @@ namespace AristotelisThesis.WPF.ViewModels
         private readonly RegistrationStore _registration;
         private readonly IFaceRecognitionService _faceRecognition;
         private readonly IFaceImageService _faceImageService;
+        private readonly IPalmprintImageService _palmImageService;
         private readonly IAccountService _accountService;
         private readonly IAuthenticator _authenticator;
         private readonly IRenavigator _dashboardRenavigator;
@@ -48,6 +50,7 @@ namespace AristotelisThesis.WPF.ViewModels
             RegistrationStore registration,
             IFaceRecognitionService faceRecognition,
             IFaceImageService faceImageService,
+            IPalmprintImageService palmImageService,
             IAccountService accountService,
             IAuthenticator authenticator,
             IRenavigator register05Renavigator,
@@ -56,6 +59,7 @@ namespace AristotelisThesis.WPF.ViewModels
             _registration = registration;
             _faceRecognition = faceRecognition;
             _faceImageService = faceImageService;
+            _palmImageService = palmImageService;
             _accountService = accountService;
             _authenticator = authenticator;
             _dashboardRenavigator = dashboardRenavigator;
@@ -129,16 +133,44 @@ namespace AristotelisThesis.WPF.ViewModels
                 return new FaceLoginResult(false, error);
             }
 
+            Account created;
             try
             {
-                Account created = await _accountService.Create(new Account { AccountHolder = student });
+                created = await _accountService.Create(new Account { AccountHolder = student });
+            }
+            catch (Exception ex)
+            {
+                return new FaceLoginResult(false, $"Σφάλμα κατά την εγγραφή: {ex.Message}");
+            }
+
+            try
+            {
                 int studentId = created.AccountHolder.Id;
 
-                foreach ((byte[] jpeg, float[] embedding) in _registration.CapturedFaces)
+                // Each call is a single save, so a modality is stored whole or not at all.
+                // Palms were captured earlier in the wizard (Register04) and buffered until now,
+                // because the images need the StudentId that only exists once the account does.
+                await _faceImageService.SaveFaceImages(studentId, _registration.CapturedFaces);
+                await _palmImageService.SavePalmprintImages(studentId, _registration.CapturedPalms);
+            }
+            catch (Exception ex)
+            {
+                // Undo the account rather than leave a student who is half enrolled and can
+                // never register again with the same email.
+                try
                 {
-                    await _faceImageService.SaveFaceImage(studentId, jpeg, embedding);
+                    await _accountService.Delete(created.Id);
+                }
+                catch (Exception cleanupEx)
+                {
+                    Debug.WriteLine($"Could not roll back the account after a failed enrolment: {cleanupEx}");
                 }
 
+                return new FaceLoginResult(false, $"Σφάλμα κατά την αποθήκευση των βιομετρικών: {ex.Message}");
+            }
+
+            try
+            {
                 // Log the new student in via the face we just enrolled (matches itself).
                 float[] firstEmbedding = _registration.CapturedFaces[0].Embedding;
                 bool loggedIn = await _authenticator.LoginWithFace(firstEmbedding);

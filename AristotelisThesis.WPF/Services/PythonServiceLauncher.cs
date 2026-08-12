@@ -2,41 +2,46 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
-using AristotelisThesis.Domain.Services;
 
 namespace AristotelisThesis.WPF.Services
 {
     /// <summary>
-    /// Starts the Python face-embedding service (uvicorn) as a child process on app launch,
-    /// unless one is already answering, and tears it down on exit. The model loads once in
-    /// that process, so subsequent /encode calls are fast.
+    /// Starts a Python FastAPI service (uvicorn) as a child process on app launch, unless one is
+    /// already answering, and tears it down on exit. Config-driven so it can run any of the app's
+    /// Python services (face on 8500, palmprint on 8501) - the model loads once in that process.
     /// </summary>
     public class PythonServiceLauncher : IDisposable
     {
-        private readonly IFaceRecognitionService _faceRecognition;
+        private readonly string _serviceDirName;
+        private readonly string _host;
+        private readonly int _port;
+        private readonly Func<Task<bool>> _healthCheck;
         private Process? _process;
 
-        public PythonServiceLauncher(IFaceRecognitionService faceRecognition)
+        public PythonServiceLauncher(string serviceDirName, string host, int port, Func<Task<bool>> healthCheck)
         {
-            _faceRecognition = faceRecognition;
+            _serviceDirName = serviceDirName;
+            _host = host;
+            _port = port;
+            _healthCheck = healthCheck;
         }
 
         /// <summary>
-        /// Ensures the service is reachable: returns immediately if one is already up,
-        /// otherwise spawns uvicorn and waits (with backoff) for /health. Returns false
-        /// if the service could not be started/located.
+        /// Ensures the service is reachable: returns immediately if one is already up, otherwise
+        /// spawns uvicorn and waits (with backoff) for the health check. Returns false if the
+        /// service could not be started/located.
         /// </summary>
         public async Task<bool> StartAsync()
         {
-            if (await _faceRecognition.IsHealthyAsync())
+            if (await _healthCheck())
             {
                 return true; // already running (e.g. started manually for dev)
             }
 
-            string? serviceDir = LocateServiceDirectory();
+            string? serviceDir = LocateServiceDirectory(_serviceDirName);
             if (serviceDir == null)
             {
-                Debug.WriteLine("[PythonServiceLauncher] face_service directory not found.");
+                Debug.WriteLine($"[PythonServiceLauncher] {_serviceDirName} directory not found.");
                 return false;
             }
 
@@ -55,9 +60,9 @@ namespace AristotelisThesis.WPF.Services
             startInfo.ArgumentList.Add("uvicorn");
             startInfo.ArgumentList.Add("app:app");
             startInfo.ArgumentList.Add("--host");
-            startInfo.ArgumentList.Add(FaceServiceConfig.Host);
+            startInfo.ArgumentList.Add(_host);
             startInfo.ArgumentList.Add("--port");
-            startInfo.ArgumentList.Add(FaceServiceConfig.Port.ToString());
+            startInfo.ArgumentList.Add(_port.ToString());
 
             try
             {
@@ -65,7 +70,7 @@ namespace AristotelisThesis.WPF.Services
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[PythonServiceLauncher] failed to start python: {ex.Message}");
+                Debug.WriteLine($"[PythonServiceLauncher] failed to start {_serviceDirName}: {ex.Message}");
                 return false;
             }
 
@@ -74,30 +79,29 @@ namespace AristotelisThesis.WPF.Services
             {
                 if (_process is { HasExited: true })
                 {
-                    Debug.WriteLine("[PythonServiceLauncher] python process exited during startup.");
+                    Debug.WriteLine($"[PythonServiceLauncher] {_serviceDirName} process exited during startup.");
                     return false;
                 }
-                if (await _faceRecognition.IsHealthyAsync())
+                if (await _healthCheck())
                 {
                     return true;
                 }
                 await Task.Delay(1000);
             }
 
-            Debug.WriteLine("[PythonServiceLauncher] service did not become healthy in time.");
+            Debug.WriteLine($"[PythonServiceLauncher] {_serviceDirName} did not become healthy in time.");
             return false;
         }
 
         /// <summary>
-        /// Walks up from the app's base directory looking for a face_service/app.py.
-        /// Works both from the bin output folder and a published layout.
+        /// Walks up from the app's base directory looking for &lt;serviceDirName&gt;/app.py.
         /// </summary>
-        private static string? LocateServiceDirectory()
+        private static string? LocateServiceDirectory(string serviceDirName)
         {
             DirectoryInfo? dir = new DirectoryInfo(AppContext.BaseDirectory);
             while (dir != null)
             {
-                string candidate = Path.Combine(dir.FullName, "face_service");
+                string candidate = Path.Combine(dir.FullName, serviceDirName);
                 if (File.Exists(Path.Combine(candidate, "app.py")))
                 {
                     return candidate;
@@ -109,7 +113,7 @@ namespace AristotelisThesis.WPF.Services
 
         /// <summary>
         /// Prefers the service's own virtualenv interpreter if present, else falls back to a
-        /// PATH python, then the Windows "py" launcher (this machine exposes only "py").
+        /// PATH python, then the Windows "py" launcher.
         /// </summary>
         private static string ResolvePythonExecutable(string serviceDir)
         {

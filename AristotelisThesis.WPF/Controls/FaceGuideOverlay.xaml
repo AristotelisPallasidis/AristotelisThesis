@@ -28,12 +28,12 @@
             <TextBlock Text="Τοποθετήστε το πρόσωπό σας μέσα στο οβάλ"
                        HorizontalAlignment="Center" VerticalAlignment="Top"
                        Margin="0 24 0 0"
-                       Foreground="White" FontSize="26" FontWeight="Bold" Opacity="0.9" />
+                       Foreground="White" FontSize="18" FontWeight="Bold" Opacity="0.9" />
 
             <TextBlock Text="Ούτε πολύ κοντά, ούτε πολύ μακριά"
                        HorizontalAlignment="Center" VerticalAlignment="Bottom"
                        Margin="0 0 0 28"
-                       Foreground="White" FontSize="20" Opacity="0.8" />
+                       Foreground="White" FontSize="14" Opacity="0.8" />
         </Grid>
     </Viewbox>
 </UserControl>

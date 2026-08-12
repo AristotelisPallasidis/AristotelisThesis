@@ -20,6 +20,9 @@ namespace AristotelisThesis.EntityFramework
         // Add FaceImages DB set so EF tracks this entity
         public DbSet<FaceImage> FaceImages { get; set; }
 
+        // Enrolled palmprint images + feature vectors (mirror of FaceImages).
+        public DbSet<PalmprintImage> PalmprintImages { get; set; }
+
         // Daily attendance ledger; source of truth for the Statistics page.
         public DbSet<SessionHistory> SessionHistories { get; set; }
 
@@ -41,6 +44,18 @@ namespace AristotelisThesis.EntityFramework
                  .OnDelete(DeleteBehavior.Cascade);
             });
 
+            // PalmprintImage: same shape as FaceImage; cascades when the student is removed.
+            modelBuilder.Entity<PalmprintImage>(b =>
+            {
+                b.Property(p => p.ImageData).IsRequired();
+                b.Property(p => p.Embedding).IsRequired(false);
+                b.Property(p => p.DateCaptured).HasDefaultValueSql("CURRENT_TIMESTAMP");
+                b.HasOne(p => p.Student)
+                 .WithMany()
+                 .HasForeignKey(p => p.StudentId)
+                 .OnDelete(DeleteBehavior.Cascade);
+            });
+
             // SessionHistory: one row per student per day; cascades when the student is removed.
             modelBuilder.Entity<SessionHistory>(b =>
             {
@@ -49,6 +64,12 @@ namespace AristotelisThesis.EntityFramework
                  .HasForeignKey(s => s.StudentId)
                  .OnDelete(DeleteBehavior.Cascade);
             });
+
+            // AEM is the university's student number: unique by definition, so enforce it in
+            // the database rather than relying on the model's documentation alone.
+            modelBuilder.Entity<Student>()
+                .HasIndex(s => s.AEM)
+                .IsUnique();
         }
     }
 }
