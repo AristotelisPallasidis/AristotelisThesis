@@ -4,7 +4,9 @@ A small FastAPI service that turns a face image into a **128-dimensional embeddi
 using dlib's ResNet-34 face-recognition model (via the [`face_recognition`](https://github.com/ageitgey/face_recognition) library).
 
 The WPF app calls this service to encode faces; **all matching and storage happen in C#**.
-This service is stateless and has no database access.
+This service is stateless and has no database access. It is one of two encoder services —
+its palmprint counterpart is `palmprint_service/`, which runs on port **8501**. This one runs
+on port **8500**.
 
 ## Endpoints
 
@@ -64,6 +66,16 @@ uvicorn app:app --host 127.0.0.1 --port 8500
 
 The WPF app auto-starts this service on launch (see `PythonServiceLauncher`), but you can run it
 manually for development/testing.
+
+## Matching
+
+Matching is **not** done here. The 128-d embeddings are stored in SQL Server at enrolment, and
+`AuthenticationService.LoginWithFace` compares a probe against the per-student average by
+Euclidean (L2) distance, with a threshold of **`0.45`** — dlib's recommended value.
+
+> **Licence note:** although `face_recognition_models` is CC0, the 68-point landmark predictor it
+> ships was trained on the **iBUG 300-W** dataset, whose licence excludes commercial use. See
+> `THIRD-PARTY-NOTICES.md` in the repo root.
 
 ## Quick test
 

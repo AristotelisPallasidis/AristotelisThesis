@@ -1,9 +1,12 @@
-# Palmprint Service (MediaPipe ROI + Gabor features)
+# Palmprint Service (Guide-box ROI + Gabor features)
 
 A small FastAPI service that turns a hand image into a fixed-length **palmprint feature vector**.
 The user aligns their open palm inside the on-screen guide box; the service crops that central
 region and builds a texture descriptor from a **Gabor filter bank** (the classical palmprint
 approach) using OpenCV.
+
+No hand-landmark model is used — the ROI is fixed by the on-screen guide. See the ROI note below
+for the adaptive alternative.
 
 The WPF app calls this service to encode palms; **all matching and storage happen in C#**.
 This service is stateless and has no database access. It is the palmprint counterpart of
@@ -18,6 +21,33 @@ This service is stateless and has no database access. It is the palmprint counte
 
 The embedding is a fixed-length L2-normalized float vector (orientations × scales × grid blocks),
 matched in C# by Euclidean (L2) distance.
+
+## Python packages
+
+See `requirements.txt`. All of these ship prebuilt Windows wheels, so no compiler is needed.
+
+| Package | Used for |
+|---|---|
+| `fastapi` | HTTP API framework |
+| `uvicorn[standard]` | ASGI server that runs the app |
+| `opencv-python` | Gabor filter bank, ROI crop, image ops |
+| `numpy` | Array handling for image/feature data |
+| `pillow` | Image decoding |
+| `python-multipart` | Lets FastAPI accept uploaded image bodies |
+
+## Matching
+
+Matching is **not** done here. Feature vectors are stored in SQL Server at enrolment, and
+`AuthenticationService.LoginWithPalmprint` compares a probe against the per-student average by
+Euclidean (L2) distance.
+
+> **The threshold is `0.6` and is a starting value, not a calibrated one.** Unlike the face
+> threshold (dlib's recommended `0.45`), it has not been tuned against real captures. Calibrate it
+> before making any FAR/FRR claim about the palmprint modality.
+
+Enrolment captures **7** palms of the right hand (`Register04`). Because the ROI is the fixed
+guide box, results depend on the palm being presented the same way at enrolment and at login —
+which is why the enrolment instructions ask for the capture rig and its internal illumination.
 
 ## Setup (Windows)
 

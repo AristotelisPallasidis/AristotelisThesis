@@ -45,49 +45,106 @@ by Aristotelis Pallasidis
 
 # Implementation & Setup
 
-A Windows desktop application (.NET 10 / WPF) plus a small Python face-embedding service.
+A Windows desktop application (.NET 10 / WPF) plus two small Python encoder services — one for
+faces, one for palmprints. Both biometric modalities are implemented end to end: enrolment,
+login, and attendance tracking.
 
 ## Architecture
 
 | Project | Role |
 |---|---|
-| `AristotelisThesis.Domain` | Models, service interfaces, face-matching logic (no DB/UI dependencies) |
+| `AristotelisThesis.Domain` | Models, service interfaces, biometric matching logic (no DB/UI dependencies) |
 | `AristotelisThesis.EntityFramework` | EF Core data access (SQL Server LocalDB) + migrations |
 | `AristotelisThesis.WPF` | WPF/MVVM front-end, camera capture, Python bridge |
-| `face_service/` | Python FastAPI service that turns a face image into a 128-d embedding (dlib ResNet-34 via `face_recognition`) |
+| `face_service/` | Python FastAPI service that turns a face image into a 128-d embedding (dlib ResNet-34 via `face_recognition`) — port **8500** |
+| `palmprint_service/` | Python FastAPI service that turns a palm image into a Gabor texture feature vector (OpenCV) — port **8501** |
 
-**Face recognition design:** the Python service is a *stateless encoder* (`POST /encode` → 128-d embedding). Embeddings are stored in the database at enrollment, and matching is done in C# by Euclidean distance (per-student average, threshold `0.45`). Camera capture stays in C# (OpenCvSharp); only the captured JPEG crosses to Python.
+**Design.** Both Python services are *stateless encoders*: an image goes in, a feature vector
+comes out. They have no database access and hold no state between requests. Feature vectors are
+stored in SQL Server at enrolment, and **all matching happens in C#** by Euclidean (L2) distance
+against the per-student average:
+
+| Modality | Endpoint | Vector | Threshold |
+|---|---|---|---|
+| Face | `POST /encode` | 128-d (dlib ResNet-34) | `0.45` |
+| Palmprint | `POST /encode-palm` | Gabor bank, L2-normalised | `0.6` |
+
+Camera capture stays in C# (OpenCvSharp); only the captured JPEG crosses to Python.
+
+Architecture, ER, class and sequence diagrams live in `docs/diagrams/` — see its README.
 
 ## Prerequisites
 - .NET 10 SDK, Windows, SQL Server LocalDB
-- Python 3.11+ (the app launches the service via the `py` launcher or a `python` on PATH)
+- Python 3.11+ (the app launches both services via the `py` launcher or a `python` on PATH)
 
 ## Setup
-1. **Python face service** (one time):
+1. **Python services** (one time each):
    ```powershell
    cd face_service
    .\install.ps1
+   cd ..\palmprint_service
+   .\install.ps1
    ```
-   This creates a venv and installs the deps using the prebuilt `dlib-bin` wheel (no CMake/VS build tools needed). See `face_service/README.md` for details.
+   The face installer uses the prebuilt `dlib-bin` wheel, so no CMake or VS build tools are
+   needed. See each service's README for details.
 2. **Database**:
    ```powershell
    dotnet ef database update -p AristotelisThesis.EntityFramework -s AristotelisThesis.EntityFramework
    ```
-3. **Run the app**: build/run `AristotelisThesis.WPF`. It auto-starts the Python service on launch (first launch is slower while the dlib model loads) and stops it on exit.
+   The connection string is read from `AristotelisThesis.WPF/appsettings.json`
+   (`ConnectionStrings:DefaultConnection`); if that file is missing or unreadable the app falls
+   back to `(localdb)\MSSQLLocalDB`, database `AristotelisThesisDB`.
+3. **Run the app**: build/run `AristotelisThesis.WPF`. It auto-starts **both** Python services on
+   launch (the first launch is slower while the dlib model loads) and stops them on exit. If a
+   service can't start, the app still runs — that modality just fails to encode.
 
 ## Using it
-- **Register**: accept terms → fill the personal-info form (the **Next** button enables only when all required fields, marked with a red `*`, are valid) → on the face step, frame your face inside the on-screen oval and take **3–5 photos** → **Ολοκλήρωση** creates the account, stores your faces, and logs you in.
-- **Login with face**: pick the face login, look at the camera, capture — a match logs you in and records an attendance check-in.
+
+**Register** — a six-step wizard:
+
+| Step | Screen | What happens |
+|---|---|---|
+| 1 | Terms | Accept to continue |
+| 2 | Personal info | Every required field is marked with a red `*`; **Next** stays disabled until all of them are valid |
+| 3 | Palm instructions | How to position the hand, with the on-screen guide previewed |
+| 4 | Palm capture | Align the right palm in the guide box and take **7** photos |
+| 5 | Face instructions | How to frame the face |
+| 6 | Face capture | Frame your face in the oval and take **7** photos |
+
+**Ολοκλήρωση** then creates the account, stores the 7 palms and 7 faces with their feature
+vectors, logs you in with the face just enrolled, and opens the dashboard. If storing the
+biometrics fails, the account is rolled back so no half-enrolled student is left behind.
+
+**Login** — choose face or palmprint, look at / present to the camera, capture. A match logs you
+in and records an attendance check-in. There is no username/password path: accounts are
+biometric-only.
+
+**Dashboard & statistics** — attendance is derived from `SessionHistory` rows at read time
+(days attended this week, streak, monthly percentage, check-in time, weekly graph). Nothing about
+the statistics is written back to the database.
 
 ## Dependencies
 
 **NuGet** (per project — see each project's README for the full table):
-- **Domain**: `Microsoft.AspNet.Identity.Core` 2.2.4, `OpenCvSharp4` (+ `runtime.win`, `WpfExtensions`) 4.13.x, `System.Drawing.Common` 10.0.9
-- **EntityFramework**: `Microsoft.EntityFrameworkCore` (+ `SqlServer`, `Design`, `Tools`) 10.0.9, `OpenCvSharp4` (+ `runtime.win`, `WpfExtensions`) 4.13.x, `System.Drawing.Common` 10.0.9
-- **WPF**: `OpenCvSharp4` (+ `Windows`, `runtime.win`) 4.13.x, `AForge.Video.DirectShow` 2.2.5, `LoadingSpinner.WPF` 1.0.0, `System.Drawing.Common` 10.0.9
+- **Domain**: `OpenCvSharp4` (+ `runtime.win`, `WpfExtensions`) 4.13.0.20260627, `System.Drawing.Common` 10.0.11
+- **EntityFramework**: `Microsoft.EntityFrameworkCore` (+ `SqlServer`, `Design`, `Tools`) 10.0.11, `OpenCvSharp4` (+ `runtime.win`, `WpfExtensions`) 4.13.0.20260627, `System.Drawing.Common` 10.0.11
+- **WPF**: `OpenCvSharp4` (+ `Windows`, `runtime.win`) 4.13.0.20260627, `AForge.Video.DirectShow` 2.2.5, `System.Drawing.Common` 10.0.11
 
-**Python** (`face_service/requirements.txt`): `fastapi`, `uvicorn[standard]`, `pillow`, `numpy`, `python-multipart`, `click`, `dlib-bin` (prebuilt dlib), `face_recognition_models`, plus `face_recognition` (installed `--no-deps`).
+**Python** — `face_service/requirements.txt`: `fastapi`, `uvicorn[standard]`, `pillow`, `numpy`,
+`python-multipart`, `click`, `dlib-bin` (prebuilt dlib), `face_recognition_models`, plus
+`face_recognition` (installed `--no-deps`). `palmprint_service/requirements.txt`: `fastapi`,
+`uvicorn[standard]`, `opencv-python`, `numpy`, `pillow`, `python-multipart`.
+
+Third-party licences and attribution obligations are recorded in
+[`THIRD-PARTY-NOTICES.md`](THIRD-PARTY-NOTICES.md).
 
 ## Notes & limitations
-- The **palmprint** flow is a placeholder; only **face** recognition is implemented.
-- Face recognition can't reliably separate very similar faces (siblings/twins) — the match threshold (`0.45`) and good, consistent lighting/framing are the main accuracy levers.
+- **The palmprint threshold (`0.6`) is a starting value, not a calibrated one.** It needs tuning
+  against real captures before any FAR/FRR claim is made about the palmprint modality.
+- Face recognition can't reliably separate very similar faces (siblings/twins). The threshold
+  (`0.45`, dlib's recommended value) and consistent lighting and framing are the main accuracy
+  levers.
+- Palm captures depend heavily on lighting; the enrolment instructions ask for the capture rig's
+  internal illumination so that enrolment and login conditions match.
+- The dlib landmark model is trained on **iBUG 300-W**, whose licence excludes commercial use.
+  Academic thesis work is inside those terms — see `THIRD-PARTY-NOTICES.md`.
