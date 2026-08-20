@@ -33,12 +33,5 @@ namespace AristotelisThesis.WPF.Controls
         {
             _authenticator = authenticator;
         }
-
-        //private void Logout_Click(object sender, RoutedEventArgs e)
-        //{
-        //    Application.Current.Shutdown();
-        //    // TODO: Implement logout functionality
-        //    //_authenticator.Logout();//
-        //}
     }
 }

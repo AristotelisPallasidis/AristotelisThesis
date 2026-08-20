@@ -43,8 +43,6 @@
                     </TextBlock>
                 </StackPanel>
 
-                <!-- Connection-duration clock now lives in the shared navigation bar -->
-
             </Grid>
 
             <!-- ROW CONTENT -->

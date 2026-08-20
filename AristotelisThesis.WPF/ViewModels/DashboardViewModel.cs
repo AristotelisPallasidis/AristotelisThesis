@@ -86,7 +86,7 @@ namespace AristotelisThesis.WPF.ViewModels
                     return StudentIsPostgraduate ? "Μεταπτυχιακή Φοιτήτρια -" : "Προπτυχιακή Φοιτήτρια -";
                 }
 
-                return string.Empty; // Default case if no valid gender
+                return string.Empty;
             }
         }
 

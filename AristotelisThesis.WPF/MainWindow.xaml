@@ -11,7 +11,7 @@
         Title="ΔΠΘ Σύστημα Ταυτοποίησης"  
         Width="1440"
         WindowState="Maximized"
-        Icon="C:\Users\Aristotelis\Desktop\test2\AristotelisThesis\AristotelisThesis.WPF\Assets\ico\DUTH-Logo.ico">
+        Icon="/Assets/ico/DUTH-Logo.ico">
 
     <Grid>
         <Grid.Style>

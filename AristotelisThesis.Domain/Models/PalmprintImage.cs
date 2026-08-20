@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace AristotelisThesis.Domain.Models
+﻿namespace AristotelisThesis.Domain.Models
 {
     public class PalmprintImage : DomainObject
     {

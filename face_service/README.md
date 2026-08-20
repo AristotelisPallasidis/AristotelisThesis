@@ -71,7 +71,9 @@ manually for development/testing.
 
 Matching is **not** done here. The 128-d embeddings are stored in SQL Server at enrolment, and
 `AuthenticationService.LoginWithFace` compares a probe against the per-student average by
-Euclidean (L2) distance, with a threshold of **`0.45`** — dlib's recommended value.
+Euclidean (L2) distance, with a threshold of **`0.45`**. That is deliberately stricter than dlib's
+default of `0.6`, which separates a person from a random stranger but is too loose for lookalikes
+and siblings.
 
 > **Licence note:** although `face_recognition_models` is CC0, the 68-point landmark predictor it
 > ships was trained on the **iBUG 300-W** dataset, whose licence excludes commercial use. See

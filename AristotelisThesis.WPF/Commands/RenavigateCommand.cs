@@ -1,8 +1,5 @@
 ﻿using AristotelisThesis.WPF.State.Navigators;
 using System.Windows.Input;
-using System;
-using System.Linq;
-using System.Text;
 
 namespace AristotelisThesis.WPF.Commands
 {

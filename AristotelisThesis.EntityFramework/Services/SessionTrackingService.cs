@@ -1,6 +1,3 @@
-using System;
-using System.Linq;
-using System.Threading.Tasks;
 using AristotelisThesis.Domain.Models;
 using AristotelisThesis.Domain.Services;
 using Microsoft.EntityFrameworkCore;

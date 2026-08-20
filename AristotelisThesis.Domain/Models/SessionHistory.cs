@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace AristotelisThesis.Domain.Models
+﻿namespace AristotelisThesis.Domain.Models
 {
     public class SessionHistory : DomainObject
     {

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AristotelisThesis.Domain.Services
+﻿namespace AristotelisThesis.Domain.Services
 {
     public interface IDataService<T>
     {

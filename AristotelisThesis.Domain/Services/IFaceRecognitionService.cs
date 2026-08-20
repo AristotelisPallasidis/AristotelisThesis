@@ -1,5 +1,3 @@
-using System.Threading.Tasks;
-
 namespace AristotelisThesis.Domain.Services
 {
     /// <summary>

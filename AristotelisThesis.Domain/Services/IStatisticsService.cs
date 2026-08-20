@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using AristotelisThesis.Domain.Models;
 
 namespace AristotelisThesis.Domain.Services

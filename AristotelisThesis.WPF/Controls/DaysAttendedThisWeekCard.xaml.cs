@@ -60,7 +60,6 @@ namespace AristotelisThesis.WPF.Controls
 
         private void SetMainText(string days, string slash)
         {
-            // find large TextBlocks (there are two big ones in XAML)
             var tbs = FindLargeTextBlocks(this, 2);
             if (tbs.Length >= 1) tbs[0].Text = days;
             if (tbs.Length >= 2) tbs[1].Text = slash;

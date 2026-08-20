@@ -1,9 +1,4 @@
 ﻿using AristotelisThesis.Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AristotelisThesis.Domain.Services
 {
@@ -17,7 +12,5 @@ namespace AristotelisThesis.Domain.Services
         /// Used to resolve a face-recognition match (which yields a student id) into an account.
         /// </summary>
         Task<Account> GetByStudentId(int studentId);
-
-        // Task<Student> GetByPalmprint(string images);
     }
 }

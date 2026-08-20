@@ -66,7 +66,7 @@ against the per-student average:
 
 | Modality | Endpoint | Vector | Threshold |
 |---|---|---|---|
-| Face | `POST /encode` | 128-d (dlib ResNet-34) | `0.45` |
+| Face | `POST /encode` | 128-d (dlib ResNet-34) | `0.45` (stricter than dlib's default `0.6`) |
 | Palmprint | `POST /encode-palm` | Gabor bank, L2-normalised | `0.6` |
 
 Camera capture stays in C# (OpenCvSharp); only the captured JPEG crosses to Python.
@@ -78,6 +78,12 @@ Architecture, ER, class and sequence diagrams live in `docs/diagrams/` — see i
 - Python 3.11+ (the app launches both services via the `py` launcher or a `python` on PATH)
 
 ## Setup
+
+> Setting this up on a machine that has none of the above? Follow
+> [`docs/setup.md`](docs/setup.md) instead — the full clean-machine guide, with prerequisites,
+> verification steps and troubleshooting. The steps below are the short version for a developer
+> whose environment is already in place.
+
 1. **Python services** (one time each):
    ```powershell
    cd face_service
@@ -142,8 +148,9 @@ Third-party licences and attribution obligations are recorded in
 - **The palmprint threshold (`0.6`) is a starting value, not a calibrated one.** It needs tuning
   against real captures before any FAR/FRR claim is made about the palmprint modality.
 - Face recognition can't reliably separate very similar faces (siblings/twins). The threshold
-  (`0.45`, dlib's recommended value) and consistent lighting and framing are the main accuracy
-  levers.
+  (`0.45` — deliberately stricter than dlib's default `0.6`, which separates a person from a random
+  stranger but is too loose for lookalikes) and consistent lighting and framing are the main
+  accuracy levers.
 - Palm captures depend heavily on lighting; the enrolment instructions ask for the capture rig's
   internal illumination so that enrolment and login conditions match.
 - The dlib landmark model is trained on **iBUG 300-W**, whose licence excludes commercial use.

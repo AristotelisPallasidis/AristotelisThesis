@@ -79,10 +79,11 @@ erDiagram
 - `Account → Student` is modelled as one-to-**many** at the schema level: `AccountHolderId` has a
   plain (non-unique) index. The application only ever creates one `Account` per `Student`, but the
   database does not enforce that.
-- `PasswordHash` is `required` in the schema, yet the current biometric registration flow
-  (`Register06WithFaceViewModel`) stores an empty string and `Username` is set to the academic
-  email — login happens through face or palmprint, not through typed credentials. The older
-  `AuthenticationService.Register(...)` path still hashes a real password.
+- `PasswordHash` is `required` in the schema, yet it never holds a real hash: the biometric
+  registration flow (`Register06WithFaceViewModel`) stores an empty string and sets `Username` to
+  the academic email. Login happens through face or palmprint, not through typed credentials, and
+  `AuthenticationService` exposes only `LoginWithFace` / `LoginWithPalmprint` — there is no
+  registration or password-hashing path anywhere in the codebase. Both columns are vestigial.
 - Registration enrols 7 `PalmprintImage` rows and 7 `FaceImage` rows per student; login compares a
   probe embedding against the average L2 distance to a student's stored rows.
 

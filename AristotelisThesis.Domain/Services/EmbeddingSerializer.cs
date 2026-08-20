@@ -1,5 +1,3 @@
-using System;
-
 namespace AristotelisThesis.Domain.Services
 {
     /// <summary>

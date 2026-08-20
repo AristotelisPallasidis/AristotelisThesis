@@ -4,7 +4,6 @@ namespace AristotelisThesis.Domain.Services.AuthenticationServices
 {
     public class AuthenticationService : IAuthenticationService
     {
-        // dlib's recommended L2 distance threshold for a face match. Lower = stricter.
         // Max average L2 distance for a face match. dlib's 0.6 separates "same person vs.
         // random stranger" but is too loose for lookalikes/siblings, so we use a stricter 0.45.
         // Lower = stricter (fewer false accepts, more false rejects).

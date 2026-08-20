@@ -43,7 +43,7 @@ namespace AristotelisThesis.WPF.Controls
                     return;
                 }
 
-                // MonthlyActiveHours exists but here we want weekly total: try using WeeklyAverageActiveTime * DaysAttendedThisWeek
+                // No weekly total is stored, so derive it: weekly average × days attended this week.
                 var avg = Statistics.WeeklyAverageActiveTime;
                 var days = Math.Max(0, Statistics.DaysAttendedThisWeek);
                 var total = TimeSpan.FromTicks(avg.Ticks * days);
@@ -67,7 +67,6 @@ namespace AristotelisThesis.WPF.Controls
 
         private void SetMainText(string hours, string minutes)
         {
-            // find two large TextBlocks by FontSize
             var tbs = FindLargeTextBlocks(this, 2);
             if (tbs.Length >= 1) tbs[0].Text = hours;
             if (tbs.Length >= 2) tbs[1].Text = minutes;

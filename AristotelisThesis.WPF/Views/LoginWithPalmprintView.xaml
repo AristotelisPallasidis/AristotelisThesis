@@ -98,9 +98,7 @@
                             Margin="0 10 0 6">
                         </TextBlock>
 
-                        <!--
-                        -->
-                        <Button 
+                        <Button
                             Content="Ανανέωση"
                             Click="RefreshButton_Click"
                             Margin="30 10 0 6"

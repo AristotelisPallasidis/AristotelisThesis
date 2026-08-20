@@ -23,12 +23,10 @@
             </TextBlock>
         </Grid>
 
-        <!-- Ensure the scrollviewer is in the correct row -->
         <Grid Grid.Row="1" Margin="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="*" />
-                <!-- Allow ScrollViewer to take remaining space -->
             </Grid.RowDefinitions>
 
             <TextBlock 

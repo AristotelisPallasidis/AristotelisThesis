@@ -21,7 +21,7 @@ Both biometric flows are split the same way: a Python service only produces feat
 
 | Modality | Threshold | Notes |
 |---|---|---|
-| Face | `0.45` | dlib's recommended L2 threshold |
+| Face | `0.45` | Stricter than dlib's default `0.6`, which is too loose for lookalikes |
 | Palmprint | `0.6` | **Starting value — not yet calibrated against real captures** |
 
 ## Attendance

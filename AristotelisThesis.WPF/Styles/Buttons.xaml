@@ -32,10 +32,6 @@
 
 
 
-    <!-- /////////////////////////////////////////////////////////////// -->
-    <!-- REGISTRATION BUTTONS -->
-    <!-- /////////////////////////////////////////////////////////////// -->
-
     <!-- NEXT BUTTON -->
     <Style x:Key="NextButton" TargetType="Button">
 
@@ -78,10 +74,6 @@
 
     </Style>
 
-
-    <!-- /////////////////////////////////////////////////////////////// -->
-    <!-- STATISTICS BUTTONS -->
-    <!-- /////////////////////////////////////////////////////////////// -->
 
     <!-- SAVE CHANGES BUTTION -->
     <Style x:Key="SaveChangesButton" TargetType="Button">
@@ -137,7 +129,6 @@
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="Margin" Value="0 5" />
 
-        <!-- Hover Effect -->
         <Style.Triggers>
             <EventTrigger RoutedEvent="MouseEnter">
                 <BeginStoryboard>

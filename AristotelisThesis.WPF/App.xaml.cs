@@ -46,25 +46,6 @@ namespace AristotelisThesis.WPF
             _ = _palmServiceLauncher.StartAsync();
 
             IAuthenticationService authentication = serviceProvider.GetRequiredService<IAuthenticationService>();
-            //authentication.Login("Aris", "aris");
-            //authentication.Register(
-            //   "maria.pallasid@gmail.com", // email
-            //   "maria",                    // username
-            //   "maria",                           // password
-            //   "maria",                           // confirmPassword
-            //   "Maria",                    // name
-            //   "Pallasidou",                     // surname
-            //   "Female",                           // sex
-            //   "6933015797",                     // phone
-            //   "Anagenniseos 19 Pefka Thessalonikis",// address
-            //   "Φυσικής",                        // department
-            //   2,                                // semester
-            //   4510,                             // aem
-            //   new DateTime(1998, 9, 23),       // dateOfBirth
-            //   2019,                             // yearOfEntry
-            //   true                             // isPostgraduate
-            //);
-
 
             Window window = serviceProvider.GetRequiredService<MainWindow>();
             window.Show();
@@ -120,11 +101,6 @@ namespace AristotelisThesis.WPF
         {
             IServiceCollection services= new ServiceCollection();
 
-            // 1. Singleton => Only one instance of the service is created and shared across the application.
-            // 2. Transient => A new instance of the service is created every time it is requested.
-            // 3. Scoped => A new instance of the service is created once per HTTP request (within the scope of HTTP request).
-
-            // Register services
             // Connection string comes from appsettings.json next to the exe, so the database
             // can be pointed elsewhere without a rebuild; falls back to the LocalDB default.
             services.AddSingleton(new AristotelisThesisDbContextFactory(ReadConnectionString()));
@@ -148,7 +124,6 @@ namespace AristotelisThesis.WPF
             // Carries registration-wizard data (personal info + captured faces/palms) across steps.
             services.AddSingleton<RegistrationStore>();
 
-            // Register factories
             services.AddSingleton<IAristotelisThesisViewModelFactory, AristotelisThesisViewModelFactory>();
 
 
@@ -165,9 +140,6 @@ namespace AristotelisThesis.WPF
             services.AddTransient<StatisticsViewModel>();
             services.AddTransient<SettingsViewModel>();
 
-            // --------------------------------------------------------------------------------
-            // Register Delegates
-            // --------------------------------------------------------------------------------
             services.AddSingleton<CreateViewModel<DashboardViewModel>>(services =>
             {
                 return () => services.GetRequiredService<DashboardViewModel>();
@@ -206,9 +178,6 @@ namespace AristotelisThesis.WPF
 
 
 
-            // --------------------------------------------------------------------------------
-            // Register LoginWithFaceViewModel & LoginWithPalmprintViewModel
-            // --------------------------------------------------------------------------------
             services.AddSingleton<ViewModelDelegateRenavigator<LoginViewModel>>();
             services.AddSingleton<CreateViewModel<LoginWithFaceViewModel>>(services =>
             {
@@ -229,10 +198,6 @@ namespace AristotelisThesis.WPF
                     services.GetRequiredService<ViewModelDelegateRenavigator<LoginViewModel>>()
                 );
             });
-
-            // --------------------------------------------------------------------------------
-            // Register
-            // --------------------------------------------------------------------------------
 
             services.AddSingleton<ViewModelDelegateRenavigator<Register01ViewModel>>();
             services.AddSingleton<ViewModelDelegateRenavigator<Register02WithInformationViewModel>>();
@@ -314,7 +279,6 @@ namespace AristotelisThesis.WPF
             });
 
 
-            // This is were we manage the STATES of the application
             services.AddSingleton<INavigator, Navigator>();
             services.AddSingleton<IAuthenticator, Authenticator>();
             services.AddSingleton<IAccountStore, AccountStore>();

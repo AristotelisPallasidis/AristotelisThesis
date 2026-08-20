@@ -42,8 +42,9 @@ Matching is **not** done here. Feature vectors are stored in SQL Server at enrol
 Euclidean (L2) distance.
 
 > **The threshold is `0.6` and is a starting value, not a calibrated one.** Unlike the face
-> threshold (dlib's recommended `0.45`), it has not been tuned against real captures. Calibrate it
-> before making any FAR/FRR claim about the palmprint modality.
+> threshold (`0.45`, chosen as a deliberately stricter alternative to dlib's default `0.6`), it has
+> not been tuned against real captures. Calibrate it before making any FAR/FRR claim about the
+> palmprint modality.
 
 Enrolment captures **7** palms of the right hand (`Register04`). Because the ROI is the fixed
 guide box, results depend on the palm being presented the same way at enrolment and at login —
@@ -69,7 +70,8 @@ venv\Scripts\Activate.ps1
 uvicorn app:app --host 127.0.0.1 --port 8501
 ```
 
-The WPF app auto-starts this service on launch (see `PalmprintServiceLauncher`).
+The WPF app auto-starts this service on launch (see `PythonServiceLauncher`, which the app
+instantiates once per service).
 
 ## Quick test
 
